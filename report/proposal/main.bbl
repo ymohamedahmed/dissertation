@@ -1,0 +1,29 @@
+\begin{thebibliography}{1}
+
+\bibitem{originalPaper}
+N.~J. Verkruysse~W, Svaasand~LO, ``Remote plethysmographic imaging using
+  ambient light,'' Jul 2009.
+
+\bibitem{vanderKooij2019}
+K.~M. van~der Kooij and M.~Naber, ``An open-source remote heart rate imaging
+  method with practical apparatus and algorithms,'' {\em Behavior Research
+  Methods}, May 2019.
+
+\bibitem{Peng2014}
+F.~Peng, Z.~Zhang, X.~Gou, H.~Liu, and W.~Wang, ``Motion artifact removal from
+  photoplethysmographic signals by combining temporally constrained independent
+  component analysis and adaptive filter,'' {\em BioMedical Engineering
+  OnLine}, vol.~13, no.~1, p.~50, 2014.
+
+\bibitem{10.1007/978-3-030-01216-8_22}
+W.~Chen and D.~McDuff, ``Deepphys: Video-based physiological measurement using
+  convolutional attention networks,'' in {\em Computer Vision -- ECCV 2018}
+  (V.~Ferrari, M.~Hebert, C.~Sminchisescu, and Y.~Weiss, eds.), (Cham),
+  pp.~356--373, Springer International Publishing, 2018.
+
+\bibitem{li2018differentiable}
+T.-M. Li, M.~Gharbi, A.~Adams, F.~Durand, and J.~Ragan-Kelley, ``Differentiable
+  programming for image processing and deep learning in halide,'' {\em ACM
+  Transactions on Graphics (TOG)}, vol.~37, no.~4, p.~139, 2018.
+
+\end{thebibliography}
