@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.3)  14 DEC 2019 21:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.3)  16 DEC 2019 14:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -199,83 +199,81 @@ Overfull \hbox (53.76768pt too wide) in paragraph at lines 67--81
 []
  []
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 85.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 85.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 85.
 [1
 
-] [2] [3] [4
-
-] (/home/yousuf/workspace/dissertation/report/diss.toc)
+] [2] (/home/yousuf/workspace/dissertation/report/diss.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 3.
+)
 \tf@toc=\write3
 \openout3 = `diss.toc'.
 
- [5
+ [3
 
-] (/home/yousuf/workspace/dissertation/report/diss.lof)
-\tf@lof=\write4
-\openout4 = `diss.lof'.
 
- [6
-
-] [7] [8
+] [4
 
 ]
 Chapter 1.
-[1
+(/home/yousuf/workspace/dissertation/report/introduction/introduction.tex) [1
 
 ] [2
 
 ]
 Chapter 2.
-[3
+(/home/yousuf/workspace/dissertation/report/preparation/preparation.tex) [3
 
 ] [4
 
 ]
 Chapter 3.
-[5
+(/home/yousuf/workspace/dissertation/report/implementation/implementation.tex) [5
 
 ] [6
 
 ]
 Chapter 4.
-[7
+(/home/yousuf/workspace/dissertation/report/evaluation/evaluation.tex) [7
 
 ] [8
 
 ]
 Chapter 5.
-[9
+(/home/yousuf/workspace/dissertation/report/conclusion/conclusion.tex) [9
 
 ] [10
 
-] (/home/yousuf/workspace/dissertation/report/diss.bbl) [11
+] (/home/yousuf/workspace/dissertation/report/diss.bbl
+
+LaTeX Warning: Empty `thebibliography' environment on input line 3.
+
+) [11
 
 ] [12
 
 ]
 Appendix A.
-<proposal/main.pdf, id=80, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=66, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf>
-Package pdftex.def Info: proposal/main.pdf  used on input line 176.
+Package pdftex.def Info: proposal/main.pdf  used on input line 157.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf>
-Package pdftex.def Info: proposal/main.pdf  used on input line 176.
+Package pdftex.def Info: proposal/main.pdf  used on input line 157.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-<proposal/main.pdf, id=83, page=1, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=69, page=1, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package pdftex.def Info: proposal/main.pdf , page1 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page1 used on input line 157.
 (pdftex.def)             Requested size: 614.295pt x 795.01657pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package pdftex.def Info: proposal/main.pdf , page1 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page1 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 [13
 
@@ -283,86 +281,86 @@ Package pdftex.def Info: proposal/main.pdf , page1 used on input line 176.
 ]
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package pdftex.def Info: proposal/main.pdf , page1 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page1 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package pdftex.def Info: proposal/main.pdf , page1 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page1 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package pdftex.def Info: proposal/main.pdf , page1 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page1 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
  [14 </home/yousuf/workspace/dissertation/report/proposal/main.pdf>]
-<proposal/main.pdf, id=116, page=2, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=103, page=2, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 2>
-Package pdftex.def Info: proposal/main.pdf , page2 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page2 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 2>
-Package pdftex.def Info: proposal/main.pdf , page2 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page2 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 2>
-Package pdftex.def Info: proposal/main.pdf , page2 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page2 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
  [15 </home/yousuf/workspace/dissertation/report/proposal/main.pdf>]
-<proposal/main.pdf, id=121, page=3, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=107, page=3, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 3>
-Package pdftex.def Info: proposal/main.pdf , page3 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page3 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 3>
-Package pdftex.def Info: proposal/main.pdf , page3 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page3 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 3>
-Package pdftex.def Info: proposal/main.pdf , page3 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page3 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
  [16 </home/yousuf/workspace/dissertation/report/proposal/main.pdf>]
-<proposal/main.pdf, id=130, page=4, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=116, page=4, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 4>
-Package pdftex.def Info: proposal/main.pdf , page4 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page4 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 4>
-Package pdftex.def Info: proposal/main.pdf , page4 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page4 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 4>
-Package pdftex.def Info: proposal/main.pdf , page4 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page4 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
  [17 </home/yousuf/workspace/dissertation/report/proposal/main.pdf>]
-<proposal/main.pdf, id=134, page=5, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=120, page=5, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 5>
-Package pdftex.def Info: proposal/main.pdf , page5 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page5 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 5>
-Package pdftex.def Info: proposal/main.pdf , page5 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page5 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 5>
-Package pdftex.def Info: proposal/main.pdf , page5 used on input line 176.
+Package pdftex.def Info: proposal/main.pdf , page5 used on input line 157.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
  [18 </home/yousuf/workspace/dissertation/report/proposal/main.pdf>] (/home/yousuf/workspace/dissertation/report/diss.aux) ) 
 Here is how much of TeX's memory you used:
- 2923 strings out of 494923
- 42853 string characters out of 6180742
- 101578 words of memory out of 5000000
- 6186 multiletter control sequences out of 15000+600000
+ 2944 strings out of 494923
+ 43842 string characters out of 6180742
+ 102575 words of memory out of 5000000
+ 6185 multiletter control sequences out of 15000+600000
  10381 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  41i,18n,50p,350b,428s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on /home/yousuf/workspace/dissertation/report/diss.pdf (28 pages, 165673 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on /home/yousuf/workspace/dissertation/report/diss.pdf (24 pages, 157063 bytes).
 PDF statistics:
- 168 PDF objects out of 1000 (max. 8388607)
- 118 compressed objects within 2 object streams
+ 151 PDF objects out of 1000 (max. 8388607)
+ 106 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
