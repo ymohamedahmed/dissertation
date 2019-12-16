@@ -5,7 +5,8 @@
 \contentsline {section}{\numberline {2.3}Independent Component Analysis}{3}
 \contentsline {section}{\numberline {2.4}Differentiable Programming}{3}
 \contentsline {section}{\numberline {2.5}Halide}{3}
-\contentsline {section}{\numberline {2.6}RenderScript}{3}
+\contentsline {section}{\numberline {2.6}Conditional Random Fields}{3}
+\contentsline {section}{\numberline {2.7}RenderScript}{3}
 \contentsline {chapter}{\numberline {3}Implementation}{5}
 \contentsline {section}{\numberline {3.1}Face Tracking}{5}
 \contentsline {section}{\numberline {3.2}Skin detection}{5}
