@@ -7,13 +7,18 @@
 \contentsline {section}{\numberline {2.5}Halide}{3}
 \contentsline {section}{\numberline {2.6}Conditional Random Fields}{3}
 \contentsline {section}{\numberline {2.7}RenderScript}{3}
+\contentsline {section}{\numberline {2.8}Starting Point}{3}
 \contentsline {chapter}{\numberline {3}Implementation}{5}
-\contentsline {section}{\numberline {3.1}Face Tracking}{5}
+\contentsline {section}{\numberline {3.1}Lazy face detection}{5}
+\contentsline {subsection}{\numberline {3.1.1}Batched face detection}{5}
+\contentsline {subsection}{\numberline {3.1.2}Point tracking}{5}
 \contentsline {section}{\numberline {3.2}Skin detection}{5}
 \contentsline {subsection}{\numberline {3.2.1}GrabCut}{5}
 \contentsline {subsection}{\numberline {3.2.2}Flood filling}{5}
 \contentsline {subsection}{\numberline {3.2.3}Markov Clustering}{5}
 \contentsline {subsection}{\numberline {3.2.4}Colour Space Filtering}{5}
+\contentsline {section}{\numberline {3.3}Ensemble Methods}{5}
+\contentsline {section}{\numberline {3.4}Heart rate isolation}{5}
 \contentsline {chapter}{\numberline {4}Evaluation}{7}
 \contentsline {chapter}{\numberline {5}Conclusion}{9}
 \contentsline {chapter}{Bibliography}{11}
