@@ -10,21 +10,19 @@
 \contentsline {section}{\numberline {2.8}Differentiable Programming}{3}
 \contentsline {section}{\numberline {2.9}Starting Point}{3}
 \contentsline {chapter}{\numberline {3}Implementation}{5}
-\contentsline {section}{\numberline {3.1}Lazy face detection}{6}
-\contentsline {subsection}{\numberline {3.1.1}Batched face detection}{6}
-\contentsline {subsection}{\numberline {3.1.2}Point tracking}{6}
-\contentsline {subsection}{\numberline {3.1.3}}{6}
-\contentsline {section}{\numberline {3.2}Skin segmentation}{6}
-\contentsline {subsection}{\numberline {3.2.1}}{6}
-\contentsline {subsection}{\numberline {3.2.2}}{6}
-\contentsline {subsection}{\numberline {3.2.3}Flood filling}{6}
-\contentsline {subsection}{\numberline {3.2.4}Markov Clustering}{6}
-\contentsline {subsection}{\numberline {3.2.5}Colour Space Filtering}{6}
-\contentsline {subsubsection}{}{6}
-\contentsline {subsection}{\numberline {3.2.6}Conditional Random Fields}{6}
-\contentsline {section}{\numberline {3.3}Ensemble Methods}{6}
-\contentsline {section}{\numberline {3.4}Heart rate isolation}{6}
-\contentsline {subsection}{\numberline {3.4.1}Respiration rejection}{6}
+\contentsline {section}{\numberline {3.1}Face detection}{5}
+\contentsline {subsection}{\numberline {3.1.1}Repeated face detection}{5}
+\contentsline {subsection}{\numberline {3.1.2}Point tracking}{5}
+\contentsline {section}{\numberline {3.2}Skin detection}{5}
+\contentsline {subsection}{\numberline {3.2.1}K-Means Clustering}{5}
+\contentsline {subsection}{\numberline {3.2.2}Flood filling}{5}
+\contentsline {subsection}{\numberline {3.2.3}Markov Clustering}{5}
+\contentsline {subsection}{\numberline {3.2.4}Colour Space Filtering}{5}
+\contentsline {subsubsection}{}{5}
+\contentsline {subsection}{\numberline {3.2.5}Conditional Random Fields}{5}
+\contentsline {section}{\numberline {3.3}Ensemble Methods}{5}
+\contentsline {section}{\numberline {3.4}Heart rate isolation}{5}
+\contentsline {subsection}{\numberline {3.4.1}Respiration rejection}{5}
 \contentsline {chapter}{\numberline {4}Evaluation}{7}
 \contentsline {chapter}{\numberline {5}Conclusion}{9}
 \contentsline {chapter}{Bibliography}{11}
