@@ -1,12 +1,24 @@
+\section{Overview}
 \section{Face detection}
 \subsection{Repeated face detection}
 \subsection{Point tracking}
 
 \section{Skin detection}
-\subsection{K-Means clustering}
-\subsection{Hierarchical clustering}
+Face detection systems, typically, return a bounding box, within which it is believed
+a face is present. However, naturally, the box will also contain pixels from the background of 
+the image since faces are not, in general, perfectly rectangular.
+These background pixels will not contain any information as to the underlying heart rate of the user.
+As a result, considering the entire bounding box will add unecessary noise to the resulting signal.
+The ideal algorithm would only consider skin pixels, however, robust, pose-invariant skin detection is an unsolved problem.
+On the other hand, considering too few pixels could increase the effect of specular reflection.
+
+\subsection{Clustering approaches}
+\subsubsection{K-Means clustering}
+\subsubsection{Hierarchical clustering}
+\subsubsection{Markov clustering}
+
+\subsection{}
 \subsection{Flood filling}
-\subsection{Markov clustering}
 \subsection{Colour Space Filtering}
 \subsection{Conditional Random Fields}
 

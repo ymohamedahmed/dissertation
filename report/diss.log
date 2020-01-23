@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.3)  19 JAN 2020 11:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.12.3)  19 JAN 2020 18:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -203,11 +203,11 @@ Overfull \hbox (53.76768pt too wide) in paragraph at lines 67--81
 
 ] [2] (/home/yousuf/workspace/dissertation/report/diss.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 3.
+(Font)              <12> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 3.
+(Font)              <8> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 3.
+(Font)              <6> on input line 2.
  [3
 
 
@@ -232,11 +232,10 @@ Chapter 2.
 Chapter 3.
 (/home/yousuf/workspace/dissertation/report/implementation/implementation.tex) [5
 
-] [6
-
-]
+] [6]
 Chapter 4.
 (/home/yousuf/workspace/dissertation/report/evaluation/evaluation.tex) [7
+
 
 ] [8
 
@@ -350,13 +349,13 @@ Package pdftex.def Info: proposal/main.pdf , page5 used on input line 157.
 Here is how much of TeX's memory you used:
  2944 strings out of 494923
  43842 string characters out of 6180742
- 103575 words of memory out of 5000000
+ 104575 words of memory out of 5000000
  6185 multiletter control sequences out of 15000+600000
  10381 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  41i,18n,50p,350b,428s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on /home/yousuf/workspace/dissertation/report/diss.pdf (24 pages, 158519 bytes).
+Output written on /home/yousuf/workspace/dissertation/report/diss.pdf (24 pages, 159871 bytes).
 PDF statistics:
  151 PDF objects out of 1000 (max. 8388607)
  106 compressed objects within 2 object streams
