@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin=3.5cm]{geometry}
+\title{Computer Science Tripos - Part II - Progress report\\
+\textbf{Non-contact heart rate estimation from video}}
+\author{Yousuf Mohamed-Ahmed \vspace{3ex} (ym346@cam.ac.uk)}
+
+
+\begin{document}
+\date{\vspace{-5ex}}
+\maketitle
+ \noindent
+\textbf{Project Supervisor:} Robert Harle \\
+\textbf{Director of Studies:} Timothy Jones and Graham Titmus \\
+\textbf{Overseers:} Rafal Mantiuk and Andrew Pitts 
+
+\paragraph{Accomplishments}
+A Python prototype version of the entire pipeline from reading videos to outputting heart rates has been completed.
+This involved experimenting with a number of different face detection algorithms as well as implementing and testing a variety of 
+signal processing techniques for extracting the heart rate from the raw pixel values. These have been evaluated as the project has been progressing which will, I believe, be useful during the writing up stage of the project. 
+
+For example, I have been working on implementing skin detection algorithms since face detection systems typically return a bounding box which includes background pixels that are irrelevant to extracting the heart rate. Having implemented a variety of alternative solutions, I have investigated their effect on reducing noise in the resulting signal extracted from the video.
+
+Having run experiments on a dataset provided by Imperial College London, I finalised the design of the system, which is now in the process of being ported into an Android application which will be written in Kotlin. Parts of it will also be in the domain specific language Halide which is designed for vectorised image processing. 
+
+
+\paragraph{Progress}
+Currently the project is on schedule. In the proposal, it was stated that between the dates of 18/01/2020 and 01/02/2020, work on the Android implementation of the project should be beginning. This is the precise stage that I am working on currently. Furthermore, I have begun drafting parts of the report which can be written at this point in time, with the aim of reducing the writing burden later on. All being considered, I am happy with the progress of the project, however, I also recognise that continued progress over the next few weeks is critical.
+
+\paragraph{Difficulties}
+There have been no serious unexpected difficulties of note. 
+
+\end{document}
