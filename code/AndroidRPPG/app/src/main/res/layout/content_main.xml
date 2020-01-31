@@ -9,23 +9,14 @@
     tools:showIn="@layout/activity_main"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.gms.samples.vision.face.facetracker.ui.camera.CameraSourcePreview
+    <com.yousuf.rppg.CameraPreview
         android:id="@+id/preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <com.google.android.gms.samples.vision.face.facetracker.ui.camera.GraphicOverlay
-        android:id="@+id/faceOverlay"
+    <com.yousuf.rppg.CameraOverlay
+        android:id="@+id/overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</com.google.android.gms.samples.vision.face.facetracker.ui.camera.CameraSourcePreview>
+</com.yousuf.rppg.CameraPreview>
 </androidx.constraintlayout.widget.ConstraintLayout>
