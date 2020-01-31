@@ -18,4 +18,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.gms.samples.vision.face.facetracker.ui.camera.CameraSourcePreview
+        android:id="@+id/preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <com.google.android.gms.samples.vision.face.facetracker.ui.camera.GraphicOverlay
+        android:id="@+id/faceOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</com.google.android.gms.samples.vision.face.facetracker.ui.camera.CameraSourcePreview>
 </androidx.constraintlayout.widget.ConstraintLayout>
