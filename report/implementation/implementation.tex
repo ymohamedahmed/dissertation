@@ -1,10 +1,15 @@
 \section{Overview}
-\section{Face detection}
-\subsection{Repeated face detection}
-\subsection{Point tracking}
-As opposed to 
+GIVE STRUCTURE OF PROGRAM AND EXPLAIN WHY MOST WORK IS DEDICATED TO REGION
+SELECTION AND HEART RATE ISOLATION SPECIFICALLY
+%\section{Face detection}
+%\subsection{Repeated face detection}
+%\subsection{Point tracking}
+%As opposed to 
 
-\section{Skin detection}
+\section{Region of interest selection}
+DEFINE THE BASELINE: PRIMITIVEROI
+\subsection{Facial landmarks}
+\subsection{Skin detection}
 Face detection systems, typically, return a bounding box, within which it is believed
 a face is present. However, naturally, the box will also contain pixels from the background of 
 the image since faces are not, in general, perfectly rectangular.
@@ -15,6 +20,7 @@ On the other hand, considering too few pixels could increase the effect of specu
 
 \subsection{Clustering approaches}
 \subsubsection{K-Means clustering}
+TALK ABOUT COMPLEXITY OF K-MEANS AND WHY USING IT REPEATEDLY DOESN'T WORK THAT WELL
 \subsubsection{Hierarchical clustering}
 \subsubsection{Markov clustering}
 
@@ -23,9 +29,8 @@ On the other hand, considering too few pixels could increase the effect of specu
 \subsection{Colour Space Filtering}
 \subsection{Conditional Random Fields}
 
-\section{Ensemble Methods}
+% \section{Ensemble Methods}
 
 \section{Heart rate isolation}
 \subsection{Respiration rejection}
 
-\section{}

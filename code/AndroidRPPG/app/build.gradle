@@ -33,7 +33,13 @@ dependencies {
     compile 'com.android.support:support-v4:24.2.0'
     compile 'com.android.support:design:24.2.0'
     compile 'com.google.android.gms:play-services-vision:9.4.0+'
+    implementation group: 'org.ejml', name: 'ejml-all', version: '0.38'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
