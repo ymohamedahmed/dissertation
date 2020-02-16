@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.yousuf.rppg.CameraPreview
+    <com.yousuf.rppg.Interface.CameraPreview
         android:id="@+id/cameraPreview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <com.yousuf.rppg.CameraOverlay
+    <com.yousuf.rppg.Interface.CameraOverlay
         android:id="@+id/cameraOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</com.yousuf.rppg.CameraPreview>
+</com.yousuf.rppg.Interface.CameraPreview>
 </LinearLayout>

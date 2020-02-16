@@ -21,16 +21,31 @@ On the other hand, considering too few pixels could increase the effect of specu
 \subsection{Clustering approaches}
 \subsubsection{K-Means clustering}
 TALK ABOUT COMPLEXITY OF K-MEANS AND WHY USING IT REPEATEDLY DOESN'T WORK THAT WELL
-\subsubsection{Hierarchical clustering}
+%\subsubsection{Hierarchical clustering}
 \subsubsection{Markov clustering}
 
-\subsection{}
-\subsection{Flood filling}
+%\subsection{}
+%\subsection{Flood filling}
 \subsection{Colour Space Filtering}
-\subsection{Conditional Random Fields}
+EXPLAIN PERCEPTUAL UNIFORMITY 
+SHOW YCbCr REPRESENTATION OF SKIN PIXELS
+%\subsection{Conditional Random Fields}
 
 % \section{Ensemble Methods}
 
 \section{Heart rate isolation}
-\subsection{Respiration rejection}
+EXPLAIN WHY IT'S NOT JUST THE FOURIER POWER SPECTRUM
+IN VIDEOS WITH MOVEMENT WE EXPECT HEART RATE TO BE A SERIES OF PEAKS TOGETHER RATHER THAN A SINGLE PEAK
+THAT MIGHT BE DUE TO LIGHTING ETC
+IMPACT OF LIGHTING CONDITIONS
 
+\subsection{Blind-source separation}
+ASSUMPTION OF CAMERA FEED BEING A MIXTURE OF INDEPENDENT SOURCES INCLUDING HEART RATE
+
+SELECTION OF RESULTING COMPONENT => HIGHEST PEAK
+
+%SHOW IDEALISED HR AND WHY AUTOCORRELATION HELPS US PICK IT OUT
+
+
+\subsection{Respiration rejection}
+\subsection{}

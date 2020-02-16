@@ -10,7 +10,6 @@ import com.google.android.gms.vision.MultiProcessor
 import android.view.MenuItem
 import androidx.core.app.ActivityCompat
 
-import com.yousuf.rppg.R
 import android.view.View
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
@@ -21,13 +20,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.common.ConnectionResult
 import android.util.Log
+import com.yousuf.rppg.Interface.CameraOverlay
+import com.yousuf.rppg.Interface.CameraPreview
+import com.yousuf.rppg.Interface.FaceDetectionOverlay
 import java.io.IOException
-import android.graphics.BitmapFactory
-import android.graphics.Bitmap
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import com.yousuf.rppg.RegionSelection.PrimitiveRoi
+
 //import android.R
 
 
@@ -82,8 +80,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun createFaceDetector(){
         val context = applicationContext
-//        val detector = FaceDetector.Builder(context).setClassificationType(FaceDetector.ACCURATE_MODE).build()//.setLandmarkType().setLandmarkType(FaceDetector.ALL_LANDMARKS).setTrackingEnabled(true).build()
-        val detector = FaceDetector(context, PrimitiveRoi(), FaceDetector.Builder(context).setClassificationType(FaceDetector.ACCURATE_MODE).setLandmarkType(FaceDetector.ALL_LANDMARKS).setTrackingEnabled(true).build())
+        val detector = com.yousuf.rppg.FaceDetection.FaceDetector(
+            context,
+            PrimitiveRoi(),
+            FaceDetector.Builder(context).setClassificationType(FaceDetector.ACCURATE_MODE).setLandmarkType(
+                FaceDetector.ALL_LANDMARKS
+            ).setTrackingEnabled(true).build()
+        )
         detector.setProcessor(MultiProcessor.Builder(GraphicFaceTrackerFactory()).build())
 
         cameraSource = CameraSource.Builder(context, detector)

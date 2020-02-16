@@ -38,6 +38,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation group: 'com.edwardraff', name: 'JSAT', version: '0.0.9'
+    // https://mvnrepository.com/artifact/org.apache.commons/commons-math3
+    implementation group: 'org.apache.commons', name: 'commons-math3', version: '3.0'
+
 }
 repositories {
     maven { url 'https://jitpack.io' }
