@@ -19,16 +19,21 @@ import kotlin.math.*
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
 import android.graphics.Bitmap
+import android.os.Build
+import androidx.annotation.RequiresApi
+import com.yousuf.rppg.HRIsolation.HRIsolator
 import com.yousuf.rppg.RegionSelection.RegionSelector
 
 
 class FaceDetector(context: Context, roi : RegionSelector, detector: FaceDetector) : Detector<Face>() {
     private var mRoi : RegionSelector = roi
     private var mDetector : FaceDetector = detector
+    private var mHRIsolator : HRIsolator = HRIsolator()
     private val TAG = "CustomFaceDetector"
     private val mContext = context
     private val DEBUG = false
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun detect(frame: Frame?): SparseArray<Face> {
         val detections = mDetector.detect(frame)
         if (frame != null) {
@@ -83,6 +88,8 @@ class FaceDetector(context: Context, roi : RegionSelector, detector: FaceDetecto
                     canvas.rotate(face.eulerZ,x,y)
                     paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
                     canvas.drawBitmap(bitmap, 0f, 0f, paint)
+                    var meanColor = mRoi.detect(face, output)
+                    mHRIsolator.put(meanColor)
                     if(DEBUG) {
                         try {
 
