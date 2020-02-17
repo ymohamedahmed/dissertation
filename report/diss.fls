@@ -113,6 +113,8 @@ INPUT /home/yousuf/workspace/dissertation/report/preparation/preparation.tex
 INPUT /home/yousuf/workspace/dissertation/report/preparation/preparation.tex
 INPUT /home/yousuf/workspace/dissertation/report/implementation/implementation.tex
 INPUT /home/yousuf/workspace/dissertation/report/implementation/implementation.tex
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 INPUT /home/yousuf/workspace/dissertation/report/evaluation/evaluation.tex
 INPUT /home/yousuf/workspace/dissertation/report/evaluation/evaluation.tex
 INPUT /home/yousuf/workspace/dissertation/report/conclusion/conclusion.tex

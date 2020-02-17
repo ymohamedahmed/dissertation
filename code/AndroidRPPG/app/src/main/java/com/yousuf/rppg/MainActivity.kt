@@ -83,14 +83,15 @@ class MainActivity : AppCompatActivity() {
         val detector = com.yousuf.rppg.FaceDetection.FaceDetector(
             context,
             PrimitiveRoi(),
-            FaceDetector.Builder(context).setClassificationType(FaceDetector.ACCURATE_MODE).setLandmarkType(
+            FaceDetector.Builder(context).setClassificationType(FaceDetector.FAST_MODE)//.setTrackingEnabled(false).build()
+                    .setLandmarkType(
                 FaceDetector.ALL_LANDMARKS
             ).setTrackingEnabled(true).build()
         )
         detector.setProcessor(MultiProcessor.Builder(GraphicFaceTrackerFactory()).build())
 
         cameraSource = CameraSource.Builder(context, detector)
-            .setRequestedPreviewSize(640,480)
+            .setRequestedPreviewSize(640, 480)
             .setAutoFocusEnabled(true)
             .setFacing(CameraSource.CAMERA_FACING_FRONT)
             .setRequestedFps(60.0f).build()

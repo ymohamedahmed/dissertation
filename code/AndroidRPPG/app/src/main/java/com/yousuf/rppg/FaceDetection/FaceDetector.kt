@@ -88,19 +88,48 @@ class FaceDetector(context: Context, roi : RegionSelector, detector: FaceDetecto
                     canvas.rotate(face.eulerZ,x,y)
                     paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
                     canvas.drawBitmap(bitmap, 0f, 0f, paint)
-                    var meanColor = mRoi.detect(face, output)
-                    mHRIsolator.put(meanColor)
+                    val left = max((face.position.x.toInt()-face.width/2f).toInt(),0)
+                    val top = max((face.position.y.toInt()-face.height/2f).toInt(),0)
+                    val width = min(face.width.toInt(), bitmap.width-left)
+                    val height = min(face.height.toInt(), bitmap.height-top)
+                    val size = width*height
+                    val pixels = IntArray(size)
+                    Log.d(TAG, "left: $left, top: $top, width: $width, height: $height, bitmap_width: ${bitmap.width}, bitmap_height: ${bitmap.height}")
+                    output.getPixels(pixels, 0, width, left, top, width, height)
+
+                    var start = System.currentTimeMillis()
+                    // Find mean
+                    var meanR = 0f
+                    var meanG = 0f
+                    var meanB = 0f
+
+                    for(pixel in pixels){
+                        meanR += Color.red(pixel)
+                        meanG += Color.green(pixel)
+                        meanB += Color.blue(pixel)
+                    }
+                    meanR /= size
+                    meanG /= size
+                    meanB /= size
+                    var end = System.currentTimeMillis()
+                    Log.d(TAG, "Time to find mean: ${end-start}")
+
+//                    var meanColor = mRoi.detect(face, output)
+//                    mHRIsolator.put(meanColor)
+                    mHRIsolator.put(meanR, meanG, meanB)
                     if(DEBUG) {
                         try {
 
                             var fileName = "rotated_bitmap.png"
                             var file = File(mContext.filesDir, fileName)
                             var out = FileOutputStream(file, false)
+/*
                             output.compress(
                                 Bitmap.CompressFormat.PNG,
                                 100,
                                 out
                             )
+*/
                             Log.d(TAG, "WRITTEN BITMAP to ${mContext.filesDir}")
                         } catch (e: IOException) {
                             Log.e(TAG, "Error writing bitmap")

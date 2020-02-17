@@ -2,32 +2,43 @@
 \contentsline {section}{\numberline {1.1}Motivation}{1}% 
 \contentsline {section}{\numberline {1.2}Related work}{1}% 
 \contentsline {chapter}{\numberline {2}Preparation}{3}% 
-\contentsline {section}{\numberline {2.1}Face Detection}{3}% 
-\contentsline {section}{\numberline {2.2}Conditional Random Fields}{3}% 
-\contentsline {section}{\numberline {2.3}Semantic Segmentation}{3}% 
-\contentsline {section}{\numberline {2.4}Fourier Transform}{3}% 
-\contentsline {section}{\numberline {2.5}Independent Component Analysis}{3}% 
-\contentsline {section}{\numberline {2.6}Halide}{3}% 
-\contentsline {section}{\numberline {2.7}RenderScript}{3}% 
-\contentsline {section}{\numberline {2.8}Differentiable Programming}{3}% 
-\contentsline {section}{\numberline {2.9}Kotlin}{3}% 
-\contentsline {section}{\numberline {2.10}Starting Point}{3}% 
+\contentsline {section}{\numberline {2.1}Relevant computer vision}{3}% 
+\contentsline {subsection}{\numberline {2.1.1}Face Detection}{3}% 
+\contentsline {section}{\numberline {2.2}Approaches to signal processing}{3}% 
+\contentsline {subsection}{\numberline {2.2.1}Independent Component Analysis}{3}% 
+\contentsline {subsection}{\numberline {2.2.2}Fourier Transform}{3}% 
+\contentsline {section}{\numberline {2.3}Sensing and photoplethysmography (PPG)}{3}% 
+\contentsline {section}{\numberline {2.4}Languages and tooling}{3}% 
+\contentsline {subsection}{\numberline {2.4.1}Python}{3}% 
+\contentsline {subsection}{\numberline {2.4.2}Kotlin}{3}% 
+\contentsline {subsection}{\numberline {2.4.3}Android}{3}% 
+\contentsline {section}{\numberline {2.5}Starting Point}{3}% 
+\contentsline {section}{\numberline {2.6}Requirements analysis}{3}% 
+\contentsline {section}{\numberline {2.7}Professional practice}{3}% 
 \contentsline {chapter}{\numberline {3}Implementation}{5}% 
 \contentsline {section}{\numberline {3.1}Overview}{5}% 
-\contentsline {section}{\numberline {3.2}Region of interest selection}{5}% 
-\contentsline {subsection}{\numberline {3.2.1}Facial landmarks}{5}% 
-\contentsline {subsection}{\numberline {3.2.2}Face alignment}{5}% 
-\contentsline {subsection}{\numberline {3.2.3}Skin detection}{5}% 
-\contentsline {subsection}{\numberline {3.2.4}Clustering approaches}{5}% 
-\contentsline {subsubsection}{K-Means clustering}{5}% 
-\contentsline {subsubsection}{Markov clustering}{6}% 
-\contentsline {subsection}{\numberline {3.2.5}Flood filling}{6}% 
-\contentsline {subsection}{\numberline {3.2.6}Colour Space Filtering}{6}% 
-\contentsline {subsection}{\numberline {3.2.7}Conditional Random Fields}{6}% 
-\contentsline {section}{\numberline {3.3}Heart rate isolation}{6}% 
-\contentsline {subsection}{\numberline {3.3.1}Respiration rejection}{6}% 
-\contentsline {section}{\numberline {3.4}Ensemble Methods}{6}% 
-\contentsline {chapter}{\numberline {4}Evaluation}{7}% 
-\contentsline {chapter}{\numberline {5}Conclusion}{9}% 
-\contentsline {chapter}{Bibliography}{11}% 
-\contentsline {chapter}{\numberline {A}Project Proposal}{13}% 
+\contentsline {section}{\numberline {3.2}System design}{5}% 
+\contentsline {subsection}{\numberline {3.2.1}Asynchronous execution}{5}% 
+\contentsline {section}{\numberline {3.3}Face detection}{6}% 
+\contentsline {subsection}{\numberline {3.3.1}Repeated face detection}{6}% 
+\contentsline {subsection}{\numberline {3.3.2}Point tracking}{6}% 
+\contentsline {subsection}{\numberline {3.3.3}Face alignment}{6}% 
+\contentsline {section}{\numberline {3.4}Region of interest selection}{6}% 
+\contentsline {subsection}{\numberline {3.4.1}Facial landmarks}{6}% 
+\contentsline {subsection}{\numberline {3.4.2}Skin detection}{6}% 
+\contentsline {subsubsection}{Clustering approaches}{6}% 
+\contentsline {paragraph}{K-Means}{6}% 
+\contentsline {subsection}{\numberline {3.4.3}Colour Space Filtering}{6}% 
+\contentsline {section}{\numberline {3.5}Heart rate isolation}{7}% 
+\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{7}% 
+\contentsline {subsection}{\numberline {3.5.2}Respiration rejection}{7}% 
+\contentsline {subsection}{\numberline {3.5.3}Optimisation}{7}% 
+\contentsline {section}{\numberline {3.6}Repository overview}{7}% 
+\contentsline {chapter}{\numberline {4}Evaluation}{9}% 
+\contentsline {subsection}{\numberline {4.0.1}Evaluation method}{9}% 
+\contentsline {subsection}{\numberline {4.0.2}Sensing power}{9}% 
+\contentsline {subsection}{\numberline {4.0.3}Performance}{9}% 
+\contentsline {subsection}{\numberline {4.0.4}Summary}{9}% 
+\contentsline {chapter}{\numberline {5}Conclusion}{11}% 
+\contentsline {chapter}{Bibliography}{13}% 
+\contentsline {chapter}{\numberline {A}Project Proposal}{15}% 

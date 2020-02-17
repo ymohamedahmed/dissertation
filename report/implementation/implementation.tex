@@ -1,13 +1,27 @@
 \section{Overview}
+% In this chapter I will outline the implementation 
+
 GIVE STRUCTURE OF PROGRAM AND EXPLAIN WHY MOST WORK IS DEDICATED TO REGION
 SELECTION AND HEART RATE ISOLATION SPECIFICALLY
 
 THAT IS FACE DETECTION IS MOSTLY A SOLVED PROBLEM
 BACKGROUND ON HOW DESIGN IS TO MIMIC A PPG SENSOR
 
-%\section{Face detection}
-%\subsection{Repeated face detection}
-%\subsection{Point tracking}
+\section{System design}
+The system was designed with a focus on decomposition. Broadly speaking, the program consists of three distinct tasks, each of which rely on the result from the previous, together, forming a kind of pipeline. 
+\begin{itemize}
+    \item Face detection: identify a face in each supplied camera frame
+    \item 
+\end{itemize}
+That is face detection, region selection and heart rate isolation. Each of these occur at different rates and have different performance constraints. Separating these tasks and connecting them through minimal interfaces helps to minimise interdependence which subsequently informs
+
+\subsection{Asynchronous execution}
+TALK ABOUT CONCURRENCY RUNNING HR ISOLATION ASYNCHRONOUSLY
+\section{Face detection}
+TALK ABOUT CRITICAL NOT TO DROP FRAMES
+\subsection{Repeated face detection}
+\subsection{Point tracking}
+\subsection{Face alignment}
 %As opposed to 
 
 \section{Region of interest selection}
@@ -22,11 +36,11 @@ As a result, considering the entire bounding box will add unecessary noise to th
 The ideal algorithm would only consider skin pixels, however, robust, pose-invariant skin detection is an unsolved problem.
 On the other hand, considering too few pixels could increase the effect of specular reflection.
 
-\subsection{Clustering approaches}
-\subsubsection{K-Means clustering}
+\subsubsection{Clustering approaches}
+\paragraph{K-Means}
 TALK ABOUT COMPLEXITY OF K-MEANS AND WHY USING IT REPEATEDLY DOESN'T WORK THAT WELL
 %\subsubsection{Hierarchical clustering}
-\subsubsection{Markov clustering}
+%\subsubsection{Markov clustering}
 
 %\subsection{}
 %\subsection{Flood filling}
@@ -52,4 +66,8 @@ SELECTION OF RESULTING COMPONENT => HIGHEST PEAK
 
 
 \subsection{Respiration rejection}
+
+\subsection{Optimisation}
 %\subsection{}
+
+\section{Repository overview}
