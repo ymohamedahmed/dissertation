@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.1.29)  17 FEB 2020 16:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.1.29)  17 FEB 2020 17:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -231,14 +231,14 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 13.
+ [5
 
-Underfull \hbox (badness 3919) in paragraph at lines 19--20
+]
+Underfull \hbox (badness 3919) in paragraph at lines 23--24
 \OT1/cmr/m/n/12 TALK ABOUT CON-CUR-RENCY RUN-NING HR ISO-LA-TION ASYN-
  []
 
-[5
-
-] [6]) [7] [8
+[6]) [7] [8
 
 ]
 Chapter 4.
@@ -360,9 +360,9 @@ Here is how much of TeX's memory you used:
  6541 multiletter control sequences out of 15000+600000
  10381 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,18n,50p,376b,427s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,18n,50p,350b,427s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on /home/yousuf/workspace/dissertation/report/diss.pdf (26 pages, 164849 bytes).
+Output written on /home/yousuf/workspace/dissertation/report/diss.pdf (26 pages, 165562 bytes).
 PDF statistics:
  160 PDF objects out of 1000 (max. 8388607)
  113 compressed objects within 2 object streams

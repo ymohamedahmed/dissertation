@@ -8,12 +8,16 @@ THAT IS FACE DETECTION IS MOSTLY A SOLVED PROBLEM
 BACKGROUND ON HOW DESIGN IS TO MIMIC A PPG SENSOR
 
 \section{System design}
-The system was designed with a focus on decomposition. Broadly speaking, the program consists of three distinct tasks, each of which rely on the result from the previous, together, forming a kind of pipeline. 
+The system was designed with a focus on decomposition. Abstractly, the program consists of three distinct tasks, each of which rely on the result from the previous. Together, forming a kind of pipeline. 
 \begin{itemize}
-    \item Face detection: identify a face in each supplied camera frame
-    \item 
+    \item \textbf{Face detection}: identify a face in each supplied camera frame
+    \item \textbf{Region selection}: given a bounding box around a face, select some set of pixels to consider 
+    \item \textbf{Heart rate isolation}: given a time series of the mean colour of some region of the face, infer the heart rate
 \end{itemize}
-That is face detection, region selection and heart rate isolation. Each of these occur at different rates and have different performance constraints. Separating these tasks and connecting them through minimal interfaces helps to minimise interdependence which subsequently informs
+Each of these occur at different rates and, thereby, have different performance constraints which must be held.
+For example, face detection and region selection operate per frame and so should run in real-time as to minimise the number of dropped frames.
+Heart rate isolation, however, is only executed after some adequate number of data points is received, denoted as the \textbf{window size} and is recomputed every so often. The specifics of thi
+Separating these tasks and connecting them through minimal interfaces helps to minimise interdependence which subsequently informs
 
 \subsection{Asynchronous execution}
 TALK ABOUT CONCURRENCY RUNNING HR ISOLATION ASYNCHRONOUSLY
@@ -26,6 +30,7 @@ TALK ABOUT CRITICAL NOT TO DROP FRAMES
 
 \section{Region of interest selection}
 DEFINE THE BASELINE: PRIMITIVEROI
+DISCUSS THE FUNDAMENTAL TRADEOFF BETWEEN NUMBER OF PIXELS AND FIDELITY
 \subsection{Facial landmarks}
 \subsection{Skin detection}
 Face detection systems, typically, return a bounding box, within which it is believed
