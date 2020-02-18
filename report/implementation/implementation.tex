@@ -38,7 +38,15 @@ Smartphone cameras can readily stream at high framerates, so it is unlikely that
 
 \subsubsection{Point tracking}
 The key principle behind face tracking is to use information from previous frames to reduce the cost of subsequent face detections.
-To that end, I implemented an optical-flow based algorithm that attempts to track points on the face rather than repeatedly call the face detector. The Lucas-Kanade algorithm, a particular variant of optical-flow, tracks a set of points between consecutive frames. Naturally, over time, these points will diverge from their true positions. When this occurs, the position of the face should be redetected. Knowing when the points have diverged is non-trivial, since the true location of the face is unknown.
+To that end, I implemented an optical-flow based algorithm that tracks points on the face rather than repeatedly calling the face detector. The Lucas-Kanade algorithm, a particular variant of optical-flow, tracks a set of points between consecutive frames. Naturally, over time, these points will diverge from their true positions. This is because images contain large numbers of pixels with similar illumination, over time, these cannot be distinguished perfectly. When this occurs, the position of the face should be redetected. 
+\\ \\
+Knowing when the points have diverged is non-trivial, since the true location of the face is unknown. It is crucial for any implementation to act safely enough that the face is not lost track of, whilst simultaneously minimising the number of redetections.
+There are two obvious approaches to combat this. The algorithm could redetect the face: 
+\begin{itemize}
+    \item periodically 
+    \item when the tracked face changes in size significantly. 
+\end{itemize}
+The former wastes computation time for stationary videos where the redetections might be unnecessary. Simultaneously, the time between redetections must be short enough to deal with videos with significant movement. This static approach, therefore, was not considered. For this reason, the latter was implemented. 
 \begin{figure}[!h]
 \begin{minted}{python}
    points = []
@@ -57,12 +65,7 @@ To that end, I implemented an optical-flow based algorithm that attempts to trac
 \end{minted}
 \caption{A simplified pseudocode representation of an optical-flow based face tracker}
 \end{figure} 
-There are two obvious approaches to combat this, the algorithm could redetect the face: 
-\begin{itemize}
-    \item periodically 
-    \item when the tracked face changes in size significantly 
-\end{itemize}
-The former wastes computation time for stationary videos where the redetections might be unnecessary. Simultaneously, the time between redetections must be short enough to deal with videos with significant movement. This static approach, therefore, was not considered. For this reason, the latter was implemented. \paragraph{Impact of the rate of redetections}
+\paragraph{Impact of the rate of redetections}
 It is important to reason about precisely when face tracking provides a performance boost. To understand this let us consider a sequence of frames which the face tracker has been applied to. The cost of tracking is compared with that of repeatedly detecting the face in each frame independently. Under the following notation:
 \begin{itemize}
    \item $W$: number of consecutive frames considered 
@@ -73,21 +76,23 @@ It is important to reason about precisely when face tracking provides a performa
    \item $s(p,f)$: cost of selecting $p$ points to track in a face of size $f$
    \item $g(p,n)$: cost of tracking $p$ points in a frame of size $n$
 \end{itemize}
-The cost of the repeated face detector is $Wf(n)$. Since, for each frame in the sequence, it detects the face independently and incurs a cost of $f(n)$. The point tracking approach instead has a cost of $Wg(p,n) + R(f(n) + s(p,f))$. For each redetection it calls the face detector and selects a new set of points. It also tracks the set of points for every frame, hence the term $Wg(p,n)$. However, in the worst case, $R=W$, so there is no saving in terms of computational complexity. Let us consider when there is a cost saving.
+The cost of the repeated face detector is $Wf(n)$. Since, for each frame in the sequence, it detects the face independently and incurs a cost of $f(n)$.  
+\\ \\
+The point tracking approach instead has a cost of $Wg(p,n) + R(f(n) + s(p,f))$. For each redetection it calls the face detector and selects a new set of points. It also tracks the set of points for every frame, hence the term $Wg(p,n)$. In the worst case, $R=W$, so there is no saving in terms of computational complexity. Instead let us investigate for what values of $R$ there is a cost saving.
 \begin{align*}
     Wf(n) &> Wg(p,n) + R[f(n) + s(p,f)] \\
     R &< \frac{W[f(n) - g(p,n)]}{f(n) + s(p,f)}\\
     \frac{R}{W} &< \frac{f(n)-g(p,n)}{f(n)+s(p,f)}
 \end{align*}
-Notice that $R/W$ represents the percentage of frames for which a redetection occurs. There is only a performance saving when this percentage falls below the value on the right hand side. This limit is evaluated experimentally in section \ref{section:face_tracking} and it is shown that even for videos with lots of movement, the value $R/W$ falls below this limit.
+Notice that $R/W$ represents the percentage of frames for which a redetection occurs. There is only a performance saving when this percentage falls below the value on the right hand side. Furthermore, this value itself is based on the relative costs face detection and of selecting and tracking points. Implicitly, the algorithm assumes that the cost of tracking and selecting points is less than that of face detection, otherwise, this would be useless. This assumption is validated and the limit is evaluated experimentally in section \ref{section:face_tracking}. From this it is shown that even for videos with lots of movement, the value $R/W$ falls below this limit. 
 % The algorithm above works by selecting some number of points on the face and tracking them between frames. If the points move such that the size of the bounding box increases above some threshold from the last face detection, then the face detector is called again. 
 % \paragraph{Assumptions}
 % This relies on the assumption that if the points lose track of the face, then the threshold is such that 
 % talk about probability of a translation which is the main failure case under the assumption of constant size between frames
 % the alternative assumption would be to assume a stationary center but comment that in practice points tend to move outwards since some points will 
 \paragraph{Details}
-To maximise the performance of the optical flow algorithm, selecting points randomly will not suffice. That is because, points which are particularly different to their neighbours, for example, are much easier to track. To achieve this, the Shi-Tomasi corner detection algorithm is used which returns some number of points satisfying this condition. Furthermore, for face tracking to work properly, the points selected must span the entire face of the user. This is relatively easily enforced by mandating a minimum distance between each of the points selected and by selecting enough points.
-
+To maximise the performance of the optical flow algorithm, selecting points randomly will not suffice. That is because, points which are particularly different to their neighbours, for example, are much easier to track. To achieve this, the Shi-Tomasi corner detection algorithm is used which returns some number of points satisfying this condition. Furthermore, for face tracking to work properly, the points selected must span the entire face of the user. This is relatively easily enforced by mandating a minimum distance between each of the points selected and by selecting enough points. 
+\\ \\
 It is conservative enough that the true position of the face is not lost, whilst still providing a 3x performance boost. This approach is fully evaluated in section \ref{section:face_tracking}.
 
 \subsubsection{Camshift}
@@ -97,15 +102,15 @@ It is conservative enough that the true position of the face is not lost, whilst
 \section{Region selection}
 % DEFINE THE BASELINE: PRIMITIVEROI
 % DISCUSS THE FUNDAMENTAL TRADEOFF BETWEEN NUMBER OF PIXELS AND FIDELITY
-\subsection{Facial landmarks}
-\subsection{Skin detection}
 Face detection systems, typically, return a bounding box, within which it is believed
 a face is present. However, naturally, the box will also contain pixels from the background of 
-the image since faces are not, in general, perfectly rectangular.
+the image since faces are not, in general, perfectly rectangular. As well as any imperfections in the face detector. \\ \\
 These background pixels will not contain any information as to the underlying heart rate of the user.
 As a result, considering the entire bounding box will add unecessary noise to the resulting signal.
-The ideal algorithm would only consider skin pixels, however, robust, pose-invariant skin detection is an unsolved problem.
-On the other hand, considering too few pixels could increase the effect of specular reflection.
+The ideal algorithm would only consider skin pixels, however, robust, pose-invariant skin detection is a somewhat unsolved problem.
+However, not all skin pixels are equally useful
+\subsection{Facial landmarks}
+\subsection{Skin detection}
 
 % \subsubsection{Clustering approaches}
 \subsubsection{K-Means}
