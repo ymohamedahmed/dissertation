@@ -19,12 +19,14 @@ Heart rate isolation, however, is only executed after some adequate number of da
 % The system was designed with a focus on decomposition. 
 Separating these tasks allows for this concurrency to be implemented safely.
 
-\begin{figure}
-   \caption{DESIGN} 
+\begin{figure}[!h]
+    \includegraphics[width=\textwidth]{example-image-a}
+   \caption{A diagram representing the design of the system} 
 \end{figure}
+\noindent
 The camera streams frames to the \textbf{FaceDetector}. The \textbf{RegionSelector} then takes the mean pixel colour of the region considered and adds this value to the dataset. Once the appropriate number of values is reached, the \textbf{HRIsolator} spawns a new thread, the \textbf{IsolationTask}, which attempts to infer the heart rate from the values collected. 
 \\ \\
-Although the region selection could also be executed in a separate thread, the associated setup costs are likely to have an adverse impact on real-time performance. However, one might wish to use more expensive region selection algorithms which cannot run in real-time. In these scenarios, the program could copy the frame and execute the selection in a separate thread from the main face detection loop. Notice that this is fundamentally a tradeoff between memory usage and execution time. 
+Although the region selection could also be executed in a separate thread, the associated setup costs are likely to have an adverse impact on real-time performance. However, one might wish to use more expensive region selection algorithms which cannot run in real-time. In these scenarios, the program could copy the frame and execute the selection in a separate thread from the main face detection loop. This is fundamentally a tradeoff between memory usage and execution time. Furthermore, since there are only a finite number of threads which can be spawned, quickly the limit might be reached without providing much additional computation time to the \textbf{RegionSelector}. As a result, the \textbf{FaceDetector} and \textbf{RegionSelector} operate sequentially in the same thread.
 % \subsection{Asynchronous execution}
 % TALK ABOUT CONCURRENCY RUNNING HR ISOLATION ASYNCHRONOUSLY
 \section{Face detection}
@@ -36,11 +38,7 @@ Smartphone cameras can readily stream at high framerates, so it is unlikely that
 
 \subsubsection{Point tracking}
 The key principle behind face tracking is to use information from previous frames to reduce the cost of subsequent face detections.
-To that end, I implemented an optical-flow based algorithm that attempts to track points on the face rather than repeatedly call the face detector. The Lucas-Kanade algorithm, a particular variant of optical-flow, tracks a set of points between consecutive frames. Naturally, over time, these points will diverge from their true positions. When this occurs, the position of the face should be updated. Detecting this is non-trivial, since the true location of the face is unknown.
-% \begin{algorithmic}
-%     \If{$i \geq y$}
-%     \EndIf
-% \end{algorithmic}
+To that end, I implemented an optical-flow based algorithm that attempts to track points on the face rather than repeatedly call the face detector. The Lucas-Kanade algorithm, a particular variant of optical-flow, tracks a set of points between consecutive frames. Naturally, over time, these points will diverge from their true positions. When this occurs, the position of the face should be redetected. Knowing when the points have diverged is non-trivial, since the true location of the face is unknown.
 \begin{figure}[!h]
 \begin{minted}{python}
    points = []
@@ -57,21 +55,41 @@ To that end, I implemented an optical-flow based algorithm that attempts to trac
         previous_face = face
         return face
 \end{minted}
+\caption{A simplified pseudocode representation of an optical-flow based face tracker}
 \end{figure} 
-There are two obvious approaches: 
+There are two obvious approaches to combat this, the algorithm could redetect the face: 
 \begin{itemize}
-    \item Periodically redetect the frame
+    \item periodically 
+    \item when the tracked face changes in size significantly 
 \end{itemize}
-The algorithm above works by selecting some number of points on the face and tracking them between frames. If the points move such that the size of the bounding box increases above some threshold from the last face detection, then the face detector is called again. 
-\paragraph{Assumptions}
-This relies on the assumption that if the points lose track of the face, then the threshold is such that 
-\paragraph{Performance cost}
-The performance of the above algorithm, clearly depends on the proportion that each of the two branches are executed.
-\paragraph{Motion resistance}
-
-\paragraph{Correctness}
+The former wastes computation time for stationary videos where the redetections might be unnecessary. Simultaneously, the time between redetections must be short enough to deal with videos with significant movement. This static approach, therefore, was not considered. For this reason, the latter was implemented. \paragraph{Impact of the rate of redetections}
+It is important to reason about precisely when face tracking provides a performance boost. To understand this let us consider a sequence of frames which the face tracker has been applied to. The cost of tracking is compared with that of repeatedly detecting the face in each frame independently. Under the following notation:
+\begin{itemize}
+   \item $W$: number of consecutive frames considered 
+   \item $R$: the total number of redetections by the face tracker
+   \item $n$: size of each frame in pixels
+   \item $p$: number of points tracked
+   \item $f(n)$: cost of a face detection
+   \item $s(p,f)$: cost of selecting $p$ points to track in a face of size $f$
+   \item $g(p,n)$: cost of tracking $p$ points in a frame of size $n$
+\end{itemize}
+The cost of the repeated face detector is $Wf(n)$. Since, for each frame in the sequence, it detects the face independently and incurs a cost of $f(n)$. The point tracking approach instead has a cost of $Wg(p,n) + R(f(n) + s(p,f))$. For each redetection it calls the face detector and selects a new set of points. It also tracks the set of points for every frame, hence the term $Wg(p,n)$. However, in the worst case, $R=W$, so there is no saving in terms of computational complexity. Let us consider when there is a cost saving.
+\begin{align*}
+    Wf(n) &> Wg(p,n) + R[f(n) + s(p,f)] \\
+    R &< \frac{W[f(n) - g(p,n)]}{f(n) + s(p,f)}\\
+    \frac{R}{W} &< \frac{f(n)-g(p,n)}{f(n)+s(p,f)}
+\end{align*}
+Notice that $R/W$ represents the percentage of frames for which a redetection occurs. There is only a performance saving when this percentage falls below the value on the right hand side. This limit is evaluated experimentally in section \ref{section:face_tracking} and it is shown that even for videos with lots of movement, the value $R/W$ falls below this limit.
+% The algorithm above works by selecting some number of points on the face and tracking them between frames. If the points move such that the size of the bounding box increases above some threshold from the last face detection, then the face detector is called again. 
+% \paragraph{Assumptions}
+% This relies on the assumption that if the points lose track of the face, then the threshold is such that 
 % talk about probability of a translation which is the main failure case under the assumption of constant size between frames
 % the alternative assumption would be to assume a stationary center but comment that in practice points tend to move outwards since some points will 
+\paragraph{Details}
+To maximise the performance of the optical flow algorithm, selecting points randomly will not suffice. That is because, points which are particularly different to their neighbours, for example, are much easier to track. To achieve this, the Shi-Tomasi corner detection algorithm is used which returns some number of points satisfying this condition. Furthermore, for face tracking to work properly, the points selected must span the entire face of the user. This is relatively easily enforced by mandating a minimum distance between each of the points selected and by selecting enough points.
+
+It is conservative enough that the true position of the face is not lost, whilst still providing a 3x performance boost. This approach is fully evaluated in section \ref{section:face_tracking}.
+
 \subsubsection{Camshift}
 \subsection{Face alignment}
 %As opposed to 

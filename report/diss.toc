@@ -11,40 +11,43 @@
 \contentsline {subsection}{\numberline {2.2.2}Fourier transforms}{4}% 
 \contentsline {section}{\numberline {2.3}Sensing and photoplethysmography (PPG)}{4}% 
 \contentsline {section}{\numberline {2.4}Languages and tooling}{4}% 
-\contentsline {subsection}{\numberline {2.4.1}Python}{4}% 
-\contentsline {subsection}{\numberline {2.4.2}Kotlin}{4}% 
-\contentsline {subsection}{\numberline {2.4.3}Android}{4}% 
+\contentsline {subsection}{\numberline {2.4.1}OpenCV}{4}% 
+\contentsline {subsection}{\numberline {2.4.2}Mobile Vision API}{4}% 
+\contentsline {subsection}{\numberline {2.4.3}Python}{4}% 
+\contentsline {subsection}{\numberline {2.4.4}Kotlin}{4}% 
+\contentsline {subsection}{\numberline {2.4.5}Android}{4}% 
 \contentsline {section}{\numberline {2.5}Starting Point}{4}% 
 \contentsline {section}{\numberline {2.6}Requirements analysis}{4}% 
 \contentsline {section}{\numberline {2.7}Professional practice}{4}% 
 \contentsline {chapter}{\numberline {3}Implementation}{5}% 
 \contentsline {section}{\numberline {3.1}Overview}{5}% 
 \contentsline {section}{\numberline {3.2}System design}{5}% 
-\contentsline {section}{\numberline {3.3}Face detection}{6}% 
-\contentsline {subsection}{\numberline {3.3.1}Face tracking}{6}% 
+\contentsline {section}{\numberline {3.3}Face detection}{7}% 
+\contentsline {subsection}{\numberline {3.3.1}Face tracking}{7}% 
 \contentsline {subsubsection}{Point tracking}{7}% 
-\contentsline {paragraph}{Assumptions}{7}% 
-\contentsline {paragraph}{Performance cost}{7}% 
-\contentsline {paragraph}{Motion resistance}{7}% 
-\contentsline {paragraph}{Correctness}{8}% 
-\contentsline {subsubsection}{Camshift}{8}% 
-\contentsline {subsection}{\numberline {3.3.2}Face alignment}{8}% 
-\contentsline {section}{\numberline {3.4}Region selection}{8}% 
-\contentsline {subsection}{\numberline {3.4.1}Facial landmarks}{8}% 
-\contentsline {subsection}{\numberline {3.4.2}Skin detection}{8}% 
-\contentsline {subsubsection}{K-Means}{8}% 
-\contentsline {subsubsection}{Colour Space Filtering}{8}% 
-\contentsline {section}{\numberline {3.5}Heart rate isolation}{8}% 
-\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{8}% 
-\contentsline {subsection}{\numberline {3.5.2}Respiration rejection}{8}% 
-\contentsline {subsection}{\numberline {3.5.3}Optimisation}{8}% 
-\contentsline {section}{\numberline {3.6}Repository overview}{8}% 
-\contentsline {chapter}{\numberline {4}Evaluation}{9}% 
-\contentsline {section}{\numberline {4.1}Evaluation method}{9}% 
-\contentsline {section}{\numberline {4.2}Face tracking}{9}% 
-\contentsline {section}{\numberline {4.3}Sensing power}{9}% 
-\contentsline {section}{\numberline {4.4}Performance}{9}% 
-\contentsline {section}{\numberline {4.5}Summary}{9}% 
-\contentsline {chapter}{\numberline {5}Conclusion}{11}% 
-\contentsline {chapter}{Bibliography}{13}% 
-\contentsline {chapter}{\numberline {A}Project Proposal}{13}% 
+\contentsline {paragraph}{Impact of the rate of redetections}{8}% 
+\contentsline {paragraph}{Details}{9}% 
+\contentsline {subsubsection}{Camshift}{10}% 
+\contentsline {subsection}{\numberline {3.3.2}Face alignment}{10}% 
+\contentsline {section}{\numberline {3.4}Region selection}{10}% 
+\contentsline {subsection}{\numberline {3.4.1}Facial landmarks}{10}% 
+\contentsline {subsection}{\numberline {3.4.2}Skin detection}{10}% 
+\contentsline {subsubsection}{K-Means}{10}% 
+\contentsline {subsubsection}{Colour Space Filtering}{10}% 
+\contentsline {section}{\numberline {3.5}Heart rate isolation}{10}% 
+\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{10}% 
+\contentsline {subsection}{\numberline {3.5.2}Respiration rejection}{10}% 
+\contentsline {subsection}{\numberline {3.5.3}Optimisation}{10}% 
+\contentsline {section}{\numberline {3.6}Repository overview}{10}% 
+\contentsline {chapter}{\numberline {4}Evaluation}{11}% 
+\contentsline {section}{\numberline {4.1}Evaluation method}{11}% 
+\contentsline {section}{\numberline {4.2}Face tracking}{11}% 
+\contentsline {paragraph}{Performance cost}{11}% 
+\contentsline {paragraph}{Motion resistance}{11}% 
+\contentsline {paragraph}{Correctness}{11}% 
+\contentsline {section}{\numberline {4.3}Sensing power}{11}% 
+\contentsline {section}{\numberline {4.4}Performance}{11}% 
+\contentsline {section}{\numberline {4.5}Summary}{11}% 
+\contentsline {chapter}{\numberline {5}Conclusion}{13}% 
+\contentsline {chapter}{Bibliography}{15}% 
+\contentsline {chapter}{\numberline {A}Project Proposal}{15}% 
