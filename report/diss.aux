@@ -8,52 +8,64 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}Preparation}{3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}Relevant computer vision}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}Face Detection}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}Approaches to signal processing}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Independent Component Analysis}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Fourier Transform}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.3}Sensing and photoplethysmography (PPG)}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.4}Languages and tooling}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Python}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Kotlin}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Android}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.5}Starting Point}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.6}Requirements analysis}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.7}Professional practice}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Relevant computer vision techniques}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}Face detection}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}Optical flow}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.3}Harris corner detection}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Approaches to signal processing}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Independent Component Analysis}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Fourier transforms}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Sensing and photoplethysmography (PPG)}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}Languages and tooling}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Python}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Kotlin}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Android}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Starting Point}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}Requirements analysis}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}Professional practice}{4}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}Implementation}{5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}Overview}{5}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}System design}{5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Asynchronous execution}{6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces DESIGN}}{6}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Face detection}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Repeated face detection}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Point tracking}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.3}Face alignment}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Region of interest selection}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Facial landmarks}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Skin detection}{6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Clustering approaches}{7}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{K-Means}{7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Colour Space Filtering}{7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Heart rate isolation}{7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Respiration rejection}{7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.3}Optimisation}{7}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Repository overview}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Face tracking}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Point tracking}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Assumptions}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Performance cost}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Motion resistance}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Correctness}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Camshift}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}Face alignment}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Region selection}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Facial landmarks}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Skin detection}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{K-Means}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Colour Space Filtering}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Heart rate isolation}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Respiration rejection}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.3}Optimisation}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Repository overview}{8}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{\numberline {4}Evaluation}{9}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.0.1}Evaluation method}{9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.0.2}Sensing power}{9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.0.3}Performance}{9}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.0.4}Summary}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Evaluation method}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Face tracking}{9}\protected@file@percent }
+\newlabel{section:face_tracking}{{4.2}{9}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Sensing power}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Performance}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Summary}{9}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusion}{11}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibdata{refs}
 \@writefile{toc}{\contentsline {chapter}{Bibliography}{13}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Project Proposal}{15}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Project Proposal}{13}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\gdef\minted@oldcachelist{,
+  default-pyg-prefix.pygstyle,
+  default.pygstyle,
+  2E5762D9EB988EE482E133310B1AAD8A4A3378E67C6A61B16FFA0FBF2255E8F1.pygtex}

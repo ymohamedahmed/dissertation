@@ -1,6 +1,6 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.1.29)  17 FEB 2020 17:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.1.29)  18 FEB 2020 15:08
 entering extended mode
- restricted \write18 enabled.
+ \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **/home/yousuf/workspace/dissertation/report/diss.tex
@@ -101,53 +101,9 @@ File: pppdftex.def 2017/10/31 v0.5l Pdfpages driver for pdfTeX (AM)
 \AM@toc@title=\toks18
 \c@AM@survey=\count92
 \AM@templatesizebox=\box28
-) (/usr/share/texlive/texmf-dist/tex/generic/epsf/epsf.tex
-This is `epsf.tex' v2.7.4 <14 February 2011>
-\epsffilein=\read2
-\epsfframemargin=\dimen109
-\epsfframethickness=\dimen110
-\epsfrsize=\dimen111
-\epsftmp=\dimen112
-\epsftsize=\dimen113
-\epsfxsize=\dimen114
-\epsfysize=\dimen115
-\pspoints=\dimen116
-) (/home/yousuf/workspace/dissertation/report/diss.aux)
-\openout1 = `diss.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-\AtBeginShipoutBox=\box29
- (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count93
-\scratchdimen=\dimen117
-\scratchbox=\box30
-\nofMPsegments=\count94
-\nofMParguments=\count95
-\everyMPshowfont=\toks19
-\MPscratchCnt=\count96
-\MPscratchDim=\dimen118
-\MPnumerator=\count97
-\makeMPintoPDFobject=\count98
-\everyMPtoPDFconversion=\toks20
-) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
-Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
- (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
-Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
- (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-)) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/minted/minted.sty
+Package: minted 2017/07/19 v2.5 Yet another Pygments shim for LaTeX
+ (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
  (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
@@ -156,13 +112,163 @@ Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
  (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
-)))) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+)))) (/usr/share/texlive/texmf-dist/tex/latex/fvextra/fvextra.sty
+Package: fvextra 2019/02/04 v1.4 fvextra - extensions and patches for fancyvrb
+ (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count93
+) (/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2019/01/15
+ Style option: `fancyvrb' v3.2a <2019/01/15> (tvz)
+\FV@CodeLineNo=\count94
+\FV@InFile=\read2
+\FV@TabBox=\box29
+\c@FancyVerbLine=\count95
+\FV@StepNumber=\count96
+\FV@OutFile=\write3
+) (/usr/share/texlive/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbatim
+) (/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count97
+\output=\toks19
+\linenoprevgraf=\count98
+\linenumbersep=\dimen109
+\linenumberwidth=\dimen110
+\c@linenumber=\count99
+\c@pagewiselinenumber=\count100
+\c@LN@truepage=\count101
+\c@internallinenumber=\count102
+\c@internallinenumbers=\count103
+\quotelinenumbersep=\dimen111
+\bframerule=\dimen112
+\bframesep=\dimen113
+\bframebox=\box30
+LaTeX Info: Redefining \\ on input line 3056.
+)
+\c@FV@TrueTabGroupLevel=\count104
+\c@FV@TrueTabCounter=\count105
+\FV@TabBox@Group=\box31
+\FV@TmpLength=\skip46
+\c@FV@HighlightLinesStart=\count106
+\c@FV@HighlightLinesStop=\count107
+\FV@LoopCount=\count108
+\FV@NCharsBox=\box32
+\FV@BreakIndent=\dimen114
+\FV@BreakIndentNChars=\count109
+\FV@BreakSymbolSepLeft=\dimen115
+\FV@BreakSymbolSepLeftNChars=\count110
+\FV@BreakSymbolSepRight=\dimen116
+\FV@BreakSymbolSepRightNChars=\count111
+\FV@BreakSymbolIndentLeft=\dimen117
+\FV@BreakSymbolIndentLeftNChars=\count112
+\FV@BreakSymbolIndentRight=\dimen118
+\FV@BreakSymbolIndentRightNChars=\count113
+\c@FancyVerbLineBreakLast=\count114
+\FV@LineBox=\box33
+\FV@LineIndentBox=\box34
+\FV@LineWidth=\dimen119
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/shellesc.sty
+Package: shellesc 2016/06/07 v0.02a unified shell escape interface for LaTeX
+Package shellesc Info: Unrestricted shell escape enabled on input line 67.
+) (/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+Package: ifplatform 2017/10/13 v0.4a Testing for the operating system
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO)
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
+) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 )
+runsystem(uname -s > "diss.w18")...executed.
+
+ (./diss.w18)
+runsystem(rm -- "diss.w18")...executed.
+
+) (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.sty (/usr/share/texlive/texmf-dist/tex/generic/xstring/xstring.tex
+\integerpart=\count115
+\decimalpart=\count116
+)
+Package: xstring 2019/02/06 v1.83 String manipulations (CT)
+) (/usr/share/texlive/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip47
+\fb@frw=\dimen120
+\fb@frh=\dimen121
+\FrameRule=\dimen122
+\FrameSep=\dimen123
+) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count117
+\float@exts=\toks20
+\float@box=\box35
+\@float@everytoks=\toks21
+\@floatcapt=\box36
+)
+\minted@appexistsfile=\read3
+\minted@bgbox=\box37
+\minted@code=\write4
+\c@minted@FancyVerbLineTemp=\count118
+\c@minted@pygmentizecounter=\count119
+\@float@every@listing=\toks22
+\c@listing=\count120
+)
+runsystem(mkdir -p _minted-diss)...executed.
+
+ (/usr/share/texlive/texmf-dist/tex/generic/epsf/epsf.tex
+This is `epsf.tex' v2.7.4 <14 February 2011>
+\epsffilein=\read4
+\epsfframemargin=\dimen124
+\epsfframethickness=\dimen125
+\epsfrsize=\dimen126
+\epsftmp=\dimen127
+\epsftsize=\dimen128
+\epsfxsize=\dimen129
+\epsfysize=\dimen130
+\pspoints=\dimen131
+)
+runsystem(which pygmentize && touch diss.aex)...executed.
+
+runsystem(rm diss.aex)...executed.
+
+ (./diss.aux)
+\openout1 = `diss.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+\AtBeginShipoutBox=\box38
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count121
+\scratchdimen=\dimen132
+\scratchbox=\box39
+\nofMPsegments=\count122
+\nofMParguments=\count123
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count124
+\MPscratchDim=\dimen133
+\MPnumerator=\count125
+\makeMPintoPDFobject=\count126
+\everyMPtoPDFconversion=\toks24
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+ (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+))
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 438.
 Package grfext Info: Graphics extension search list:
 (grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
@@ -183,19 +289,19 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 
 ]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 67.
+(Font)              <14.4> on input line 68.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 67.
+(Font)              <7> on input line 68.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 79.
+(Font)              <5> on input line 80.
 
-Overfull \hbox (53.76768pt too wide) in paragraph at lines 67--81
+Overfull \hbox (53.76768pt too wide) in paragraph at lines 68--82
 []
  []
 
 [1
 
-] [2] (/home/yousuf/workspace/dissertation/report/diss.toc
+] [2] (./diss.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -206,166 +312,174 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 
 ])
-\tf@toc=\write3
-\openout3 = `diss.toc'.
+\tf@toc=\write5
+\openout5 = `diss.toc'.
 
  [4]
 Chapter 1.
-(/home/yousuf/workspace/dissertation/report/introduction/introduction.tex) [1
+(./introduction/introduction.tex) [1
 
 
 ] [2
 
 ]
 Chapter 2.
-(/home/yousuf/workspace/dissertation/report/preparation/preparation.tex) [3
-
-] [4
+(./preparation/preparation.tex) [3
 
 ]
+Overfull \vbox (39.98561pt too high) has occurred while \output is active []
+
+ [4]
 Chapter 3.
-(/home/yousuf/workspace/dissertation/report/implementation/implementation.tex
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 13.
+(./implementation/implementation.tex
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 9.
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 13.
- [5
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 9.
 
-]
-Underfull \hbox (badness 3919) in paragraph at lines 23--24
-\OT1/cmr/m/n/12 TALK ABOUT CON-CUR-RENCY RUN-NING HR ISO-LA-TION ASYN-
+Underfull \hbox (badness 10000) in paragraph at lines 16--21
+
  []
 
-[6]) [7] [8
+[5
+
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 25--30
+
+ []
+
+\openout3 = `diss.pyg'.
+
+(./_minted-diss/default-pyg-prefix.pygstyle) (./_minted-diss/default.pygstyle) (./_minted-diss/2E5762D9EB988EE482E133310B1AAD8A4A3378E67C6A61B16FFA0FBF2255E8F1.pygtex
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 4.
+) [6] [7]) [8]
 Chapter 4.
-(/home/yousuf/workspace/dissertation/report/evaluation/evaluation.tex) [9
+(./evaluation/evaluation.tex) [9
+
 
 ] [10
 
 ]
 Chapter 5.
-(/home/yousuf/workspace/dissertation/report/conclusion/conclusion.tex) [11
+(./conclusion/conclusion.tex) [11
 
 ] [12
 
-] (/home/yousuf/workspace/dissertation/report/diss.bbl
-
-LaTeX Warning: Empty `thebibliography' environment on input line 3.
-
-) [13
-
-] [14
-
 ]
+No file diss.bbl.
 Appendix A.
-<proposal/main.pdf, id=74, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=69, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf>
-Package pdftex.def Info: proposal/main.pdf  used on input line 157.
+Package pdftex.def Info: proposal/main.pdf  used on input line 158.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf>
-Package pdftex.def Info: proposal/main.pdf  used on input line 157.
+Package pdftex.def Info: proposal/main.pdf  used on input line 158.
 (pdftex.def)             Requested size: 614.29349pt x 794.96806pt.
-<proposal/main.pdf, id=77, page=1, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=72, page=1, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package pdftex.def Info: proposal/main.pdf , page1 used on input line 157.
+Package pdftex.def Info: proposal/main.pdf , page1 used on input line 158.
 (pdftex.def)             Requested size: 614.295pt x 795.01657pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package pdftex.def Info: proposal/main.pdf , page1 used on input line 157.
+Package pdftex.def Info: proposal/main.pdf , page1 used on input line 158.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
-[15
+[13
+
 
 
 ]
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package pdftex.def Info: proposal/main.pdf , page1 used on input line 157.
+Package pdftex.def Info: proposal/main.pdf , page1 used on input line 158.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package pdftex.def Info: proposal/main.pdf , page1 used on input line 157.
+Package pdftex.def Info: proposal/main.pdf , page1 used on input line 158.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package pdftex.def Info: proposal/main.pdf , page1 used on input line 157.
+Package pdftex.def Info: proposal/main.pdf , page1 used on input line 158.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
- [16 </home/yousuf/workspace/dissertation/report/proposal/main.pdf>]
-<proposal/main.pdf, id=110, page=2, 614.295pt x 794.97pt>
+ [14 <./proposal/main.pdf>]
+<proposal/main.pdf, id=106, page=2, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 2>
-Package pdftex.def Info: proposal/main.pdf , page2 used on input line 157.
-(pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 2>
-Package pdftex.def Info: proposal/main.pdf , page2 used on input line 157.
+Package pdftex.def Info: proposal/main.pdf , page2 used on input line 158.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 2>
-Package pdftex.def Info: proposal/main.pdf , page2 used on input line 157.
+Package pdftex.def Info: proposal/main.pdf , page2 used on input line 158.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
- [17 </home/yousuf/workspace/dissertation/report/proposal/main.pdf>]
-<proposal/main.pdf, id=114, page=3, 614.295pt x 794.97pt>
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 2>
+Package pdftex.def Info: proposal/main.pdf , page2 used on input line 158.
+(pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
+ [15 <./proposal/main.pdf>]
+<proposal/main.pdf, id=110, page=3, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 3>
-Package pdftex.def Info: proposal/main.pdf , page3 used on input line 157.
+Package pdftex.def Info: proposal/main.pdf , page3 used on input line 158.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 3>
-Package pdftex.def Info: proposal/main.pdf , page3 used on input line 157.
+Package pdftex.def Info: proposal/main.pdf , page3 used on input line 158.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 3>
-Package pdftex.def Info: proposal/main.pdf , page3 used on input line 157.
+Package pdftex.def Info: proposal/main.pdf , page3 used on input line 158.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
- [18 </home/yousuf/workspace/dissertation/report/proposal/main.pdf>]
-<proposal/main.pdf, id=123, page=4, 614.295pt x 794.97pt>
+ [16 <./proposal/main.pdf>]
+<proposal/main.pdf, id=119, page=4, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 4>
-Package pdftex.def Info: proposal/main.pdf , page4 used on input line 157.
-(pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 4>
-Package pdftex.def Info: proposal/main.pdf , page4 used on input line 157.
+Package pdftex.def Info: proposal/main.pdf , page4 used on input line 158.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 4>
-Package pdftex.def Info: proposal/main.pdf , page4 used on input line 157.
-(pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
- [19 </home/yousuf/workspace/dissertation/report/proposal/main.pdf>]
-<proposal/main.pdf, id=128, page=5, 614.295pt x 794.97pt>
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 5>
-Package pdftex.def Info: proposal/main.pdf , page5 used on input line 157.
+Package pdftex.def Info: proposal/main.pdf , page4 used on input line 158.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 4>
+Package pdftex.def Info: proposal/main.pdf , page4 used on input line 158.
+(pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
+ [17 <./proposal/main.pdf>]
+<proposal/main.pdf, id=123, page=5, 614.295pt x 794.97pt>
+File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 5>
-Package pdftex.def Info: proposal/main.pdf , page5 used on input line 157.
+Package pdftex.def Info: proposal/main.pdf , page5 used on input line 158.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 5>
-Package pdftex.def Info: proposal/main.pdf , page5 used on input line 157.
+Package pdftex.def Info: proposal/main.pdf , page5 used on input line 158.
 (pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
- [20 </home/yousuf/workspace/dissertation/report/proposal/main.pdf>] (/home/yousuf/workspace/dissertation/report/diss.aux) ) 
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 5>
+Package pdftex.def Info: proposal/main.pdf , page5 used on input line 158.
+(pdftex.def)             Requested size: 614.26537pt x 794.93167pt.
+ [18 <./proposal/main.pdf>] (./diss.aux)
+runsystem(rm diss.pyg)...executed.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2949 strings out of 494553
- 44005 string characters out of 6177377
- 111423 words of memory out of 5000000
- 6541 multiletter control sequences out of 15000+600000
- 10381 words of font info for 36 fonts, out of 8000000 for 9000
+ 5963 strings out of 494553
+ 104651 string characters out of 6177377
+ 217265 words of memory out of 5000000
+ 9493 multiletter control sequences out of 15000+600000
+ 10909 words of font info for 38 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 41i,18n,50p,350b,427s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on /home/yousuf/workspace/dissertation/report/diss.pdf (26 pages, 165562 bytes).
+ 43i,18n,50p,934b,429s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on diss.pdf (24 pages, 182639 bytes).
 PDF statistics:
- 160 PDF objects out of 1000 (max. 8388607)
- 113 compressed objects within 2 object streams
+ 161 PDF objects out of 1000 (max. 8388607)
+ 114 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

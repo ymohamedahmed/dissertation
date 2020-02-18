@@ -1,36 +1,84 @@
 \section{Overview}
 % In this chapter I will outline the implementation 
-
-GIVE STRUCTURE OF PROGRAM AND EXPLAIN WHY MOST WORK IS DEDICATED TO REGION
-SELECTION AND HEART RATE ISOLATION SPECIFICALLY
-
-THAT IS FACE DETECTION IS MOSTLY A SOLVED PROBLEM
-BACKGROUND ON HOW DESIGN IS TO MIMIC A PPG SENSOR
-
-\section{System design}
-The system was designed with a focus on decomposition. Abstractly, the program consists of three distinct tasks, each of which rely on the result from the previous. Together, forming a kind of pipeline. 
+% GIVE STRUCTURE OF PROGRAM AND EXPLAIN WHY MOST WORK IS DEDICATED TO REGION
+% SELECTION AND HEART RATE ISOLATION SPECIFICALLY
+% THAT IS FACE DETECTION IS MOSTLY A SOLVED PROBLEM
+% BACKGROUND ON HOW DESIGN IS TO MIMIC A PPG SENSOR
+Abstractly, the program consists of three distinct tasks, each of which rely on the result from the previous. Together, forming a kind of pipeline:
 \begin{itemize}
     \item \textbf{Face detection}: identify a face in each supplied camera frame
     \item \textbf{Region selection}: given a bounding box around a face, select some set of pixels to consider 
     \item \textbf{Heart rate isolation}: given a time series of the mean colour of some region of the face, infer the heart rate
 \end{itemize}
-Each of these occur at different rates and, thereby, have different performance constraints which must be held.
-For example, face detection and region selection operate per frame and so should run in real-time as to minimise the number of dropped frames.
-Heart rate isolation, however, is only executed after some adequate number of data points is received, denoted as the \textbf{window size} and is recomputed every so often. The specifics of thi
-Separating these tasks and connecting them through minimal interfaces helps to minimise interdependence which subsequently informs
+Face detection is largely a solved problem and thereby the project mostly concentrates on the latter two, for which, there is very much ongoing research.
 
-\subsection{Asynchronous execution}
-TALK ABOUT CONCURRENCY RUNNING HR ISOLATION ASYNCHRONOUSLY
+\section{System design}
+Each of these tasks occur at different rates and, thereby, have different performance constraints which must be upheld. Face detection and region selection operate on every frame received from the camera and so must run in real-time, or risk dropping streamed frames.
+\\ \\
+Heart rate isolation, however, is only executed after some adequate number of data points is received and is recomputed after a fixed time. Since none of the prior stages rely on the estimated heart rate, its execution time requirements are less stringent. This is exploited to perform relatively expensive analyses without slowing earlier stages. Crucially, this relies on the assumption that it can be run concurrently from the earlier stages.
+% The system was designed with a focus on decomposition. 
+Separating these tasks allows for this concurrency to be implemented safely.
+
+\begin{figure}
+   \caption{DESIGN} 
+\end{figure}
+The camera streams frames to the \textbf{FaceDetector}. The \textbf{RegionSelector} then takes the mean pixel colour of the region considered and adds this value to the dataset. Once the appropriate number of values is reached, the \textbf{HRIsolator} spawns a new thread, the \textbf{IsolationTask}, which attempts to infer the heart rate from the values collected. 
+\\ \\
+Although the region selection could also be executed in a separate thread, the associated setup costs are likely to have an adverse impact on real-time performance. However, one might wish to use more expensive region selection algorithms which cannot run in real-time. In these scenarios, the program could copy the frame and execute the selection in a separate thread from the main face detection loop. Notice that this is fundamentally a tradeoff between memory usage and execution time. 
+% \subsection{Asynchronous execution}
+% TALK ABOUT CONCURRENCY RUNNING HR ISOLATION ASYNCHRONOUSLY
 \section{Face detection}
-TALK ABOUT CRITICAL NOT TO DROP FRAMES
-\subsection{Repeated face detection}
-\subsection{Point tracking}
+% TALK ABOUT CRITICAL NOT TO DROP FRAMES
+A face detector is expected to take a single frame and return a bounding rectangle within which a face is present. This could be extended to work on a stream of frames, naïvely, by simply repeated applying this face detector to each frame independently.
+
+\subsection{Face tracking}
+Smartphone cameras can readily stream at high framerates, so it is unlikely that a face moves very much between a pair of consecutive frames. At sixty frames per second, frames are recorded only 0.017s apart. The position of the face in the previous frame, gives a strong indication of its subsequent position. Thus, there is opportunity for optimisation beyond simply applying a face detector to each frame individually. This is important since a speedup in this part of the pipeline provides opportunity for more expensive computation in subsequent stages which might improve accuracy. However, it is critical that any optimisations are resistant to motion. Using information from previous frames forms the distinction between face \textbf{\textit{detection}} and \textbf{\textit{tracking}}.
+
+\subsubsection{Point tracking}
+The key principle behind face tracking is to use information from previous frames to reduce the cost of subsequent face detections.
+To that end, I implemented an optical-flow based algorithm that attempts to track points on the face rather than repeatedly call the face detector. The Lucas-Kanade algorithm, a particular variant of optical-flow, tracks a set of points between consecutive frames. Naturally, over time, these points will diverge from their true positions. When this occurs, the position of the face should be updated. Detecting this is non-trivial, since the true location of the face is unknown.
+% \begin{algorithmic}
+%     \If{$i \geq y$}
+%     \EndIf
+% \end{algorithmic}
+\begin{figure}[!h]
+\begin{minted}{python}
+   points = []
+   last_detection = None
+   def face_tracker(frame):
+        if redetect or points is empty:
+            face = face_detector(frame) 
+            last_detection = face
+            points = select_new_points(face)
+        else:
+            points = track_points(points)
+            face = bounding_box(points)
+        redetect = change_in_size(last_detection, face) > threshold
+        previous_face = face
+        return face
+\end{minted}
+\end{figure} 
+There are two obvious approaches: 
+\begin{itemize}
+    \item Periodically redetect the frame
+\end{itemize}
+The algorithm above works by selecting some number of points on the face and tracking them between frames. If the points move such that the size of the bounding box increases above some threshold from the last face detection, then the face detector is called again. 
+\paragraph{Assumptions}
+This relies on the assumption that if the points lose track of the face, then the threshold is such that 
+\paragraph{Performance cost}
+The performance of the above algorithm, clearly depends on the proportion that each of the two branches are executed.
+\paragraph{Motion resistance}
+
+\paragraph{Correctness}
+% talk about probability of a translation which is the main failure case under the assumption of constant size between frames
+% the alternative assumption would be to assume a stationary center but comment that in practice points tend to move outwards since some points will 
+\subsubsection{Camshift}
 \subsection{Face alignment}
 %As opposed to 
 
-\section{Region of interest selection}
-DEFINE THE BASELINE: PRIMITIVEROI
-DISCUSS THE FUNDAMENTAL TRADEOFF BETWEEN NUMBER OF PIXELS AND FIDELITY
+\section{Region selection}
+% DEFINE THE BASELINE: PRIMITIVEROI
+% DISCUSS THE FUNDAMENTAL TRADEOFF BETWEEN NUMBER OF PIXELS AND FIDELITY
 \subsection{Facial landmarks}
 \subsection{Skin detection}
 Face detection systems, typically, return a bounding box, within which it is believed
@@ -41,31 +89,32 @@ As a result, considering the entire bounding box will add unecessary noise to th
 The ideal algorithm would only consider skin pixels, however, robust, pose-invariant skin detection is an unsolved problem.
 On the other hand, considering too few pixels could increase the effect of specular reflection.
 
-\subsubsection{Clustering approaches}
-\paragraph{K-Means}
-TALK ABOUT COMPLEXITY OF K-MEANS AND WHY USING IT REPEATEDLY DOESN'T WORK THAT WELL
+% \subsubsection{Clustering approaches}
+\subsubsection{K-Means}
+% TALK ABOUT COMPLEXITY OF K-MEANS AND WHY USING IT REPEATEDLY DOESN'T WORK THAT WELL
+
 %\subsubsection{Hierarchical clustering}
 %\subsubsection{Markov clustering}
 
 %\subsection{}
 %\subsection{Flood filling}
-\subsection{Colour Space Filtering}
-EXPLAIN PERCEPTUAL UNIFORMITY 
-SHOW YCbCr REPRESENTATION OF SKIN PIXELS
+\subsubsection{Colour Space Filtering}
+% EXPLAIN PERCEPTUAL UNIFORMITY 
+% SHOW YCbCr REPRESENTATION OF SKIN PIXELS
 %\subsection{Conditional Random Fields}
 
 % \section{Ensemble Methods}
 
 \section{Heart rate isolation}
-EXPLAIN WHY IT'S NOT JUST THE FOURIER POWER SPECTRUM
-IN VIDEOS WITH MOVEMENT WE EXPECT HEART RATE TO BE A SERIES OF PEAKS TOGETHER RATHER THAN A SINGLE PEAK
-THAT MIGHT BE DUE TO LIGHTING ETC
-IMPACT OF LIGHTING CONDITIONS
+% EXPLAIN WHY IT'S NOT JUST THE FOURIER POWER SPECTRUM
+% IN VIDEOS WITH MOVEMENT WE EXPECT HEART RATE TO BE A SERIES OF PEAKS TOGETHER RATHER THAN A SINGLE PEAK
+% THAT MIGHT BE DUE TO LIGHTING ETC
+% IMPACT OF LIGHTING CONDITIONS
 
 \subsection{Blind-source separation}
-ASSUMPTION OF CAMERA FEED BEING A MIXTURE OF INDEPENDENT SOURCES INCLUDING HEART RATE
+% ASSUMPTION OF CAMERA FEED BEING A MIXTURE OF INDEPENDENT SOURCES INCLUDING HEART RATE
 
-SELECTION OF RESULTING COMPONENT => HIGHEST PEAK
+% SELECTION OF RESULTING COMPONENT => HIGHEST PEAK
 
 %SHOW IDEALISED HR AND WHY AUTOCORRELATION HELPS US PICK IT OUT
 
