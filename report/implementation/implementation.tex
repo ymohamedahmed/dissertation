@@ -106,9 +106,9 @@ Face detection systems, typically, return a bounding box, within which it is bel
 a face is present. However, naturally, the box will also contain pixels from the background of 
 the image since faces are not, in general, perfectly rectangular. As well as any imperfections in the face detector. \\ \\
 These background pixels will not contain any information as to the underlying heart rate of the user.
-As a result, considering the entire bounding box will add unecessary noise to the resulting signal.
-The ideal algorithm would only consider skin pixels, however, robust, pose-invariant skin detection is a somewhat unsolved problem.
-However, not all skin pixels are equally useful
+As a result, considering the entire bounding box will add unecessary noise to the resulting signal which consists of the mean considered from each frame.
+One approach might be to only consider skin pixels, however, robust, pose-invariant skin detection is a somewhat unsolved problem.
+Although it is unclear whether all skin pixels are equally useful. For example, it might be that cheeks contain greater predictive power than the nose.
 \subsection{Facial landmarks}
 \subsection{Skin detection}
 
