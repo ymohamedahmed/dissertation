@@ -108,24 +108,27 @@ the image since faces are not, in general, perfectly rectangular. As well as any
 These background pixels will not contain any information as to the underlying heart rate of the user.
 As a result, considering the entire bounding box will add unecessary noise to the resulting signal which consists of the mean considered from each frame.
 One approach might be to only consider skin pixels, however, robust, pose-invariant skin detection is a somewhat unsolved problem.
-Although it is unclear whether all skin pixels are equally useful. For example, it might be that cheeks contain greater predictive power than the nose.
-\subsection{Facial landmarks}
+Furthermore,k it is unclear whether all skin pixels are equally useful. For example, it might be that cheeks contain greater predictive power than the nose.
+% \subsection{Facial landmarks}
 \subsection{Skin detection}
 
-% \subsubsection{Clustering approaches}
-\subsubsection{K-Means}
-% TALK ABOUT COMPLEXITY OF K-MEANS AND WHY USING IT REPEATEDLY DOESN'T WORK THAT WELL
 
-%\subsubsection{Hierarchical clustering}
-%\subsubsection{Markov clustering}
+% \subsubsection{Clustering approaches}
 
 %\subsection{}
 %\subsection{Flood filling}
 \subsubsection{Colour Space Filtering}
 % EXPLAIN PERCEPTUAL UNIFORMITY 
 % SHOW YCbCr REPRESENTATION OF SKIN PIXELS
+% Talk about hair colour issue, doesn't work for lots of people, 
+% Hence why we transition to figuring out skin tone
 %\subsection{Conditional Random Fields}
 
+\subsubsection{K-Means}
+% TALK ABOUT COMPLEXITY OF K-MEANS AND WHY USING IT REPEATEDLY DOESN'T WORK THAT WELL
+
+%\subsubsection{Hierarchical clustering}
+%\subsubsection{Markov clustering}
 % \section{Ensemble Methods}
 
 \section{Heart rate isolation}
@@ -133,8 +136,19 @@ Although it is unclear whether all skin pixels are equally useful. For example, 
 % IN VIDEOS WITH MOVEMENT WE EXPECT HEART RATE TO BE A SERIES OF PEAKS TOGETHER RATHER THAN A SINGLE PEAK
 % THAT MIGHT BE DUE TO LIGHTING ETC
 % IMPACT OF LIGHTING CONDITIONS
+Given a time series of mean colours in the region of the frame considered, inferring the heart rate might, naively, be taken as the prevalent frequency. That is, the largest peak in the Fourier transform. However, it is important to consider that the colours observed are not only the result of the underlying biological phenomenon of interest. Thereby this naive assumption is prone to returning, instead, the frequency of some other factor that impacts colour of the face. For example, respiration or movement of the face will have an impact, as well as any repetitive changes in lighting such as flickering. Isolating, the heart rate signal from the observed colour of the face, is the crux of this project. 
 
 \subsection{Blind-source separation}
+Suppose that our observed colour signal, $\mathbf{I(t)}$, a vector-valued function, consists of a mixture of several underlying signals $\mathbf{x}(t)$ and the pulse signal $\mathbf{p}(t)$.
+That is: $\mathbf{I}(t) = \lambda \mathbf{p}(t) + \sum_{i=1}^n \mu_i \mathbf{x_i}(t)$, for constants $\lambda$ and $\mu_i$. 
+The nature of this task is to identify and return $\mathbf{p}(t)$ from only $\mathbf{I}(t)$. This is known as the blind-source separation problem. 
+\\ \\
+The above formulation is not enough to isolate the signal $\mathbf{p}(t)$. Thus assumptions must be placed on the nature of $\mathbf{x}(t)$ and $\mathbf{p}(t)$ in order to turn this into a tractable problem.
+
+\subsubsection{Principal components analysis}
+One might assume that each of the signals is 
+\subsubsection{Independent components analysis}
+
 % ASSUMPTION OF CAMERA FEED BEING A MIXTURE OF INDEPENDENT SOURCES INCLUDING HEART RATE
 
 % SELECTION OF RESULTING COMPONENT => HIGHEST PEAK
@@ -144,7 +158,7 @@ Although it is unclear whether all skin pixels are equally useful. For example, 
 
 \subsection{Respiration rejection}
 
-\subsection{Optimisation}
+\subsection{The sample-rate problem}
 %\subsection{}
 
 \section{Repository overview}
