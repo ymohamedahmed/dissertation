@@ -111,19 +111,29 @@ One approach might be to only consider skin pixels, however, robust, pose-invari
 Furthermore, it is unclear whether all skin pixels are equally useful. For example, it might be that cheeks contain greater predictive power than the nose. Several approaches are presented regarding this problem with associated algorithms that are evaluated in section \ref{section:region_selection}.
 % \subsection{Facial landmarks}
 \subsection{Skin detection}
-Suppose that we wish only to consider skin pixels. An obvious approach might be to apply an edge detection algorithm to isolate the boundary between the face and the background. However, edge detection algorithms, like the Canny edge detector, tend to produce large numbers of irrelevant edges.
-
+Suppose that we wish only to consider skin pixels. An obvious approach might be to apply an edge detection algorithm to isolate the boundary between the face and the background. However, edge detection algorithms, like the Canny edge detector, tend to produce large numbers of irrelevant edges and so were not implemented.
 % \subsubsection{Clustering approaches}
 
 %\subsection{}
 %\subsection{Flood filling}
 \subsubsection{Colour-based filtering}
-Considering that skin tones tend to fall within a certain range of colours, one might encode this information in a primitive detector. For example, it is known that green is not a valid skin tone but brown might be. If a large enough number of skin tones are investigated then one could define a range within which a skin pixel might lie \cite{skinDataset}.
+Considering that skin tones tend to fall within a certain range of colours, one might encode this information in a primitive skin detector. For example, it is known that green is not a valid skin tone but brown might be. If a large enough number of skin tones are investigated then a range within which a skin pixel might lie could be defined. 
+\\ \\
+A dataset of $\sim$250000 skin and non-skin pixels \cite{skinDataset} was collected by Bhatt et al. and was sampled across a variety of skin tones, genders and ages. One could define the range of skin tones present in this dataset as a rudimentary skin detector. Clearly this will fail in many scenarios but could serve as an adequate baseline.
 
 
-
+\begin{figure}[!h]
+    \includegraphics[width=\textwidth]{example-image-b}
+   \caption{Skin dataset represented in YCbCr space} 
+\end{figure}
 \paragraph{Issues}
-
+This approach takes no consideration of the particular face that it is considering. Since it is not contexualised, it can fail in several circumstances.
+For example, there are some hair colours which could be a skin tone on another individual but are clearly not on the particular example in question.
+\begin{figure}[!h]
+    \includegraphics[width=\textwidth]{example-image-c}
+   \caption{An example of the hair failure case} 
+\end{figure}
+Instead, an algorithm should attempt to identify skin on the particular face in question.
 % EXPLAIN PERCEPTUAL UNIFORMITY 
 % SHOW YCbCr REPRESENTATION OF SKIN PIXELS
 % Talk about hair colour issue, doesn't work for lots of people, 
@@ -133,11 +143,16 @@ Considering that skin tones tend to fall within a certain range of colours, one 
 
 \subsubsection{K-Means}
 % TALK ABOUT COMPLEXITY OF K-MEANS AND WHY USING IT REPEATEDLY DOESN'T WORK THAT WELL
+If we consider how a human might identify skin, it could involve initially identifying the skin tone of the person and then assuming all parts of the face of a similar colour are in fact skin. This reduces the problem to identifying the skin tone in a face and then measuring the colour difference between each pixel and the skin tone. 
+\\ \\
+In some sense, we might suppose that the image consists of clusters of pixels, some of which belong to the skin and others which don't. The center of the cluster of skin pixels represents the skin tone of the individual. Implicitly, this approach assumes that the Euclidean distance between points in our colour space is representative of the perceived colour difference. This property is known as perceptual uniformity and is not a property of all colour spaces. The colour space YCbCr happens to have this property and thus before any clustering is applied, the face image must be converted between these spaces. 
+\\ \\
 
 %\subsubsection{Hierarchical clustering}
 %\subsubsection{Markov clustering}
 % \section{Ensemble Methods}
 
+\paragraph{Issues}
 \section{Heart rate isolation}
 % EXPLAIN WHY IT'S NOT JUST THE FOURIER POWER SPECTRUM
 % IN VIDEOS WITH MOVEMENT WE EXPECT HEART RATE TO BE A SERIES OF PEAKS TOGETHER RATHER THAN A SINGLE PEAK
@@ -158,8 +173,7 @@ We can reframe this as finding some basis for our vector space $I(t) = \sum_{i}^
 
 \subsubsection{Independent components analysis}
 A possible assumption might be that each of the $\mathbf{x}_i(t)$ and $\mathbf{p}(t)$ are statistically independent. That is, informally, one cannot gain any information about one of these signals given another.
-\subsubsection{Principal components analysis}
-One might assume that each of the signals is 
+%
 
 % ASSUMPTION OF CAMERA FEED BEING A MIXTURE OF INDEPENDENT SOURCES INCLUDING HEART RATE
 
@@ -168,11 +182,17 @@ One might assume that each of the signals is
 %SHOW IDEALISED HR AND WHY AUTOCORRELATION HELPS US PICK IT OUT
 
 
-\subsection{Respiration rejection}
+% \subsubsection{Principal components analysis}
+% One might assume that each of the signals is 
 
-\subsection{The sample-rate problem}
+%\subsection{Respiration rejection}
+
+%\subsection{The sample-rate problem}
 %\subsection{}
 
 \subsection{The split peak issue}
-
+%Talk about how heart rate can split over several peaks
+%Main way to bypass this is to reward several close peaks together
+%Hence the use of a butterworth filter
+%Give EXAMPLE graphs
 \section{Repository overview}

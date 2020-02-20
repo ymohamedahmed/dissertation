@@ -33,29 +33,27 @@
 \contentsline {subsection}{\numberline {3.4.1}Skin detection}{10}% 
 \contentsline {subsubsection}{Colour-based filtering}{10}% 
 \contentsline {paragraph}{Issues}{11}% 
-\contentsline {subsubsection}{K-Means}{11}% 
-\contentsline {section}{\numberline {3.5}Heart rate isolation}{11}% 
-\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{11}% 
-\contentsline {subsubsection}{Independent components analysis}{12}% 
-\contentsline {subsubsection}{Principal components analysis}{12}% 
-\contentsline {subsection}{\numberline {3.5.2}Respiration rejection}{12}% 
-\contentsline {subsection}{\numberline {3.5.3}The sample-rate problem}{12}% 
-\contentsline {subsection}{\numberline {3.5.4}The split peak issue}{12}% 
-\contentsline {section}{\numberline {3.6}Repository overview}{12}% 
-\contentsline {chapter}{\numberline {4}Evaluation}{13}% 
-\contentsline {section}{\numberline {4.1}Face tracking}{13}% 
-\contentsline {paragraph}{Performance cost}{13}% 
-\contentsline {paragraph}{Motion resistance}{13}% 
-\contentsline {paragraph}{Correctness}{13}% 
-\contentsline {section}{\numberline {4.2}Region selection}{14}% 
-\contentsline {section}{\numberline {4.3}Evaluation method}{14}% 
-\contentsline {subsection}{\numberline {4.3.1}Experimental setup}{14}% 
-\contentsline {subsection}{\numberline {4.3.2}Ethics}{14}% 
-\contentsline {section}{\numberline {4.4}Sensing power}{14}% 
-\contentsline {section}{\numberline {4.5}Performance}{14}% 
-\contentsline {subsection}{\numberline {4.5.1}Energy consumption}{14}% 
-\contentsline {subsection}{\numberline {4.5.2}Time cost}{14}% 
-\contentsline {section}{\numberline {4.6}Summary}{14}% 
-\contentsline {chapter}{\numberline {5}Conclusion}{15}% 
-\contentsline {chapter}{Bibliography}{17}% 
-\contentsline {chapter}{\numberline {A}Project Proposal}{17}% 
+\contentsline {subsubsection}{K-Means}{12}% 
+\contentsline {paragraph}{Issues}{13}% 
+\contentsline {section}{\numberline {3.5}Heart rate isolation}{13}% 
+\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{13}% 
+\contentsline {subsubsection}{Independent components analysis}{14}% 
+\contentsline {subsection}{\numberline {3.5.2}The split peak issue}{14}% 
+\contentsline {section}{\numberline {3.6}Repository overview}{14}% 
+\contentsline {chapter}{\numberline {4}Evaluation}{15}% 
+\contentsline {section}{\numberline {4.1}Face tracking}{15}% 
+\contentsline {paragraph}{Performance cost}{15}% 
+\contentsline {paragraph}{Motion resistance}{15}% 
+\contentsline {paragraph}{Correctness}{15}% 
+\contentsline {section}{\numberline {4.2}Region selection}{16}% 
+\contentsline {section}{\numberline {4.3}Evaluation method}{16}% 
+\contentsline {subsection}{\numberline {4.3.1}Experimental setup}{16}% 
+\contentsline {subsection}{\numberline {4.3.2}Ethics}{16}% 
+\contentsline {section}{\numberline {4.4}Sensing power}{16}% 
+\contentsline {section}{\numberline {4.5}Performance}{16}% 
+\contentsline {subsection}{\numberline {4.5.1}Energy consumption}{16}% 
+\contentsline {subsection}{\numberline {4.5.2}Time cost}{16}% 
+\contentsline {section}{\numberline {4.6}Summary}{16}% 
+\contentsline {chapter}{\numberline {5}Conclusion}{17}% 
+\contentsline {chapter}{Bibliography}{19}% 
+\contentsline {chapter}{\numberline {A}Project Proposal}{19}% 
