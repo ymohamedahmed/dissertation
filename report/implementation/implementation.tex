@@ -46,7 +46,7 @@ There are two obvious approaches to combat this. The algorithm could redetect th
     \item periodically 
     \item when the tracked face changes in size significantly. 
 \end{itemize}
-The former wastes computation time for stationary videos where the redetections might be unnecessary. Simultaneously, the time between redetections must be short enough to deal with videos with significant movement. This static approach, therefore, was not considered. For this reason, the latter was implemented. 
+The former wastes computation time for stationary videos where the redetections might be unnecessary. Simultaneously, the time between redetections must be short enough to deal with videos with significant movement. This static approach, therefore, was not considered. For this reason, the latter was implemented. We track the face and if the size of the box surrounding it changes significantly, indicating that our confidence in the tracked points has reduced, then we recompute the true position of the face.
 \begin{figure}[!h]
 \begin{minted}{python}
    points = []
@@ -72,7 +72,7 @@ It is important to reason about precisely when face tracking provides a performa
    \item $R$: the total number of redetections by the face tracker
    \item $n$: size of each frame in pixels
    \item $p$: number of points tracked
-   \item $f(n)$: cost of a face detection
+   \item $f(n)$: cost of a face detection on a single frame of size $n$
    \item $s(p,f)$: cost of selecting $p$ points to track in a face of size $f$
    \item $g(p,n)$: cost of tracking $p$ points in a frame of size $n$
 \end{itemize}
@@ -84,7 +84,7 @@ The point tracking approach instead has a cost of $Wg(p,n) + R(f(n) + s(p,f))$. 
     R &< \frac{W[f(n) - g(p,n)]}{f(n) + s(p,f)}\\
     \frac{R}{W} &< \frac{f(n)-g(p,n)}{f(n)+s(p,f)}
 \end{align*}
-Notice that $R/W$ represents the percentage of frames for which a redetection occurs. There is only a performance saving when this percentage falls below the value on the right hand side. Furthermore, this value itself is based on the relative costs face detection and of selecting and tracking points. Implicitly, the algorithm assumes that the cost of tracking and selecting points is less than that of face detection, otherwise, this would be useless. This assumption is validated and the limit is evaluated experimentally in section \ref{section:face_tracking}. From this it is shown that even for videos with lots of movement, the value $R/W$ falls below this limit. 
+Notice that $R/W$ represents the percentage of frames for which a redetection occurs. There is only a performance saving when this percentage falls below the value on the right hand side. Furthermore, this value itself is based on the relative costs of face detection and of selecting and tracking points. Implicitly, the algorithm assumes that the cost of tracking and selecting points is less than that of face detection, otherwise, this endeavour would be useless. This assumption is validated and the limit is evaluated experimentally in section \ref{section:face_tracking}. From this it is shown that even for videos with lots of movement, the value $R/W$ falls below this limit and the inequality is satisfied. 
 % The algorithm above works by selecting some number of points on the face and tracking them between frames. If the points move such that the size of the bounding box increases above some threshold from the last face detection, then the face detector is called again. 
 % \paragraph{Assumptions}
 % This relies on the assumption that if the points lose track of the face, then the threshold is such that 
@@ -93,7 +93,7 @@ Notice that $R/W$ represents the percentage of frames for which a redetection oc
 \paragraph{Details}
 To maximise the performance of the optical flow algorithm, selecting points randomly will not suffice. That is because, points which are particularly different to their neighbours, for example, are much easier to track. To achieve this, the Shi-Tomasi corner detection algorithm is used which returns some number of points satisfying this condition. Furthermore, for face tracking to work properly, the points selected must span the entire face of the user. This is relatively easily enforced by mandating a minimum distance between each of the points selected and by selecting enough points. 
 \\ \\
-It is conservative enough that the true position of the face is not lost, whilst still providing a 3x performance boost. This approach is fully evaluated in section \ref{section:face_tracking}.
+It is conservative enough that the true position of the face is not lost, whilst still providing a 3x performance boost on the naive face detection approach. This is fully evaluated in section \ref{section:face_tracking}.
 
 \subsubsection{Camshift}
 \subsection{Face alignment}
@@ -104,24 +104,31 @@ It is conservative enough that the true position of the face is not lost, whilst
 % DISCUSS THE FUNDAMENTAL TRADEOFF BETWEEN NUMBER OF PIXELS AND FIDELITY
 Face detection systems, typically, return a bounding box, within which it is believed
 a face is present. However, naturally, the box will also contain pixels from the background of 
-the image since faces are not, in general, perfectly rectangular. As well as any imperfections in the face detector. \\ \\
+the image since faces are not, in general, perfectly rectangular.  \\ \\
 These background pixels will not contain any information as to the underlying heart rate of the user.
-As a result, considering the entire bounding box will add unecessary noise to the resulting signal which consists of the mean considered from each frame.
+As a result, considering the entire bounding box will add unecessary noise to the resulting signal which consists of the mean colour from each region considered in the sequence of frames.
 One approach might be to only consider skin pixels, however, robust, pose-invariant skin detection is a somewhat unsolved problem.
-Furthermore,k it is unclear whether all skin pixels are equally useful. For example, it might be that cheeks contain greater predictive power than the nose.
+Furthermore, it is unclear whether all skin pixels are equally useful. For example, it might be that cheeks contain greater predictive power than the nose. Several approaches are presented regarding this problem with associated algorithms that are evaluated in section \ref{section:region_selection}.
 % \subsection{Facial landmarks}
 \subsection{Skin detection}
-
+Suppose that we wish only to consider skin pixels. An obvious approach might be to apply an edge detection algorithm to isolate the boundary between the face and the background. However, edge detection algorithms, like the Canny edge detector, tend to produce large numbers of irrelevant edges.
 
 % \subsubsection{Clustering approaches}
 
 %\subsection{}
 %\subsection{Flood filling}
-\subsubsection{Colour Space Filtering}
+\subsubsection{Colour-based filtering}
+Considering that skin tones tend to fall within a certain range of colours, one might encode this information in a primitive detector. For example, it is known that green is not a valid skin tone but brown might be. If a large enough number of skin tones are investigated then one could define a range within which a skin pixel might lie \cite{skinDataset}.
+
+
+
+\paragraph{Issues}
+
 % EXPLAIN PERCEPTUAL UNIFORMITY 
 % SHOW YCbCr REPRESENTATION OF SKIN PIXELS
 % Talk about hair colour issue, doesn't work for lots of people, 
 % Hence why we transition to figuring out skin tone
+% crucially doesn't encode anything about the individual
 %\subsection{Conditional Random Fields}
 
 \subsubsection{K-Means}
@@ -139,15 +146,20 @@ Furthermore,k it is unclear whether all skin pixels are equally useful. For exam
 Given a time series of mean colours in the region of the frame considered, inferring the heart rate might, naively, be taken as the prevalent frequency. That is, the largest peak in the Fourier transform. However, it is important to consider that the colours observed are not only the result of the underlying biological phenomenon of interest. Thereby this naive assumption is prone to returning, instead, the frequency of some other factor that impacts colour of the face. For example, respiration or movement of the face will have an impact, as well as any repetitive changes in lighting such as flickering. Isolating, the heart rate signal from the observed colour of the face, is the crux of this project. 
 
 \subsection{Blind-source separation}
-Suppose that our observed colour signal, $\mathbf{I(t)}$, a vector-valued function, consists of a mixture of several underlying signals $\mathbf{x}(t)$ and the pulse signal $\mathbf{p}(t)$.
-That is: $\mathbf{I}(t) = \lambda \mathbf{p}(t) + \sum_{i=1}^n \mu_i \mathbf{x_i}(t)$, for constants $\lambda$ and $\mu_i$. 
+Suppose that our observed colour signal, $\mathbf{I}(t)$, a vector-valued function, consists of a mixture of several underlying signals, $x_i(t)$ one of which is the pulse, $p(t)$. If we consider $\mathbf{I}(t)$ as a matrix of dimension $n \times T$ where $n$ is the number of colour dimensions and $T$ the number of timesteps, then we might suppose that $ (x_1(t), x_2(t), ..., p(t), ..., x_{n-1}(t))^T = AI$. That is 
+That is: $\mathbf{I}(t) = (x_1(t), x_2(t), x_3(t))$, for constants $\lambda_i$. 
+Alternatively we can consider this as finding the set of basis vectors $v_1, v_2, v_3$ such that $I(t) = (I(t)\cdot v_1)v_1 + (I(t) \cdot v_2)v_2 + (I(t) \cdot v_3)v_3$. The key problem is finding the basis $v_1, v_2, v_3$ such that $p(t) = (I(t)\cdot v_i))v_i$ for some $i$ and further identifying the value of $i$.
+
 The nature of this task is to identify and return $\mathbf{p}(t)$ from only $\mathbf{I}(t)$. This is known as the blind-source separation problem. 
 \\ \\
-The above formulation is not enough to isolate the signal $\mathbf{p}(t)$. Thus assumptions must be placed on the nature of $\mathbf{x}(t)$ and $\mathbf{p}(t)$ in order to turn this into a tractable problem.
+The above formulation is not enough to isolate the signal $\mathbf{p}(t)$. Thus assumptions must be placed on the nature of each $\mathbf{x}_i(t)$ and $\mathbf{p}(t)$ in order to turn this into a tractable problem. 
+\\ \\ 
+We can reframe this as finding some basis for our vector space $I(t) = \sum_{i}^{n}I(t)\cdot(v_i)v_i$
 
+\subsubsection{Independent components analysis}
+A possible assumption might be that each of the $\mathbf{x}_i(t)$ and $\mathbf{p}(t)$ are statistically independent. That is, informally, one cannot gain any information about one of these signals given another.
 \subsubsection{Principal components analysis}
 One might assume that each of the signals is 
-\subsubsection{Independent components analysis}
 
 % ASSUMPTION OF CAMERA FEED BEING A MIXTURE OF INDEPENDENT SOURCES INCLUDING HEART RATE
 
@@ -160,5 +172,7 @@ One might assume that each of the signals is
 
 \subsection{The sample-rate problem}
 %\subsection{}
+
+\subsection{The split peak issue}
 
 \section{Repository overview}
