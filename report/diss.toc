@@ -35,25 +35,29 @@
 \contentsline {paragraph}{Issues}{11}% 
 \contentsline {subsubsection}{K-Means}{12}% 
 \contentsline {paragraph}{Issues}{13}% 
-\contentsline {section}{\numberline {3.5}Heart rate isolation}{13}% 
-\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{13}% 
-\contentsline {subsubsection}{Independent components analysis}{14}% 
-\contentsline {subsection}{\numberline {3.5.2}The split peak issue}{14}% 
-\contentsline {section}{\numberline {3.6}Repository overview}{14}% 
-\contentsline {chapter}{\numberline {4}Evaluation}{15}% 
-\contentsline {section}{\numberline {4.1}Face tracking}{15}% 
-\contentsline {paragraph}{Performance cost}{15}% 
-\contentsline {paragraph}{Motion resistance}{15}% 
-\contentsline {paragraph}{Correctness}{15}% 
-\contentsline {section}{\numberline {4.2}Region selection}{16}% 
-\contentsline {section}{\numberline {4.3}Evaluation method}{16}% 
-\contentsline {subsection}{\numberline {4.3.1}Experimental setup}{16}% 
-\contentsline {subsection}{\numberline {4.3.2}Ethics}{16}% 
-\contentsline {section}{\numberline {4.4}Sensing power}{16}% 
-\contentsline {section}{\numberline {4.5}Performance}{16}% 
-\contentsline {subsection}{\numberline {4.5.1}Energy consumption}{16}% 
-\contentsline {subsection}{\numberline {4.5.2}Time cost}{16}% 
-\contentsline {section}{\numberline {4.6}Summary}{16}% 
-\contentsline {chapter}{\numberline {5}Conclusion}{17}% 
-\contentsline {chapter}{Bibliography}{19}% 
-\contentsline {chapter}{\numberline {A}Project Proposal}{19}% 
+\contentsline {subparagraph}{Complexity}{13}% 
+\contentsline {subsection}{\numberline {3.4.2}A hybrid solution}{14}% 
+\contentsline {section}{\numberline {3.5}Heart rate isolation}{14}% 
+\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{14}% 
+\contentsline {subsubsection}{Independent components analysis}{15}% 
+\contentsline {subsubsection}{Principal components analysis}{15}% 
+\contentsline {subsection}{\numberline {3.5.2}The split peak issue}{15}% 
+\contentsline {section}{\numberline {3.6}Repository overview}{15}% 
+\contentsline {chapter}{\numberline {4}Evaluation}{17}% 
+\contentsline {section}{\numberline {4.1}Face tracking}{17}% 
+\contentsline {paragraph}{Performance cost}{17}% 
+\contentsline {paragraph}{Motion resistance}{17}% 
+\contentsline {paragraph}{Correctness}{17}% 
+\contentsline {section}{\numberline {4.2}Region selection}{18}% 
+\contentsline {section}{\numberline {4.3}Blind source separation}{18}% 
+\contentsline {section}{\numberline {4.4}Evaluation method}{18}% 
+\contentsline {subsection}{\numberline {4.4.1}Experimental setup}{18}% 
+\contentsline {subsection}{\numberline {4.4.2}Ethics}{18}% 
+\contentsline {section}{\numberline {4.5}Sensing power}{18}% 
+\contentsline {section}{\numberline {4.6}Performance}{18}% 
+\contentsline {subsection}{\numberline {4.6.1}Energy consumption}{18}% 
+\contentsline {subsection}{\numberline {4.6.2}Time cost}{18}% 
+\contentsline {section}{\numberline {4.7}Summary}{18}% 
+\contentsline {chapter}{\numberline {5}Conclusion}{19}% 
+\contentsline {chapter}{Bibliography}{21}% 
+\contentsline {chapter}{\numberline {A}Project Proposal}{23}% 

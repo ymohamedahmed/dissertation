@@ -4,7 +4,8 @@
 # Note that continuation lines require '\'
 # and that TAB is used after ':' and before unix commands.
 
-DISS = diss.tex refs.bib propbody.tex figs/diagram.eps makefile.txt
+# DISS = diss.tex refs.bib propbody.tex figs/diagram.eps makefile.txt
+DISS = diss.tex refs.bib propbody.tex makefile.txt
 
 PROP = proposal.tex propbody.tex
 
@@ -29,11 +30,11 @@ prop:	proposal.dvi
 	xdvi proposal.dvi
 
 diss.ps:	$(DISS)
-	latex diss
+	latex -shell-escape diss 
 	bibtex diss
-	latex diss
+	latex -shell-escape diss
 	bibtex diss
-	latex diss
+	latex -shell-escape diss
 	bibtex diss
 	dvips -Ppdf -G0 -t a4 -pp 0-200 -o diss.ps diss.dvi
 

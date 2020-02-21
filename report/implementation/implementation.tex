@@ -7,7 +7,7 @@
 Abstractly, the program consists of three distinct tasks, each of which rely on the result from the previous. Together, forming a kind of pipeline:
 \begin{itemize}
     \item \textbf{Face detection}: identify a face in each supplied camera frame
-    \item \textbf{Region selection}: given a bounding box around a face, select some set of pixels to consider 
+    \item \textbf{Region selection}: given a bounding box around a face, select some set of pixels to consider which are amenable to heart rate detection
     \item \textbf{Heart rate isolation}: given a time series of the mean colour of some region of the face, infer the heart rate
 \end{itemize}
 Face detection is largely a solved problem and thereby the project mostly concentrates on the latter two, for which, there is very much ongoing research.
@@ -119,8 +119,8 @@ Suppose that we wish only to consider skin pixels. An obvious approach might be 
 \subsubsection{Colour-based filtering}
 Considering that skin tones tend to fall within a certain range of colours, one might encode this information in a primitive skin detector. For example, it is known that green is not a valid skin tone but brown might be. If a large enough number of skin tones are investigated then a range within which a skin pixel might lie could be defined. 
 \\ \\
-A dataset of $\sim$250000 skin and non-skin pixels \cite{skinDataset} was collected by Bhatt et al. and was sampled across a variety of skin tones, genders and ages. One could define the range of skin tones present in this dataset as a rudimentary skin detector. Clearly this will fail in many scenarios but could serve as an adequate baseline.
-
+A dataset of $\sim$250000 skin and non-skin pixels was collected by Bhatt et al. \cite{skinDataset} and was sampled across a variety of skin tones, genders and ages. One could define the range of skin tones present in this dataset as a rudimentary skin detector. Clearly this will fail in many scenarios but serves as a useful baseline for comparison with more advanced techniques.
+\\ \\
 
 \begin{figure}[!h]
     \includegraphics[width=\textwidth]{example-image-b}
@@ -142,17 +142,69 @@ Instead, an algorithm should attempt to identify skin on the particular face in 
 %\subsection{Conditional Random Fields}
 
 \subsubsection{K-Means}
-% TALK ABOUT COMPLEXITY OF K-MEANS AND WHY USING IT REPEATEDLY DOESN'T WORK THAT WELL
-If we consider how a human might identify skin, it could involve initially identifying the skin tone of the person and then assuming all parts of the face of a similar colour are in fact skin. This reduces the problem to identifying the skin tone in a face and then measuring the colour difference between each pixel and the skin tone. 
+If we consider how a human might identify skin, it could involve initially identifying the skin tone of the person and then assuming all parts of the face of a similar colour are in fact skin. This reduces the problem to identifying the skin tone in a face and then measuring the colour difference between each pixel and the skin tone. If the colours are within some specified threshold, then we can consider them to be skin pixels.
 \\ \\
-In some sense, we might suppose that the image consists of clusters of pixels, some of which belong to the skin and others which don't. The center of the cluster of skin pixels represents the skin tone of the individual. Implicitly, this approach assumes that the Euclidean distance between points in our colour space is representative of the perceived colour difference. This property is known as perceptual uniformity and is not a property of all colour spaces. The colour space YCbCr happens to have this property and thus before any clustering is applied, the face image must be converted between these spaces. 
+We might suppose that the image consists of clusters of pixels, some of which belong to the skin and others which don't. The center of the cluster of skin pixels represents the skin tone of the individual. Implicitly, this approach assumes that the Euclidean distance between points in our colour space is representative of the perceived colour difference. This property is known as perceptual uniformity and is not a property of all colour spaces. 
+\\ \\
+The colour space YCbCr is an approximation of perceptual uniformity and hence the image is converted from RGB before the application of clustering. 
+% As a result, the colour space YCbCr happens to have this property and thus before any clustering is applied, the face image must be converted between these spaces. 
+Under the assumption that our image consists of two clusters of pixels, skin and non-skin, we could simply apply 
+the k-means algorithm to identify these clusters of pixels. Under the further assumption that the majority of pixels 
+are skin pixels, we return the largest cluster as our set of skin pixels.
 \\ \\
 
+\begin{figure}[!h]
+    % Have an image from face to pixels in colour space on a graph to the resulting classification
+    \includegraphics[width=\textwidth]{example-image-a}
+   \caption{An example of the application of the k-means algorithm to skin detection} 
+\end{figure}
 %\subsubsection{Hierarchical clustering}
 %\subsubsection{Markov clustering}
 % \section{Ensemble Methods}
 
+% TALK ABOUT COMPLEXITY OF K-MEANS AND WHY USING IT REPEATEDLY DOESN'T WORK THAT WELL
+% Detect skin tone every x frames 
+% Then define a probability distribution based on d
+
 \paragraph{Issues}
+% Plethora of failure cases
+
+%The four main issues: doesn't consider location of pixels, selecting k not trivial and can impact (GIVE AN EXAMPLE), complexity, illumination resistance
+
+% Takes no consideration of relative location of pixels and shape information so could degenerate in scenarios 
+% where for example, there's a wallpaper with similar skin colour to skin tone
+% Should be able to deal with this by understanding that skin pixels will occur in large patches
+% A small number of pixels which aren't in the cluster surrounded by pixels that are shouldn't be wiped out
+% There's some notion of skin pixels amongst others should be considered skin pixels
+
+% Selection of the number of clusters not obvious
+% Just using 2 works well for backgrounds where it's a single colour or skin pixels are very close together
+% Give an example where there's a really specific colour present in the background in a large quantity
+
+% Breaks with shadows
+% Illumination resistance is extremely difficult how is it possible to tell the difference between specular reflection and white eyeballs?
+% Assumption of most pixels being skin fails
+
+\subparagraph{Complexity}
+% Not practical to be run for real-time applications, as is one of the requirements outlined in the first section
+
+\subsection{A hybrid solution}
+% Run multiple times with different k, and look for colours that repeat in each one to identify skin tone
+% Use rudimentary filter to remove obviously wrong ones
+% Consider cluster size
+%
+The rudimentary colour-filtering approach provides a good baseline as to the 
+
+
+
+
+
+
+
+
+
+
+
 \section{Heart rate isolation}
 % EXPLAIN WHY IT'S NOT JUST THE FOURIER POWER SPECTRUM
 % IN VIDEOS WITH MOVEMENT WE EXPECT HEART RATE TO BE A SERIES OF PEAKS TOGETHER RATHER THAN A SINGLE PEAK
@@ -175,6 +227,7 @@ We can reframe this as finding some basis for our vector space $I(t) = \sum_{i}^
 A possible assumption might be that each of the $\mathbf{x}_i(t)$ and $\mathbf{p}(t)$ are statistically independent. That is, informally, one cannot gain any information about one of these signals given another.
 %
 
+\subsubsection{Principal components analysis}
 % ASSUMPTION OF CAMERA FEED BEING A MIXTURE OF INDEPENDENT SOURCES INCLUDING HEART RATE
 
 % SELECTION OF RESULTING COMPONENT => HIGHEST PEAK
