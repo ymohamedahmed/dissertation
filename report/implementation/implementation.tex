@@ -154,7 +154,7 @@ are skin pixels, we return the largest cluster as our set of skin pixels.
 \\ \\
 
 \begin{figure}[!h]
-    % Have an image from face to pixels in colour space on a graph to the resulting classification
+    % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
     \includegraphics[width=\textwidth]{example-image-a}
    \caption{An example of the application of the k-means algorithm to skin detection} 
 \end{figure}
@@ -162,9 +162,6 @@ are skin pixels, we return the largest cluster as our set of skin pixels.
 %\subsubsection{Markov clustering}
 % \section{Ensemble Methods}
 
-% TALK ABOUT COMPLEXITY OF K-MEANS AND WHY USING IT REPEATEDLY DOESN'T WORK THAT WELL
-% Detect skin tone every x frames 
-% Then define a probability distribution based on d
 
 \paragraph{Issues}
 % Plethora of failure cases
@@ -184,6 +181,11 @@ are skin pixels, we return the largest cluster as our set of skin pixels.
 % Breaks with shadows
 % Illumination resistance is extremely difficult how is it possible to tell the difference between specular reflection and white eyeballs?
 % Assumption of most pixels being skin fails
+The k-means algorithm, although it improves on the results of the rudimentary approach significantly, has a plethora of pitfalls.
+\begin{itemize}
+    \item Since it encodes no notion of location with respect to other pixels, a lone pixel in the corner that has a similar colour to the skin tone is considered the same as a pixel surrounded by such colours
+    \item There's no rigorous means for deciding the number of clusters to expect in the data
+\end{itemize}
 
 \subparagraph{Complexity}
 % Not practical to be run for real-time applications, as is one of the requirements outlined in the first section
@@ -192,7 +194,12 @@ are skin pixels, we return the largest cluster as our set of skin pixels.
 % Run multiple times with different k, and look for colours that repeat in each one to identify skin tone
 % Use rudimentary filter to remove obviously wrong ones
 % Consider cluster size
-%
+
+% TALK ABOUT COMPLEXITY OF K-MEANS AND WHY USING IT REPEATEDLY DOESN'T WORK THAT WELL
+% Detect skin tone every x frames 
+% Then define a probability distribution based on d
+
+% Morphologies
 The rudimentary colour-filtering approach provides a good baseline as to the 
 
 
