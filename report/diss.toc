@@ -35,7 +35,7 @@
 \contentsline {paragraph}{Issues}{11}% 
 \contentsline {subsubsection}{K-Means}{12}% 
 \contentsline {paragraph}{Issues}{13}% 
-\contentsline {subparagraph}{Complexity}{13}% 
+\contentsline {subparagraph}{Complexity}{14}% 
 \contentsline {subsection}{\numberline {3.4.2}A hybrid solution}{14}% 
 \contentsline {section}{\numberline {3.5}Heart rate isolation}{14}% 
 \contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{14}% 

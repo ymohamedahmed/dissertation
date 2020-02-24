@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.1.29)  21 FEB 2020 18:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.1.29)  23 FEB 2020 16:55
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -408,7 +408,12 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 9.
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--21
+
+LaTeX Warning: Reference `section:system_design' on page 5 undefined on input l
+ine 16.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 16--22
 
  []
 
@@ -417,12 +422,12 @@ File: example-image-a.eps Graphic file (type eps)
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 26--32
+Underfull \hbox (badness 10000) in paragraph at lines 27--33
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 40--45
+Underfull \hbox (badness 10000) in paragraph at lines 41--46
 
  []
 
@@ -436,32 +441,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 40--45
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 4.
 ) [8]
-Underfull \hbox (badness 10000) in paragraph at lines 79--82
+Underfull \hbox (badness 10000) in paragraph at lines 80--83
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--97
+Underfull \hbox (badness 10000) in paragraph at lines 95--98
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 105--113
+Underfull \hbox (badness 10000) in paragraph at lines 106--114
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--124
+Underfull \hbox (badness 10000) in paragraph at lines 121--125
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--124
+Underfull \hbox (badness 10000) in paragraph at lines 121--125
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--124
+Underfull \hbox (badness 10000) in paragraph at lines 121--125
 
  []
 
@@ -474,45 +479,50 @@ File: example-image-c.eps Graphic file (type eps)
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 145--155
+Underfull \hbox (badness 10000) in paragraph at lines 146--156
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--155
+Underfull \hbox (badness 10000) in paragraph at lines 146--156
 
  []
 
 
-Underfull \hbox (badness 2126) in paragraph at lines 145--155
+Underfull \hbox (badness 2126) in paragraph at lines 146--156
 \OT1/cmr/m/n/12 The colour space YCbCr is an ap-prox-i-ma-tion of per-cep-tual 
 uni-for-mity
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--155
+Underfull \hbox (badness 10000) in paragraph at lines 146--156
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--155
+Underfull \hbox (badness 10000) in paragraph at lines 146--156
 
  []
 
 [12]
 File: example-image-a.eps Graphic file (type eps)
  <example-image-a.eps> [13]
-Underfull \hbox (badness 10000) in paragraph at lines 213--218
+
+LaTeX Warning: Reference `section:system_design' on page 14 undefined on input 
+line 189.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 229--234
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--218
+Underfull \hbox (badness 10000) in paragraph at lines 229--234
 
  []
 
 
-Underfull \hbox (badness 7540) in paragraph at lines 213--218
+Underfull \hbox (badness 7540) in paragraph at lines 229--234
 \OT1/cmr/m/n/12 We can re-frame this as find-ing some ba-sis for our vec-tor sp
 ace
  []
@@ -546,16 +556,19 @@ Package pdfpages Warning: I cannot determine the number of pages of the
 
 
 ] [24] (./diss.aux)
+
+LaTeX Warning: There were undefined references.
+
 runsystem(rm diss.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 6101 strings out of 494554
- 104252 string characters out of 6177403
+ 6102 strings out of 494554
+ 104275 string characters out of 6177403
  219154 words of memory out of 5000000
- 9624 multiletter control sequences out of 15000+600000
+ 9625 multiletter control sequences out of 15000+600000
  13229 words of font info for 47 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  37i,11n,39p,859b,418s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on diss.dvi (30 pages, 49032 bytes).
+Output written on diss.dvi (30 pages, 50052 bytes).

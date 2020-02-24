@@ -13,6 +13,7 @@ Abstractly, the program consists of three distinct tasks, each of which rely on 
 Face detection is largely a solved problem and thereby the project mostly concentrates on the latter two, for which, there is very much ongoing research.
 
 \section{System design}
+\label{section:system_design}
 Each of these tasks occur at different rates and, thereby, have different performance constraints which must be upheld. Face detection and region selection operate on every frame received from the camera and so must run in real-time, or risk dropping streamed frames.
 \\ \\
 Heart rate isolation, however, is only executed after some adequate number of data points is received and is recomputed after a fixed time. Since none of the prior stages rely on the estimated heart rate, its execution time requirements are less stringent. This is exploited to perform relatively expensive analyses without slowing earlier stages. Crucially, this relies on the assumption that it can be run concurrently from the earlier stages.
@@ -95,8 +96,8 @@ To maximise the performance of the optical flow algorithm, selecting points rand
 \\ \\
 It is conservative enough that the true position of the face is not lost, whilst still providing a 3x performance boost on the naive face detection approach. This is fully evaluated in section \ref{section:face_tracking}.
 
-\subsubsection{Camshift}
-\subsection{Face alignment}
+% \subsubsection{Camshift}
+% \subsection{Face alignment}
 %As opposed to 
 
 \section{Region selection}
@@ -183,14 +184,29 @@ are skin pixels, we return the largest cluster as our set of skin pixels.
 % Assumption of most pixels being skin fails
 The k-means algorithm, although it improves on the results of the rudimentary approach significantly, has a plethora of pitfalls.
 \begin{itemize}
-    \item Since it encodes no notion of location with respect to other pixels, a lone pixel in the corner that has a similar colour to the skin tone is considered the same as a pixel surrounded by such colours
-    \item There's no rigorous means for deciding the number of clusters to expect in the data
+    \item Location: since it encodes no notion of location with respect to other pixels, a lone pixel in the corner that has a similar colour to the skin tone is considered the same as a pixel surrounded by skin pixels
+    \item Number of clusters: there's no rigorous means for deciding the number of clusters to expect in the data and the selection of this value is critical 
+    \item Performance: recall from Section \ref{section:system_design} that, since the region selection operates on every frame, it must run in real-time. However, in benchmarking the k-means reference implementation in the SKLearn library takes an order of magnitude longer than the minimum requirement for this constraint. \footnote{Suppose the camera streams at 30 frames per second, then each frame must be processed within 33ms, the reference implementation operates in the order of 100ms per frame. }
+    \item Illumination resistance: the algorithm is not resistant to differences in illumination. For example, since there is no notion of location encoded, specular reflection on the forehead may not be considered as skin.
 \end{itemize}
 
-\subparagraph{Complexity}
+\begin{figure}[!h]
+    % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
+    \includegraphics[width=\textwidth]{example-image-a}
+   \caption{An example of the effect of differing the number of clusters} 
+\end{figure}
+
+% \subparagraph{Complexity}
 % Not practical to be run for real-time applications, as is one of the requirements outlined in the first section
 
 \subsection{A hybrid solution}
+Recall that the purpose of the region selection is to return the mean colour of the pixels considered. The mean value from each frame is taken as a time series which is used to infer the heart rate. So rather than attempting to classify each pixel as either skin or not, I use a combination of the previous techniques to take a weighted mean which emphasises pixels which are believed to be skin pixels, in such a way as to minimise the issues encountered with the previous techniques.
+\\ \\
+
+Addressing each failure of the k-means approach
+\begin{itemize}
+    
+\end{itemize}
 % Run multiple times with different k, and look for colours that repeat in each one to identify skin tone
 % Use rudimentary filter to remove obviously wrong ones
 % Consider cluster size
