@@ -202,8 +202,16 @@ The k-means algorithm, although it improves on the results of the rudimentary ap
 \subsection{A hybrid solution}
 Recall that the purpose of the region selection is to return the mean colour of the pixels considered. The mean value from each frame is taken as a time series which is used to infer the heart rate. So rather than attempting to classify each pixel as either skin or not, I use a combination of the previous techniques to take a weighted mean which emphasises pixels which are believed to be skin pixels, in such a way as to minimise the issues encountered with the previous techniques.
 \\ \\
+Instead of applying k-means to each frame, which is not feasible with the constraint of real-time performance, we apply it periodically. One of the resulting cluster centers will correspond to the skin tone of the face in question.
+Having identified the skin tone, this colour can be used as part of a probability model which we define to try and encode the likelihood of a particular pixel being part of the skin. This reduces the problem to: 
+\begin{itemize}
+   \item Use k-means to identify the skin tone
+   \item Use the skin tone to identify skin in the face for some number of frames 
+\end{itemize}
+\subsubsection{Identifying the skin tone}
+\subsubsection{}
+\\ \\
 
-Addressing each failure of the k-means approach
 \begin{itemize}
     
 \end{itemize}
@@ -216,7 +224,7 @@ Addressing each failure of the k-means approach
 % Then define a probability distribution based on d
 
 % Morphologies
-The rudimentary colour-filtering approach provides a good baseline as to the 
+% The rudimentary colour-filtering approach provides a good baseline as to the 
 
 
 
@@ -233,10 +241,12 @@ The rudimentary colour-filtering approach provides a good baseline as to the
 % IN VIDEOS WITH MOVEMENT WE EXPECT HEART RATE TO BE A SERIES OF PEAKS TOGETHER RATHER THAN A SINGLE PEAK
 % THAT MIGHT BE DUE TO LIGHTING ETC
 % IMPACT OF LIGHTING CONDITIONS
-Given a time series of mean colours in the region of the frame considered, inferring the heart rate might, naively, be taken as the prevalent frequency. That is, the largest peak in the Fourier transform. However, it is important to consider that the colours observed are not only the result of the underlying biological phenomenon of interest. Thereby this naive assumption is prone to returning, instead, the frequency of some other factor that impacts colour of the face. For example, respiration or movement of the face will have an impact, as well as any repetitive changes in lighting such as flickering. Isolating, the heart rate signal from the observed colour of the face, is the crux of this project. 
+Given a time series of mean colours in the region of the frame considered, inferring the heart rate might, naively, be taken as the prevalent frequency. That is, the largest peak in the Fourier transform. However, it is important to consider that the colours observed are not only the result of the underlying biological phenomenon of interest. Thereby this naive assumption is prone to returning, instead, the frequency of some other factor that impacts colour of the face. For example, respiration or movement of the face will have an impact, as well as any repetitive changes in lighting such as flickering. Isolating, the heart rate signal from the observed colour of the face, is a key part of the project.
 
 \subsection{Blind-source separation}
-Suppose that our observed colour signal, $\mathbf{I}(t)$, a vector-valued function, consists of a mixture of several underlying signals, $x_i(t)$ one of which is the pulse, $p(t)$. If we consider $\mathbf{I}(t)$ as a matrix of dimension $n \times T$ where $n$ is the number of colour dimensions and $T$ the number of timesteps, then we might suppose that $ (x_1(t), x_2(t), ..., p(t), ..., x_{n-1}(t))^T = AI$. That is 
+Suppose that our observed colour signal, $\mathbf{I}(t)$, a vector-valued function, consists of a mixture of several underlying signals, $x_i(t)$ one of which is the pulse, $p(t)$. 
+
+If we consider $\mathbf{I}(t)$ as a matrix of dimension $n \times T$ where $n$ is the number of colour dimensions and $T$ the number of timesteps, then we might suppose that $ (x_1(t), x_2(t), ..., p(t), ..., x_{n-1}(t))^T = AI$. That is 
 That is: $\mathbf{I}(t) = (x_1(t), x_2(t), x_3(t))$, for constants $\lambda_i$. 
 Alternatively we can consider this as finding the set of basis vectors $v_1, v_2, v_3$ such that $I(t) = (I(t)\cdot v_1)v_1 + (I(t) \cdot v_2)v_2 + (I(t) \cdot v_3)v_3$. The key problem is finding the basis $v_1, v_2, v_3$ such that $p(t) = (I(t)\cdot v_i))v_i$ for some $i$ and further identifying the value of $i$.
 
@@ -271,4 +281,5 @@ A possible assumption might be that each of the $\mathbf{x}_i(t)$ and $\mathbf{p
 %Main way to bypass this is to reward several close peaks together
 %Hence the use of a butterworth filter
 %Give EXAMPLE graphs
+In practice, however, the real heart rate is not present in the Fourier transform as a clear single peak. Instead, in fact, often, it will correspond to several peaks that are close by.
 \section{Repository overview}
