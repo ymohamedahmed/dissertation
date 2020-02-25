@@ -37,8 +37,8 @@
 \contentsline {subsubsection}{Identifying the skin tone}{15}% 
 \contentsline {subsubsection}{Defining a probability distribution}{16}% 
 \contentsline {section}{\numberline {3.5}Heart rate isolation}{16}% 
-\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{16}% 
-\contentsline {subsubsection}{Independent components analysis}{16}% 
+\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{17}% 
+\contentsline {subsubsection}{Independent components analysis}{17}% 
 \contentsline {subsubsection}{Principal components analysis}{17}% 
 \contentsline {subsection}{\numberline {3.5.2}The split peak issue}{17}% 
 \contentsline {section}{\numberline {3.6}Repository overview}{17}% 

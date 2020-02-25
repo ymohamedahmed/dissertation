@@ -206,21 +206,36 @@ Instead of applying k-means to each frame, which is not feasible with the constr
 Having identified the skin tone, this colour can be used as part of a probability model which we define to try and encode the likelihood of a particular pixel being part of the skin. This reduces the problem to: 
 \begin{itemize}
    \item Use k-means to identify the skin tone
-   \item Use the skin tone to identify skin in the face for some number of frames 
+   \item Use the skin tone to identify skin in the face for some number of consecutive frames 
 \end{itemize}
 \subsubsection{Identifying the skin tone}
-There are two expected properties of the cluster corresponding to the skin. It is likely to contain the largest number of pixels, since we'd expect most of the face to be composed of skin. It is also likely to fall within the range of expected human skin tone colours.
+There are two expected properties of the cluster corresponding to the skin. It is likely to contain the largest number of pixels, since we'd expect most of the face to be composed of skin. It is also likely to fall within the range of expected human skin tones.
 The difficulty of this problem, however, is that neither of these properties are guaranteed to hold.
 For example, the face may be dominated by hair which could become the most prominent colour in the image. Likewise, changes in illumination or the presence of specular reflection might cause the skin tone of the face to be outside the expected range.
 \\ \\
-By considering both of these properties together, as a heuristic, it becomes more probable that the skin tone is identified correctly. I assign a score to each cluster as follows
+By considering both of these properties together, as a heuristic, it becomes more probable that the skin tone is identified correctly. I assign a score to each cluster, $C$, based on the number of elements in the cluster, $|C|$, and its distance from the expected range of skin tones, $d_C$.
 \begin{equation*}
-    \mathrm{score} = \alpha*\mathrm{size_of_cluster} - \beta*\mathrm{distance_from_skin_tone_range}
+    \mathrm{score}(C) = \alpha\cdot |C| - \beta\cdot d_C
 \end{equation*}
-where $\alpha$ and $\beta$ are constants that were selected experimentally. Then the skin tone is identify as the center of the cluster with the maximum score.
-This is shown in Section \ref{section:skin_tone_detection}.
+The constants $\alpha$ and $\beta$ were selected experimentally. The skin tone is identified as the center of the cluster with the maximum score.
+This is shown to improve on simply selecting the largest cluster in Section \ref{section:skin_tone_detection}.
 
 \subsubsection{Defining a probability distribution}
+Identifying the skin tone, as described, requires the use of the k-means algorithm. However, as previously mentioned, this is not a particularly suitable algorithm for real-time applications. Thus, the skin tone can only be identified periodically rather than for every frame. So given the skin tone identified in some earlier frame, the value must be used to robustly detect skin pixels in subsequent frames. This is challenging since there will almost certainly be changing illumination conditions as well as changing positions of the skin pixels.
+\\ \\
+A possible approach could be to record the number of pixels that were in the skin cluster when the skin tone was identified. Then, simply selecting the $n$ closest pixels in the colour space to the skin tone, where $n$ was the number of pixels in the skin cluster. However, this would not be robust to rotations of the face, since, in subsequent frames, the number of pixels visible to the camera could change. Assuming a static value of $n$ would not be robust.
+\\ \\
+Implicitly, the above solution also relies on the assumption that any changes in illumination between frames affects all pixels equally. 
+It assumes that in subsequent frames, the true skin pixels remain closer (in terms of Euclidean distance) to the skin tone than the non-skin pixels.
+%That is, the pixels which were within the skin cluster when k-means was applied, are still closer to the skin tone than non-skin pixels in subsequent frames. 
+This is a fairly strong assumption and is affected by phenomena such as shadows and specular reflection, which will, clearly, not affect all pixels equally.
+However, it is useful enough to make the problem more tractable than it was previously, without undermining the fidelity of the algorithm. 
+The validity of the assumption is made clear by its evaluation in Section \ref{section:skin_tone_detection}.
+Therefore, we proceed by classifying pixels based on their Euclidean distance from the skin tone.
+\\ \\
+
+
+%I deem it to be a strong enough assumption to simply the problem adequately but not so strong as to undermine the effectiveness of the solution. 
 
 
 % Describe how this addresses each of the problems

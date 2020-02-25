@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.1.29)  25 FEB 2020 10:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.1.29)  25 FEB 2020 11:51
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -519,23 +519,43 @@ Underfull \hbox (badness 1308) in paragraph at lines 212--217
 uris-tic, it be-
  []
 
-[15]
-Underfull \hbox (badness 10000) in paragraph at lines 263--268
+
+Underfull \hbox (badness 10000) in paragraph at lines 224--236
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 263--268
+Underfull \hbox (badness 10000) in paragraph at lines 224--236
 
  []
 
 
-Underfull \hbox (badness 7540) in paragraph at lines 263--268
+Underfull \hbox (badness 10000) in paragraph at lines 224--236
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 224--236
+
+ []
+
+[15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 278--283
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 278--283
+
+ []
+
+
+Underfull \hbox (badness 7540) in paragraph at lines 278--283
 \OT1/cmr/m/n/12 We can re-frame this as find-ing some ba-sis for our vec-tor sp
 ace
  []
 
-[16]) [17] [18
+) [17] [18
 
 ]
 Chapter 4.
@@ -570,10 +590,10 @@ runsystem(rm diss.pyg)...executed.
 Here is how much of TeX's memory you used:
  6103 strings out of 494554
  104304 string characters out of 6177403
- 219177 words of memory out of 5000000
+ 222177 words of memory out of 5000000
  9626 multiletter control sequences out of 15000+600000
  13229 words of font info for 47 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  37i,11n,39p,859b,418s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on diss.dvi (32 pages, 54664 bytes).
+Output written on diss.dvi (32 pages, 57164 bytes).
