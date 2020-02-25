@@ -202,19 +202,29 @@ The k-means algorithm, although it improves on the results of the rudimentary ap
 \subsection{A hybrid solution}
 Recall that the purpose of the region selection is to return the mean colour of the pixels considered. The mean value from each frame is taken as a time series which is used to infer the heart rate. So rather than attempting to classify each pixel as either skin or not, I use a combination of the previous techniques to take a weighted mean which emphasises pixels which are believed to be skin pixels, in such a way as to minimise the issues encountered with the previous techniques.
 \\ \\
-Instead of applying k-means to each frame, which is not feasible with the constraint of real-time performance, we apply it periodically. One of the resulting cluster centers will correspond to the skin tone of the face in question.
+Instead of applying k-means to each frame, which is not feasible with the constraint of real-time performance, we apply it periodically. One of the resulting clusters will correspond to the skin tone of the face in question.
 Having identified the skin tone, this colour can be used as part of a probability model which we define to try and encode the likelihood of a particular pixel being part of the skin. This reduces the problem to: 
 \begin{itemize}
    \item Use k-means to identify the skin tone
    \item Use the skin tone to identify skin in the face for some number of frames 
 \end{itemize}
 \subsubsection{Identifying the skin tone}
-\subsubsection{}
+There are two expected properties of the cluster corresponding to the skin. It is likely to contain the largest number of pixels, since we'd expect most of the face to be composed of skin. It is also likely to fall within the range of expected human skin tone colours.
+The difficulty of this problem, however, is that neither of these properties are guaranteed to hold.
+For example, the face may be dominated by hair which could become the most prominent colour in the image. Likewise, changes in illumination or the presence of specular reflection might cause the skin tone of the face to be outside the expected range.
 \\ \\
+By considering both of these properties together, as a heuristic, it becomes more probable that the skin tone is identified correctly. I assign a score to each cluster as follows
+\begin{equation*}
+    \mathrm{score} = \alpha*\mathrm{size_of_cluster} - \beta*\mathrm{distance_from_skin_tone_range}
+\end{equation*}
+where $\alpha$ and $\beta$ are constants that were selected experimentally. Then the skin tone is identify as the center of the cluster with the maximum score.
+This is shown in Section \ref{section:skin_tone_detection}.
 
-\begin{itemize}
-    
-\end{itemize}
+\subsubsection{Defining a probability distribution}
+
+
+% Describe how this addresses each of the problems
+
 % Run multiple times with different k, and look for colours that repeat in each one to identify skin tone
 % Use rudimentary filter to remove obviously wrong ones
 % Consider cluster size
