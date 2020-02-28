@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.1.29)  28 FEB 2020 16:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.1.29)  28 FEB 2020 16:45
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -451,17 +451,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 106--114
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--125
+Underfull \hbox (badness 10000) in paragraph at lines 122--126
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--125
+Underfull \hbox (badness 10000) in paragraph at lines 122--126
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--125
+Underfull \hbox (badness 10000) in paragraph at lines 122--126
 
  []
 
@@ -474,28 +474,28 @@ File: example-image-c.eps Graphic file (type eps)
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 146--156
+Underfull \hbox (badness 10000) in paragraph at lines 147--157
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 146--156
+Underfull \hbox (badness 10000) in paragraph at lines 147--157
 
  []
 
 
-Underfull \hbox (badness 2126) in paragraph at lines 146--156
+Underfull \hbox (badness 2126) in paragraph at lines 147--157
 \OT1/cmr/m/n/12 The colour space YCbCr is an ap-prox-i-ma-tion of per-cep-tual 
 uni-for-mity
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 146--156
+Underfull \hbox (badness 10000) in paragraph at lines 147--157
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 146--156
+Underfull \hbox (badness 10000) in paragraph at lines 147--157
 
  []
 
@@ -504,77 +504,98 @@ File: example-image-a.eps Graphic file (type eps)
  <example-image-a.eps> [13]
 File: example-image-a.eps Graphic file (type eps)
  <example-image-a.eps>
-Underfull \hbox (badness 10000) in paragraph at lines 203--207
+Underfull \hbox (badness 10000) in paragraph at lines 204--208
 
  []
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 212--217
+Underfull \hbox (badness 10000) in paragraph at lines 213--218
 
  []
 
 
-Underfull \hbox (badness 1308) in paragraph at lines 212--217
+Underfull \hbox (badness 1308) in paragraph at lines 213--218
 \OT1/cmr/m/n/12 By con-sid-er-ing both of these prop-er-ties to-gether, as a he
 uris-tic, it be-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--236
+Underfull \hbox (badness 10000) in paragraph at lines 225--237
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--236
+Underfull \hbox (badness 10000) in paragraph at lines 225--237
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--236
+Underfull \hbox (badness 10000) in paragraph at lines 225--237
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--236
+Underfull \hbox (badness 10000) in paragraph at lines 225--237
 
  []
 
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 237--244
+Underfull \hbox (badness 10000) in paragraph at lines 238--245
 
  []
 
-[16] [17]
-Underfull \hbox (badness 10000) in paragraph at lines 310--315
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 310--315
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 265--267
 
  []
 
 
-Underfull \hbox (badness 7540) in paragraph at lines 310--315
+Underfull \hbox (badness 10000) in paragraph at lines 265--267
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--273
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 268--273
+
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 320--325
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 320--325
+
+ []
+
+
+Underfull \hbox (badness 7540) in paragraph at lines 320--325
 \OT1/cmr/m/n/12 We can re-frame this as find-ing some ba-sis for our vec-tor sp
 ace
  []
 
-) [18]
+[18]) [19] [20
+
+]
 Chapter 4.
-(./evaluation/evaluation.tex) [19
+(./evaluation/evaluation.tex) [21
 
-
-] [20]
+] [22]
 Chapter 5.
-(./conclusion/conclusion.tex) [21
+(./conclusion/conclusion.tex) [23
 
-
-] [22
-
-] (./diss.bbl) [23
 
 ] [24
+
+] (./diss.bbl) [25
+
+] [26
 
 ]
 Appendix A.
@@ -584,20 +605,20 @@ Package pdfpages Warning: I cannot determine the number of pages of the
 (pdfpages)                DVI mode. 
 (pdfpages)                You can use the option `lastpage' to give me a hint.
 
-[25
+[27
 
 
-] [26] (./diss.aux)
+] [28] (./diss.aux)
 runsystem(rm diss.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 6106 strings out of 494554
- 104337 string characters out of 6177403
- 222177 words of memory out of 5000000
- 9628 multiletter control sequences out of 15000+600000
+ 6107 strings out of 494554
+ 104360 string characters out of 6177403
+ 222190 words of memory out of 5000000
+ 9629 multiletter control sequences out of 15000+600000
  13565 words of font info for 49 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  37i,11n,39p,859b,418s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on diss.dvi (32 pages, 59748 bytes).
+Output written on diss.dvi (34 pages, 61248 bytes).

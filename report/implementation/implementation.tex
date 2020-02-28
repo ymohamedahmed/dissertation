@@ -265,9 +265,14 @@ By neglecting the effect of constants, we will proceed with classification as fo
 \end{equation*}
 \\ \\ 
 \paragraph{Defining distributions}
-Usually, one might attempt to learn both of the distributions required from data. That is the prior distribution $\Pr(C_\mathrm{skin}|x_i)$ and $\Pr(s|C_\mathrm{skin}, x_i)$.
+Usually, one might attempt to learn these distributions from some relevant dataset. That is the prior distribution $\Pr(C_\mathrm{skin}|x_i)$ and $\Pr(s|C_\mathrm{skin}, x_i)$.
 However, to the best of my knowledge, there are no large scale datasets of faces with each pixel labelled as either skin or not. That being said, the prior $\Pr(C_\mathrm{skin}|x_i)$ was computed as the empirical distribution from 
-the dataset discussed in Section \ref{section:colour-filter}. This dataset consists of colours randomly sampled which are labelled as either skin or not. As a result, a reasonable approach is to define the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ based on 
+the dataset discussed in Section \ref{section:colour-filter}. This dataset consists of colours randomly sampled from faces which are labelled as either skin or not.
+\\\\
+As a result, a reasonable approach is to define the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ based on the assumption that a skin pixel is likely close in colour to the overall skin tone. We want a function which returns a large probability if the Euclidean distance between the pixel and the skin tone is small.
+There are, however, an infinite number of functions which could encode this. The only requirements are that it is a decreasing function in terms of the Euclidean distance, $d$, and that the sum over all probabilities is one.
+
+
  
 % \begin{equation}
 %    \Pr(C_{\mathrm{skin}}| x_i) = \Pr(C_{\mathrm{skin}}| x_i, \text{skin-tone} )\Pr(\text{skin-tone})
