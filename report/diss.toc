@@ -33,15 +33,16 @@
 \contentsline {paragraph}{Issues}{11}% 
 \contentsline {subsubsection}{K-Means}{12}% 
 \contentsline {paragraph}{Issues}{13}% 
-\contentsline {subsection}{\numberline {3.4.2}A hybrid solution}{14}% 
+\contentsline {subsection}{\numberline {3.4.2}Improving the previous approaches}{14}% 
 \contentsline {subsubsection}{Identifying the skin tone}{15}% 
-\contentsline {subsubsection}{Defining a probability distribution}{16}% 
-\contentsline {section}{\numberline {3.5}Heart rate isolation}{16}% 
+\contentsline {subsubsection}{Identifying skin using the skin tone}{16}% 
+\contentsline {paragraph}{A Bayesian approach}{16}% 
+\contentsline {section}{\numberline {3.5}Heart rate isolation}{17}% 
 \contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{17}% 
-\contentsline {subsubsection}{Independent components analysis}{17}% 
-\contentsline {subsubsection}{Principal components analysis}{17}% 
-\contentsline {subsection}{\numberline {3.5.2}The split peak issue}{17}% 
-\contentsline {section}{\numberline {3.6}Repository overview}{17}% 
+\contentsline {subsubsection}{Independent components analysis}{18}% 
+\contentsline {subsubsection}{Principal components analysis}{18}% 
+\contentsline {subsection}{\numberline {3.5.2}The split peak issue}{18}% 
+\contentsline {section}{\numberline {3.6}Repository overview}{18}% 
 \contentsline {chapter}{\numberline {4}Evaluation}{19}% 
 \contentsline {section}{\numberline {4.1}Face tracking}{19}% 
 \contentsline {paragraph}{Performance cost}{19}% 
