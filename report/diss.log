@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.1.29)  29 FEB 2020 16:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.1.29)  29 FEB 2020 19:05
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -545,32 +545,53 @@ Underfull \hbox (badness 10000) in paragraph at lines 238--245
  []
 
 [16]
-Underfull \hbox (badness 10000) in paragraph at lines 267--277
+Underfull \hbox (badness 1062) in paragraph at lines 267--268
+ \OT1/cmr/bx/n/12 Defin-ing the thresh-old[] \OT1/cmr/m/n/12 The most ob-vi-ous
+ se-lec-tion of the value $\OML/cmm/m/it/12 t$ \OT1/cmr/m/n/12 is
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--284
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 267--277
+Underfull \hbox (badness 10000) in paragraph at lines 275--284
 
  []
 
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 324--329
+Underfull \hbox (badness 10000) in paragraph at lines 286--291
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 324--329
+Underfull \hbox (badness 10000) in paragraph at lines 286--291
 
  []
 
 
-Underfull \hbox (badness 7540) in paragraph at lines 324--329
+Underfull \hbox (badness 10000) in paragraph at lines 286--291
+
+ []
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 337--342
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 337--342
+
+ []
+
+
+Underfull \hbox (badness 7540) in paragraph at lines 337--342
 \OT1/cmr/m/n/12 We can re-frame this as find-ing some ba-sis for our vec-tor sp
 ace
  []
 
-[18]) [19] [20
+) [19] [20
 
 ]
 Chapter 4.
@@ -611,4 +632,4 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  37i,11n,39p,859b,418s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on diss.dvi (34 pages, 62200 bytes).
+Output written on diss.dvi (34 pages, 63680 bytes).

@@ -255,22 +255,35 @@ Which, from Bayes' theorem, can be re-written as:
 \begin{align*}
    \frac{\Pr(C_\mathrm{skin}, x_i, s)}{\Pr(x_i, s)} = \frac{\Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i)\Pr(x_i)}{\Pr(x_i,s)}
 \end{align*}
-By neglecting the effect of constants, we will proceed with classification as follows, for some threshold probability $t$ that defines the decision boundary: 
+We proceed with classification as follows, for some threshold probability $t$ that defines the decision boundary: 
 \begin{equation*}
     \text{isSkin}(x_i) = 
     \begin{cases}
-        \texttt{True}, \quad \text{if} \Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i) > t \\
+        \texttt{True}, \quad \text{if} \Pr(C_\mathrm{skin}, x_i, s) > t \\
         \texttt{False}, \quad \text{otherwise}
     \end{cases}
 \end{equation*}
+\paragraph{Defining the threshold}
+The most obvious selection of the value $t$ is $\Pr(C_\text{not-skin}, x_i, s)$, where $C_\text{not-skin}$ is the class of pixels classified as not skin.
+\begin{align*}
+    \Pr(C_\mathrm{skin}, x_i, s) &> \Pr(C_\mathrm{not-skin}, x_i, s) \\
+    \frac{\Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i)\Pr(x_i)}{\Pr(x_i,s)} &> \frac{\Pr(s|C_\mathrm{not-skin}, x_i)\Pr(C_\mathrm{not-skin}|x_i)\Pr(x_i)}{\Pr(x_i,s)} \\
+    \Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i) &> \Pr(s|C_\mathrm{not-skin}, x_i)\Pr(C_\mathrm{not-skin}|x_i) 
+\end{align*} 
+% \Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i) > t
 \paragraph{Defining probability distributions}
 Usually, one might attempt to learn these distributions from some relevant dataset. That is the prior distribution $\Pr(C_\mathrm{skin}|x_i)$ and the distribution $\Pr(s|C_\mathrm{skin}, x_i)$.
 The prior $\Pr(C_\mathrm{skin}|x_i)$ was computed as the empirical distribution from 
-the dataset discussed in Section \ref{section:colour-filter}. This dataset consists of randomly sampled pixels across a set of faces that are classified as skin or not.
-However, to the best of my knowledge, there are no large scale datasets of faces with each pixel labelled as either skin or not. Hence, attempting to learn the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ was not deemed to be feasible.
+the dataset discussed in Section \ref{section:colour-filter}. This dataset consists of randomly sampled pixels that are classified as skin or not, it does not include entire classified faces.
+Furthermore, to the best of my knowledge at the time of implementation, there are no such adequately sized datasets. Hence, attempting to learn the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ was not deemed to be feasible.
 \\\\
 As a result, a reasonable approach is to define the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ based on the assumption that a skin pixel is likely close in colour to the overall skin tone. We want a function which returns a large probability if the Euclidean distance between the pixel and the skin tone is small.
 There are, however, an infinite number of functions which could encode this. The only requirements is that the probability of being a skin pixel is  decreasing as a function of the distance between the colour of the pixel and the skin tone of the face. 
+\\\\
+A reasonable assumption might be that if the pixel being considered, $x_i$, is a skin pixel, then the skin tone, $s$, varies as a Normal distribution with mean $x_i$. 
+\begin{equation*}
+   s \sim N(x_i, \sigma) 
+\end{equation*}
 \\\\
 %Discrete or not??
 There is a finite range of possible values for the Euclidean distance between the colour of a pixel and the skin tone. This is because colours are discretised by the camera and therefore must lie between some set of bounds (usually 0 and 255). As a result, the defined distribution should also be discrete in nature.
@@ -302,7 +315,6 @@ There is a finite range of possible values for the Euclidean distance between th
 
 
 
-\paragraph{Defining the threshold}
 
 
 
