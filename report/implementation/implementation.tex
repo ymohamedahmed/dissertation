@@ -237,9 +237,9 @@ Therefore, we proceed by classifying pixels based on their Euclidean distance fr
 \paragraph{A Bayesian approach}
 Recall that the first approach described classifies skin based on knowledge about the range of possible human skin tones. 
 In this sense, it acts as a prior distribution, as, when classifying an individual pixel, it considers nothing of the face being presented.
-The k-means implementation, on the other hand, considers the face presented but it has to knowledge of the prior. It assumes that the largest cluster must be the set of skin pixels.
+The k-means implementation, on the other hand, considers the face presented but it has to knowledge of the prior. It instead assumes that the largest cluster must be the set of skin pixels.
 \\ \\ 
-A natural way to combine these two approaches would be to consider the problem of skin classification from a Bayesian perspective. That is, given some pixel $x_i$ we want to discover the likelihood of it being a skin pixel, having been conditionalised on the skin tone of the person as well the pixel being classified. 
+A natural way to combine these two approaches would be to consider the problem of skin classification from a Bayesian perspective. Given some pixel $x_i$ we want to discover the likelihood of it being a skin pixel, having been conditionalised on the skin tone of the person as well the colour of the pixel being classified. 
 We have access to our prior distribution from the first approach, which indicates the likelihood of a particular colour being skin.
 Let us denote the following: 
 \begin{itemize}
@@ -251,7 +251,7 @@ Given this notation the probability we wish to discover is precisely the followi
 \begin{equation*}
    \Pr(C_{\mathrm{skin}}| x_i, s) 
 \end{equation*}
-This is equivalent to:
+Which, from Bayes' theorem, can be re-written as: 
 \begin{align*}
    \frac{\Pr(C_\mathrm{skin}, x_i, s)}{\Pr(x_i, s)} = \frac{\Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i)\Pr(x_i)}{\Pr(x_i,s)}
 \end{align*}
@@ -259,19 +259,22 @@ By neglecting the effect of constants, we will proceed with classification as fo
 \begin{equation*}
     \text{isSkin}(x_i) = 
     \begin{cases}
-        \texttt{True}, \quad \Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i) > t \\
+        \texttt{True}, \quad \text{if} \Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i) > t \\
         \texttt{False}, \quad \text{otherwise}
     \end{cases}
 \end{equation*}
-\\ \\ 
-\paragraph{Defining distributions}
-Usually, one might attempt to learn these distributions from some relevant dataset. That is the prior distribution $\Pr(C_\mathrm{skin}|x_i)$ and $\Pr(s|C_\mathrm{skin}, x_i)$.
-However, to the best of my knowledge, there are no large scale datasets of faces with each pixel labelled as either skin or not. That being said, the prior $\Pr(C_\mathrm{skin}|x_i)$ was computed as the empirical distribution from 
-the dataset discussed in Section \ref{section:colour-filter}. This dataset consists of colours randomly sampled from faces which are labelled as either skin or not.
+\paragraph{Defining probability distributions}
+Usually, one might attempt to learn these distributions from some relevant dataset. That is the prior distribution $\Pr(C_\mathrm{skin}|x_i)$ and the distribution $\Pr(s|C_\mathrm{skin}, x_i)$.
+The prior $\Pr(C_\mathrm{skin}|x_i)$ was computed as the empirical distribution from 
+the dataset discussed in Section \ref{section:colour-filter}. This dataset consists of randomly sampled pixels across a set of faces that are classified as skin or not.
+However, to the best of my knowledge, there are no large scale datasets of faces with each pixel labelled as either skin or not. Hence, attempting to learn the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ was not deemed to be feasible.
 \\\\
 As a result, a reasonable approach is to define the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ based on the assumption that a skin pixel is likely close in colour to the overall skin tone. We want a function which returns a large probability if the Euclidean distance between the pixel and the skin tone is small.
-There are, however, an infinite number of functions which could encode this. The only requirements are that it is a decreasing function in terms of the Euclidean distance, $d$, and that the sum over all probabilities is one.
-
+There are, however, an infinite number of functions which could encode this. The only requirements is that the probability of being a skin pixel is  decreasing as a function of the distance between the colour of the pixel and the skin tone of the face. 
+\\\\
+%Discrete or not??
+There is a finite range of possible values for the Euclidean distance between the colour of a pixel and the skin tone. This is because colours are discretised by the camera and therefore must lie between some set of bounds (usually 0 and 255). As a result, the defined distribution should also be discrete in nature.
+\\\\ 
 
  
 % \begin{equation}
@@ -299,7 +302,7 @@ There are, however, an infinite number of functions which could encode this. The
 
 
 
-
+\paragraph{Defining the threshold}
 
 
 

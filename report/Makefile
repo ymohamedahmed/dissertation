@@ -7,7 +7,8 @@
 # DISS = diss.tex refs.bib propbody.tex figs/diagram.eps makefile.txt
 DISS = diss.tex refs.bib propbody.tex makefile.txt
 
-PROP = proposal.tex propbody.tex
+# PROP = proposal.tex propbody.tex
+PROP = proposal/main.tex
 
 help:
 	@echo
