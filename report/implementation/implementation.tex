@@ -264,12 +264,20 @@ We proceed with classification as follows, for some threshold probability $t$ th
     \end{cases}
 \end{equation*}
 \paragraph{Defining the threshold}
-The most obvious selection of the value $t$ is $\Pr(C_\text{not-skin}, x_i, s)$, where $C_\text{not-skin}$ is the class of pixels classified as not skin.
+The most obvious selection would be to classify the pixel based on which class has the maximum posterior probability. That is the threshold value $t$ would be $\Pr(C_\text{not-skin}, x_i, s)$, where $C_\text{not-skin}$ is the class of pixels classified as not skin. In which case we would classify as follows:
 \begin{align*}
     \Pr(C_\mathrm{skin}, x_i, s) &> \Pr(C_\mathrm{not-skin}, x_i, s) \\
     \frac{\Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i)\Pr(x_i)}{\Pr(x_i,s)} &> \frac{\Pr(s|C_\mathrm{not-skin}, x_i)\Pr(C_\mathrm{not-skin}|x_i)\Pr(x_i)}{\Pr(x_i,s)} \\
     \Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i) &> \Pr(s|C_\mathrm{not-skin}, x_i)\Pr(C_\mathrm{not-skin}|x_i) 
 \end{align*} 
+Since we're assuming that there are only two possible classes, this is equivalent to: 
+\begin{align*}
+    \Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i) &> [1-\Pr(s|C_\mathrm{skin}, x_i)][1-\Pr(C_\mathrm{skin}|x_i)] \\
+\end{align*}
+So an equivalent condition that only requires the defined distributions is: 
+\begin{equation*}
+\Pr(s|C_\mathrm{skin}, x_i)+\Pr(C_\mathrm{skin}|x_i) > 1
+\end{equation*}
 % \Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i) > t
 \paragraph{Defining probability distributions}
 Usually, one might attempt to learn these distributions from some relevant dataset. That is the prior distribution $\Pr(C_\mathrm{skin}|x_i)$ and the distribution $\Pr(s|C_\mathrm{skin}, x_i)$.

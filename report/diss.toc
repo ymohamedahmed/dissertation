@@ -38,13 +38,13 @@
 \contentsline {subsubsection}{Identifying skin using the skin tone}{16}% 
 \contentsline {paragraph}{A Bayesian approach}{16}% 
 \contentsline {paragraph}{Defining the threshold}{17}% 
-\contentsline {paragraph}{Defining probability distributions}{17}% 
+\contentsline {paragraph}{Defining probability distributions}{18}% 
 \contentsline {section}{\numberline {3.5}Heart rate isolation}{18}% 
 \contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{19}% 
 \contentsline {subsubsection}{Independent components analysis}{19}% 
 \contentsline {subsubsection}{Principal components analysis}{19}% 
 \contentsline {subsection}{\numberline {3.5.2}The split peak issue}{19}% 
-\contentsline {section}{\numberline {3.6}Repository overview}{19}% 
+\contentsline {section}{\numberline {3.6}Repository overview}{20}% 
 \contentsline {chapter}{\numberline {4}Evaluation}{21}% 
 \contentsline {section}{\numberline {4.1}Face tracking}{21}% 
 \contentsline {paragraph}{Performance cost}{21}% 

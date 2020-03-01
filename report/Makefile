@@ -8,7 +8,7 @@
 DISS = diss.tex refs.bib propbody.tex makefile.txt
 
 # PROP = proposal.tex propbody.tex
-PROP = proposal/main.tex
+ROP = proposal/main.tex
 
 help:
 	@echo
