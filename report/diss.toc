@@ -44,6 +44,7 @@
 \contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{19}% 
 \contentsline {subsubsection}{Independent components analysis (ICA)}{19}% 
 \contentsline {subsubsection}{Principal components analysis (PCA)}{19}% 
+\contentsline {paragraph}{Conclusion}{20}% 
 \contentsline {subsection}{\numberline {3.5.2}The split peak issue}{20}% 
 \contentsline {section}{\numberline {3.6}Repository overview}{20}% 
 \contentsline {chapter}{\numberline {4}Evaluation}{21}% 

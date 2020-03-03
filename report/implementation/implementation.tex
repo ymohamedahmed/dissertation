@@ -344,7 +344,7 @@ Our observed signal exists in three dimensions (i.e. the particular colour space
 % If we consider $\mathbf{I}(t)$ as a matrix of dimension $n \times T$ where $n$ is the number of colour dimensions and $T$ the number of timesteps, then we might suppose that $ (x_1(t), x_2(t), ..., p(t), ..., x_{n-1}(t))^T = AI$. That is 
 % That is: $\mathbf{I}(t) = (x_1(t), x_2(t), x_3(t))$, for constants $\lambda_i$. 
 % Alternatively we can consider this as finding the set of basis vectors $v_1, v_2, v_3$ such that $I(t) = (I(t)\cdot v_1)v_1 + (I(t) \cdot v_2)v_2 + (I(t) \cdot v_3)v_3$. The key problem is finding the basis $v_1, v_2, v_3$ such that $p(t) = (I(t)\cdot v_i))v_i$ for some $i$ and further identifying the value of $i$.
-The nature of this task is to identify and return $p(t)$ from only $\mathbf{I}(t)$. This is known as the blind-source separation problem. 
+The nature of this task is to identify and return $p(t)$ from only $\mathbf{I}(t)$ and is known as the blind-source separation problem. 
 \\ \\
 The above formulation is not enough to isolate the signal $p(t)$. Thus assumptions must be placed on the nature of each $x_i(t)$ and $p(t)$ in order to turn this into a tractable problem. 
 % \\ \\ 
@@ -354,6 +354,7 @@ The above formulation is not enough to isolate the signal $p(t)$. Thus assumptio
 A possible assumption might be that each of the $x_i(t)$ are statistically independent. That is, informally, one cannot gain any information about one of these signals given an other. This assumption encodes the notion that the pulse, should be entirely independent from the other phenomena impacting the observed signal.
 \\\\
 For example, one might imagine that the signal is a mixture of 
+% talk about how this doesn't tell us which one is p(t) 
 %
 
 \subsubsection{Principal components analysis (PCA)}
@@ -374,6 +375,9 @@ Under the assumption that $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ are in orde
 
 %\subsection{The sample-rate problem}
 %\subsection{}
+
+
+%talk about filtering stuff
 \paragraph{Conclusion}
 The evaluation of these two algorithms reflects whether the assumption of statistical independence or maximal variance better reflects the issue of isolating the heart rate. The performance of these two approaches are evaluated in Section \ref{section:bss}, from which it is concluded that ICA better serves the requirements of heart rate isolation. Hence, it is concluded that the assumption of statistical independence is more valid.
 
