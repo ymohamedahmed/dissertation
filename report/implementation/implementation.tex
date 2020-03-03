@@ -360,10 +360,10 @@ The above formulation is not enough to isolate the signal $p(t)$. Thus assumptio
 \subsubsection{Independent components analysis (ICA)}
 A possible assumption might be that each of the $x_i(t)$ are statistically independent. That is, informally, one cannot gain any information about one of these signals given an other. This assumption encodes the notion that the pulse, should be entirely independent from the other phenomena impacting the observed signal.
 \\\\
-For example, suppose that the some of the $x_i(t)$ are the result of some physical phenomenon such as lighting conditions. In this case, it is intuitive to expect there to be no mutual information between the pulse signal and the other signal. The ICA algorithm attempts to identify these signals based on this assumption, by using non-Gaussianity as a proxy for statistical independence.
+For example, suppose that the some of the $x_i(t)$ are the result of some physical phenomenon such as lighting conditions. In this case, it is intuitive to expect there to be no mutual information between the pulse and the other constituent signals. The ICA algorithm attempts to identify these signals based on this assumption, by using non-Gaussianity as a proxy for statistical independence.
 \\\\
 % talk about how this doesn't tell us which one is p(t) 
-Crucially, however, this approach returns the signals $x_1(t)$,$x_2(t)$ and $x_3(t)$ but gives no indication regarding which signal corresponds to the pulse. In fact, the formulation of the ICA algorithm is such that each $x_i(t)$ are returned in a random order. Thus some additional work must be undertaken to identify the pulse from the returned signal. 
+Crucially, however, this approach returns the signals $x_1(t)$, $x_2(t)$ and $x_3(t)$ but gives no indication regarding which signal corresponds to the pulse. In fact, the formulation of the ICA algorithm is such that each $x_i(t)$ are returned in a random order. Thus some additional work must be undertaken to identify the pulse from the returned signal. 
 \\\\
 In this scenario, I proceed by attempting to identify the heart rate in each of these signals independently. This results in returning three different heart rate values, each of which has an associated power.
 This power value, which is the magnitude of the term in the Fourier transform associated with a given frequency, acts as a natural way of quantifying the importance of a particular frequency on the overall signal.
@@ -374,6 +374,8 @@ Hence, I assume that the correct heart rate corresponds to whichever has the lar
 Alternatively, one might reframe the problem as finding a new orthogonal basis $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ to represent each vector $\mathbf{I}(t)$ in. The basis vectors are orthogonal and in the directions of maximal variance of the observed signal $\mathbf{I}(t)$.
 We assume that the pulse occurs in the direction of most variance.
 Under the assumption that $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ are in order from most to least variance, we return $p(t) = \mathbf{I}(t)\cdot\mathbf{v}_1$
+\\\\
+Since we are only interested in the first component, this is equivalent to fitting a plane to the three dimensional signal $\mathbf{I}(t)$ that minimises the squared error.
 % ASSUMPTION OF CAMERA FEED BEING A MIXTURE OF INDEPENDENT SOURCES INCLUDING HEART RATE
 
 % SELECTION OF RESULTING COMPONENT => HIGHEST PEAK
@@ -392,7 +394,6 @@ Under the assumption that $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ are in orde
 
 %talk about filtering stuff
 \paragraph{Conclusion}
-The PCA approach comes with the benefit of returning 
 The evaluation of these two algorithms reflects whether the assumption of statistical independence or maximal variance better reflects the issue of isolating the heart rate. The performance of these two approaches are evaluated in Section \ref{section:bss}, from which it is concluded that ICA better serves the requirements of heart rate isolation. Hence, it is concluded that the assumption of statistical independence is more valid.
 \subsection{Identifying the heart rate}
 % given the pulse signal return HR
@@ -402,7 +403,7 @@ The evaluation of these two algorithms reflects whether the assumption of statis
 %Hence the use of a butterworth filter
 %Give EXAMPLE graphs
 In practice, however, the real heart rate is not present in the resulting Fourier transform as a clear single peak. Instead, in fact, often, it will correspond to several peaks that are close by.
-\begin{figure}[!h]
+\begin{figure}[H]
     % Add an image showing how in noisy Fourier transforms the HR is not just highest peak
     \includegraphics[width=\textwidth]{example-image-a}
    \caption{An example of the split peak issue} 

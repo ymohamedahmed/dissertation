@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.1.29)  3 MAR 2020 11:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.1.29)  3 MAR 2020 16:41
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -580,22 +580,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 350--359
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 361--367
+Underfull \hbox (badness 10000) in paragraph at lines 361--372
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 361--367
+Underfull \hbox (badness 10000) in paragraph at lines 361--372
 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 361--372
+
+ []
+
+
+Underfull \hbox (badness 1226) in paragraph at lines 361--372
+\OT1/cmr/m/n/12 In this sce-nario, I pro-ceed by at-tempt-ing to iden-tify the 
+heart rate in
  []
 
 [19]
 File: example-image-a.eps Graphic file (type eps)
- <example-image-a.eps>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-) [20] [21] [22
+ <example-image-a.eps> [20]) [21] [22
 
 ]
 Chapter 4.
@@ -628,12 +635,12 @@ runsystem(rm diss.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 6108 strings out of 494554
- 104373 string characters out of 6177403
- 222203 words of memory out of 5000000
- 9630 multiletter control sequences out of 15000+600000
+ 6110 strings out of 494554
+ 104407 string characters out of 6177403
+ 222216 words of memory out of 5000000
+ 9632 multiletter control sequences out of 15000+600000
  13565 words of font info for 49 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  37i,11n,39p,859b,418s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on diss.dvi (36 pages, 68516 bytes).
+Output written on diss.dvi (36 pages, 69908 bytes).

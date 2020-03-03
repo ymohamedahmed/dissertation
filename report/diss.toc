@@ -45,9 +45,9 @@
 \contentsline {subsubsection}{Independent components analysis (ICA)}{19}% 
 \contentsline {subsubsection}{Principal components analysis (PCA)}{20}% 
 \contentsline {paragraph}{Conclusion}{20}% 
-\contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{20}% 
-\contentsline {subsection}{\numberline {3.5.3}The split peak issue}{20}% 
-\contentsline {section}{\numberline {3.6}Repository overview}{20}% 
+\contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{21}% 
+\contentsline {subsection}{\numberline {3.5.3}The split peak issue}{21}% 
+\contentsline {section}{\numberline {3.6}Repository overview}{21}% 
 \contentsline {chapter}{\numberline {4}Evaluation}{23}% 
 \contentsline {section}{\numberline {4.1}Face tracking}{23}% 
 \contentsline {paragraph}{Performance cost}{23}% 
@@ -56,8 +56,9 @@
 \contentsline {section}{\numberline {4.2}Region selection}{24}% 
 \contentsline {subsection}{\numberline {4.2.1}Skin tone detection}{24}% 
 \contentsline {section}{\numberline {4.3}Heart rate isolation}{24}% 
-\contentsline {subsection}{\numberline {4.3.1}Blind source separation}{24}% 
-\contentsline {subsection}{\numberline {4.3.2}Window and stride size}{24}% 
+\contentsline {subsection}{\numberline {4.3.1}Pulse isolation}{24}% 
+\contentsline {subsection}{\numberline {4.3.2}Heart rate identification}{24}% 
+\contentsline {subsection}{\numberline {4.3.3}Window and stride size}{24}% 
 \contentsline {section}{\numberline {4.4}Evaluation method}{24}% 
 \contentsline {subsection}{\numberline {4.4.1}Experimental setup}{24}% 
 \contentsline {subsection}{\numberline {4.4.2}Ethics}{24}% 
