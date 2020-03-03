@@ -221,7 +221,7 @@ By considering both of these properties together, as a heuristic, it becomes mor
 The constants $\alpha$ and $\beta$ were selected experimentally. The skin tone is identified as the center of the cluster with the maximum score.
 This is shown to improve on simply selecting the largest cluster in Section \ref{section:skin_tone_detection}.
 
-\subsubsection{Identifying skin using the skin tone}
+\subsubsection{Identifying skin pixels using the skin tone}
 Identifying the skin tone, as described, requires the use of the k-means algorithm. However, as previously mentioned, this is not a particularly suitable algorithm for real-time applications. Thus, the skin tone can only be identified periodically rather than for every frame. So given the skin tone identified in some earlier frame, the value must be used to robustly detect skin pixels in subsequent frames. This is challenging since there will almost certainly be changing illumination conditions as well as changing positions of the skin pixels.
 \\ \\
 A possible approach could be to record the number of pixels that were in the skin cluster when the skin tone was identified. Then, our algorithm could select the $n$ closest pixels in the colour space to the skin tone, where $n$ was the number of pixels in the skin cluster. However, this would not be robust to rotations of the face, since, in subsequent frames, the number of pixels visible to the camera could change. Assuming a static value of $n$ would not be robust.
@@ -371,11 +371,11 @@ Hence, I assume that the correct heart rate corresponds to whichever has the lar
 % For example, the pulse is likely to be the most periodic of these signals, in which case, we could identify the pulse as simply the 
 
 \subsubsection{Principal components analysis (PCA)}
-Alternatively, one might reframe the problem as finding a new orthogonal basis $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ to represent each vector $\mathbf{I}(t)$ in. The basis vectors are orthogonal and in the directions of maximal variance of the observed signal $\mathbf{I}(t)$.
-We assume that the pulse occurs in the direction of most variance.
-Under the assumption that $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ are in order from most to least variance, we return $p(t) = \mathbf{I}(t)\cdot\mathbf{v}_1$
+Alternatively, one might reframe the problem as finding a new orthogonal basis $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ to represent each vector $\mathbf{I}(t)$ in. The basis vectors are in the directions of maximal variance of the observed signal $\mathbf{I}(t)$. Finding these basis vectors is known as Principal Components Analysis.
 \\\\
-Since we are only interested in the first component, this is equivalent to fitting a plane to the three dimensional signal $\mathbf{I}(t)$ that minimises the squared error.
+In this scenario, we assume that the pulse occurs in the direction of most variance.
+Under the assumption that $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ are in order from most to least variance, we return $p(t) = \mathbf{I}(t)\cdot\mathbf{v}_1$.
+Since we are only interested in the first basis vector, this is equivalent to fitting a plane to the three dimensional signal $\mathbf{I}(t)$ that minimises the squared error. The resulting pulse signal is the projection of $\mathbf{I}(t)$ onto this plane.
 % ASSUMPTION OF CAMERA FEED BEING A MIXTURE OF INDEPENDENT SOURCES INCLUDING HEART RATE
 
 % SELECTION OF RESULTING COMPONENT => HIGHEST PEAK
@@ -397,7 +397,8 @@ Since we are only interested in the first component, this is equivalent to fitti
 The evaluation of these two algorithms reflects whether the assumption of statistical independence or maximal variance better reflects the issue of isolating the heart rate. The performance of these two approaches are evaluated in Section \ref{section:bss}, from which it is concluded that ICA better serves the requirements of heart rate isolation. Hence, it is concluded that the assumption of statistical independence is more valid.
 \subsection{Identifying the heart rate}
 % given the pulse signal return HR
-\subsection{The split peak issue}
+Given the pulse signal, that is, 
+\subsubsection{The split peak issue}
 %Talk about how heart rate can split over several peaks
 %Main way to bypass this is to reward several close peaks together
 %Hence the use of a butterworth filter
