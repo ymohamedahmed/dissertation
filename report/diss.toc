@@ -43,28 +43,29 @@
 \contentsline {section}{\numberline {3.5}Heart rate isolation}{18}% 
 \contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{19}% 
 \contentsline {subsubsection}{Independent components analysis (ICA)}{19}% 
-\contentsline {subsubsection}{Principal components analysis (PCA)}{19}% 
+\contentsline {subsubsection}{Principal components analysis (PCA)}{20}% 
 \contentsline {paragraph}{Conclusion}{20}% 
-\contentsline {subsection}{\numberline {3.5.2}The split peak issue}{20}% 
+\contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{20}% 
+\contentsline {subsection}{\numberline {3.5.3}The split peak issue}{20}% 
 \contentsline {section}{\numberline {3.6}Repository overview}{20}% 
-\contentsline {chapter}{\numberline {4}Evaluation}{21}% 
-\contentsline {section}{\numberline {4.1}Face tracking}{21}% 
-\contentsline {paragraph}{Performance cost}{21}% 
-\contentsline {paragraph}{Motion resistance}{21}% 
-\contentsline {paragraph}{Correctness}{21}% 
-\contentsline {section}{\numberline {4.2}Region selection}{22}% 
-\contentsline {subsection}{\numberline {4.2.1}Skin tone detection}{22}% 
-\contentsline {section}{\numberline {4.3}Heart rate isolation}{22}% 
-\contentsline {subsection}{\numberline {4.3.1}Blind source separation}{22}% 
-\contentsline {subsection}{\numberline {4.3.2}Window and stride size}{22}% 
-\contentsline {section}{\numberline {4.4}Evaluation method}{22}% 
-\contentsline {subsection}{\numberline {4.4.1}Experimental setup}{22}% 
-\contentsline {subsection}{\numberline {4.4.2}Ethics}{22}% 
-\contentsline {section}{\numberline {4.5}Sensing power}{22}% 
-\contentsline {section}{\numberline {4.6}Performance}{22}% 
-\contentsline {subsection}{\numberline {4.6.1}Energy consumption}{22}% 
-\contentsline {subsection}{\numberline {4.6.2}Time cost}{22}% 
-\contentsline {section}{\numberline {4.7}Summary}{22}% 
-\contentsline {chapter}{\numberline {5}Conclusion}{23}% 
-\contentsline {chapter}{Bibliography}{25}% 
-\contentsline {chapter}{\numberline {A}Project Proposal}{27}% 
+\contentsline {chapter}{\numberline {4}Evaluation}{23}% 
+\contentsline {section}{\numberline {4.1}Face tracking}{23}% 
+\contentsline {paragraph}{Performance cost}{23}% 
+\contentsline {paragraph}{Motion resistance}{23}% 
+\contentsline {paragraph}{Correctness}{23}% 
+\contentsline {section}{\numberline {4.2}Region selection}{24}% 
+\contentsline {subsection}{\numberline {4.2.1}Skin tone detection}{24}% 
+\contentsline {section}{\numberline {4.3}Heart rate isolation}{24}% 
+\contentsline {subsection}{\numberline {4.3.1}Blind source separation}{24}% 
+\contentsline {subsection}{\numberline {4.3.2}Window and stride size}{24}% 
+\contentsline {section}{\numberline {4.4}Evaluation method}{24}% 
+\contentsline {subsection}{\numberline {4.4.1}Experimental setup}{24}% 
+\contentsline {subsection}{\numberline {4.4.2}Ethics}{24}% 
+\contentsline {section}{\numberline {4.5}Sensing power}{24}% 
+\contentsline {section}{\numberline {4.6}Performance}{24}% 
+\contentsline {subsection}{\numberline {4.6.1}Energy consumption}{24}% 
+\contentsline {subsection}{\numberline {4.6.2}Time cost}{24}% 
+\contentsline {section}{\numberline {4.7}Summary}{24}% 
+\contentsline {chapter}{\numberline {5}Conclusion}{25}% 
+\contentsline {chapter}{Bibliography}{27}% 
+\contentsline {chapter}{\numberline {A}Project Proposal}{29}% 
