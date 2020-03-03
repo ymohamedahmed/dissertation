@@ -39,7 +39,7 @@ Smartphone cameras can readily stream at high framerates, so it is unlikely that
 
 \subsubsection{Point tracking}
 The key principle behind face tracking is to use information from previous frames to reduce the cost of subsequent face detections.
-To that end, I implemented an optical-flow based algorithm that tracks points on the face rather than repeatedly calling the face detector. The Lucas-Kanade algorithm, a particular variant of optical-flow, tracks a set of points between consecutive frames. Naturally, over time, these points will diverge from their true positions. This is because images contain large numbers of pixels with similar illumination, over time, these cannot be distinguished perfectly. When this occurs, the position of the face should be redetected. 
+To that end, I implemented an optical-flow based algorithm that tracks points on the face rather than repeatedly calling the face detector. The Lucas-Kanade algorithm \cite{LucasKanade}, a particular variant of optical-flow, tracks a set of points between consecutive frames. Naturally, over time, these points will diverge from their true positions. This is because images contain large numbers of pixels with similar illumination, over time, these cannot be distinguished perfectly. When this occurs, the position of the face should be redetected. 
 \\ \\
 Knowing when the points have diverged is non-trivial, since the true location of the face is unknown. It is crucial for any implementation to act safely enough that the face is not lost track of, whilst simultaneously minimising the number of redetections.
 There are two obvious approaches to combat this. The algorithm could redetect the face: 
@@ -397,17 +397,19 @@ Since we are only interested in the first basis vector, this is equivalent to fi
 The evaluation of these two algorithms reflects whether the assumption of statistical independence or maximal variance better reflects the issue of isolating the heart rate. The performance of these two approaches are evaluated in Section \ref{section:bss}, from which it is concluded that ICA better serves the requirements of heart rate isolation. Hence, it is concluded that the assumption of statistical independence is more valid.
 \subsection{Identifying the heart rate}
 % given the pulse signal return HR
-Given a pulse signal, the heart rate corresponds to the average number of beats of the heart (seen as spikes in the signal) in a minute. A possible approach to identifying this is to count peaks in the signal. Alternatively, the heart rate could be taken as the prevalent frequency in the Fourier transform. The latter approach is used and the resulting transform provides a richer representation from which to identify the heart rate.
+Given a pulse signal, the heart rate corresponds to the average number of beats of the heart (seen as spikes in the signal) in a minute. A possible approach to identifying this is to simply count the number of peaks in the signal. The heart rate could also be taken as the most prevalent frequency in the Fourier transform, that is, specifically, the frequency with the largest associated power. Since the Fourier transform provides a particularly rich representation from which to identify the heart rate, the latter approach is used. 
+For example, the Fourier transform enables easy analysis of the relative powers of different peaks present in the power spectrum, which would not be easily possible with the former approach.
+
 \subsubsection{The split peak issue}
 %Talk about how heart rate can split over several peaks
 %Main way to bypass this is to reward several close peaks together
 %Hence the use of a butterworth filter
 %Give EXAMPLE graphs
-In practice, however, the real heart rate is not present in the resulting Fourier transform as a clear single peak. Instead, in fact, often, it will correspond to several peaks that are close by.
+In practice, however, the true heart rate is not present in the resulting Fourier transform as a clear single peak. Instead, often, it will correspond to several peaks that are close by with smaller powers as is reported by van der Kooij et al. \cite{vanderKooij2019}. In order to avoid this, a Butterworth filter is applied which removes isolated peaks and increases the power of peaks close together as is recommended by van der Kooij et al. \cite{vanderKooij2019}.
 \begin{figure}[H]
-    % Add an image showing how in noisy Fourier transforms the HR is not just highest peak
+    % Add an image showing how in noisy Fourier transforms the HR is not just highest peak with result from Butterworth filter
     \includegraphics[width=\textwidth]{example-image-a}
-   \caption{An example of the split peak issue} 
+   \caption{An example of the split peak issue with a Butterworth filter applied} 
 \end{figure}
 
 \section{Repository overview}
