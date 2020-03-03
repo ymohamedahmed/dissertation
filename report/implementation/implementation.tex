@@ -337,7 +337,7 @@ Given a time series of mean colours in the region of the frame considered, infer
 \\\\
 To simplify this approach the problem is broken down into two subtasks:
 \begin{itemize}
-    \item Identifying the pulse signal: given the noisy time series of observed colours for each frame, identify the signal corresponding to the pulse
+    \item Identifying the pulse signal: given the noisy time series of observed colours for each frame, identify the signal corresponding to the pulse of the user
     \item Identifying the heart rate: given the pulse signal, identify the heart rate
 \end{itemize}
 Although, as will be explained, there is some overlap between the two to aide with correctly identifying the pulse.
@@ -397,7 +397,7 @@ Since we are only interested in the first basis vector, this is equivalent to fi
 The evaluation of these two algorithms reflects whether the assumption of statistical independence or maximal variance better reflects the issue of isolating the heart rate. The performance of these two approaches are evaluated in Section \ref{section:bss}, from which it is concluded that ICA better serves the requirements of heart rate isolation. Hence, it is concluded that the assumption of statistical independence is more valid.
 \subsection{Identifying the heart rate}
 % given the pulse signal return HR
-Given the pulse signal, that is, 
+Given a pulse signal, the heart rate corresponds to the average number of beats of the heart (seen as spikes in the signal) in a minute. A possible approach to identifying this is to count peaks in the signal. Alternatively, the heart rate could be taken as the prevalent frequency in the Fourier transform. The latter approach is used and the resulting transform provides a richer representation from which to identify the heart rate.
 \subsubsection{The split peak issue}
 %Talk about how heart rate can split over several peaks
 %Main way to bypass this is to reward several close peaks together
