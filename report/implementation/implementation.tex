@@ -22,11 +22,12 @@ Separating these tasks allows for this concurrency to be implemented safely.
 
 \begin{figure}[!h]
     % \includegraphics[width=\textwidth]{example-image-a}
+    \centering
     \input{implementation/uml.tex}
    \caption{A diagram representing the design of the system} 
 \end{figure}
 \noindent
-The camera streams frames to the \textbf{FaceDetector}. The \textbf{RegionSelector} then takes the mean pixel colour of the region considered and adds this value to the dataset. Once the appropriate number of values is reached, the \textbf{HRIsolator} spawns a new thread, the \textbf{IsolationTask}, which attempts to infer the heart rate from the values collected. 
+The camera streams frames to the \textbf{FaceDetector}. The \textbf{RegionSelector} then takes the mean pixel colour of the region considered and adds this value to the dataset. Once enough values have been collected, as defined by the window size, the \textbf{HRIsolator} spawns a new thread, the \textbf{IsolationTask}, which attempts to infer the heart rate from the window of values. 
 \\ \\
 Although the region selection could also be executed in a separate thread, the associated setup costs are likely to have an adverse impact on real-time performance. However, one might wish to use more expensive region selection algorithms which cannot run in real-time. In these scenarios, the program could copy the frame and execute the selection in a separate thread from the main face detection loop. This is fundamentally a tradeoff between memory usage and execution time. Furthermore, since there are only a finite number of threads which can be spawned, quickly the limit might be reached without providing much additional computation time to the \textbf{RegionSelector}. As a result, the \textbf{FaceDetector} and \textbf{RegionSelector} operate sequentially in the same thread.
 % \subsection{Asynchronous execution}

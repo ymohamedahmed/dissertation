@@ -1,0 +1,116 @@
+% \begin{sequencediagram}
+% \newthread{ss}{: SimulationServer}
+% \newinst{ctr}{: SimControlNode}
+% \newinst{ps}{: PhysicsServer}
+% \newinst [1]{sense}{: SenseServer}
+% \begin{call}{ss}{ Initialize ()}{sense}{}
+% \end{call}
+% \begin{sdblock}{Run  Loop}{The  main  loop}
+%     \begin{call}{ss}{StartCycle()}{ctr}{}
+%         \begin{call}{ctr}{ ActAgent ()}{sense}{}
+%         \end{call}5
+%     \end{call}
+%     \begin{call}{ss}{Update()}{ps}{}
+%         \begin{messcall}{ps}{PrePhysicsUpdate()}{sense}{state}
+%         \end{messcall}
+%         \begin{sdblock}{Physics Loop}{}
+%             \begin{call}{ps}{PhysicsUpdate()}{ps}{}
+%             \end{call}
+%         \end{sdblock}
+%         \begin{call}{ps}{PostPhysicsUpdate()}{sense}{}
+%         \end{call}
+%     \end{call}
+%     \begin{call}{ss}{EndCycle()}{ctr}{}
+%         \begin{call}{ctr}{SenseAgent()}{sense}{}
+%         \end{call}
+%     \end{call}
+% \end{sdblock}
+% \end{sequencediagram}
+
+% \begin{sequencediagram}
+%     \newthread{ss}{:SimulationServer}
+%     \newinst{ps}{:PhysicsServer}
+%     \newinst[1]{sense}{:SenseServer}
+%     \newthread[red]{ctr}{:SimControlNode}
+    
+%     \begin{sdloop}[green!20]{Run Loop}
+%         \mess{ctr}{StartCycle}{ss}
+%         \begin{call}{ss}{Update()}{ps}{}
+%         \prelevel
+%         \begin{callself}{ctr}{SenseAgent()}{}
+%             \begin{call}[3]{ctr}{Read}{sense}{}
+%             \end{call}
+%         \end{callself}
+%         \prelevel\prelevel\prelevel\prelevel
+%         \setthreadbias{west}
+%         \begin{call}{ps}{PrePhysicsUpdate()}{sense}{}
+%         \end{call}
+%         \setthreadbias{center}
+%         \begin{callself}{ps}{Update()}{}
+%         \end{callself}
+%         \begin{call}{ps}{PostPhysicsUpdate()}{sense}{}
+%         \end{call}
+%         \end{call}
+%         \mess{ss}{EndCycle}{ctr}
+%         \begin{callself}{ctr}{ActAgent()}{}
+%         \begin{call}{ctr}{Write}{sense}{}
+%         \end{call}
+%         \end{callself}
+%     \end{sdloop}
+
+%     \end{sequencediagram}
+\global\def\unitfactor{0.7}
+  \tikzset{
+  % add this style to all tikzpicture environments
+  every picture/.append style={
+    % enable scaling of nodes
+    transform shape,
+    % set scale factor
+    scale=0.9
+  }
+}
+\begin{sequencediagram}
+%   \tikzstyle{inststyle}+=[bottom color=green] % custom the style
+%   \tikzstyle{inststyle}+=[bottom color=green] % custom the style
+  \tikzstyle{every node}=[font=\footnotesize]    
+  \newthread[blue!10]{cam}{:CameraThread}
+  \newinst[1]{dt}{:Detector}
+  \newinst[1]{rs}{:RegionSelector}
+  \newinst[1]{hr}{:HRIsolator}
+  \newthread[red!10]{it}{:IsolationTask}
+%   \newthread[red!10]{it}{:IsolationTask}
+
+  
+  \begin{sdblock}[green!20]{Run Loop}{}
+    % \mess{ctr}{StartCycle}{ss}
+    \begin{call}{cam}{DetectFace(frame)}{dt}{}
+    %   \prelevel
+    \postlevel
+      \begin{call}[3]{dt}{SelectRegion()}{rs}{}
+        \postlevel
+        \begin{call}[2]{rs}{AddMeanColour()}{hr}{}
+        \begin{call}{hr}{\shortstack{Identify\\HeartRate}}{it}{heart rate}
+        %   \begin{call}{ctr}{Write}{sense}{}
+        %   \end{call}
+        \postlevel \postlevel\postlevel \postlevel
+        \end{call}
+        \end{call}
+      \end{call}
+    \end{call}
+    %   \prelevel\prelevel\prelevel\prelevel
+    %   \setthreadbias{west}
+    %   \begin{call}{ps}{PrePhysicsUpdate()}{sense}{}
+    %   \end{call}
+    %   \setthreadbias{center}
+    %   \begin{call}{ps}{Update()}{ps}{}
+    %     \begin{call}{ps}{\small CollisionDetection()}{ps}{}
+    %     \end{call}
+    %     \begin{call}{ps}{Dynamics()}{ps}{}
+    %     \end{call}
+    %   \end{call}
+    %   \begin{call}{ps}{PostPhysicsUpdate()}{sense}{}
+    %   \end{call}
+    % \mess{ss}{EndCycle}{ctr}
+  \end{sdblock}
+
+\end{sequencediagram}
