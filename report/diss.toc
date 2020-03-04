@@ -26,25 +26,25 @@
 \contentsline {section}{\numberline {3.3}Face detection}{7}% 
 \contentsline {subsection}{\numberline {3.3.1}Face tracking}{7}% 
 \contentsline {subsubsection}{Point tracking}{7}% 
-\contentsline {paragraph}{Impact of the rate of redetections}{8}% 
-\contentsline {paragraph}{Details}{9}% 
+\contentsline {paragraph}{Impact of the rate of redetections}{9}% 
+\contentsline {paragraph}{Details}{10}% 
 \contentsline {section}{\numberline {3.4}Region selection}{10}% 
 \contentsline {subsection}{\numberline {3.4.1}Skin detection}{10}% 
-\contentsline {subsubsection}{Colour-based filtering}{10}% 
-\contentsline {paragraph}{Issues}{11}% 
+\contentsline {subsubsection}{Colour-based filtering}{11}% 
+\contentsline {paragraph}{Issues}{12}% 
 \contentsline {subsubsection}{K-Means}{12}% 
-\contentsline {paragraph}{Issues}{13}% 
+\contentsline {paragraph}{Issues}{14}% 
 \contentsline {subsection}{\numberline {3.4.2}Improving the previous approaches}{14}% 
 \contentsline {subsubsection}{Identifying the skin tone}{15}% 
 \contentsline {subsubsection}{Identifying skin pixels using the skin tone}{16}% 
 \contentsline {paragraph}{A Bayesian approach}{16}% 
 \contentsline {paragraph}{Defining the threshold}{17}% 
 \contentsline {paragraph}{Defining probability distributions}{18}% 
-\contentsline {section}{\numberline {3.5}Heart rate isolation}{18}% 
+\contentsline {section}{\numberline {3.5}Heart rate isolation}{19}% 
 \contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{19}% 
-\contentsline {subsubsection}{Independent components analysis (ICA)}{19}% 
+\contentsline {subsubsection}{Independent components analysis (ICA)}{20}% 
 \contentsline {subsubsection}{Principal components analysis (PCA)}{20}% 
-\contentsline {paragraph}{Conclusion}{20}% 
+\contentsline {paragraph}{Conclusion}{21}% 
 \contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{21}% 
 \contentsline {subsubsection}{The split peak issue}{21}% 
 \contentsline {section}{\numberline {3.6}Repository overview}{22}% 

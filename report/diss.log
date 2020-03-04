@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.1.29)  3 MAR 2020 20:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.1.29)  4 MAR 2020 20:12
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -322,17 +322,325 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
 LaTeX Info: Redefining \[ on input line 2844.
 LaTeX Info: Redefining \] on input line 2845.
 )
-(/usr/share/texlive/texmf-dist/tex/generic/epsf/epsf.tex
+(/usr/share/texlive/texmf-dist/tex/latex/pgf-umlsd/pgf-umlsd.sty
+Package: pgf-umlsd 2011/07/27 v0.6 Some LaTeX macros for UML Sequence Diagrams.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks28
+\pgfutil@tempdima=\dimen133
+\pgfutil@tempdimb=\dimen134
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
+ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box40
+(/usr/share/texlive/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2019/05/09 v3.1.3 (3.1.3)
+))
+Package: pgf 2019/05/09 v3.1.3 (3.1.3)
+
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2019/05/09 v3.1.3 (3.1.3)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks29
+\pgfkeys@temptoks=\toks30
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
+ex
+\pgfkeys@tmptoks=\toks31
+))
+\pgf@x=\dimen135
+\pgf@y=\dimen136
+\pgf@xa=\dimen137
+\pgf@ya=\dimen138
+\pgf@xb=\dimen139
+\pgf@yb=\dimen140
+\pgf@xc=\dimen141
+\pgf@yc=\dimen142
+\pgf@xd=\dimen143
+\pgf@yd=\dimen144
+\w@pgf@writea=\write5
+\r@pgf@reada=\read4
+\c@pgf@counta=\count133
+\c@pgf@countb=\count134
+\c@pgf@countc=\count135
+\c@pgf@countd=\count136
+\t@pgf@toka=\toks32
+\t@pgf@tokb=\toks33
+\t@pgf@tokc=\toks34
+\pgf@sys@id@count=\count137
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2019/05/09 v3.1.3 (3.1.3)
+)
+Driver file for pgf: pgfsys-dvips.def
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-dvips.def
+File: pgfsys-dvips.def 2019/05/09 v3.1.3 (3.1.3)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-postsc
+ript.def
+File: pgfsys-common-postscript.def 2019/05/09 v3.1.3 (3.1.3)
+\pgf@objectcount=\count138
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex
+File: pgfsyssoftpath.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgfsyssoftpath@smallbuffer@items=\count139
+\pgfsyssoftpath@bigbuffer@items=\count140
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex
+File: pgfsysprotocol.code.tex 2019/05/09 v3.1.3 (3.1.3)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2019/05/09 v3.1.3 (3.1.3)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen145
+\pgfmath@count=\count141
+\pgfmath@box=\box41
+\pgfmath@toks=\toks35
+\pgfmath@stack@operand=\toks36
+\pgfmath@stack@operation=\toks37
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count142
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x
+File: pgfcorepoints.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@picminx=\dimen146
+\pgf@picmaxx=\dimen147
+\pgf@picminy=\dimen148
+\pgf@picmaxy=\dimen149
+\pgf@pathminx=\dimen150
+\pgf@pathmaxx=\dimen151
+\pgf@pathminy=\dimen152
+\pgf@pathmaxy=\dimen153
+\pgf@xx=\dimen154
+\pgf@xy=\dimen155
+\pgf@yx=\dimen156
+\pgf@yy=\dimen157
+\pgf@zx=\dimen158
+\pgf@zy=\dimen159
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex
+File: pgfcorepathconstruct.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@path@lastx=\dimen160
+\pgf@path@lasty=\dimen161
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex
+File: pgfcorepathusage.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@shorten@end@additional=\dimen162
+\pgf@shorten@start@additional=\dimen163
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x
+File: pgfcorescopes.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgfpic=\box42
+\pgf@hbox=\box43
+\pgf@layerbox@main=\box44
+\pgf@picture@serial@count=\count143
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex
+File: pgfcoregraphicstate.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgflinewidth=\dimen164
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex
+File: pgfcoretransformations.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@pt@x=\dimen165
+\pgf@pt@y=\dimen166
+\pgf@pt@temp=\dimen167
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex
+File: pgfcoreobjects.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex
+File: pgfcorepathprocessing.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x
+File: pgfcorearrows.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgfarrowsep=\dimen168
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@max=\dimen169
+\pgf@sys@shading@range@num=\count144
+\pgf@shadingcount=\count145
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2019/05/09 v3.1.3 (3.1.3)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex
+File: pgfcoreexternal.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgfexternal@startupbox=\box45
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x
+File: pgfcorelayers.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex
+File: pgfcoretransparency.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex
+File: pgfcorepatterns.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgfnodeparttextbox=\box46
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty
+Package: pgfcomp-version-0-65 2019/05/09 v3.1.3 (3.1.3)
+\pgf@nodesepstart=\dimen170
+\pgf@nodesepend=\dimen171
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty
+Package: pgfcomp-version-1-18 2019/05/09 v3.1.3 (3.1.3)
+)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2019/05/09 v3.1.3 (3.1.3)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen172
+\pgffor@skip=\dimen173
+\pgffor@stack=\toks38
+\pgffor@toks=\toks39
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2019/05/09 v3.1.3 (3.1.3)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex
+File: pgflibraryplothandlers.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgf@plot@mark@count=\count146
+\pgfplotmarksize=\dimen174
+)
+\tikz@lastx=\dimen175
+\tikz@lasty=\dimen176
+\tikz@lastxsaved=\dimen177
+\tikz@lastysaved=\dimen178
+\tikzleveldistance=\dimen179
+\tikzsiblingdistance=\dimen180
+\tikz@figbox=\box47
+\tikz@figbox@bg=\box48
+\tikz@tempbox=\box49
+\tikz@tempbox@bg=\box50
+\tikztreelevel=\count147
+\tikznumberofchildren=\count148
+\tikznumberofcurrentchild=\count149
+\tikz@fig@count=\count150
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\pgfmatrixcurrentrow=\count151
+\pgfmatrixcurrentcolumn=\count152
+\pgf@matrix@numberofcolumns=\count153
+)
+\tikz@expandcount=\count154
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryarrows.code.tex
+File: tikzlibraryarrows.code.tex 2019/05/09 v3.1.3 (3.1.3)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.
+tex
+File: pgflibraryarrows.code.tex 2019/05/09 v3.1.3 (3.1.3)
+\arrowsize=\dimen181
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryshadows.code.tex
+File: tikzlibraryshadows.code.tex 2019/05/09 v3.1.3 (3.1.3)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibraryfadings.code.tex
+File: tikzlibraryfadings.code.tex 2019/05/09 v3.1.3 (3.1.3)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code
+.tex
+File: pgflibraryfadings.code.tex 2019/05/09 v3.1.3 (3.1.3)
+
+
+Package pgf Warning: Your graphic driver pgfsys-dvips.def does not support fadi
+ngs. This warning is given only once on input line 31.
+
+)))
+\c@preinst=\count155
+\c@instnum=\count156
+\c@threadnum=\count157
+\c@seqlevel=\count158
+\c@callevel=\count159
+\c@callselflevel=\count160
+\c@blocklevel=\count161
+) (/usr/share/texlive/texmf-dist/tex/generic/epsf/epsf.tex
 This is `epsf.tex' v2.7.4 <14 February 2011>
-\epsffilein=\read4
-\epsfframemargin=\dimen133
-\epsfframethickness=\dimen134
-\epsfrsize=\dimen135
-\epsftmp=\dimen136
-\epsftsize=\dimen137
-\epsfxsize=\dimen138
-\epsfysize=\dimen139
-\pspoints=\dimen140
+\epsffilein=\read5
+\epsfframemargin=\dimen182
+\epsfframethickness=\dimen183
+\epsfrsize=\dimen184
+\epsftmp=\dimen185
+\epsftsize=\dimen186
+\epsfxsize=\dimen187
+\epsfysize=\dimen188
+\pspoints=\dimen189
 )
 runsystem(which pygmentize && touch diss.aex)...executed.
 
@@ -341,19 +649,19 @@ runsystem(rm diss.aex)...executed.
  (./diss.aux)
 \openout1 = `diss.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-\AtBeginShipoutBox=\box40
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+\AtBeginShipoutBox=\box51
  (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
 
@@ -364,12 +672,13 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
 Package pdflscape Info: Auto-detected driver: dvips (dvips) on input line 125.
-) [1
+)
+ABD: EveryShipout initializing macros [1
 
 ] [2
 
 ]
-Overfull \hbox (53.76768pt too wide) in paragraph at lines 69--83
+Overfull \hbox (53.76768pt too wide) in paragraph at lines 70--84
 []
  []
 
@@ -379,8 +688,8 @@ Overfull \hbox (53.76768pt too wide) in paragraph at lines 69--83
 
 
 ])
-\tf@toc=\write5
-\openout5 = `diss.toc'.
+\tf@toc=\write6
+\openout6 = `diss.toc'.
 
  [4]
 Chapter 1.
@@ -412,17 +721,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--22
 
  []
 
-File: example-image-a.eps Graphic file (type eps)
-<example-image-a.eps> [5
+(./implementation/uml.tex
+\pgf@layerbox@umlsd@background=\box52
+\pgf@layerboxsaved@umlsd@background=\box53
+\pgf@layerbox@umlsd@threadlayer=\box54
+\pgf@layerboxsaved@umlsd@threadlayer=\box55
+Missing character: There is no 5 in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+)
+Overfull \hbox (3.04474pt too wide) in paragraph at lines 28--26
+[][]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 28--26
+
+ []
+
+[5
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 27--33
+Underfull \hbox (badness 10000) in paragraph at lines 28--34
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 41--46
+Underfull \hbox (badness 10000) in paragraph at lines 42--47
 
  []
 
@@ -436,32 +765,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 41--46
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 4.
 ) [8]
-Underfull \hbox (badness 10000) in paragraph at lines 80--83
+Underfull \hbox (badness 10000) in paragraph at lines 81--84
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--98
+Underfull \hbox (badness 10000) in paragraph at lines 96--99
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 106--114
+Underfull \hbox (badness 10000) in paragraph at lines 107--115
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--126
+Underfull \hbox (badness 10000) in paragraph at lines 123--127
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--126
+Underfull \hbox (badness 10000) in paragraph at lines 123--127
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--126
+Underfull \hbox (badness 10000) in paragraph at lines 123--127
 
  []
 
@@ -469,139 +798,139 @@ Underfull \hbox (badness 10000) in paragraph at lines 122--126
 File: example-image-b.eps Graphic file (type eps)
  <example-image-b.eps>
 File: example-image-c.eps Graphic file (type eps)
- <example-image-c.eps>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 147--157
+ <example-image-c.eps> [11]
+Underfull \hbox (badness 10000) in paragraph at lines 148--158
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--157
+Underfull \hbox (badness 10000) in paragraph at lines 148--158
 
  []
 
 
-Underfull \hbox (badness 2126) in paragraph at lines 147--157
+Underfull \hbox (badness 2126) in paragraph at lines 148--158
 \OT1/cmr/m/n/12 The colour space YCbCr is an ap-prox-i-ma-tion of per-cep-tual 
 uni-for-mity
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--157
+Underfull \hbox (badness 10000) in paragraph at lines 148--158
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 147--157
+Underfull \hbox (badness 10000) in paragraph at lines 148--158
 
  []
 
-[11] [12]
+[12]
 File: example-image-a.eps Graphic file (type eps)
  <example-image-a.eps> [13]
 File: example-image-a.eps Graphic file (type eps)
  <example-image-a.eps>
-Underfull \hbox (badness 10000) in paragraph at lines 204--208
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--209
 
  []
 
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 213--218
+
+Underfull \hbox (badness 10000) in paragraph at lines 214--219
 
  []
 
 
-Underfull \hbox (badness 1308) in paragraph at lines 213--218
+Underfull \hbox (badness 1308) in paragraph at lines 214--219
 \OT1/cmr/m/n/12 By con-sid-er-ing both of these prop-er-ties to-gether, as a he
 uris-tic, it be-
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 225--237
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 225--237
+[14] [15]
+Underfull \hbox (badness 10000) in paragraph at lines 226--238
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 225--237
+Underfull \hbox (badness 10000) in paragraph at lines 226--238
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 225--237
-
- []
-
-[15]
-Underfull \hbox (badness 10000) in paragraph at lines 238--245
-
- []
-
-[16]
-Underfull \hbox (badness 10000) in paragraph at lines 283--292
+Underfull \hbox (badness 10000) in paragraph at lines 226--238
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 283--292
-
- []
-
-[17]
-Underfull \hbox (badness 10000) in paragraph at lines 294--299
+Underfull \hbox (badness 10000) in paragraph at lines 226--238
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 294--299
+Underfull \hbox (badness 10000) in paragraph at lines 239--246
+
+ []
+
+[16] [17]
+Underfull \hbox (badness 10000) in paragraph at lines 284--293
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 294--299
+Underfull \hbox (badness 10000) in paragraph at lines 284--293
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--339
+Underfull \hbox (badness 10000) in paragraph at lines 295--300
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 295--300
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 295--300
 
  []
 
 [18]
-Underfull \hbox (badness 10000) in paragraph at lines 350--359
+Underfull \hbox (badness 10000) in paragraph at lines 337--340
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 361--372
+Underfull \hbox (badness 10000) in paragraph at lines 351--360
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 361--372
+Underfull \hbox (badness 10000) in paragraph at lines 362--373
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 361--372
+Underfull \hbox (badness 10000) in paragraph at lines 362--373
 
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 361--372
+Underfull \hbox (badness 10000) in paragraph at lines 362--373
+
+ []
+
+
+Underfull \hbox (badness 1226) in paragraph at lines 362--373
 \OT1/cmr/m/n/12 In this sce-nario, I pro-ceed by at-tempt-ing to iden-tify the 
 heart rate in
  []
 
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 374--380
+Underfull \hbox (badness 10000) in paragraph at lines 375--381
 
  []
 
@@ -640,12 +969,12 @@ runsystem(rm diss.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 6112 strings out of 494554
- 104437 string characters out of 6177403
- 222222 words of memory out of 5000000
- 9634 multiletter control sequences out of 15000+600000
- 13565 words of font info for 49 fonts, out of 8000000 for 9000
+ 16936 strings out of 494554
+ 342541 string characters out of 6177403
+ 452359 words of memory out of 5000000
+ 20224 multiletter control sequences out of 15000+600000
+ 13865 words of font info for 50 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 37i,11n,39p,859b,418s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,11n,81p,859b,1100s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on diss.dvi (38 pages, 72412 bytes).
+Output written on diss.dvi (38 pages, 109520 bytes).
