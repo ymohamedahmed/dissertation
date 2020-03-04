@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.1.29)  4 MAR 2020 21:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=latex 2020.1.29)  4 MAR 2020 22:01
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -630,7 +630,12 @@ ngs. This warning is given only once on input line 31.
 \c@callevel=\count159
 \c@callselflevel=\count160
 \c@blocklevel=\count161
-) (/usr/share/texlive/texmf-dist/tex/generic/epsf/epsf.tex
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarypositioning.code.tex
+File: tikzlibrarypositioning.code.tex 2019/05/09 v3.1.3 (3.1.3)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/epsf/epsf.tex
 This is `epsf.tex' v2.7.4 <14 February 2011>
 \epsffilein=\read5
 \epsfframemargin=\dimen182
@@ -649,18 +654,18 @@ runsystem(rm diss.aex)...executed.
  (./diss.aux)
 \openout1 = `diss.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
 \AtBeginShipoutBox=\box51
  (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/pdflscape.sty
 Package: pdflscape 2016/05/14 v0.11 Display of landscape pages in PDF (HO)
@@ -678,7 +683,7 @@ ABD: EveryShipout initializing macros [1
 ] [2
 
 ]
-Overfull \hbox (53.76768pt too wide) in paragraph at lines 70--84
+Overfull \hbox (53.76768pt too wide) in paragraph at lines 71--85
 []
  []
 
@@ -726,7 +731,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--22
 \pgf@layerboxsaved@umlsd@background=\box53
 \pgf@layerbox@umlsd@threadlayer=\box54
 \pgf@layerboxsaved@umlsd@threadlayer=\box55
-) [5
+)
+Overfull \hbox (26.54pt too wide) in paragraph at lines 117--27
+ [][] 
+ []
+
+[5
 
 
 ]
@@ -786,7 +796,7 @@ File: example-image-c.eps Graphic file (type eps)
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
+[11]
 Underfull \hbox (badness 10000) in paragraph at lines 149--159
 
  []
@@ -812,7 +822,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 149--159
 
  []
 
-[11] [12]
+[12]
 File: example-image-a.eps Graphic file (type eps)
  <example-image-a.eps> [13]
 File: example-image-a.eps Graphic file (type eps)
@@ -953,12 +963,12 @@ runsystem(rm diss.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 16978 strings out of 494554
- 343128 string characters out of 6177403
- 445701 words of memory out of 5000000
- 20266 multiletter control sequences out of 15000+600000
+ 17013 strings out of 494554
+ 344160 string characters out of 6177403
+ 445008 words of memory out of 5000000
+ 20298 multiletter control sequences out of 15000+600000
  13865 words of font info for 50 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 62i,11n,81p,859b,1280s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,11n,81p,859b,1288s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on diss.dvi (38 pages, 100368 bytes).
+Output written on diss.dvi (38 pages, 100432 bytes).

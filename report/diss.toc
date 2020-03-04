@@ -34,7 +34,7 @@
 \contentsline {paragraph}{Issues}{11}% 
 \contentsline {subsubsection}{K-Means}{12}% 
 \contentsline {paragraph}{Issues}{13}% 
-\contentsline {subsection}{\numberline {3.4.2}Improving the previous approaches}{14}% 
+\contentsline {subsection}{\numberline {3.4.2}Improving the previous approaches}{15}% 
 \contentsline {subsubsection}{Identifying the skin tone}{15}% 
 \contentsline {subsubsection}{Identifying skin pixels using the skin tone}{16}% 
 \contentsline {paragraph}{A Bayesian approach}{16}% 

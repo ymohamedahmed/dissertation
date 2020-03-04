@@ -77,6 +77,7 @@
   \newinst[1]{dt}{:Detector}
   \newinst[1]{rs}{:RegionSelector}
   \newinst[1]{hr}{:HRIsolator}
+  \tikzstyle{inststyle}+=[below right=-0.85cm and 13cm of cam]
   \newthread[red!10]{it}{:IsolationTask}
 %   \newthread[red!10]{it}{:IsolationTask}
 
@@ -89,7 +90,7 @@
       \begin{call}[3]{dt}{SelectRegion()}{rs}{}
         \postlevel
         \begin{call}[2]{rs}{AddMeanColour()}{hr}{}
-        \begin{call}{hr}{\shortstack{Identify\\HeartRate}}{it}{heart rate}
+        \begin{call}{hr}{\shortstack{\textbf{if window}\\ \textbf{size reached:}\\IdentifyHeartRate()}}{it}{heart rate}
         %   \begin{call}{ctr}{Write}{sense}{}
         %   \end{call}
         \postlevel \postlevel\postlevel \postlevel
