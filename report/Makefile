@@ -31,11 +31,11 @@ prop:	proposal.dvi
 	xdvi proposal.dvi
 
 diss.ps:	$(DISS)
-	latex -shell-escape diss 
+	lualatex -shell-escape diss 
 	bibtex diss
-	latex -shell-escape diss
+	lualatex -shell-escape diss
 	bibtex diss
-	latex -shell-escape diss
+	lualatex -shell-escape diss
 	bibtex diss
 	dvips -Ppdf -G0 -t a4 -pp 0-200 -o diss.ps diss.dvi
 

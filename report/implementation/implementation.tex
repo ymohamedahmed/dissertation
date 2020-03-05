@@ -20,11 +20,11 @@ Heart rate isolation, however, is only executed after some adequate number of da
 % The system was designed with a focus on decomposition. 
 Separating these tasks allows for this concurrency to be implemented safely.
 
-\begin{figure}[!h]
+\begin{figure}[H]
     % \includegraphics[width=\textwidth]{example-image-a}
     \centering
     \input{implementation/uml.tex}
-   \caption{A diagram representing the design of the system} 
+   \caption{A UML sequence diagram showcasing the use of threading} 
 \end{figure}
 \noindent
 The camera streams frames to the \textbf{FaceDetector}. The \textbf{RegionSelector} then takes the mean pixel colour of the region considered and adds this value to the dataset. Once enough values have been collected, as defined by the window size, the \textbf{HRIsolator} spawns a new thread, the \textbf{IsolationTask}, which attempts to infer the heart rate from the window of values. 
@@ -50,7 +50,7 @@ There are two obvious approaches to combat this. The algorithm could redetect th
     \item when the tracked face changes in size significantly. 
 \end{itemize}
 The former wastes computation time for stationary videos where the redetections might be unnecessary. Simultaneously, the time between redetections must be short enough to deal with videos with significant movement. This static approach, therefore, was not considered. For this reason, the latter was implemented. We track the face and if the size of the box surrounding it changes significantly, indicating that our confidence in the tracked points has reduced, then we recompute the true position of the face.
-\begin{figure}[!h]
+\begin{figure}[H]
 \begin{minted}{python}
    points = []
    last_detection = None
@@ -126,14 +126,22 @@ Considering that skin tones tend to fall within a certain range of colours, one 
 A dataset of $\sim$250000 skin and non-skin pixels was collected by Bhatt et al. \cite{skinDataset} and was sampled across a variety of skin tones, genders and ages. One could define the range of skin tones present in this dataset as a rudimentary skin detector. Clearly this will fail in many scenarios but serves as a useful baseline for comparison with more advanced techniques.
 \\ \\
 
-\begin{figure}[!h]
-    \includegraphics[width=\textwidth]{example-image-b}
-   \caption{Skin dataset represented in YCbCr space} 
+\begin{figure}[H]
+    % \includegraphics[width=\textwidth]{example-image-b}
+    \centering
+    \input{implementation/skin-dataset-2.tex}
+   \caption{A randomly sampled subset of the skin dataset represented in the Cb-Cr axes of YCbCr space} 
+\end{figure}
+\begin{figure}[H]
+    % \includegraphics[width=\textwidth]{example-image-b}
+    \centering
+    \input{implementation/skin-dataset-1.tex}
+   \caption{The range of skin tones present in the dataset with the skin and non-skin pixels plotted} 
 \end{figure}
 \paragraph{Issues}
 This approach takes no consideration of the particular face that it is considering. Since it is not contexualised, it can fail in several circumstances.
 For example, there are some hair colours which could be a skin tone on another individual but are clearly not on the particular example in question.
-\begin{figure}[!h]
+\begin{figure}[H]
     \includegraphics[width=\textwidth]{example-image-c}
    \caption{An example of the hair failure case} 
 \end{figure}
@@ -157,7 +165,7 @@ the k-means algorithm to identify these clusters of pixels. Under the further as
 are skin pixels, we return the largest cluster as our set of skin pixels.
 \\ \\
 
-\begin{figure}[!h]
+\begin{figure}[H]
     % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
     \includegraphics[width=\textwidth]{example-image-a}
    \caption{An example of the application of the k-means algorithm to skin detection} 
@@ -193,7 +201,7 @@ The k-means algorithm, although it improves on the results of the rudimentary ap
     \item Illumination resistance: the algorithm is not resistant to differences in illumination. For example, since there is no notion of location encoded, specular reflection on the forehead may not be considered as skin.
 \end{itemize}
 
-\begin{figure}[!h]
+\begin{figure}[H]
     % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
     \includegraphics[width=\textwidth]{example-image-a}
    \caption{An example of the effect of differing the number of clusters} 
