@@ -11,8 +11,24 @@ Specifically, any described performance gains must be shown clearly as working a
 % -effect on HR accuracy?
 
 \paragraph{Metrics}
-To understand the accuracy of face tracking we define four measurements applied to each frame.
-
+Face detection is a binary classification task. As an algorithm, it defines a boundary within which all pixels are defined as belonging to face or not.
+As a result, if we consider face detection as a ground truth, the results of face tracking can be compared using standard classification metrics. In this case, I proceed by considering the following: 
+\begin{itemize}
+   \item False negative (FN): pixel is incorrectly classified as not belonging to a face
+   \item False positive (FP): pixel is incorrectly classified as belonging to a face by the face tracker
+   \item True negative (TN): pixel is correctly classified as not belonging to a face by the face tracker
+   \item True positive (TP): pixel is correctly classified as belonging to a face by the face tracker
+\end{itemize}
+These metrics can be combined to define the metrics recall and precision to evaluate the fidelity of face tracking. These respectively represent the rate at which true skin pixels are correctly identified as such and the likelihood that a skin prediction is correct.
+\begin{equation*}
+    \mathrm{recall} = \frac{TP}{TP + FN} \text{ and } \mathrm{precision} = \frac{TP}{TP+FP}
+\end{equation*}
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{example-image-a}
+   \caption{A labelled diagram outlining the four metrics defined above.} 
+\end{figure}
+\noindent
+Furthermore, the time to process each frame is recorded as a means of measuring the performance of each algorithm.
 \paragraph{Results}
 \subparagraph{Performance cost}
 % talk about redetection rates
