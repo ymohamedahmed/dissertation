@@ -4,6 +4,11 @@ Face tracking was proposed in Section \ref{section:face_tracking_impl} as an alt
 From the implementation alone, it is unclear as to whether or not it is beneficial. To answer this, several separate aspects of the algorithm must be evaluated. 
 Specifically, any described performance gains must be shown clearly as working across stationary scenarios and situations with more movement of the facee. Furthermore, it must be ensured that face tracking is not less accurate than simply repeatedly detecting the face in each frame.
 \paragraph{Research questions}
+\begin{itemize}
+    \item Does face tracking provide a performance boost over face detection?
+    \item Does face tracking maintain the fidelity of face detection?
+    \item Does face tracking maintain its accuracy under increasing motion?
+\end{itemize}
 % Three main questions: 
 % -is it a performance gain?  (for all videos)
 % -is it resistant to motion?
@@ -12,23 +17,33 @@ Specifically, any described performance gains must be shown clearly as working a
 
 \paragraph{Metrics}
 Face detection is a binary classification task. As an algorithm, it defines a boundary within which all pixels are defined as belonging to face or not.
-As a result, if we consider face detection as a ground truth, the results of face tracking can be compared using standard classification metrics. In this case, I proceed by considering the following: 
+As a result, if we consider face detection as a ground truth, the results of face tracking can be compared using standard classification metrics. In this case, I proceed by considering the following outcomes from the face tracker.
 \begin{itemize}
    \item False negative (FN): pixel is incorrectly classified as not belonging to a face
-   \item False positive (FP): pixel is incorrectly classified as belonging to a face by the face tracker
-   \item True negative (TN): pixel is correctly classified as not belonging to a face by the face tracker
-   \item True positive (TP): pixel is correctly classified as belonging to a face by the face tracker
+   \item False positive (FP): pixel is incorrectly classified as belonging to a face
+   \item True negative (TN): pixel is correctly classified as not belonging to a face 
+   \item True positive (TP): pixel is correctly classified as belonging to a face 
 \end{itemize}
-These metrics can be combined to define the metrics recall and precision to evaluate the fidelity of face tracking. These respectively represent the rate at which true skin pixels are correctly identified as such and the likelihood that a skin prediction is correct.
+These metrics can be combined to define the recall and precision of the output of the face tracker over a given frame. These respectively represent the rate at which true skin pixels are correctly identified as such and the likelihood that a skin prediction is correct.
 \begin{equation*}
     \mathrm{recall} = \frac{TP}{TP + FN} \text{ and } \mathrm{precision} = \frac{TP}{TP+FP}
 \end{equation*}
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{example-image-a}
+    \includegraphics[width=0.5\textwidth]{example-image-a}
    \caption{A labelled diagram outlining the four metrics defined above.} 
 \end{figure}
 \noindent
-Furthermore, the time to process each frame is recorded as a means of measuring the performance of each algorithm.
+\paragraph{Computing the classification outcomes} The result of each face detection is represented as a matrix of zeros and ones over the size of the entire frame.
+Pixels within the bounding box of the face have value one and pixels outside have value zero in this matrix. Using this representation, for a given frame, the output from the face detector, $\mathbf{D}$ and the output of the face tracker $\mathbf{T}$, we compute the metrics as follows: 
+\begin{align*}
+    \mathrm{FP} &= H(\neg{\mathbf{D}} \wedge \mathbf{T}) \\
+    \mathrm{FN} &= H(\mathbf{D} \wedge \neg{\mathbf{T}})\\
+    \mathrm{TP} &= H(\mathbf{D} \wedge \mathbf{T})\\
+    \mathrm{TN} &= H(\neg{\mathbf{D}} \wedge \neg{\mathbf{T}})
+\end{align*}
+\footnote{The function $H(\mathbf{A})$ returns the number of ones present in the matrix $\mathbf{A}$.\\$\wedge$ is an elementwise, bitwise AND \\ $\vee$ is an elementwise bitwise OR operation \\ $\neg$ is a NOT operator on each element in the matrix.}
+\\\\
+The time to process each frame is also recorded as a means of measuring the relative performance of each algorithm.
 \paragraph{Results}
 \subparagraph{Performance cost}
 % talk about redetection rates

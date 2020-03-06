@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2020.1.29)  6 MAR 2020 16:09
+This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2020.1.29)  6 MAR 2020 16:37
  system commands enabled.
 **diss
 (./diss.tex
@@ -1221,8 +1221,13 @@ Chapter 4.
 File: example-image-a.pdf Graphic file (type pdf)
 <use example-image-a.pdf>
 Package luatex.def Info: example-image-a.pdf  used on input line 27.
-(luatex.def)             Requested size: 411.93877pt x 308.9648pt.
- [26] [27]) [28]
+(luatex.def)             Requested size: 205.96938pt x 154.48056pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--42
+
+ []
+
+[26] [27]) [28]
 Chapter 5.
 (./conclusion/conclusion.tex) [29
 
@@ -1235,7 +1240,7 @@ Chapter 5.
 
 ]
 Appendix A.
-<proposal/main.pdf, id=189, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=190, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf>
 Package luatex.def Info: proposal/main.pdf  used on input line 168.
@@ -1244,7 +1249,7 @@ File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf>
 Package luatex.def Info: proposal/main.pdf  used on input line 168.
 (luatex.def)             Requested size: 614.29349pt x 794.96806pt.
-<proposal/main.pdf, id=192, page=1, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=193, page=1, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
 Package luatex.def Info: proposal/main.pdf , page1 used on input line 168.
@@ -1270,7 +1275,7 @@ File: proposal/main.pdf Graphic file (type pdf)
 Package luatex.def Info: proposal/main.pdf , page1 used on input line 168.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
  [34<./proposal/main.pdf>]
-<proposal/main.pdf, id=220, page=2, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=221, page=2, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 2>
 Package luatex.def Info: proposal/main.pdf , page2 used on input line 168.
@@ -1284,7 +1289,7 @@ File: proposal/main.pdf Graphic file (type pdf)
 Package luatex.def Info: proposal/main.pdf , page2 used on input line 168.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
  [35<./proposal/main.pdf>]
-<proposal/main.pdf, id=225, page=3, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=226, page=3, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 3>
 Package luatex.def Info: proposal/main.pdf , page3 used on input line 168.
@@ -1298,7 +1303,7 @@ File: proposal/main.pdf Graphic file (type pdf)
 Package luatex.def Info: proposal/main.pdf , page3 used on input line 168.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
  [36<./proposal/main.pdf>]
-<proposal/main.pdf, id=233, page=4, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=234, page=4, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 4>
 Package luatex.def Info: proposal/main.pdf , page4 used on input line 168.
@@ -1312,7 +1317,7 @@ File: proposal/main.pdf Graphic file (type pdf)
 Package luatex.def Info: proposal/main.pdf , page4 used on input line 168.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
  [37<./proposal/main.pdf>]
-<proposal/main.pdf, id=237, page=5, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=238, page=5, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 5>
 Package luatex.def Info: proposal/main.pdf , page5 used on input line 168.
@@ -1328,40 +1333,41 @@ Package luatex.def Info: proposal/main.pdf , page5 used on input line 168.
  [38<./proposal/main.pdf>] (./diss.aux))
 
 Here is how much of LuaTeX's memory you used:
- 30109 strings out of 494291
+ 30115 strings out of 494291
  932664,12246980 words of node,token memory allocated
- 785 words of node memory still in use:
-   22 hlist, 2 vlist, 10 rule, 5 glue, 1 kern, 51 glue_spec, 2 write, 16 pdf_lit
+ 792 words of node memory still in use:
+   22 hlist, 2 vlist, 10 rule, 6 glue, 1 kern, 51 glue_spec, 2 write, 16 pdf_lit
 eral, 16 pdf_colorstack nodes
-   avail lists: 1:9,2:61,3:241342,4:66,5:231,6:34,7:5282,8:68,9:464,10:25,11:323
+   avail lists: 1:9,2:61,3:241342,4:66,5:231,6:34,7:5281,8:68,9:464,10:25,11:323
 
- 32952 multiletter control sequences out of 65536+600000
- 70 fonts using 2906519 bytes
+ 32955 multiletter control sequences out of 65536+600000
+ 73 fonts using 3030447 bytes
  78i,19n,136p,841b,3112s stack positions out of 5000i,500n,10000p,713372b,100000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips
 /lm/lm-rmtt.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fo
-nts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pf
-b></usr/share/texmf/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texmf/fonts/ty
-pe1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/
-share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public
-/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/
-fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmro12.
-pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/t
-ype1/public/lm/lmtt12.pfb>
-Output written on diss.pdf (44 pages, 1094400 bytes).
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/fonts/typ
+e1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr
+/share/texmf/fonts/type1/public/lm/lmbxi10.pfb></usr/share/texmf/fonts/type1/pub
+lic/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
+7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmro12.pfb></u
+sr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/pu
+blic/lm/lmtt12.pfb>
+Output written on diss.pdf (44 pages, 1105267 bytes).
 
-PDF statistics: 322 PDF objects out of 1000 (max. 8388607)
- 215 compressed objects within 3 object streams
+PDF statistics: 326 PDF objects out of 1000 (max. 8388607)
+ 218 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 131072)
  176 words of extra memory for PDF output out of 10000 (max. 100000000)
 
