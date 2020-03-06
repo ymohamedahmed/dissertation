@@ -1,13 +1,22 @@
 \section{Face tracking}
 \label{section:face_tracking}
+Face tracking was proposed in Section \ref{section:face_tracking_impl} as an alternative to detecting the face in each frame independently.
+From the implementation alone, it is unclear as to whether or not it is beneficial. To answer this, several separate aspects of the algorithm must be evaluated. 
+Specifically, any described performance gains must be shown clearly as working across stationary scenarios and situations with more movement of the facee. Furthermore, it must be ensured that face tracking is not less accurate than simply repeatedly detecting the face in each frame.
 \paragraph{Research questions}
 % Three main questions: 
 % -is it a performance gain?  (for all videos)
 % -is it resistant to motion?
 % -is it as accurate?
+% -effect on HR accuracy?
+
 \paragraph{Metrics}
+To understand the accuracy of face tracking we define four measurements applied to each frame.
+
 \paragraph{Results}
-% \paragraph{Performance cost}
+\subparagraph{Performance cost}
+% talk about redetection rates
+\subparagraph{Accuracy}
 % The performance of the above algorithm, clearly depends on the proportion that each of the two branches are executed.
 % \paragraph{Motion resistance}
 
@@ -38,14 +47,26 @@
 \subsection{Pulse isolation}
 \label{section:bss}
 \paragraph{Research question}
+% ICA vs PCA
 \paragraph{Metrics}
 \paragraph{Results}
-% ICA vs PCA
 %The PCA approach comes with the benefit of identifying the pulse signal as a natural part of the algorithm.
-\label{section:ica_assumption}
-% evaluate correctness of assumption of maximum power from ICA applied to each signal
 \subsection{Heart rate identification}
-% \subsection{Blind source separation}
+\subsubsection{Independent components analysis}
+\label{section:ica_assumption}
+\paragraph{Research question}
+% evaluate correctness of assumption of maximum power from ICA applied to each signal
+\paragraph{Metrics}
+\paragraph{Results}
+
+\subsubsection{Principal components analysis}
+\paragraph{Research question}
+% does component with most variance actually correspond to the pulse
+\paragraph{Metrics}
+\paragraph{Results}
+%
+
+% Not that important?
 \subsection{Window and stride size}
 \paragraph{Research question}
 \paragraph{Metrics}
@@ -59,8 +80,12 @@
 % \section{Performance}
 \subsection{Accuracy}
 % cover stationary and exercise videos
+
 \paragraph{Research question}
 % essentially this is where we evaluate vs a smartwatch
+% two questions: 
+% -is RPPG viable for stationary videos?
+% -is it better than a smartwatch?
 \paragraph{Metrics}
 \paragraph{Results}
 
@@ -71,7 +96,8 @@
 % \paragraph{Results}
 
 % \subsection{Time cost}
-% \paragraph{Research question}
+% \paragraph{Resea-is RPPG viable for stationary videos?
+% -is it better than a smartwatch?rch question}
 % \paragraph{Metrics}
 % \paragraph{Results}
 

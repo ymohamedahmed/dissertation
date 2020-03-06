@@ -37,6 +37,7 @@ Although the region selection could also be executed in a separate thread, the a
 A face detector is expected to take a single frame and return a bounding rectangle within which a face is present. This could be extended to work on a stream of frames, naïvely, by simply repeated applying this face detector to each frame independently.
 
 \subsection{Face tracking}
+\label{section:face_tracking_impl}
 Smartphone cameras can readily stream at high framerates, so it is unlikely that a face moves very much between a pair of consecutive frames. At sixty frames per second, frames are recorded only 0.017s apart. The position of the face in the previous frame, gives a strong indication of its subsequent position. Thus, there is opportunity for optimisation beyond simply applying a face detector to each frame individually. This is important since a speedup in this part of the pipeline provides opportunity for more expensive computation in subsequent stages which might improve accuracy. However, it is critical that any optimisations are resistant to motion. Using information from previous frames forms the distinction between face \textbf{\textit{detection}} and \textbf{\textit{tracking}}.
 
 \subsubsection{Point tracking}
@@ -311,7 +312,7 @@ The probability density function of a truncated normal distribution between the 
 \begin{equation*}
     f(x) = \frac{1}{\sigma}\frac{\phi(\frac{x-\mu}{\sigma})}{\Phi(\frac{b-\mu}{\sigma}) - \Phi(\frac{a-\mu}{\sigma})}
 \end{equation*}
-
+\noindent
 We define the probability in proportion to the probability density function of the truncated distribution for each possible skin tone.
 \begin{equation*}
     \Pr(s|C_\mathrm{skin}, x_i) = \frac{f(d(s,x_i))}{\sum_{s' \in C}f(d(s',x_i))}
