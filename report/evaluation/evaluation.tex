@@ -2,7 +2,7 @@
 \label{section:face_tracking}
 Face tracking was proposed in Section \ref{section:face_tracking_impl} as an alternative to detecting the face in each frame independently.
 From the implementation alone, it is unclear as to whether or not it is beneficial. To answer this, several separate aspects of the algorithm must be evaluated. 
-Specifically, any described performance gains must be shown clearly as working across stationary scenarios and situations with more movement of the facee. Furthermore, it must be ensured that face tracking is not less accurate than simply repeatedly detecting the face in each frame.
+Specifically, any described performance gains must be shown clearly as working across stationary scenarios and situations with movement of the face being tracked. Furthermore, it must be ensured that face tracking is not less accurate than simply repeatedly detecting the face in each frame. To evaluate these properties several metrics are defined and are measured across a variety of test videos.
 \paragraph{Research questions}
 \begin{itemize}
     \item Does face tracking provide a performance boost over face detection?
@@ -42,25 +42,53 @@ Pixels within the bounding box of the face have value one and pixels outside hav
     \mathrm{TP} &= H(\mathbf{D} \wedge \mathbf{T})\\
     \mathrm{TN} &= H(\neg{\mathbf{D}} \wedge \neg{\mathbf{T}})
 \end{align*}
-\footnote{The function $H(\mathbf{A})$ returns the number of ones present in the matrix $\mathbf{A}$.\\$\wedge$ is an elementwise, bitwise AND \\ $\vee$ is an elementwise bitwise OR operation \\ $\neg$ is a NOT operator on each element in the matrix.}
+The function $H(\mathbf{A})$ returns the number of ones present in the matrix $\mathbf{A}$. $\wedge$ is an elementwise, bitwise AND \\ $\vee$ is an elementwise bitwise OR operation \\ $\neg$ is a NOT operator on each element in the matrix.
 \\\\
 The time to process each frame is also recorded as a means of measuring the relative performance of each algorithm.
 \paragraph{Results}
-\subparagraph{Performance cost}
-% talk about redetection rates
+
 \subparagraph{Accuracy}
 % The performance of the above algorithm, clearly depends on the proportion that each of the two branches are executed.
-\paragraph{Motion resistance}
+\subparagraph{Motion resistance}
+
+\subparagraph{Performance cost}
+% talk about redetection rates
+Recall from Section \ref{section:face_tracking_impl} that the following inequality was introduced that describes the performance of face tracking.
+\begin{equation*}
+    \frac{R}{W} < \frac{f(n)-g(p,n)}{f(n)+s(p,f)}
+\end{equation*}\footnote{Notation: $R$: number of redetection, $W$: number of frames considered, $f(n)$: time to detect a face in a frame of size $n$, $g(p,n)$: time to track $p$ points on a face of size $n$, $s(p,f)$: time to select $p$ points on a face of size $f$ }
+The above inequality relates the rate of redetections ($R/W$) and the costs of several required algorithms. It was shown in Section \ref{section:face_tracking_impl} that when this inequality holds, face tracking provides a performance benefit.
+In order to justify this, the value of the right hand side is evaluated experimentally on a variety of videos and is shown the exceed the value $R/W$.
+
+
 
 % \paragraph{Correctness}
 
 \section{Region selection}
 \label{section:region_selection}
+The problem of region selection does not, at an initial glance, lend itself to easy evaluation.
+It is unclear, through reasoning exclusively, whether increasingly complex algorithms for skin detection provide any benefit to the overall accuracy of the heart rate prediction.
+% In fact, it is only hypothesised that any form of filtering on the bounding box 
+In Section \ref{ref:region_selection_impl} it was weakly hypothesised that minimising the number of non-skin pixels included in the mean colour would decrease the noise in the resulting signal. 
+This was made under the further assumption that a less noisy signal would result in more accurate heart rate predictions. 
+Underpinning these assumptions is the notion that any pixels in the background, that is within the bounding box of the face but not true skin pixels, will contain no predictive power regarding the heart rate of the user.
+Furthermore, it is unclear as to whether or not there exists some tradeoff between the number of pixels considered and their individual fidelities. 
+It could be reasonably argued that by considering more pixels, the resulting average becomes more resistant to noise at individual pixel level, say that caused by fluctuations in lighting, for example.
+It is not immediately clear whether considering a small set of guaranteed skin pixels is better than considering a large number of noisy pixels.
+\\\\
+
 \subsection{Skin tone detection}
 \label{section:skin_tone_detection}
-%Evaluate using the primitive vs basic skin tone range vs k-means vs bayesian 
+% Evaluate using the primitive vs basic skin tone range vs k-means vs bayesian 
 \paragraph{Research question}
 % is considering a subset of pixels even beneficial?
+% what effect does it have on SNR?
+% how does that affect overall accuracy?
+\begin{itemize}
+   \item Is considering a subset of pixels within the bounding box advantageous? 
+   \item Does skin detection reduce the noise of the resulting colour signal?
+   \item Does a less noisy signal improve accuracy of heart rate predictions?
+\end{itemize}
 
 \paragraph{Metrics}
 %-effect of each on signal to noise ratio over the entirety of MAHNOB
@@ -113,7 +141,7 @@ The time to process each frame is also recorded as a means of measuring the rela
 \subsection{Accuracy}
 % cover stationary and exercise videos
 
-\paragraph{Research question}
+\paragraph{Research questions}
 % essentially this is where we evaluate vs a smartwatch
 % two questions: 
 % -is RPPG viable for stationary videos?
