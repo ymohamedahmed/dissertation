@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2020.1.29)  6 MAR 2020 16:37
+This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2020.1.29)  6 MAR 2020 16:40
  system commands enabled.
 **diss
 (./diss.tex
@@ -1220,10 +1220,10 @@ Chapter 4.
 ]
 File: example-image-a.pdf Graphic file (type pdf)
 <use example-image-a.pdf>
-Package luatex.def Info: example-image-a.pdf  used on input line 27.
+Package luatex.def Info: example-image-a.pdf  used on input line 33.
 (luatex.def)             Requested size: 205.96938pt x 154.48056pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 38--42
+Underfull \hbox (badness 10000) in paragraph at lines 44--48
 
  []
 
@@ -1338,7 +1338,7 @@ Here is how much of LuaTeX's memory you used:
  792 words of node memory still in use:
    22 hlist, 2 vlist, 10 rule, 6 glue, 1 kern, 51 glue_spec, 2 write, 16 pdf_lit
 eral, 16 pdf_colorstack nodes
-   avail lists: 1:9,2:61,3:241342,4:66,5:231,6:34,7:5281,8:68,9:464,10:25,11:323
+   avail lists: 1:9,2:61,3:241342,4:66,5:232,6:34,7:5281,8:68,9:464,10:25,11:323
 
  32955 multiletter control sequences out of 65536+600000
  73 fonts using 3030447 bytes
@@ -1364,7 +1364,7 @@ exmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
 ype1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmro12.pfb></u
 sr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/pu
 blic/lm/lmtt12.pfb>
-Output written on diss.pdf (44 pages, 1105267 bytes).
+Output written on diss.pdf (44 pages, 1105743 bytes).
 
 PDF statistics: 326 PDF objects out of 1000 (max. 8388607)
  218 compressed objects within 3 object streams

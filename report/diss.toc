@@ -71,8 +71,8 @@
 \contentsline {paragraph}{Research question}{27}% 
 \contentsline {paragraph}{Metrics}{27}% 
 \contentsline {paragraph}{Results}{27}% 
-\contentsline {subsubsection}{Principal components analysis}{27}% 
-\contentsline {paragraph}{Research question}{27}% 
+\contentsline {subsubsection}{Principal components analysis}{28}% 
+\contentsline {paragraph}{Research question}{28}% 
 \contentsline {paragraph}{Metrics}{28}% 
 \contentsline {paragraph}{Results}{28}% 
 \contentsline {subsection}{\numberline {4.3.3}Window and stride size}{28}% 
