@@ -72,11 +72,12 @@ It is unclear, through reasoning exclusively, whether increasingly complex algor
 In Section \ref{ref:region_selection_impl} it was weakly hypothesised that minimising the number of non-skin pixels included in the mean colour would decrease the noise in the resulting signal. 
 This was made under the further assumption that a less noisy signal would result in more accurate heart rate predictions. 
 Underpinning these assumptions is the notion that any pixels in the background, that is within the bounding box of the face but not true skin pixels, will contain no predictive power regarding the heart rate of the user.
-Furthermore, it is unclear as to whether or not there exists some tradeoff between the number of pixels considered and their individual fidelities. 
+\\\\
+Crucially, however, it is unclear as to whether or not there exists some tradeoff between the number of pixels considered and their individual fidelities. 
 It could be reasonably argued that by considering more pixels, the resulting average becomes more resistant to noise at individual pixel level, say that caused by fluctuations in lighting, for example.
 It is not immediately clear whether considering a small set of guaranteed skin pixels is better than considering a large number of noisy pixels.
 \\\\
-
+This evaluation, hence, is concerned with the validation of these assumptions and the further showcasing of the importance 
 \subsection{Skin tone detection}
 \label{section:skin_tone_detection}
 % Evaluate using the primitive vs basic skin tone range vs k-means vs bayesian 
