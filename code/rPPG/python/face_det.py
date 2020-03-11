@@ -1,0 +1,225 @@
+import sklearn
+import glob
+import cv2 as cv
+from sklearn.cluster import KMeans
+from functools import partial
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+import numpy.ma as ma
+import pandas as pd
+import seaborn as sns
+import scipy
+import tikzplotlib
+import scipy.signal
+import pyedflib
+
+class DNNDetector():
+    def __init__(self):
+        modelFile = MODEL_PATH + "opencv_face_detector_uint8.pb"
+        configFile = MODEL_PATH + "opencv_face_detector.pbtxt"
+        self.dnn = cv.dnn.readNetFromTensorflow(modelFile, configFile)
+
+
+    def dnn_detector(self, image):
+        faces = []
+        blob = cv.dnn.blobFromImage(image, 1.0, (300, 300), [104, 117, 123], False, False)
+        h,w,_ = image.shape
+        self.dnn.setInput(blob)
+        detections = self.dnn.forward()
+        for i in range(detections.shape[2]):
+            confidence = detections[0, 0, i, 2]
+            if confidence > 0.5:
+                x1 = int(detections[0, 0, i, 3] * w)
+                y1 = int(detections[0, 0, i, 4] * h)
+                x2 = int(detections[0, 0, i, 5] * w)
+                y2 = int(detections[0, 0, i, 6] * h)
+                faces.append((x1,y1,x2-x1,y2-y1))
+        return faces
+
+class FaceNotFoundException(Exception):
+  pass
+
+class FaceTracker(object):
+    def __init__(self, detector, scale):
+        self.detector = detector
+        self.scale = scale
+        self.frame_number = 0
+
+    def track(self, frame):
+        faces, profiling = self._track(frame)
+        self.frame_number += 1
+        height, width, _  = frame.shape
+        faces = [self._bound_coordinates(f, width,height) for f in faces]
+        return faces, frame, (self._crop_image(frame, *(faces[0])) if len(faces) > 0 else frame), profiling
+
+    def overlay(self, frame, faces):
+        self._draw_rectangle(frame, faces)
+        self._overlay(frame)
+
+    def detect(self, frame):
+        faces =  self.detector(self._scale_down(frame, self.scale))
+        return [self._scale_face(frame, f, self.scale) for f in faces]
+
+    def _draw_rectangle(self, image, faces):
+        for (x, y, w, h) in faces:
+            x,y,w,h = int(x),int(y),int(w),int(h)
+            cv.rectangle(image, (x, y), (x+w, y+h), (0, 255, 0), 2)
+        return image
+
+    @staticmethod
+    def _scale_down(image, scale):
+        return cv.resize(image, (int(image.shape[1]//scale),int(image.shape[0]//scale)), interpolation = cv.INTER_AREA)
+
+    def _scale_face(self, image, face, scale):
+        x,y,w,h = face
+        scaled_width = image.shape[1]//scale
+        scaled_height = image.shape[0]//scale
+        width = int(w * scale)
+        height = int(h * scale)
+        x2 = x/scaled_width * image.shape[1]
+        y2 = y/scaled_height * image.shape[0]
+        return (x2,y2,width,height)
+
+    def _bound_coordinates(self, face, width, height):
+    #         print(f"BOUND: {face}")
+        x,y,w,h = face
+        x1 = 0 if x < 0 else width - 1 if x > width else x
+        y1 = 0 if y < 0 else height - 1 if y > height else y
+        x2 = 0 if x+w < 0 else width - 1 if x+w > width else x+w
+        y2 = 0 if y+h < 0 else height - 1 if y+h > height else y+h
+        return int(x1), int(y1), int(x2-x1), int(y2-y1)
+
+    def _crop_image(self, image, x, y, w, h):
+        """Coordinates should have been bound to fall within the image"""
+        x1,y1,x2,y2 = x,y,w+x,h+y
+        return image[y1:y2, x1:x2]
+
+class NaiveKLTBoxing(FaceTracker):
+
+    def __init__(self, detector, scale):
+        # params for ShiTomasi corner detection
+        self.feature_params = dict( maxCorners = 5000,
+                              qualityLevel = 0.01,
+                              minDistance = 10,
+                              blockSize = 7 )
+        # Parameters for lucas kanade optical flow
+        self.lk_params = dict( winSize  = (15,15),
+                          maxLevel = 2,
+                          criteria = (cv.TERM_CRITERIA_EPS | cv.TERM_CRITERIA_COUNT, 10, 0.03)) 
+        self.old_points = None
+        super().__init__(detector, scale)
+
+    def _overlay(self, frame):
+        for i in self.old_points:
+          x,y = i.ravel()
+          cv.circle(frame,(x,y),3,255,-1)
+  
+    def _to_gray(self, frame):
+        return cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+    
+    def _features_to_track(self, frame):
+        faces = self.detect(frame)
+        time_to_select_points = None
+        self.old_frame = frame
+        if(len(faces) > 0):
+            face_found = True
+            height, width, _ = frame.shape
+            x,y,w,h = self._bound_coordinates(faces[0], width, height)
+            # padding works as ((top, bottom), (left, right))
+            face_mask = np.pad(np.ones(shape=(h,w)), ((y, height-y-h),(x, width-x-w)) , 'constant', constant_values=0)
+
+            start = Timing.time()
+            self.old_points = cv.goodFeaturesToTrack(self._to_gray(frame),mask=np.uint8(face_mask), **self.feature_params)
+            time_to_select_points = Timing.time()-start
+        return faces, time_to_select_points
+  
+    def _track_points(self, frame):
+        start = Timing.time()
+        new_points, st, err = cv.calcOpticalFlowPyrLK(self._to_gray(self.old_frame), self._to_gray(frame), self.old_points, None, **self.lk_params)
+        time_to_track_points = Timing.time() - start
+        
+        new_points = new_points[st==1]
+        self.old_frame = frame
+        height, width, _ = frame.shape
+        min_x,min_y, max_x, max_y = width, height, 0, 0
+        for i in new_points:
+            x,y = i.ravel()
+            min_x, min_y = min(x, min_x), min(y, min_y)
+            max_x, max_y = max(x, max_x), max(y, max_y)
+        x,y,w,h = min_x,min_y,max_x-min_x, max_y-min_y
+        faces = [(x,y,w,h)]
+        self.old_points = new_points.reshape(-1,1,2)
+        return faces, time_to_track_points
+
+    def _track(self, frame):
+        if self.frame_number == 0:
+            f, t = self._features_to_track(frame)
+            return f, {}
+        else:
+            f, t = self._track_points(frame)
+            return f, {}
+#     return self._features_to_track(frame) if self.frame_number == 0 else self._track_points(frame)
+  
+    def __str__(self):
+        return f"{self.__class__.__name__}-{self.detector.__name__}-scale_{self.scale}"
+
+class KLTBoxingWithThresholding(NaiveKLTBoxing):
+
+    def __init__(self, detector, scale, recompute_threshold = 0.25):
+        super().__init__(detector, scale)
+        self.detector = detector
+        self.scale = scale
+        self.recompute_threshold = recompute_threshold
+        self.old_frame = None
+        self.old_points = None
+        self.cumulative_change = 0
+        self.redetects = 0
+
+    def _redetect(self, frame):
+        faces, time = self._features_to_track(frame)
+        self.cumulative_change = 0
+        self.redetects += 1
+        if(len(faces) > 0):
+            _,_,w,h = faces[0]
+            self.estimated_size = w*h
+        return faces, time
+        
+    def _track(self, frame):
+        faces = None
+        profiling = {}
+        if self.frame_number == 0 or self.cumulative_change > self.recompute_threshold:
+            faces, time = self._redetect(frame)
+            profiling["time_to_select_points"] = time
+        else: 
+            faces, time = self._track_points(frame)
+            profiling["time_to_track_points"] = time
+            x,y,w,h = faces[0]
+            increase_in_size = abs(self.estimated_size - (w*h))/self.estimated_size
+            self.cumulative_change += increase_in_size + (increase_in_size*self.cumulative_change)
+            self.estimated_size = w*h
+            if self.cumulative_change > self.recompute_threshold:
+                faces, time = self._redetect(frame)
+        return faces, profiling
+  
+    def __del__(self):
+        print(f"{self.redetects}/{self.frame_number}={100*self.redetects/self.frame_number}%")
+
+    def __str__(self):
+        return f"{self.__class__.__name__}-{self.detector.__name__}-scale_{self.scale}"
+
+class RepeatedDetector(FaceTracker):
+
+  def __init__(self, detector, scale):
+    super().__init__(detector=detector, scale=scale)
+    self.detector = detector
+    self.scale = scale
+
+  def _track(self, frame):
+    return self.detect(frame),{}
+  
+  def _overlay(self, frame):
+    pass
+
+  def __str__(self):
+     return f"{self.__class__.__name__}-{self.detector.__name__}-scale_{self.scale}"

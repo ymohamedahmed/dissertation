@@ -58,37 +58,37 @@
 \contentsline {subparagraph}{Motion resistance}{27}% 
 \contentsline {subparagraph}{Performance cost}{27}% 
 \contentsline {section}{\numberline {4.2}Region selection}{27}% 
-\contentsline {subsection}{\numberline {4.2.1}Skin tone detection}{27}% 
-\contentsline {paragraph}{Research question}{27}% 
-\contentsline {paragraph}{Metrics}{27}% 
-\contentsline {paragraph}{Results}{27}% 
+\contentsline {subsection}{\numberline {4.2.1}Skin tone detection}{28}% 
+\contentsline {paragraph}{Research question}{28}% 
+\contentsline {paragraph}{Metrics}{28}% 
+\contentsline {paragraph}{Results}{28}% 
 \contentsline {section}{\numberline {4.3}Heart rate isolation}{28}% 
 \contentsline {subsection}{\numberline {4.3.1}Pulse isolation}{28}% 
 \contentsline {paragraph}{Research question}{28}% 
 \contentsline {paragraph}{Metrics}{28}% 
 \contentsline {paragraph}{Results}{28}% 
-\contentsline {subsection}{\numberline {4.3.2}Heart rate identification}{28}% 
-\contentsline {subsubsection}{Independent components analysis}{28}% 
-\contentsline {paragraph}{Research question}{28}% 
-\contentsline {paragraph}{Metrics}{28}% 
-\contentsline {paragraph}{Results}{28}% 
-\contentsline {subsubsection}{Principal components analysis}{28}% 
-\contentsline {paragraph}{Research question}{28}% 
-\contentsline {paragraph}{Metrics}{28}% 
-\contentsline {paragraph}{Results}{28}% 
-\contentsline {subsection}{\numberline {4.3.3}Window and stride size}{28}% 
-\contentsline {paragraph}{Research question}{28}% 
-\contentsline {paragraph}{Metrics}{28}% 
-\contentsline {paragraph}{Results}{28}% 
-\contentsline {section}{\numberline {4.4}Evaluation of remote heart rate sensing}{28}% 
-\contentsline {subsection}{\numberline {4.4.1}Evaluation method}{28}% 
-\contentsline {paragraph}{Experimental setup}{28}% 
+\contentsline {subsection}{\numberline {4.3.2}Heart rate identification}{29}% 
+\contentsline {subsubsection}{Independent components analysis}{29}% 
+\contentsline {paragraph}{Research question}{29}% 
+\contentsline {paragraph}{Metrics}{29}% 
+\contentsline {paragraph}{Results}{29}% 
+\contentsline {subsubsection}{Principal components analysis}{29}% 
+\contentsline {paragraph}{Research question}{29}% 
+\contentsline {paragraph}{Metrics}{29}% 
+\contentsline {paragraph}{Results}{29}% 
+\contentsline {subsection}{\numberline {4.3.3}Window and stride size}{29}% 
+\contentsline {paragraph}{Research question}{29}% 
+\contentsline {paragraph}{Metrics}{29}% 
+\contentsline {paragraph}{Results}{29}% 
+\contentsline {section}{\numberline {4.4}Evaluation of remote heart rate sensing}{29}% 
+\contentsline {subsection}{\numberline {4.4.1}Evaluation method}{29}% 
+\contentsline {paragraph}{Experimental setup}{29}% 
 \contentsline {paragraph}{Ethics}{29}% 
 \contentsline {subsection}{\numberline {4.4.2}Accuracy}{29}% 
 \contentsline {paragraph}{Research questions}{29}% 
 \contentsline {paragraph}{Metrics}{29}% 
-\contentsline {paragraph}{Results}{29}% 
-\contentsline {section}{\numberline {4.5}Summary}{29}% 
+\contentsline {paragraph}{Results}{30}% 
+\contentsline {section}{\numberline {4.5}Summary}{30}% 
 \contentsline {chapter}{\numberline {5}Conclusion}{31}% 
 \contentsline {chapter}{Bibliography}{33}% 
 \contentsline {chapter}{\numberline {A}Project Proposal}{35}% 

@@ -26,7 +26,7 @@ As a result, if we consider face detection as a ground truth, the results of fac
 \end{itemize}
 These metrics can be combined to define the recall and precision of the output of the face tracker over a given frame. These respectively represent the rate at which true skin pixels are correctly identified as such and the likelihood that a skin prediction is correct.
 \begin{equation*}
-    \mathrm{recall} = \frac{TP}{TP + FN} \text{ and } \mathrm{precision} = \frac{TP}{TP+FP}
+    \mathrm{recall} = \frac{\mathrm{TP}}{\mathrm{TP} + \mathrm{FN}} \text{ and } \mathrm{precision} = \frac{\mathrm{TP}}{\mathrm{TP}+\mathrm{FP}}
 \end{equation*}
 \begin{figure}[H]
     \centering
@@ -42,8 +42,14 @@ Pixels within the bounding box of the face have value one and pixels outside hav
     \mathrm{TP} &= H(\mathbf{D} \wedge \mathbf{T})\\
     \mathrm{TN} &= H(\neg{\mathbf{D}} \wedge \neg{\mathbf{T}})
 \end{align*}
-The function $H(\mathbf{A})$ returns the number of ones present in the matrix $\mathbf{A}$. $\wedge$ is an elementwise, bitwise AND \\ $\vee$ is an elementwise bitwise OR operation \\ $\neg$ is a NOT operator on each element in the matrix.
+Under the following notation: 
+\begin{itemize}
+    \item The function $H(\mathbf{A})$ returns the number of ones present in the matrix $\mathbf{A}$
+    \item $\wedge$ is an elementwise, bitwise AND 
+    \item $\vee$ is an elementwise bitwise OR operation 
+    \item $\neg$ is a NOT operator on each element in the matrix
 \\\\
+\end{itemize}
 The time to process each frame is also recorded as a means of measuring the relative performance of each algorithm.
 \paragraph{Results}
 
@@ -77,7 +83,7 @@ Crucially, however, it is unclear as to whether or not there exists some tradeof
 It could be reasonably argued that by considering more pixels, the resulting average becomes more resistant to noise at individual pixel level, say that caused by fluctuations in lighting, for example.
 It is not immediately clear whether considering a small set of guaranteed skin pixels is better than considering a large number of noisy pixels.
 \\\\
-This evaluation, hence, is concerned with the validation of these assumptions and the further showcasing of the importance 
+This evaluation, hence, is concerned with the validation of these assumptions.
 \subsection{Skin tone detection}
 \label{section:skin_tone_detection}
 % Evaluate using the primitive vs basic skin tone range vs k-means vs bayesian 
