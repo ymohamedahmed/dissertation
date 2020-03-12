@@ -20,8 +20,8 @@ def heart_rates_bdf(file_name):
     print(f"Heart rate from rpeaks: {avg_hr}")
     
     return avg_hr
-def get_avi_bdf(folder_name):
-    path = f"{PATH}/mahnob/{folder_name}"
+def get_avi_bdf(root, folder_name):
+    path = f"{root}/mahnob/{folder_name}"
     onlyfiles = [f for f in listdir(path) if isfile(join(path, f))] 
     avi = [f for f in onlyfiles if f.endswith(".avi")]
     bdf = [f for f in onlyfiles if f.endswith(".bdf")]

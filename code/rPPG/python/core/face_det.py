@@ -11,17 +11,18 @@ import pandas as pd
 import seaborn as sns
 import scipy
 import tikzplotlib
-import scipy.signal
 import pyedflib
+import time as Timing
 
 class DNNDetector():
     def __init__(self):
+        MODEL_PATH = "rPPG/models/"
         modelFile = MODEL_PATH + "opencv_face_detector_uint8.pb"
         configFile = MODEL_PATH + "opencv_face_detector.pbtxt"
         self.dnn = cv.dnn.readNetFromTensorflow(modelFile, configFile)
 
 
-    def dnn_detector(self, image):
+    def detect_face(self, image):
         faces = []
         blob = cv.dnn.blobFromImage(image, 1.0, (300, 300), [104, 117, 123], False, False)
         h,w,_ = image.shape
@@ -58,7 +59,7 @@ class FaceTracker(object):
         self._overlay(frame)
 
     def detect(self, frame):
-        faces =  self.detector(self._scale_down(frame, self.scale))
+        faces =  self.detector.detect_face(self._scale_down(frame, self.scale))
         return [self._scale_face(frame, f, self.scale) for f in faces]
 
     def _draw_rectangle(self, image, faces):
@@ -121,6 +122,7 @@ class NaiveKLTBoxing(FaceTracker):
     def _features_to_track(self, frame):
         faces = self.detect(frame)
         time_to_select_points = None
+        d = np.array([])
         self.old_frame = frame
         if(len(faces) > 0):
             face_found = True
@@ -128,10 +130,11 @@ class NaiveKLTBoxing(FaceTracker):
             x,y,w,h = self._bound_coordinates(faces[0], width, height)
             # padding works as ((top, bottom), (left, right))
             face_mask = np.pad(np.ones(shape=(h,w)), ((y, height-y-h),(x, width-x-w)) , 'constant', constant_values=0)
-
             start = Timing.time()
             self.old_points = cv.goodFeaturesToTrack(self._to_gray(frame),mask=np.uint8(face_mask), **self.feature_params)
             time_to_select_points = Timing.time()-start
+
+
         return faces, time_to_select_points
   
     def _track_points(self, frame):
@@ -149,8 +152,9 @@ class NaiveKLTBoxing(FaceTracker):
             max_x, max_y = max(x, max_x), max(y, max_y)
         x,y,w,h = min_x,min_y,max_x-min_x, max_y-min_y
         faces = [(x,y,w,h)]
+        d = np.sqrt(np.sum(np.square(np.abs(new_points-self.old_points)), axis=1))
         self.old_points = new_points.reshape(-1,1,2)
-        return faces, time_to_track_points
+        return faces, time_to_track_points, np.mean(d), np.std(d)
 
     def _track(self, frame):
         if self.frame_number == 0:
@@ -192,8 +196,10 @@ class KLTBoxingWithThresholding(NaiveKLTBoxing):
             faces, time = self._redetect(frame)
             profiling["time_to_select_points"] = time
         else: 
-            faces, time = self._track_points(frame)
+            faces, time, mean_d, std_d = self._track_points(frame)
             profiling["time_to_track_points"] = time
+            profiling["point_distance_mean"] = mean_d
+            profiling["point_distance_std"] = std_d
             x,y,w,h = faces[0]
             increase_in_size = abs(self.estimated_size - (w*h))/self.estimated_size
             self.cumulative_change += increase_in_size + (increase_in_size*self.cumulative_change)

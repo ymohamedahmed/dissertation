@@ -2,6 +2,7 @@ from operator import itemgetter
 import sklearn
 from sklearn.decomposition import FastICA, PCA
 import numpy as np
+import scipy.signal
 
 class Processor():
     
