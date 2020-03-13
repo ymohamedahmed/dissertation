@@ -6,15 +6,23 @@ Specifically, any described performance gains must be shown clearly as working a
 \paragraph{Research questions}
 \begin{itemize}
     \item Does face tracking provide a performance boost over face detection?
-    \item Does face tracking maintain the fidelity of face detection?
+    \item Does face tracking have the same fidelity as face detection?
     \item Does face tracking maintain its accuracy under increasing motion?
+    \item What value should the \texttt{threshold} take?\footnote{As defined in the pseudocode in Section \ref{section:face_tracking_impl} the \texttt{threshold} value defines when the face tracker redetects the face}
 \end{itemize}
 % Three main questions: 
 % -is it a performance gain?  (for all videos)
 % -is it resistant to motion?
 % -is it as accurate?
 % -effect on HR accuracy?
-
+\paragraph{Dataset}
+In order to better understand the performance of face tracking, a test set of several videos with varying amounts of movement was used. Some of the videos were taken from the MAHNOB dataset \cite{Mahnob}, which forms one of the key sources of data for the evaluation of this project.
+Initially, generated as a dataset for study into affective computing, it consists of several thousand videos of participants as they are exposed to stimuli, with their ECG responses being recorded. 
+\\\\
+MAHNOB \cite{Mahnob} only consists of videos where the participants are stationary and at a fixed distance from the camera, this alone, would not be adeqeuate for the testing of face tracking. Hence, it was augmented with several videos which I recorded with varying amounts and types of movement.
+I recorded a video with strictly `translational' movement, that is, the size of the face of the user remains largely constant as they move from one side of the frame to the other.
+Another more challenging kind of movement, denoted here as `rotational', is where the user rotates their face so that different parts of the face are in a view in different frames.
+Intuitively, one would expect this to be more difficult for the face tracker to deal with, since points will come in and out of view regularly.
 \paragraph{Metrics}
 Face detection is a binary classification task. As an algorithm, it defines a boundary within which all pixels are defined as belonging to face or not.
 As a result, if we consider face detection as a ground truth, the results of face tracking can be compared using standard classification metrics. In this case, I proceed by considering the following outcomes from the face tracker.
@@ -51,6 +59,7 @@ Under the following notation:
 \\\\
 \end{itemize}
 The time to process each frame is also recorded as a means of measuring the relative performance of each algorithm.
+Finally, the distance moved by each set of points being tracked between frames is recorded. This metric acts a means of encoding the amount of movement in the video.
 \paragraph{Results}
 
 \subparagraph{Accuracy}
@@ -62,10 +71,11 @@ The time to process each frame is also recorded as a means of measuring the rela
 Recall from Section \ref{section:face_tracking_impl} that the following inequality was introduced that describes the performance of face tracking.
 \begin{equation*}
     \frac{R}{W} < \frac{f(n)-g(p,n)}{f(n)+s(p,f)}
-\end{equation*}\footnote{Notation: $R$: number of redetection, $W$: number of frames considered, $f(n)$: time to detect a face in a frame of size $n$, $g(p,n)$: time to track $p$ points on a face of size $n$, $s(p,f)$: time to select $p$ points on a face of size $f$ }
+\end{equation*}\footnote{Notation: $R$: number of redetections, $W$: number of frames considered, $f(n)$: time to detect a face in a frame of size $n$, $g(p,n)$: time to track $p$ points on a face of size $n$, $s(p,f)$: time to select $p$ points on a face of size $f$ }
 The above inequality relates the rate of redetections ($R/W$) and the costs of several required algorithms. It was shown in Section \ref{section:face_tracking_impl} that when this inequality holds, face tracking provides a performance benefit.
 In order to justify this, the value of the right hand side is evaluated experimentally on a variety of videos and is shown the exceed the value $R/W$.
 
+\subparagraph{Thresholds}
 
 
 % \paragraph{Correctness}
@@ -111,14 +121,15 @@ This evaluation, hence, is concerned with the validation of these assumptions.
 
 
 \section{Heart rate isolation}
-\subsection{Pulse isolation}
+\subsection{Identifying the pulse signal}
 \label{section:bss}
 \paragraph{Research question}
 % ICA vs PCA
 \paragraph{Metrics}
 \paragraph{Results}
 %The PCA approach comes with the benefit of identifying the pulse signal as a natural part of the algorithm.
-\subsection{Heart rate identification}
+
+\subsection{Extracting the heart rate from the pulse signal}
 \subsubsection{Independent components analysis}
 \label{section:ica_assumption}
 \paragraph{Research question}

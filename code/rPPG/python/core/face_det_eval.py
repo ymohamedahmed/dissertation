@@ -9,6 +9,7 @@ PATH = "rPPG/"
 
 def matrix_from_face(face, width, height):
     x,y,w,h = face
+    # print(f"Frame width: {width}, frame height: {height}, face width: {w}, face height: {h}, x pos: {x}, y pos: {y}")
     matrix = np.ones(shape=(h,w), dtype=np.bool)
     matrix = np.pad(matrix, ((y,height-(y+h)),(x,width-(x+w))), 'constant', constant_values=0)
     matrix = np.repeat(matrix[:, :, np.newaxis], 3, axis=2)
@@ -70,7 +71,7 @@ def evaluation_pipeline(detector, tracker, video_path):
 def tracker_vs_detector(video, threshold):
     video_path = f"{video}"
     video_name = video.split(".")[0]
-    results = evaluation_pipeline(RepeatedDetector(DNNDetector(), scale=3), KLTBoxingWithThresholding(DNNDetector(), scale=3, recompute_threshold=threshold), video_path)
+    results = evaluation_pipeline(RepeatedDetector(DNNDetector()), KLTBoxingWithThresholding(DNNDetector(), recompute_threshold=threshold), video_path)
     start = Timing.time()
     overall_results = pd.DataFrame(data=results, columns=cls)
     print(f"Time to dataframe: {Timing.time()-start}")
@@ -89,12 +90,21 @@ for folder in folders:
 videos = movement_vids + stationary_vids
 np.random.shuffle(videos)
 print(videos)
-thresholds = [0.18, 0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4]
 cls = ["Video", "Threshold", "Frame number", "Time of face tracker", "Time of face detector", "FN", "FP", "TN", "TP", "Time to select points", "Time to track points", "Point distance mean", "Point distance std."]
+"""
+results = pd.DataFrame(columns=cls)
+results = results.append(tracker_vs_detector("test-face-detection-videos/mov-3.mp4", 0.4))
+results.to_csv(f"{PATH}output/mov_3_tweaked_scaling.csv")
+
+"""
+# thresholds = [0.18, 0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4]
+# thresholds = [0.45, 0.5, 0.55, 0.6]
+# thresholds = [0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.1, 1.2]
+thresholds = [0.18, 0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.325, 0.35, 0.375, 0.4]
 results = pd.DataFrame(columns=cls)
 for t_index, t in enumerate(thresholds): 
     for v_index, v in enumerate(videos):
         print(f"Beginning experiment: {(t_index*len(videos))+v_index}/{len(thresholds)*len(videos)} threshold: {t} and video: {v}")
         results = results.append(tracker_vs_detector(v,t))
-        results.to_csv(f"{PATH}output/tracking_vs_detecting_large_scale.csv")
+        results.to_csv(f"{PATH}output/tracking_vs_detecting_large_scale_5.csv")
 
