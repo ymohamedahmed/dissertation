@@ -55,8 +55,9 @@ class FaceTracker(object):
         faces, profiling = self._track(scaled_frame)
         self.frame_number += 1
         height, width, _  = frame.shape
-        faces = [self._bound_coordinates(f, width,height) for f in faces]
-        return [self._scale_face(frame, f) for f in faces], frame, (self._crop_image(frame, *(faces[0])) if len(faces) > 0 else frame), profiling
+        faces = [self._bound_coordinates(f, self.scaled_width,self.scaled_height) for f in faces]
+        faces = [self._scale_face(frame, f) for f in faces]
+        return [self._bound_coordinates(f, width, height) for f in faces], frame, (self._crop_image(frame, *(faces[0])) if len(faces) > 0 else frame), profiling
 
     def overlay(self, frame, faces):
         self._draw_rectangle(frame, faces)
