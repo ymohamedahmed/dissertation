@@ -2,16 +2,20 @@ import numpy as np
 import cv2 as cv
 from sklearn.cluster import KMeans
 
-class PrimitiveROI():
+class RegionSelector():
+    def detect(self, image):
+        pass
+    
+class PrimitiveROI(RegionSelector):
     
     def detect(self, image):
         h,w,_ = image.shape
         return np.uint8(np.zeros(shape=(h,w)))
     
     def __str__(self):
-        return f"{self.__class__.__name__}"
+        return self.__class__.__name__
 
-class IntervalSkinDetector():
+class IntervalSkinDetector(RegionSelector):
     
     def _skin_intervals(self, image):
         ycrcb = cv.cvtColor(image, cv.COLOR_BGR2YCrCb)
@@ -25,11 +29,11 @@ class IntervalSkinDetector():
         return hmap
     
     def __str__(self):
-        return f"{self.__class__.__name__}"
+        return self.__class__.__name__
 
 
 
-class RepeatedKMeansSkinDetector():
+class RepeatedKMeansSkinDetector(RegionSelector):
     
     def detect(self, frame):
         image = cv.cvtColor(frame, cv.COLOR_BGR2YCrCb)
@@ -48,7 +52,7 @@ class RepeatedKMeansSkinDetector():
     def __str__(self):
         return self.__class__.__name__
 
-class BayesianSkinDetector():
+class BayesianSkinDetector(RegionSelector):
 
     def __init__(self, threshold=0.5):
         self.threshold = threshold
@@ -59,3 +63,6 @@ class BayesianSkinDetector():
 
     def detect(self, image):
         return (self._class_conditional(image)*self._prior(image))>self.threshold
+    
+    def __str__(self):
+        return self.__class__.__name__

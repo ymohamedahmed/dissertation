@@ -1,6 +1,9 @@
 import time as Timing
+import numpy as np
+import cv2 as cv
 from visualisation import Visualiser
 
+PATH = 'rPPG/'
 def tracking_pipeline(tracker, roi, aggregate_function, video_path, signal_processor, window_size = 1200 , offset = 60, display = False):
     # Profiling
     total_start = Timing.time()
@@ -9,7 +12,6 @@ def tracking_pipeline(tracker, roi, aggregate_function, video_path, signal_proce
     time_roi = 0
     time_display = 0
     time_ica = 0
-    
     
     cap = cv.VideoCapture(PATH + video_path)
     values = []
@@ -20,7 +22,7 @@ def tracking_pipeline(tracker, roi, aggregate_function, video_path, signal_proce
     frame_rate = int(cap.get(cv.CAP_PROP_FPS))
     visualiser = None
     if display:
-        visualiser = Visualiser(tracker, video_path, roi, signal_processor, cap)
+        visualiser = Visualiser(PATH, tracker, video_path, roi, signal_processor, cap)
     while(cap.isOpened()):
         start = Timing.time()
         ret, frame = cap.read()

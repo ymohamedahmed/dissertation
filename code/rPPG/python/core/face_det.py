@@ -14,43 +14,14 @@ import tikzplotlib
 import pyedflib
 import time as Timing
 
-class DNNDetector():
-    def __init__(self):
-        MODEL_PATH = "rPPG/models/"
-        modelFile = MODEL_PATH + "opencv_face_detector_uint8.pb"
-        configFile = MODEL_PATH + "opencv_face_detector.pbtxt"
-        self.dnn = cv.dnn.readNetFromTensorflow(modelFile, configFile)
-
-
-    def detect_face(self, image):
-        faces = []
-        blob = cv.dnn.blobFromImage(image, 1.0, (300, 300), [104, 117, 123], False, False)
-        h,w,_ = image.shape
-        self.dnn.setInput(blob)
-        detections = self.dnn.forward()
-        for i in range(detections.shape[2]):
-            confidence = detections[0, 0, i, 2]
-            if confidence > 0.5:
-                x1 = int(detections[0, 0, i, 3] * w)
-                y1 = int(detections[0, 0, i, 4] * h)
-                x2 = int(detections[0, 0, i, 5] * w)
-                y2 = int(detections[0, 0, i, 6] * h)
-                faces.append((x1,y1,x2-x1,y2-y1))
-        return faces
-
-class FaceNotFoundException(Exception):
-  pass
-
 class FaceTracker(object):
     def __init__(self, detector, scaled_width=300, scaled_height=300):
         self.detector = detector
-        # self.scale = scale
         self.frame_number = 0
         self.scaled_width = scaled_width
         self.scaled_height = scaled_height
 
     def track(self, frame):
-        # scaled_frame = self._scale_down(frame, self.scale)
         scaled_frame = self._scale_down_fixed_size(frame)
         faces, profiling = self._track(scaled_frame)
         self.frame_number += 1
@@ -64,10 +35,8 @@ class FaceTracker(object):
         self._overlay(frame)
 
     def _detect(self, frame):
-        # faces =  self.detector.detect_face(self._scale_down(frame, self.scale))
         faces =  self.detector.detect_face(frame)
         return faces
-        # return [self._scale_face(frame, f) for f in faces]
 
     def _draw_rectangle(self, image, faces):
         for (x, y, w, h) in faces:
@@ -84,8 +53,6 @@ class FaceTracker(object):
 
     def _scale_face(self, image, face):
         x,y,w,h = face
-        # scaled_width = image.shape[1]//scale
-        # scaled_height = image.shape[0]//scale
         width = int(w * (image.shape[1]/self.scaled_width))
         height = int(h * (image.shape[0]/self.scaled_height))
         x2 = int(x/self.scaled_width * image.shape[1])
@@ -93,7 +60,6 @@ class FaceTracker(object):
         return (x2,y2,width,height)
 
     def _bound_coordinates(self, face, width, height):
-    #         print(f"BOUND: {face}")
         x,y,w,h = face
         x1 = 0 if x < 0 else width - 1 if x > width else x
         y1 = 0 if y < 0 else height - 1 if y > height else y
@@ -109,12 +75,10 @@ class FaceTracker(object):
 class NaiveKLTBoxing(FaceTracker):
 
     def __init__(self, detector):
-        # params for ShiTomasi corner detection
         self.feature_params = dict( maxCorners = 5000,
                               qualityLevel = 0.01,
                               minDistance = 1,
                               blockSize = 7 )
-        # Parameters for lucas kanade optical flow
         self.lk_params = dict( winSize  = (15,15),
                           maxLevel = 2,
                           criteria = (cv.TERM_CRITERIA_EPS | cv.TERM_CRITERIA_COUNT, 10, 0.03)) 
@@ -142,18 +106,12 @@ class NaiveKLTBoxing(FaceTracker):
             face_mask = np.pad(np.ones(shape=(h,w)), ((y, height-y-h),(x, width-x-w)) , 'constant', constant_values=0)
             start = Timing.time()
             self.old_points = cv.goodFeaturesToTrack(self._to_gray(frame),mask=np.uint8(face_mask), **self.feature_params)
-            # print("Old points")
-            # print(len(self.old_points))
             time_to_select_points = Timing.time()-start
-
-
         return faces, time_to_select_points
   
     def _track_points(self, frame):
         start = Timing.time()
-        # print(len(self.old_points))
         new_points, st, err = cv.calcOpticalFlowPyrLK(self._to_gray(self.old_frame), self._to_gray(frame), self.old_points, None, **self.lk_params)
-        # print(f"New points: {len(new_points)}")
         time_to_track_points = Timing.time() - start
         
         new_points = new_points[st==1]
@@ -177,8 +135,7 @@ class NaiveKLTBoxing(FaceTracker):
         else:
             f, t = self._track_points(frame)
             return f, {}
-#     return self._features_to_track(frame) if self.frame_number == 0 else self._track_points(frame)
-  
+
     def __str__(self):
         return f"{self.__class__.__name__}-{self.detector.__name__}-scale_{self.scale}"
 
@@ -242,3 +199,26 @@ class RepeatedDetector(FaceTracker):
 
   def __str__(self):
      return f"{self.__class__.__name__}-{self.detector.__name__}"
+
+class DNNDetector():
+    def __init__(self):
+        MODEL_PATH = "rPPG/models/"
+        modelFile = MODEL_PATH + "opencv_face_detector_uint8.pb"
+        configFile = MODEL_PATH + "opencv_face_detector.pbtxt"
+        self.dnn = cv.dnn.readNetFromTensorflow(modelFile, configFile)
+
+    def detect_face(self, image):
+        faces = []
+        blob = cv.dnn.blobFromImage(image, 1.0, (300, 300), [104, 117, 123], False, False)
+        h,w,_ = image.shape
+        self.dnn.setInput(blob)
+        detections = self.dnn.forward()
+        for i in range(detections.shape[2]):
+            confidence = detections[0, 0, i, 2]
+            if confidence > 0.5:
+                x1 = int(detections[0, 0, i, 3] * w)
+                y1 = int(detections[0, 0, i, 4] * h)
+                x2 = int(detections[0, 0, i, 5] * w)
+                y2 = int(detections[0, 0, i, 6] * h)
+                faces.append((x1,y1,x2-x1,y2-y1))
+        return faces
