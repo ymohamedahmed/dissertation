@@ -2,6 +2,27 @@ import numpy as np
 import cv2 as cv
 from sklearn.cluster import KMeans
 
+def _cluster_skin_distance(ycrcb_colour):
+    """
+        We define skin threshold as (137, 74) => (181, 126) and compute distance from a point to this rectangle
+    """
+    x,y = (137+181)/2.0, (74+126)/2.0
+    px,py = ycrcb_colour[1], ycrcb_colour[2]
+    dx = max(abs(px - x) - width / 2, 0)
+    dy = max(abs(py - y) - height / 2, 0)
+    return (dx * dx) + (dy * dy)
+
+def skin_tone(frame, alpha=3, beta=1, clusters=5):
+    image = cv.cvtColor(frame, cv.COLOR_BGR2YCrCb)
+    image[:, :, 0] = 0
+    h,w,_ = image.shape
+    arr = image.reshape((h*w,3))
+    kmeans = KMeans(n_clusters=clusters, n_jobs=-1, max_iter=50).fit(arr)
+    centers = kmeans.cluster_centers_
+    counts = np.bincount(kmeans.labels_)
+    scores = [(alpha*counts[i]) - (beta*_cluster_skin_distance(centers[i]))for i in range(len(centers))]
+    return centers[scores.argmax()]
+
 class RegionSelector():
     def detect(self, image):
         pass
@@ -58,8 +79,13 @@ class BayesianSkinDetector(RegionSelector):
         self.threshold = threshold
 
     def _prior(self, image):
+        return 
 
-    def _class_conditional(self, image):
+    def _class_conditional(self, image, skin_tone):
+        return
+
+    def _truncated_normal_pdf(self, x, mean, std):
+        return
 
     def detect(self, image):
         return (self._class_conditional(image)*self._prior(image))>self.threshold

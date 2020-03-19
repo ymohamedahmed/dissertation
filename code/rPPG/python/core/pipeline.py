@@ -59,11 +59,10 @@ def tracking_pipeline(video_path, config:Configuration, display = False):
         
         area_of_interest = np.pad(area_of_interest, ((y,height-(y+h)),(x,width-(x+w))), 'constant', constant_values=1)
         area_of_interest = np.repeat(area_of_interest[:, :, np.newaxis], 3, axis=2)
-        frame = ma.masked_array(frame, mask=area_of_interest)
+        frame = np.ma.masked_array(frame, mask=area_of_interest)
         value = config.aggregate_function(frame)
         values.append(value)
         if display:
-            
             start = Timing.time()
             visualiser.display(frame, faces, area_of_interest)
             time_display += (Timing.time()-start)

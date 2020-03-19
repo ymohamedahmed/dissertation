@@ -41,17 +41,33 @@ def evaluate(ppg_file, ecg_file, video, config):
     ecg_ws, ecg_o = len(ecg)*window_size/len(values), len(ecg)*offset/len(values)
     ecg_hr = []
 
-    ppg_sf = 64.0
+    ppg_sf = 116.0
     ppg = get_ppg_signal(ppg_file)
     ppg_ws, ppg_o = len(ppg)*window_size/len(values), len(ppg)*offset/len(values)
     ppg_hr = []
 
     for i in range(len(pred_heart_rates)):
-        ecg_hr.append(mean_heart_rate(ecg[i*ecg_o:(i*ecg_o)+ecg_ws],ecg_sf))
-        ppg_hr.append(mean_heart_rate(ppg[i*ppg_o:(i*ppg_o)+ppg_ws],ppg_sf))
+        e_low, e_high = int(i*ecg_o), int((i*ecg_o)+ecg_ws)
+        ecg_hr.append(mean_heart_rate(ecg[e_low:e_high],ecg_sf))
+        p_low, p_high = int(i*ppg_o), int((i*ppg_o)+ppg_ws)
+        ppg_hr.append(mean_heart_rate(ppg[p_low:p_high],ppg_sf))
 
     return (ecg_hr, pred_heart_rates, ppg_hr)   
 
-config = Configuration(KLTBoxingWithThresholding(DNNDetector(), 0.2), PrimitiveROI(), ICAProcessor(), np.mean, 1200, 60)
-# evaluate()
+def mean(image):
+    return image.mean(axis=0).mean(axis=0)
+
+config = Configuration(KLTBoxingWithThresholding(DNNDetector(), 0.2), PrimitiveROI(), ICAProcessor(), mean, 1200, 60)
+base_path = "experiments/candidate-2-yousuf/"
+for dist in range(1,4):
+    for exer in ["stat", "star", "jog"]:
+        file = f"{base_path}{dist}_{exer}"
+        print(f"Considering base file: {file}")
+        result = evaluate(f"rPPG/{file}.csv", f"rPPG/{file}.EDF", f"{file}.mp4", config)
+        print(result)
+        print(f"ECG: {result[0]}")
+        print(f"rPPG: {result[1]}")
+        print(f"PPG: {result[2]}")
+        break
+
 
