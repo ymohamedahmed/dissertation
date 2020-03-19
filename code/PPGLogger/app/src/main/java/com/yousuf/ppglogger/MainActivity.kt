@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.wearable.activity.WearableActivity
 import android.util.Log
 import android.view.KeyEvent
+import android.widget.TextView
 import com.opencsv.CSVWriter
 import java.io.File
 import java.io.FileWriter
@@ -22,6 +23,7 @@ class MainActivity : WearableActivity() {
     val TAG = "MainActivity"
     var timestamp : Timestamp? = null
     var recording = false
+    var start = System.currentTimeMillis()
     var mSensorManager : SensorManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,8 +36,9 @@ class MainActivity : WearableActivity() {
         }
         setAmbientEnabled()
     }
-    fun writePPGData(data: FloatArray){
-        val filePath = applicationContext.filesDir.absolutePath + File.separator + "$timestamp.csv"
+    fun writePPGData(data: FloatArray, time: Long){
+        val samplingFreq = data.size/(time/1000)
+        val filePath = applicationContext.filesDir.absolutePath + File.separator + "$timestamp-freq-$samplingFreq.csv"
         var file = File(filePath)
         var writer : CSVWriter
 
@@ -50,10 +53,11 @@ class MainActivity : WearableActivity() {
             var row = arrayOf(point.toString())
             writer.writeNext(row)
         }
-        Log.d(TAG, "Written PPG data to $timestamp.csv")
+        Log.d(TAG, "Written PPG data to $timestamp-freq-$samplingFreq.csv")
         writer.close();
     }
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        val textView = findViewById<TextView>(R.id.statusTextView)
         return if (event.repeatCount == 0) {
             when (keyCode) {
                 KeyEvent.KEYCODE_STEM_1 -> {
@@ -61,14 +65,19 @@ class MainActivity : WearableActivity() {
                     if(recording){
                         Log.d(TAG, "Beginning to record PPG data")
                         timestamp = Timestamp(Date().time)
+                        start = System.currentTimeMillis()
                         mSensorManager!!.registerListener(mPPGListener,
                                 mSensorManager!!.getDefaultSensor(65572),
                                 SensorManager.SENSOR_DELAY_FASTEST)
+                        textView.text = "Recording"
+
                     }else{
                         Log.d(TAG, "Stopping recording PPG data and writing output")
                         // We've stopped recording so write the output to a file
+                        val end = System.currentTimeMillis()
                         mSensorManager?.unregisterListener(mPPGListener)
-                        writePPGData(mPPGListener.mData.toFloatArray())
+                        writePPGData(mPPGListener.mData.toFloatArray(), end-start)
+                        textView.text = "Not recording"
                     }
                     true
                 }
@@ -88,7 +97,6 @@ class MainActivity : WearableActivity() {
         }
 
         override fun onSensorChanged(event: SensorEvent?) {
-//            Log.d(TAG, event?.values!![0].toRawBits().toFloat().toString())
             mData.add(event?.values!![0].toRawBits().toFloat())
         }
 

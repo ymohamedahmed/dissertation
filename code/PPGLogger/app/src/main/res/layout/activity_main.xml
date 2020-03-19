@@ -16,10 +16,9 @@
         app:boxedEdges="all">
 
         <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hello_world" />
+            android:id="@+id/statusTextView"
+            android:layout_width="161dp"
+            android:layout_height="92dp" />
 
     </FrameLayout>
 </androidx.wear.widget.BoxInsetLayout>

@@ -71,15 +71,15 @@ def tracking_pipeline(video_path, config:Configuration, display = False):
         start = Timing.time()
         # if this is the first time we've reached the required number of values
         if frame_number % config.window_size == 0 and frame_number//config.window_size == 1:
-            heart_rates.append(config.signal_processor(np.array(values[:config.window_size]), frame_rate))
+            heart_rates.append(config.signal_processor.get_hr(np.array(values[:config.window_size]), frame_rate))
         elif (frame_number-config.window_size)%config.offset == 0 and frame_number>config.window_size:
             n = int((frame_number-config.window_size)/config.offset)
             print(f"N: {n}, Frame number: {frame_number}")
-            heart_rates.append(config.signal_processor(np.array(values[n*config.offset : (n*config.offset)+config.window_size]), frame_rate))
+            heart_rates.append(config.signal_processor.get_hr(np.array(values[n*config.offset : (n*config.offset)+config.window_size]), frame_rate))
         time_ica += (Timing.time()-start)
     print(f"Total times: tracking {time_tracking}s, ROI {time_roi}s, display {time_display}s, ICA {time_ica}s, read {time_read}")
     print(f"Average per frame: tracking {time_tracking/frame_number}s, ROI {time_roi/frame_number}s, display {time_display/frame_number}s, ICA {time_ica/frame_number}s, reading video {time_read/frame_number}")
     print(f"Frames per second: tracking {frame_number/time_tracking}, ROI {frame_number/time_roi}, display {frame_number/time_display if display else 0}, ICA {frame_number/time_ica}, reading video {frame_number/time_read}")
     print(f"Number of frames: {frame_number}")
     total_time = Timing.time() - total_start
-    return (values, heart_rates, frame_number, total_time, time_tracking, time_roi, time_display, time_ica, time_read)
+    return (values, heart_rates, frame_number, frame_rate)
