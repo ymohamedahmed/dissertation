@@ -37,5 +37,5 @@ class PCAProcessor(Processor):
     
     def get_hr(self, values, framerate):
         pca = PCA()
-        pca_result = pca.fit_transform(data)
+        pca_result = pca.fit_transform(values)
         return self._prevalent_freq(pca_result[:,0], framerate)

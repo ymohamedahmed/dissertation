@@ -8,131 +8,137 @@
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}Preparation}{3}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}Sensing and photoplethysmography (PPG)}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Heart rate sensing}{3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}Electrocardiogram}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1.2}Photoplethysmography}{4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}Remote photoplethysmography (rPPG)}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Existing literature}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Possible extensions}{4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Relevant computer vision techniques}{4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Face detection}{4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.2}Optical flow}{4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3.3}Harris corner detection}{4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Approaches to signal processing}{4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Independent Component Analysis}{4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Fourier transforms}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Principal Component Analysis}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Fourier transformation}{4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2.5}Languages and tooling}{4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}OpenCV}{4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Mobile Vision API}{4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.3}Python}{4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.4}Kotlin}{4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.5}Android}{4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.6}Starting Point}{4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.7}Requirements analysis}{4}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2.8}Professional practice}{4}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Implementation}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Languages}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Python}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Kotlin}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}Libraries}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{OpenCV}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Mobile Vision API}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.6}Starting Point}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.7}Requirements analysis}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2.8}Professional practice}{5}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Implementation}{7}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Overview}{5}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}System design}{5}\protected@file@percent }
-\newlabel{section:system_design}{{3.2}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces A UML sequence diagram showcasing the use of threading}}{6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Overview}{7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}System design}{7}\protected@file@percent }
+\newlabel{section:system_design}{{3.2}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces A UML sequence diagram showcasing the use of threading}}{8}\protected@file@percent }
 \citation{LucasKanade}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Face detection}{7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Face tracking}{7}\protected@file@percent }
-\newlabel{section:face_tracking_impl}{{3.3.1}{7}}
-\@writefile{toc}{\contentsline {subsubsection}{Point tracking}{7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces A simplified pseudocode representation of an optical-flow based face tracker}}{8}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Impact of the rate of redetections}{8}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Details}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Face detection}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Face tracking}{9}\protected@file@percent }
+\newlabel{section:face_tracking_impl}{{3.3.1}{9}}
+\@writefile{toc}{\contentsline {subsubsection}{Point tracking}{9}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces A simplified pseudocode representation of an optical-flow based face tracker}}{10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Impact of the rate of redetections}{10}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Details}{11}\protected@file@percent }
 \citation{skinDataset}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Region selection}{10}\protected@file@percent }
-\newlabel{ref:region_selection_impl}{{3.4}{10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Skin detection}{10}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Colour-based filtering}{10}\protected@file@percent }
-\newlabel{section:colour-filter}{{3.4.1}{10}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces A randomly sampled subset of the skin dataset represented in the Cb-Cr axes of YCbCr space}}{11}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces The range of skin tones present in the dataset with the skin and non-skin pixels plotted}}{12}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Issues}{12}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces An example of the hair failure case}}{13}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{K-Means}{13}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces An example of the application of the k-means algorithm to skin detection}}{14}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Region selection}{12}\protected@file@percent }
+\newlabel{ref:region_selection_impl}{{3.4}{12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Skin detection}{12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Colour-based filtering}{12}\protected@file@percent }
+\newlabel{section:colour-filter}{{3.4.1}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces A randomly sampled subset of the skin dataset represented in the Cb-Cr axes of YCbCr space}}{13}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces The range of skin tones present in the dataset with the skin and non-skin pixels plotted}}{14}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Issues}{14}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces An example of the effect of differing the number of clusters}}{15}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Improving the previous approaches}{16}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Identifying the skin tone}{16}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Identifying skin pixels using the skin tone}{17}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{A Bayesian approach}{17}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Defining the threshold}{18}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Defining probability distributions}{18}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Heart rate isolation}{20}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{20}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Independent components analysis (ICA)}{21}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Principal components analysis (PCA)}{21}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces An example of the hair failure case}}{15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{K-Means}{15}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.6}{\ignorespaces An example of the application of the k-means algorithm to skin detection}}{16}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Issues}{16}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.7}{\ignorespaces An example of the effect of differing the number of clusters}}{17}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}Improving the previous approaches}{18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Identifying the skin tone}{18}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Identifying skin pixels using the skin tone}{19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{A Bayesian approach}{19}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Defining the threshold}{20}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Defining probability distributions}{20}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Heart rate isolation}{22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{22}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Independent components analysis (ICA)}{23}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Principal components analysis (PCA)}{23}\protected@file@percent }
 \citation{vanderKooij2019}
 \citation{vanderKooij2019}
-\@writefile{toc}{\contentsline {paragraph}{Conclusion}{22}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{22}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{The split peak issue}{22}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces An example of the split peak issue with a Butterworth filter applied}}{23}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Repository overview}{23}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Conclusion}{24}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{24}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{The split peak issue}{24}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3.8}{\ignorespaces An example of the split peak issue with a Butterworth filter applied}}{25}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Repository overview}{25}\protected@file@percent }
 \citation{Mahnob}
 \citation{Mahnob}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Evaluation}{25}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Evaluation}{27}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Face tracking}{25}\protected@file@percent }
-\newlabel{section:face_tracking}{{4.1}{25}}
-\@writefile{toc}{\contentsline {paragraph}{Research questions}{25}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Dataset}{25}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Metrics}{26}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces A labelled diagram outlining the four metrics defined above.}}{27}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Computing the classification outcomes}{27}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Results}{27}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{Accuracy}{28}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{Motion resistance}{28}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{Performance cost}{28}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{Thresholds}{28}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Summary}{28}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Region selection}{28}\protected@file@percent }
-\newlabel{section:region_selection}{{4.2}{28}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Skin tone detection}{29}\protected@file@percent }
-\newlabel{section:skin_tone_detection}{{4.2.1}{29}}
-\@writefile{toc}{\contentsline {paragraph}{Research questions}{29}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Metrics}{29}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Face tracking}{27}\protected@file@percent }
+\newlabel{section:face_tracking}{{4.1}{27}}
+\@writefile{toc}{\contentsline {paragraph}{Research questions}{27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Dataset}{27}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics}{28}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces A labelled diagram outlining the four metrics defined above.}}{29}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Computing the classification outcomes}{29}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Results}{29}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Summary}{29}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Heart rate isolation}{29}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Identifying the pulse signal}{29}\protected@file@percent }
-\newlabel{section:bss}{{4.3.1}{29}}
-\@writefile{toc}{\contentsline {paragraph}{Research question}{29}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Metrics}{29}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Results}{29}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Summary}{29}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Extracting the heart rate from the pulse signal}{29}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Independent components analysis}{29}\protected@file@percent }
-\newlabel{section:ica_assumption}{{4.3.2}{29}}
-\@writefile{toc}{\contentsline {paragraph}{Research question}{29}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Metrics}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Results}{30}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Accuracy}{30}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Motion resistance}{30}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Performance cost}{30}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Thresholds}{30}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Summary}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{Principal components analysis}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Research question}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Metrics}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Results}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Summary}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Window and stride size}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Research question}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Metrics}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Results}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Summary}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Evaluation of remote heart rate sensing}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Evaluation method}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Experimental setup}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Ethics}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Accuracy}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Research questions}{30}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Metrics}{30}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Region selection}{30}\protected@file@percent }
+\newlabel{section:region_selection}{{4.2}{30}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Skin tone detection}{31}\protected@file@percent }
+\newlabel{section:skin_tone_detection}{{4.2.1}{31}}
+\@writefile{toc}{\contentsline {paragraph}{Research questions}{31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics}{31}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Results}{31}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Summary}{31}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Summary}{31}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusion}{33}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Heart rate isolation}{31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Identifying the pulse signal}{31}\protected@file@percent }
+\newlabel{section:bss}{{4.3.1}{31}}
+\@writefile{toc}{\contentsline {paragraph}{Research question}{31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics}{31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results}{31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Summary}{31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Extracting the heart rate from the pulse signal}{31}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Independent components analysis}{31}\protected@file@percent }
+\newlabel{section:ica_assumption}{{4.3.2}{31}}
+\@writefile{toc}{\contentsline {paragraph}{Research question}{31}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Summary}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{Principal components analysis}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Research question}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Summary}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Window and stride size}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Research question}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Summary}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Evaluation of remote heart rate sensing}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Evaluation method}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Experimental setup}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Ethics}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Accuracy}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Research questions}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Metrics}{32}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Results}{33}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Summary}{33}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Summary}{33}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusion}{35}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibdata{refs}
@@ -140,8 +146,8 @@
 \bibcite{Mahnob}{2}
 \bibcite{skinDataset}{3}
 \bibcite{vanderKooij2019}{4}
-\@writefile{toc}{\contentsline {chapter}{Bibliography}{35}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Project Proposal}{37}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{Bibliography}{37}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Project Proposal}{39}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \gdef\minted@oldcachelist{,

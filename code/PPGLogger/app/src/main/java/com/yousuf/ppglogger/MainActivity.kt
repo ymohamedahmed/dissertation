@@ -36,7 +36,7 @@ class MainActivity : WearableActivity() {
         }
         setAmbientEnabled()
     }
-    fun writePPGData(data: FloatArray, time: Long){
+    fun writePPGData(data: ArrayList<Array<String>>, time: Long){
         val samplingFreq = data.size/(time/1000)
         val filePath = applicationContext.filesDir.absolutePath + File.separator + "$timestamp-freq-$samplingFreq.csv"
         var file = File(filePath)
@@ -49,8 +49,9 @@ class MainActivity : WearableActivity() {
             CSVWriter(FileWriter(filePath),',', CSVWriter.NO_QUOTE_CHARACTER)
         }
 
-        for(point in data){
-            var row = arrayOf(point.toString())
+        writer.writeNext(arrayOf("Timestamp", "PPG"))
+
+        for(row in data){
             writer.writeNext(row)
         }
         Log.d(TAG, "Written PPG data to $timestamp-freq-$samplingFreq.csv")
@@ -76,7 +77,7 @@ class MainActivity : WearableActivity() {
                         // We've stopped recording so write the output to a file
                         val end = System.currentTimeMillis()
                         mSensorManager?.unregisterListener(mPPGListener)
-                        writePPGData(mPPGListener.mData.toFloatArray(), end-start)
+                        writePPGData(mPPGListener.mData, end-start)
                         textView.text = "Not recording"
                     }
                     true
@@ -92,12 +93,16 @@ class MainActivity : WearableActivity() {
 
     class PPGListener : SensorEventListener {
         val TAG = "PPGListener"
-        var mData : ArrayList<Float> = ArrayList()
+        var mData : ArrayList<Array<String>> = ArrayList()
         override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
         }
 
         override fun onSensorChanged(event: SensorEvent?) {
-            mData.add(event?.values!![0].toRawBits().toFloat())
+//            Log.d(TAG, "Timestamp: ${event?.timestamp.toString()}")
+            var row = arrayOf(event?.timestamp.toString(), event?.values!![0].toRawBits().toString())
+            mData.add(row)
+//            mData.add(arrayOf())
+//            mData.add(event?.values!![0].toRawBits().toFloat())
         }
 
     }

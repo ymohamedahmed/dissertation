@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2020.1.29)  14 MAR 2020 13:04
+This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2020.1.29)  23 MAR 2020 10:57
  system commands enabled.
 **diss
 (./diss.tex
@@ -973,13 +973,16 @@ Chapter 1.
 
 ]
 Chapter 2.
-(./preparation/preparation.tex) [3
+(./preparation/preparation.tex
+Underfull \hbox (badness 10000) in paragraph at lines 6--9
+
+ []
+
+[3
+
+]) [4] [5] [6
 
 ]
-Overfull \vbox (131.16931pt too high) has occurred while \output is active []
-
-
-[4]
 Chapter 3.
 (./implementation/implementation.tex
 LaTeX Font Info:    Try loading font information for TS1+lmr on input line 9.
@@ -1000,20 +1003,19 @@ Overfull \hbox (26.53932pt too wide) in paragraph at lines 117--27
  [][] 
  []
 
-[5
-
+[7
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 29--35
 
  []
 
-[6]
+[8]
 Underfull \hbox (badness 10000) in paragraph at lines 44--49
 
  []
 
-[7]
+[9]
 \openout3 = diss.pyg
  (./_minted-diss/default-pyg-prefix.pygstyle)
 (./_minted-diss/default.pygstyle)
@@ -1025,7 +1027,7 @@ File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 4.
-) [8]
+) [10]
 Underfull \hbox (badness 10000) in paragraph at lines 83--86
 
  []
@@ -1035,7 +1037,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 98--101
 
  []
 
-[9]
+[11]
 Underfull \hbox (badness 10000) in paragraph at lines 110--118
 
  []
@@ -1055,19 +1057,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 126--130
 
  []
 
-[10] (./implementation/skin-dataset-2.tex) (./implementation/skin-dataset-1.tex
+[12] (./implementation/skin-dataset-2.tex) (./implementation/skin-dataset-1.tex
 )
 Overfull \hbox (57.21956pt too wide) in paragraph at lines 20567--141
  [][] 
  []
 
-[11]
-<example-image-c.pdf, id=96, 321.2pt x 240.9pt>
+[13]
+<example-image-c.pdf, id=103, 321.2pt x 240.9pt>
 File: example-image-c.pdf Graphic file (type pdf)
 <use example-image-c.pdf>
 Package luatex.def Info: example-image-c.pdf  used on input line 147.
 (luatex.def)             Requested size: 411.93877pt x 308.9648pt.
- [12]
+ [14]
 Underfull \hbox (badness 10000) in paragraph at lines 159--169
 
  []
@@ -1093,13 +1095,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 159--169
 
  []
 
-[13</usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.pdf>]
-<example-image-a.pdf, id=111, 321.2pt x 240.9pt>
+[15</usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-c.pdf>]
+<example-image-a.pdf, id=119, 321.2pt x 240.9pt>
 File: example-image-a.pdf Graphic file (type pdf)
 <use example-image-a.pdf>
 Package luatex.def Info: example-image-a.pdf  used on input line 172.
 (luatex.def)             Requested size: 411.93877pt x 308.9648pt.
- [14</usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.pdf>]
+ [16</usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.pdf>]
 File: example-image-a.pdf Graphic file (type pdf)
 <use example-image-a.pdf>
 Package luatex.def Info: example-image-a.pdf  used on input line 208.
@@ -1109,7 +1111,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 216--220
 
  []
 
-[15]
+[17]
 Underfull \hbox (badness 10000) in paragraph at lines 225--230
 
  []
@@ -1140,12 +1142,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 237--249
 
  []
 
-[16]
+[18]
 Underfull \hbox (badness 10000) in paragraph at lines 250--257
 
  []
 
-[17]
+[19]
 Underfull \hbox (badness 10000) in paragraph at lines 296--305
 
  []
@@ -1155,7 +1157,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 296--305
 
  []
 
-[18]
+[20]
 Underfull \hbox (badness 10000) in paragraph at lines 307--313
 
  []
@@ -1175,7 +1177,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 362--365
 
  []
 
-[19]
+[21]
 Underfull \hbox (badness 10000) in paragraph at lines 376--385
 
  []
@@ -1201,17 +1203,17 @@ Underfull \hbox (badness 1226) in paragraph at lines 387--398
 heart rate in
  []
 
-[20]
+[22]
 Underfull \hbox (badness 10000) in paragraph at lines 400--406
 
  []
 
-[21]
+[23]
 File: example-image-a.pdf Graphic file (type pdf)
 <use example-image-a.pdf>
 Package luatex.def Info: example-image-a.pdf  used on input line 437.
 (luatex.def)             Requested size: 411.93877pt x 308.9648pt.
- [22]) [23] [24
+ [24]) [25] [26
 
 ]
 Chapter 4.
@@ -1220,14 +1222,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--26
 
  []
 
-[25
+[27
 
 ]
 File: example-image-a.pdf Graphic file (type pdf)
 <use example-image-a.pdf>
 Package luatex.def Info: example-image-a.pdf  used on input line 41.
 (luatex.def)             Requested size: 205.96938pt x 154.48056pt.
- [26]
+ [28]
 Underfull \hbox (badness 10000) in paragraph at lines 58--60
 
  []
@@ -1237,7 +1239,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 58--60
 
  []
 
-[27]
+[29]
 Underfull \hbox (badness 10000) in paragraph at lines 88--100
 
  []
@@ -1247,21 +1249,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 88--100
 
  []
 
-[28] [29] [30]) [31] [32
+[30] [31] [32]) [33] [34
 
 ]
 Chapter 5.
-(./conclusion/conclusion.tex) [33
-
-] [34
-
-] (./diss.bbl) [35
+(./conclusion/conclusion.tex) [35
 
 ] [36
 
+] (./diss.bbl) [37
+
+] [38
+
 ]
 Appendix A.
-<proposal/main.pdf, id=204, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=210, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf>
 Package luatex.def Info: proposal/main.pdf  used on input line 168.
@@ -1270,7 +1272,7 @@ File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf>
 Package luatex.def Info: proposal/main.pdf  used on input line 168.
 (luatex.def)             Requested size: 614.29349pt x 794.96806pt.
-<proposal/main.pdf, id=207, page=1, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=213, page=1, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
 Package luatex.def Info: proposal/main.pdf , page1 used on input line 168.
@@ -1279,7 +1281,7 @@ File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
 Package luatex.def Info: proposal/main.pdf , page1 used on input line 168.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-[37
+[39
 
 
 ]
@@ -1295,50 +1297,50 @@ File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
 Package luatex.def Info: proposal/main.pdf , page1 used on input line 168.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
- [38<./proposal/main.pdf>]
-<proposal/main.pdf, id=234, page=2, 614.295pt x 794.97pt>
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 2>
-Package luatex.def Info: proposal/main.pdf , page2 used on input line 168.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 2>
-Package luatex.def Info: proposal/main.pdf , page2 used on input line 168.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 2>
-Package luatex.def Info: proposal/main.pdf , page2 used on input line 168.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
- [39<./proposal/main.pdf>]
-<proposal/main.pdf, id=238, page=3, 614.295pt x 794.97pt>
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 3>
-Package luatex.def Info: proposal/main.pdf , page3 used on input line 168.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 3>
-Package luatex.def Info: proposal/main.pdf , page3 used on input line 168.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 3>
-Package luatex.def Info: proposal/main.pdf , page3 used on input line 168.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
  [40<./proposal/main.pdf>]
-<proposal/main.pdf, id=246, page=4, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=240, page=2, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 4>
-Package luatex.def Info: proposal/main.pdf , page4 used on input line 168.
+<use proposal/main.pdf, page 2>
+Package luatex.def Info: proposal/main.pdf , page2 used on input line 168.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 4>
-Package luatex.def Info: proposal/main.pdf , page4 used on input line 168.
+<use proposal/main.pdf, page 2>
+Package luatex.def Info: proposal/main.pdf , page2 used on input line 168.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 4>
-Package luatex.def Info: proposal/main.pdf , page4 used on input line 168.
+<use proposal/main.pdf, page 2>
+Package luatex.def Info: proposal/main.pdf , page2 used on input line 168.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
  [41<./proposal/main.pdf>]
-<proposal/main.pdf, id=250, page=5, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=244, page=3, 614.295pt x 794.97pt>
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 3>
+Package luatex.def Info: proposal/main.pdf , page3 used on input line 168.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 3>
+Package luatex.def Info: proposal/main.pdf , page3 used on input line 168.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 3>
+Package luatex.def Info: proposal/main.pdf , page3 used on input line 168.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+ [42<./proposal/main.pdf>]
+<proposal/main.pdf, id=252, page=4, 614.295pt x 794.97pt>
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 4>
+Package luatex.def Info: proposal/main.pdf , page4 used on input line 168.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 4>
+Package luatex.def Info: proposal/main.pdf , page4 used on input line 168.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 4>
+Package luatex.def Info: proposal/main.pdf , page4 used on input line 168.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+ [43<./proposal/main.pdf>]
+<proposal/main.pdf, id=256, page=5, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 5>
 Package luatex.def Info: proposal/main.pdf , page5 used on input line 168.
@@ -1351,16 +1353,16 @@ File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 5>
 Package luatex.def Info: proposal/main.pdf , page5 used on input line 168.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
- [42<./proposal/main.pdf>] (./diss.aux))
+ [44<./proposal/main.pdf>] (./diss.aux))
 
 Here is how much of LuaTeX's memory you used:
  30119 strings out of 494291
  932664,12246980 words of node,token memory allocated
- 799 words of node memory still in use:
-   22 hlist, 2 vlist, 10 rule, 7 glue, 1 kern, 51 glue_spec, 2 write, 16 pdf_lit
+ 806 words of node memory still in use:
+   22 hlist, 2 vlist, 10 rule, 8 glue, 1 kern, 51 glue_spec, 2 write, 16 pdf_lit
 eral, 16 pdf_colorstack nodes
-   avail lists: 1:9,2:61,3:241342,4:66,5:234,6:35,7:5280,8:68,9:464,10:25,11:323
-
+   avail lists: 1:10,2:60,3:241342,4:66,5:234,6:34,7:5280,8:68,9:464,10:25,11:32
+3
  32958 multiletter control sequences out of 65536+600000
  74 fonts using 3071795 bytes
  78i,19n,136p,841b,3112s stack positions out of 5000i,500n,10000p,713372b,100000s
@@ -1384,10 +1386,10 @@ share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public
 fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmro12.
 pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on diss.pdf (48 pages, 1127592 bytes).
+Output written on diss.pdf (50 pages, 1129843 bytes).
 
-PDF statistics: 338 PDF objects out of 1000 (max. 8388607)
- 226 compressed objects within 3 object streams
+PDF statistics: 344 PDF objects out of 1000 (max. 8388607)
+ 230 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 131072)
  176 words of extra memory for PDF output out of 10000 (max. 100000000)
 

@@ -5,26 +5,78 @@ and described in relation to this project.
 \section{Heart rate sensing}
 Before attempting to develop a system which can estimate the heart rate of a user without physical contact, it is useful to understand how traditional heart rate sensors work.
 Although it is clear that a non-contact system is constrained by different requirements, it is common when developing low fidelity sensors to begin by attempting to mimic high fidelity alternatives. \\\\
-This project is essentially the development of a virtual sensor\footnote{} that derives its data from an existing sensor, the camera. For this reason, understanding the workings of the two main alternative sensors is critical. By under
+This project can be viewed as the development of a virtual sensor\footnote{A sensor which does not dervie its results from a direct physical realisation of that sensor} that derives its data from an existing sensor, the camera. It is for this reason, that the planning of the project proceeds by, first, understanding the workings of the two main alternative sensors and then reasoning about how one might derive these results from a camera instead.
+\\\\
+Electrocardiography and photoplethysmography are the two of the most common techniques for measuring heart rate, each of which proceed by measuring alternate phenomena.
 
-\subsection{Electrocardiogram}
+\subsection{Electrocardiography}
+% Talk about how it works
+% The fact it's a gold standard
+% But expensive 
+An electrocardiogram (ECG) is a recording of the electrical activity of the heart. Electrodes that make contact with the skin, measure how the voltage varies with time.
+This is critical since at the beat of a heart there is a very specific electrical pattern that occurs. When the cardiac muscles contract, to cause a heart beat, the muscle cells undergo
+\textit{depolarization}. This is a change in the overall electric charge of the cell and is measurable by the electodes. \\\\
+Through this mechanism, the electrodes can record each beat of the heart and the average number of beats in a given window, is known as the heart rate.
+\begin{figure}[H]
+    % Add an image showing how in noisy Fourier transforms the HR is not just highest peak with result from Butterworth filter
+    \includegraphics[width=\textwidth]{example-image-a}
+   \caption{An example ECG signal} 
+\end{figure}
+\noindent
+Crucially for this project, the ECG is considered as the highest fidelity means of measuring heart rate. This is because the electrodes can perceive very minor changes in voltage and, thereby, very rarely produce false beats or miss beats of the heart. It is for this reason, that throughout this project it is considered suitable enough to behave as a ground truth for any experiments conducted.
+\\\\
+It is worth noting that ECG sensors tend to be relatively expensive, and as a result, have fueled the uptake of lower fidelity alternatives.
 
 \subsection{Photoplethysmography}
+% Much more common, talk about pulse oximeter
+% How the smartwatches have added it 
 
+A much more common alternative to electrocardiography, especially for the purpose of health sensing outside of medical scenarios, is photoplethysmography (PPG).
+Instead of using an electrical signal to ascertain heart beats, PPG uses an optical sensor to detect changes in the volume of blood passing beneath the skin.
+When a heart beat occurs, blood flows beneath the skin and outwards from the heart. When this occurs, there is a perceptible change in the volume of blood passing beneth the skin.
+\\\\
+
+
+\begin{figure}[H]
+
+    % Add an image showing how in noisy Fourier transforms the HR is not just highest peak with result from Butterworth filter
+    \includegraphics[width=\textwidth]{example-image-b}
+   \caption{An example PPG signal} 
+\end{figure}
 
 \section{Remote photoplethysmography (rPPG)}
+% Give a summary about how the literature proceeds
+% Show the mapping between how we use the camera and how PPG sensors work
+
 \subsection{Existing literature}
+% Look at existing literature
+
 \subsection{Possible extensions}
+% Most literature reports heavily on accuracy in stationary cases
+% Little report on movement and  changing distance
+% Few efforts to describe performance and few optimisations
 
 \section{Relevant computer vision techniques}
 \subsection{Face detection}
+% Talk about viola-jones and why it sucks
+% Talk about movement towards neural net based solutions 
+
 \subsection{Optical flow}
+% Describe the optimisation problem
+% Why it often works poorly for long periods of time
+% Descibe Lucas-Kanade
+
 \subsection{Harris corner detection}
+% Describe algorithm and why it is useful
+
 % \section{Conditional Random Fields}
 % \section{Semantic Segmentation}
 \section{Approaches to signal processing}
+
 \subsection{Independent Component Analysis}
+\subsection{Principal Component Analysis}
 \subsection{Fourier transformation}
+
 % \section{Halide}
 % \section{RenderScript}
 % \section{Differentiable Programming}
@@ -33,15 +85,19 @@ This project is essentially the development of a virtual sensor\footnote{} that 
 \section{Languages and tooling}
 \subsection{Languages}
 \paragraph{Python}
+% large provisions for rapid development
 \paragraph{Kotlin}
+% Power of the JVM which has lots of libraries
+% Directly targets the Android OS
 
 \subsection{Libraries}
 \paragraph{OpenCV}
 \paragraph{Mobile Vision API}
 
-\subsection{Android}
 
 \section{Starting Point}
+% Courses this year which were relevant: Mobile and sensor systems, Computer Vision
+% read the DSP notes
 
 \section{Requirements analysis}
 
@@ -49,4 +105,4 @@ This project is essentially the development of a virtual sensor\footnote{} that 
 \section{Professional practice}
 % planning 
 % prototyping leverages speed of development in python
-% android implementation completes the movement towards higher availability
+% android implementation completes the movement towards higher availability but overall focus was on the Python implementation
