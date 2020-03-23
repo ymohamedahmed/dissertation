@@ -1,6 +1,7 @@
 import numpy as np
 import cv2 as cv
 from sklearn.cluster import KMeans
+from scipy.stats import truncnorm
 
 def _cluster_skin_distance(ycrcb_colour):
     """
@@ -75,20 +76,37 @@ class RepeatedKMeansSkinDetector(RegionSelector):
 
 class BayesianSkinDetector(RegionSelector):
 
-    def __init__(self, threshold=0.5):
+    def __init__(self, threshold=0.5, skin_tone_freshness=30, mean=0, std=20):
         self.threshold = threshold
+        self.std=std
+        self.mean=mean
+        self._frame_number = 0
+        self._freshness = skin_tone_freshness
+        self.skin_tone = None
+        self.distribution = None
 
     def _prior(self, image):
         return 
 
     def _class_conditional(self, image, skin_tone):
+        # DO this vectorized!!!! 
+        numerator = _pdf(_dist(image, skin_tone))
         return
 
-    def _truncated_normal_pdf(self, x, mean, std):
-        return
+    def _max_distance(self, skin_tone):
+
+    def _dist(self, x, y):
+        return np.sqrt(np.sum(np.square(x-y)))
+
+    def _pdf(self, x):
+        return self.distribution.pdf(x)
 
     def detect(self, image):
+        if(self.frame_number % self._freshness == 0):
+            self.skin_tone = skin_tone(image)
+            self.distribution = truncnorm(a=0, loc=0, b=_max_distance(self.skin_tone), )
+        self.frame_number += 1
         return (self._class_conditional(image)*self._prior(image))>self.threshold
     
     def __str__(self):
-        return self.__class__.__name__
+        return f"{self.__class__.__name__}_mean-{self.mean}_std-{self.std}_threshold-{self.threshold}"

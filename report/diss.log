@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2020.1.29)  23 MAR 2020 20:29
+This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2020.1.29)  23 MAR 2020 21:03
  system commands enabled.
 **diss
 (./diss.tex
@@ -1031,7 +1031,7 @@ Package luatex.def Info: example-image-b.pdf  used on input line 46.
  [6</usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.pdf>]
 File: example-image-b.pdf Graphic file (type pdf)
 <use example-image-b.pdf>
-Package luatex.def Info: example-image-b.pdf  used on input line 61.
+Package luatex.def Info: example-image-b.pdf  used on input line 62.
 (luatex.def)             Requested size: 411.93877pt x 308.9648pt.
 
 [7] [8]) [9] [10]
@@ -1215,55 +1215,60 @@ Underfull \hbox (badness 10000) in paragraph at lines 307--313
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 320--325
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 320--325
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 362--365
+Underfull \hbox (badness 10000) in paragraph at lines 315--323
 
  []
 
 [25]
-Underfull \hbox (badness 10000) in paragraph at lines 376--385
+Underfull \hbox (badness 10000) in paragraph at lines 325--330
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 387--398
+Underfull \hbox (badness 10000) in paragraph at lines 325--330
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 387--398
+Underfull \hbox (badness 10000) in paragraph at lines 367--370
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 387--398
+Underfull \hbox (badness 10000) in paragraph at lines 381--390
+
+ []
+
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 392--403
 
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 387--398
+Underfull \hbox (badness 10000) in paragraph at lines 392--403
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 392--403
+
+ []
+
+
+Underfull \hbox (badness 1226) in paragraph at lines 392--403
 \OT1/lmr/m/n/12 In this sce-nario, I pro-ceed by at-tempt-ing to iden-tify the 
 heart rate in
  []
 
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 400--406
+
+Underfull \hbox (badness 10000) in paragraph at lines 405--411
 
  []
 
 [27]
 File: example-image-a.pdf Graphic file (type pdf)
 <use example-image-a.pdf>
-Package luatex.def Info: example-image-a.pdf  used on input line 437.
+Package luatex.def Info: example-image-a.pdf  used on input line 442.
 (luatex.def)             Requested size: 411.93877pt x 308.9648pt.
  [28]) [29] [30
 
@@ -1438,7 +1443,7 @@ share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public
 fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmro12.
 pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on diss.pdf (54 pages, 1151790 bytes).
+Output written on diss.pdf (54 pages, 1152559 bytes).
 
 PDF statistics: 366 PDF objects out of 1000 (max. 8388607)
  246 compressed objects within 3 object streams

@@ -306,7 +306,7 @@ A reasonable assumption might be that if the pixel being considered, $x_i$, is a
    d(s, x_i) \sim N(0, \sigma) 
 \end{equation*}
 However, since colours are only represented in a finite interval, for example, between zero and one (or 0 and 255), this is not strictly correct. 
-The above model has a non-zero probability associated with impossible skin-tones, since there are minimum and maximum possible distances 
+The above model has a non-zero probability associated with impossible skin-tones, since there are minimum and maximum possible distances.
 As a result, I use a \textit{truncated} Normal distribution\footnote{A truncated distribution modifies the domain of a distribution by defining an updated probability density function which is zero outside a particular range $[a,b]$. This is achieved in such a way that the properties of a valid probability distribution are maintained.} instead.
 \\\\
 The probability density function of a truncated normal distribution between the values $a$ and $b$, mean $\mu$ and variance $\sigma$ is defined as: 
@@ -314,7 +314,12 @@ The probability density function of a truncated normal distribution between the 
     f(x) = \frac{1}{\sigma}\frac{\phi(\frac{x-\mu}{\sigma})}{\Phi(\frac{b-\mu}{\sigma}) - \Phi(\frac{a-\mu}{\sigma})}
 \end{equation*}
 \noindent
-We define the probability in proportion to the probability density function of the truncated distribution for each possible skin tone.
+In this case, the values of $a$ and $b$ represent the minimum and maximum distances respectively from the given skin tone $s$. 
+Hence, $a=0$, since the pixel being considered may have the same colour as the skin tone, in which case, $d(x_i, s) = d(s, s) = 0$.
+The value of $b$ here is the distance between the skin tone and the furthest possible point in the colour space.
+In this approach, a three dimensional colour space is used and, hence, the value of $b$ is the distance between $s$ and the furthest corner of the colourspace cube.
+\\\\
+Given this, the probability is defined in proportion to the probability density function of the truncated distribution for each possible skin tone.
 \begin{equation*}
     \Pr(s|C_\mathrm{skin}, x_i) = \frac{f(d(s,x_i))}{\sum_{s' \in C}f(d(s',x_i))}
 \end{equation*}
