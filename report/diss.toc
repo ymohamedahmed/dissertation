@@ -3,107 +3,108 @@
 \contentsline {paragraph}{Motivation}{1}% 
 \contentsline {chapter}{\numberline {2}Preparation}{3}% 
 \contentsline {section}{\numberline {2.1}Heart rate sensing}{3}% 
-\contentsline {subsection}{\numberline {2.1.1}Electrocardiogram}{4}% 
-\contentsline {subsection}{\numberline {2.1.2}Photoplethysmography}{4}% 
-\contentsline {section}{\numberline {2.2}Remote photoplethysmography (rPPG)}{4}% 
-\contentsline {subsection}{\numberline {2.2.1}Existing literature}{4}% 
-\contentsline {subsection}{\numberline {2.2.2}Possible extensions}{4}% 
-\contentsline {section}{\numberline {2.3}Relevant computer vision techniques}{4}% 
-\contentsline {subsection}{\numberline {2.3.1}Face detection}{4}% 
-\contentsline {subsection}{\numberline {2.3.2}Optical flow}{4}% 
-\contentsline {subsection}{\numberline {2.3.3}Harris corner detection}{4}% 
-\contentsline {section}{\numberline {2.4}Approaches to signal processing}{4}% 
-\contentsline {subsection}{\numberline {2.4.1}Independent Component Analysis}{4}% 
-\contentsline {subsection}{\numberline {2.4.2}Principal Component Analysis}{4}% 
-\contentsline {subsection}{\numberline {2.4.3}Fourier transformation}{4}% 
-\contentsline {section}{\numberline {2.5}Languages and tooling}{4}% 
-\contentsline {subsection}{\numberline {2.5.1}Languages}{4}% 
-\contentsline {paragraph}{Python}{4}% 
-\contentsline {paragraph}{Kotlin}{4}% 
-\contentsline {subsection}{\numberline {2.5.2}Libraries}{4}% 
-\contentsline {paragraph}{OpenCV}{4}% 
-\contentsline {paragraph}{Mobile Vision API}{4}% 
-\contentsline {section}{\numberline {2.6}Starting Point}{5}% 
-\contentsline {section}{\numberline {2.7}Requirements analysis}{5}% 
-\contentsline {section}{\numberline {2.8}Professional practice}{5}% 
-\contentsline {chapter}{\numberline {3}Implementation}{7}% 
-\contentsline {section}{\numberline {3.1}Overview}{7}% 
-\contentsline {section}{\numberline {3.2}System design}{7}% 
-\contentsline {section}{\numberline {3.3}Face detection}{9}% 
-\contentsline {subsection}{\numberline {3.3.1}Face tracking}{9}% 
-\contentsline {subsubsection}{Point tracking}{9}% 
-\contentsline {paragraph}{Impact of the rate of redetections}{10}% 
-\contentsline {paragraph}{Details}{11}% 
-\contentsline {section}{\numberline {3.4}Region selection}{12}% 
-\contentsline {subsection}{\numberline {3.4.1}Skin detection}{12}% 
-\contentsline {subsubsection}{Colour-based filtering}{12}% 
-\contentsline {paragraph}{Issues}{14}% 
-\contentsline {subsubsection}{K-Means}{15}% 
-\contentsline {paragraph}{Issues}{16}% 
-\contentsline {subsection}{\numberline {3.4.2}Improving the previous approaches}{18}% 
-\contentsline {subsubsection}{Identifying the skin tone}{18}% 
-\contentsline {subsubsection}{Identifying skin pixels using the skin tone}{19}% 
-\contentsline {paragraph}{A Bayesian approach}{19}% 
-\contentsline {paragraph}{Defining the threshold}{20}% 
-\contentsline {paragraph}{Defining probability distributions}{20}% 
-\contentsline {section}{\numberline {3.5}Heart rate isolation}{22}% 
-\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{22}% 
-\contentsline {subsubsection}{Independent components analysis (ICA)}{23}% 
-\contentsline {subsubsection}{Principal components analysis (PCA)}{23}% 
-\contentsline {paragraph}{Conclusion}{24}% 
-\contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{24}% 
-\contentsline {subsubsection}{The split peak issue}{24}% 
-\contentsline {section}{\numberline {3.6}Repository overview}{25}% 
-\contentsline {chapter}{\numberline {4}Evaluation}{27}% 
-\contentsline {section}{\numberline {4.1}Face tracking}{27}% 
-\contentsline {paragraph}{Research questions}{27}% 
-\contentsline {paragraph}{Dataset}{27}% 
-\contentsline {paragraph}{Metrics}{28}% 
-\contentsline {paragraph}{Computing the classification outcomes}{29}% 
-\contentsline {paragraph}{Results}{29}% 
-\contentsline {subparagraph}{Accuracy}{30}% 
-\contentsline {subparagraph}{Motion resistance}{30}% 
-\contentsline {subparagraph}{Performance cost}{30}% 
-\contentsline {subparagraph}{Thresholds}{30}% 
-\contentsline {paragraph}{Summary}{30}% 
-\contentsline {section}{\numberline {4.2}Region selection}{30}% 
-\contentsline {subsection}{\numberline {4.2.1}Skin tone detection}{31}% 
+\contentsline {subsection}{\numberline {2.1.1}Electrocardiography}{4}% 
+\contentsline {subsection}{\numberline {2.1.2}Photoplethysmography}{5}% 
+\contentsline {subsubsection}{Wearable PPG sensors}{8}% 
+\contentsline {section}{\numberline {2.2}Remote photoplethysmography (rPPG)}{9}% 
+\contentsline {subsection}{\numberline {2.2.1}Existing literature}{9}% 
+\contentsline {subsection}{\numberline {2.2.2}Possible extensions}{9}% 
+\contentsline {section}{\numberline {2.3}Relevant computer vision techniques}{9}% 
+\contentsline {subsection}{\numberline {2.3.1}Face detection}{9}% 
+\contentsline {subsection}{\numberline {2.3.2}Optical flow}{9}% 
+\contentsline {subsection}{\numberline {2.3.3}Harris corner detection}{9}% 
+\contentsline {section}{\numberline {2.4}Approaches to signal processing}{9}% 
+\contentsline {subsection}{\numberline {2.4.1}Independent Component Analysis}{9}% 
+\contentsline {subsection}{\numberline {2.4.2}Principal Component Analysis}{9}% 
+\contentsline {subsection}{\numberline {2.4.3}Fourier transformation}{9}% 
+\contentsline {section}{\numberline {2.5}Languages and tooling}{9}% 
+\contentsline {subsection}{\numberline {2.5.1}Languages}{9}% 
+\contentsline {paragraph}{Python}{9}% 
+\contentsline {paragraph}{Kotlin}{9}% 
+\contentsline {subsection}{\numberline {2.5.2}Libraries}{9}% 
+\contentsline {paragraph}{OpenCV}{9}% 
+\contentsline {paragraph}{Mobile Vision API}{9}% 
+\contentsline {section}{\numberline {2.6}Starting Point}{10}% 
+\contentsline {section}{\numberline {2.7}Requirements analysis}{10}% 
+\contentsline {section}{\numberline {2.8}Professional practice}{10}% 
+\contentsline {chapter}{\numberline {3}Implementation}{11}% 
+\contentsline {section}{\numberline {3.1}Overview}{11}% 
+\contentsline {section}{\numberline {3.2}System design}{11}% 
+\contentsline {section}{\numberline {3.3}Face detection}{13}% 
+\contentsline {subsection}{\numberline {3.3.1}Face tracking}{13}% 
+\contentsline {subsubsection}{Point tracking}{13}% 
+\contentsline {paragraph}{Impact of the rate of redetections}{14}% 
+\contentsline {paragraph}{Details}{15}% 
+\contentsline {section}{\numberline {3.4}Region selection}{16}% 
+\contentsline {subsection}{\numberline {3.4.1}Skin detection}{16}% 
+\contentsline {subsubsection}{Colour-based filtering}{16}% 
+\contentsline {paragraph}{Issues}{18}% 
+\contentsline {subsubsection}{K-Means}{19}% 
+\contentsline {paragraph}{Issues}{20}% 
+\contentsline {subsection}{\numberline {3.4.2}Improving the previous approaches}{22}% 
+\contentsline {subsubsection}{Identifying the skin tone}{22}% 
+\contentsline {subsubsection}{Identifying skin pixels using the skin tone}{23}% 
+\contentsline {paragraph}{A Bayesian approach}{23}% 
+\contentsline {paragraph}{Defining the threshold}{24}% 
+\contentsline {paragraph}{Defining probability distributions}{24}% 
+\contentsline {section}{\numberline {3.5}Heart rate isolation}{26}% 
+\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{26}% 
+\contentsline {subsubsection}{Independent components analysis (ICA)}{27}% 
+\contentsline {subsubsection}{Principal components analysis (PCA)}{27}% 
+\contentsline {paragraph}{Conclusion}{28}% 
+\contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{28}% 
+\contentsline {subsubsection}{The split peak issue}{28}% 
+\contentsline {section}{\numberline {3.6}Repository overview}{29}% 
+\contentsline {chapter}{\numberline {4}Evaluation}{31}% 
+\contentsline {section}{\numberline {4.1}Face tracking}{31}% 
 \contentsline {paragraph}{Research questions}{31}% 
-\contentsline {paragraph}{Metrics}{31}% 
-\contentsline {paragraph}{Results}{31}% 
-\contentsline {paragraph}{Summary}{31}% 
-\contentsline {section}{\numberline {4.3}Heart rate isolation}{31}% 
-\contentsline {subsection}{\numberline {4.3.1}Identifying the pulse signal}{31}% 
-\contentsline {paragraph}{Research question}{31}% 
-\contentsline {paragraph}{Metrics}{31}% 
-\contentsline {paragraph}{Results}{31}% 
-\contentsline {paragraph}{Summary}{31}% 
-\contentsline {subsection}{\numberline {4.3.2}Extracting the heart rate from the pulse signal}{31}% 
-\contentsline {subsubsection}{Independent components analysis}{31}% 
-\contentsline {paragraph}{Research question}{31}% 
+\contentsline {paragraph}{Dataset}{31}% 
 \contentsline {paragraph}{Metrics}{32}% 
-\contentsline {paragraph}{Results}{32}% 
-\contentsline {paragraph}{Summary}{32}% 
-\contentsline {subsubsection}{Principal components analysis}{32}% 
-\contentsline {paragraph}{Research question}{32}% 
-\contentsline {paragraph}{Metrics}{32}% 
-\contentsline {paragraph}{Results}{32}% 
-\contentsline {paragraph}{Summary}{32}% 
-\contentsline {subsection}{\numberline {4.3.3}Window and stride size}{32}% 
-\contentsline {paragraph}{Research question}{32}% 
-\contentsline {paragraph}{Metrics}{32}% 
-\contentsline {paragraph}{Results}{32}% 
-\contentsline {paragraph}{Summary}{32}% 
-\contentsline {section}{\numberline {4.4}Evaluation of remote heart rate sensing}{32}% 
-\contentsline {subsection}{\numberline {4.4.1}Evaluation method}{32}% 
-\contentsline {paragraph}{Experimental setup}{32}% 
-\contentsline {paragraph}{Ethics}{32}% 
-\contentsline {subsection}{\numberline {4.4.2}Accuracy}{32}% 
-\contentsline {paragraph}{Research questions}{32}% 
-\contentsline {paragraph}{Metrics}{32}% 
+\contentsline {paragraph}{Computing the classification outcomes}{33}% 
 \contentsline {paragraph}{Results}{33}% 
-\contentsline {paragraph}{Summary}{33}% 
-\contentsline {section}{\numberline {4.5}Summary}{33}% 
-\contentsline {chapter}{\numberline {5}Conclusion}{35}% 
-\contentsline {chapter}{Bibliography}{37}% 
-\contentsline {chapter}{\numberline {A}Project Proposal}{39}% 
+\contentsline {subparagraph}{Accuracy}{34}% 
+\contentsline {subparagraph}{Motion resistance}{34}% 
+\contentsline {subparagraph}{Performance cost}{34}% 
+\contentsline {subparagraph}{Thresholds}{34}% 
+\contentsline {paragraph}{Summary}{34}% 
+\contentsline {section}{\numberline {4.2}Region selection}{34}% 
+\contentsline {subsection}{\numberline {4.2.1}Skin tone detection}{35}% 
+\contentsline {paragraph}{Research questions}{35}% 
+\contentsline {paragraph}{Metrics}{35}% 
+\contentsline {paragraph}{Results}{35}% 
+\contentsline {paragraph}{Summary}{35}% 
+\contentsline {section}{\numberline {4.3}Heart rate isolation}{35}% 
+\contentsline {subsection}{\numberline {4.3.1}Identifying the pulse signal}{35}% 
+\contentsline {paragraph}{Research question}{35}% 
+\contentsline {paragraph}{Metrics}{35}% 
+\contentsline {paragraph}{Results}{35}% 
+\contentsline {paragraph}{Summary}{35}% 
+\contentsline {subsection}{\numberline {4.3.2}Extracting the heart rate from the pulse signal}{35}% 
+\contentsline {subsubsection}{Independent components analysis}{35}% 
+\contentsline {paragraph}{Research question}{35}% 
+\contentsline {paragraph}{Metrics}{36}% 
+\contentsline {paragraph}{Results}{36}% 
+\contentsline {paragraph}{Summary}{36}% 
+\contentsline {subsubsection}{Principal components analysis}{36}% 
+\contentsline {paragraph}{Research question}{36}% 
+\contentsline {paragraph}{Metrics}{36}% 
+\contentsline {paragraph}{Results}{36}% 
+\contentsline {paragraph}{Summary}{36}% 
+\contentsline {subsection}{\numberline {4.3.3}Window and stride size}{36}% 
+\contentsline {paragraph}{Research question}{36}% 
+\contentsline {paragraph}{Metrics}{36}% 
+\contentsline {paragraph}{Results}{36}% 
+\contentsline {paragraph}{Summary}{36}% 
+\contentsline {section}{\numberline {4.4}Evaluation of remote heart rate sensing}{36}% 
+\contentsline {subsection}{\numberline {4.4.1}Evaluation method}{36}% 
+\contentsline {paragraph}{Experimental setup}{36}% 
+\contentsline {paragraph}{Ethics}{36}% 
+\contentsline {subsection}{\numberline {4.4.2}Accuracy}{36}% 
+\contentsline {paragraph}{Research questions}{36}% 
+\contentsline {paragraph}{Metrics}{36}% 
+\contentsline {paragraph}{Results}{37}% 
+\contentsline {paragraph}{Summary}{37}% 
+\contentsline {section}{\numberline {4.5}Summary}{37}% 
+\contentsline {chapter}{\numberline {5}Conclusion}{39}% 
+\contentsline {chapter}{Bibliography}{41}% 
+\contentsline {chapter}{\numberline {A}Project Proposal}{43}% 
