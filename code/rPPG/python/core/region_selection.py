@@ -2,12 +2,14 @@ import numpy as np
 import cv2 as cv
 from sklearn.cluster import KMeans
 from scipy.stats import truncnorm
+from functools import partial
 
 def _cluster_skin_distance(ycrcb_colour):
     """
         We define skin threshold as (137, 74) => (181, 126) and compute distance from a point to this rectangle
     """
     x,y = (137+181)/2.0, (74+126)/2.0
+    width, height = 181-137, 126-74
     px,py = ycrcb_colour[1], ycrcb_colour[2]
     dx = max(abs(px - x) - width / 2, 0)
     dy = max(abs(py - y) - height / 2, 0)
@@ -21,7 +23,7 @@ def skin_tone(frame, alpha=3, beta=1, clusters=5):
     kmeans = KMeans(n_clusters=clusters, n_jobs=-1, max_iter=50).fit(arr)
     centers = kmeans.cluster_centers_
     counts = np.bincount(kmeans.labels_)
-    scores = [(alpha*counts[i]) - (beta*_cluster_skin_distance(centers[i]))for i in range(len(centers))]
+    scores = np.array([(alpha*counts[i]) - (beta*_cluster_skin_distance(centers[i]))for i in range(len(centers))])
     return centers[scores.argmax()]
 
 class RegionSelector():
@@ -76,9 +78,10 @@ class RepeatedKMeansSkinDetector(RegionSelector):
 
 class BayesianSkinDetector(RegionSelector):
 
-    def __init__(self, threshold=0.5, skin_tone_freshness=30, mean=0, std=20):
+    def __init__(self, threshold=0.5, skin_tone_freshness=30, mean=0, skin_std=20, non_skin_std=100):
         self.threshold = threshold
-        self.std=std
+        self.skin_std=skin_std
+        self.non_skin_std=non_skin_std
         self.mean=mean
         self._frame_number = 0
         self._freshness = skin_tone_freshness
@@ -86,27 +89,54 @@ class BayesianSkinDetector(RegionSelector):
         self.distribution = None
 
     def _prior(self, image):
-        return 
+        return 0.7
 
     def _class_conditional(self, image, skin_tone):
         # DO this vectorized!!!! 
-        numerator = _pdf(_dist(image, skin_tone))
-        return
+        # print(f"Image: {image}")
+        # print(f"Skin tone: {skin_tone}")
+        distance_matrix = self._dist(image, skin_tone, axis=2)
+        # print(f"Distance matrix: {distance_matrix}")
+        skin_probs = np.array(list(map(partial(self._pdf, self.skin_std), distance_matrix)))
+        # numerator = np.array(list(map(self._pdf, distance_matrix)))
 
+        # x = np.zeros(256**2)
+        # y,z = np.mgrid[0:256:1, 0:256:1]
+        # all_skin_tones = np.vstack((x, y.flatten(), z.flatten())).T
+        # denominator = np.sum(self._pdf(self._dist(all_skin_tones, image, axis=2)))
+
+        # print(f"Numerator: {numerator}, Denominator: {denominator}")
+
+
+        not_skin_dm = self._max_distance(skin_tone)-distance_matrix
+        not_skin_probs = np.array(list(map(partial(self._pdf, self.non_skin_std), not_skin_dm)))
+        # not_skin_denominator = np.sum(self._pdf(self._dist(all_skin_tones, skin_tone)))
+
+        return skin_probs, not_skin_probs
+        # return numerator/denominator
+    
     def _max_distance(self, skin_tone):
+        # Since there are eight corners of the cube, but Y is zero for all of them 
+        # since we're not considering the Y value in the YCrCb colour space
+        corners = np.array([[0,0,0], [0,0,255], [0,255,0], [0,255,255]])
+        return np.max(self._dist(corners, skin_tone, axis=1))
 
-    def _dist(self, x, y):
-        return np.sqrt(np.sum(np.square(x-y)))
+    def _dist(self, x, y, axis=1):
+        return np.sqrt(np.sum(np.square(x-y), axis=axis))
 
-    def _pdf(self, x):
-        return self.distribution.pdf(x)
+    def _pdf(self, std, x):
+        return truncnorm.pdf(x=x, a=0, loc=self.mean, b=self._max_distance(self.skin_tone), scale=std)
 
     def detect(self, image):
-        if(self.frame_number % self._freshness == 0):
+        image = cv.cvtColor(image, cv.COLOR_BGR2YCrCb)
+        image[:, :, 0] = 0
+        if(self._frame_number % self._freshness == 0):
             self.skin_tone = skin_tone(image)
-            self.distribution = truncnorm(a=0, loc=0, b=_max_distance(self.skin_tone), )
-        self.frame_number += 1
-        return (self._class_conditional(image)*self._prior(image))>self.threshold
+        self._frame_number += 1
+        skin_probs, ns_probs = self._class_conditional(image, self.skin_tone)
+        skin_post, ns_post = skin_probs*self._prior(image), ns_probs*(1-self._prior(image))
+        return skin_post, ns_post, skin_post>ns_post
+        # return (*self._prior(image))#>self.threshold
     
     def __str__(self):
-        return f"{self.__class__.__name__}_mean-{self.mean}_std-{self.std}_threshold-{self.threshold}"
+        return f"{self.__class__.__name__}_mean-{self.mean}_skin-std-{self.skin_std}_threshold-{self.threshold}"
