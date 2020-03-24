@@ -104,6 +104,7 @@ subject to noise caused by lighting conditions. However, cameras contain much la
 reliability of each measurement. Although it is difficult to evaluate which sensors are favoured by this balance based on intuition alone.
 
 \subsection{Literature review}
+\label{ref:literature_review}
 % Look at existing literature
 % talk about how literature says that easiest to get data from the face
 % blood vessels near the surface of the skin
@@ -119,12 +120,25 @@ reliability of each measurement. Although it is difficult to evaluate which sens
 % Most consider all the pixels in the bounding box of the face => makes sense because they're not 
 % considering motion and are at close distances so resistance to noise is less important
 Remote heart rate sensing should be viewed as a means of widening access to health data. Under the assumption that cameras are more widespread than wearable devices, this must be the case.
+Large proportions of the literature report heavily on accuracy, clearly this is valid, since inaccurate measurements could mislead users. However, if the earlier argument is to be believed, then 
+performance and robustness are of equal importance. That is, the computations involved must be achievable in a reasonable amount of time on a standard computing device. 
+Furthermore, heart rate estimations must be robust to changing conditions or, at the very least, their failure scenarios should be well documented. 
+Under this analysis, several extensions to the current literature were formulated and researched throughout the project:
+\begin{itemize}
+    \item document the performance of associated algorithms and attempt to achieve reasonable performance on standard devices
+    \item investigate the effect of motion and distance on accuracy.
+\end{itemize}
 
 
 \section{Relevant computer vision techniques}
+Remote heart rate sensing operates directly on a camera stream. To such end, understanding the composition of frames is a critical 
+aspect of the system, in the same way that an ECG relies on interpreting electrical signals. In Section \ref{ref:literature_review} it was stated that it is widely believed that 
+rPPG is easiest to achieve by considering pixels in the face of the user. So face detection, a common task in the field of Computer Vision, is required.
 \subsection{Face detection}
 % Talk about viola-jones and why it sucks
-% Talk about movement towards neural net based solutions \\\\
+% Talk about movement towards neural net based solutions 
+\paragraph{Viola-Jones algorithm}
+\paragraph{Neural network approaches}
 
 \subsection{Optical flow}
 % Describe the optimisation problem
@@ -133,6 +147,7 @@ Remote heart rate sensing should be viewed as a means of widening access to heal
 
 \subsection{Harris corner detection}
 % Describe algorithm and why it is useful
+% idea is tracking certain points are easier than others
 
 % \section{Conditional Random Fields}
 % \section{Semantic Segmentation}
@@ -140,7 +155,7 @@ Remote heart rate sensing should be viewed as a means of widening access to heal
 
 \subsection{Independent Component Analysis}
 \subsection{Principal Component Analysis}
-\subsection{Fourier transformation}
+\subsection{Fourier transformations}
 
 % \section{Halide}
 % \section{RenderScript}
@@ -161,8 +176,8 @@ Remote heart rate sensing should be viewed as a means of widening access to heal
 
 
 \section{Starting Point}
-% Courses this year which were relevant: Mobile and sensor systems, Computer Vision
-% read the DSP notes
+% Courses this year which were relevant: Mobile and sensor systems, Computer Vision, Information Theory
+% did not take DSP course but read the DSP notes
 
 \section{Requirements analysis}
 
