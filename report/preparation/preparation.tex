@@ -62,12 +62,17 @@ the cost in fidelity of making such a sensor wearable.
 \\\\
 Since the PPG sensor is placed on the wrist it doesn't measure the amount of light absorbed but the amount of light reflected. This is because the wrist, as opposed to the finger, contains much more cartilage
 so it is not feasible to measure the amount of light passing all the way through the tissue.
-The increasing amount of tissue disrupts the light emitted and results in an increasingly noisy signal.
+The increasing amount of tissue disrupts the light emitted and increases the noise in the resulting signal.
 \\\\
 % movement
+The LEDs present on the underside of the watch will not make perfect contact with the skin. In sporting scenarios where there is lots of movement, this will affect the light passing between the LED and the skin. This acts as an additional source of noise in the signal.
 \\\\
-Furthermore, smart devices are often subject to severe energy constraints in an attempt to increase the battery life of the device.
-As a result, wearables will tend to use lower sampling rates
+Furthermore, sensors on smart devices are often subject to severe energy constraints in an attempt to increase the battery life of the device.
+As a result, wearables will tend to use lower sampling rates than that of a medical-grade sensor.
+\\\\
+Together these factors, and numerous others, result in a much noisier and, as a result, less accurate, PPG signal. 
+Although, this comes with the large benefit of providing easier access to heart rate data.
+
 % The most obvious change between a standard pulse oximeter and a wrist-based PPG sensor is that since the sensor is place on the wrist and light cannot 
 % Firstly, the PPG sensor in a smartwatch is placed on the wrist rather than on the finger, as is common in a hospital setting. As a result, there is an increasing amount of body matter that disrupts the light signal emitted by the LED. 
 
