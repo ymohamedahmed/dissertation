@@ -5,25 +5,25 @@
 \contentsline {section}{\numberline {2.1}Heart rate sensing}{3}% 
 \contentsline {subsection}{\numberline {2.1.1}Electrocardiography}{4}% 
 \contentsline {subsection}{\numberline {2.1.2}Photoplethysmography}{5}% 
-\contentsline {subsubsection}{Wearable PPG sensors}{8}% 
+\contentsline {subsubsection}{Wearable PPG sensors}{7}% 
 \contentsline {section}{\numberline {2.2}Remote photoplethysmography (rPPG)}{9}% 
-\contentsline {subsection}{\numberline {2.2.1}Existing literature}{9}% 
-\contentsline {subsection}{\numberline {2.2.2}Possible extensions}{9}% 
-\contentsline {section}{\numberline {2.3}Relevant computer vision techniques}{9}% 
-\contentsline {subsection}{\numberline {2.3.1}Face detection}{9}% 
-\contentsline {subsection}{\numberline {2.3.2}Optical flow}{9}% 
-\contentsline {subsection}{\numberline {2.3.3}Harris corner detection}{9}% 
-\contentsline {section}{\numberline {2.4}Approaches to signal processing}{9}% 
-\contentsline {subsection}{\numberline {2.4.1}Independent Component Analysis}{9}% 
-\contentsline {subsection}{\numberline {2.4.2}Principal Component Analysis}{9}% 
-\contentsline {subsection}{\numberline {2.4.3}Fourier transformation}{9}% 
-\contentsline {section}{\numberline {2.5}Languages and tooling}{9}% 
-\contentsline {subsection}{\numberline {2.5.1}Languages}{9}% 
-\contentsline {paragraph}{Python}{9}% 
-\contentsline {paragraph}{Kotlin}{9}% 
-\contentsline {subsection}{\numberline {2.5.2}Libraries}{9}% 
-\contentsline {paragraph}{OpenCV}{9}% 
-\contentsline {paragraph}{Mobile Vision API}{9}% 
+\contentsline {subsection}{\numberline {2.2.1}Literature review}{10}% 
+\contentsline {subsection}{\numberline {2.2.2}Extensions to current literature}{10}% 
+\contentsline {section}{\numberline {2.3}Relevant computer vision techniques}{10}% 
+\contentsline {subsection}{\numberline {2.3.1}Face detection}{10}% 
+\contentsline {subsection}{\numberline {2.3.2}Optical flow}{10}% 
+\contentsline {subsection}{\numberline {2.3.3}Harris corner detection}{10}% 
+\contentsline {section}{\numberline {2.4}Approaches to signal processing}{10}% 
+\contentsline {subsection}{\numberline {2.4.1}Independent Component Analysis}{10}% 
+\contentsline {subsection}{\numberline {2.4.2}Principal Component Analysis}{10}% 
+\contentsline {subsection}{\numberline {2.4.3}Fourier transformation}{10}% 
+\contentsline {section}{\numberline {2.5}Languages and tooling}{10}% 
+\contentsline {subsection}{\numberline {2.5.1}Languages}{10}% 
+\contentsline {paragraph}{Python}{10}% 
+\contentsline {paragraph}{Kotlin}{10}% 
+\contentsline {subsection}{\numberline {2.5.2}Libraries}{10}% 
+\contentsline {paragraph}{OpenCV}{10}% 
+\contentsline {paragraph}{Mobile Vision API}{10}% 
 \contentsline {section}{\numberline {2.6}Starting Point}{10}% 
 \contentsline {section}{\numberline {2.7}Requirements analysis}{10}% 
 \contentsline {section}{\numberline {2.8}Professional practice}{10}% 
@@ -48,13 +48,13 @@
 \contentsline {paragraph}{Defining the threshold}{24}% 
 \contentsline {paragraph}{Defining probability distributions}{24}% 
 \contentsline {section}{\numberline {3.5}Heart rate isolation}{26}% 
-\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{26}% 
+\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{27}% 
 \contentsline {subsubsection}{Independent components analysis (ICA)}{27}% 
-\contentsline {subsubsection}{Principal components analysis (PCA)}{27}% 
+\contentsline {subsubsection}{Principal components analysis (PCA)}{28}% 
 \contentsline {paragraph}{Conclusion}{28}% 
-\contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{28}% 
-\contentsline {subsubsection}{The split peak issue}{28}% 
-\contentsline {section}{\numberline {3.6}Repository overview}{29}% 
+\contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{29}% 
+\contentsline {subsubsection}{The split peak issue}{29}% 
+\contentsline {section}{\numberline {3.6}Repository overview}{30}% 
 \contentsline {chapter}{\numberline {4}Evaluation}{31}% 
 \contentsline {section}{\numberline {4.1}Face tracking}{31}% 
 \contentsline {paragraph}{Research questions}{31}% 

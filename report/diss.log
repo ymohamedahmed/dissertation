@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2020.1.29)  23 MAR 2020 21:03
+This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2020.1.29)  24 MAR 2020 14:59
  system commands enabled.
 **diss
 (./diss.tex
@@ -1029,12 +1029,31 @@ File: example-image-b.pdf Graphic file (type pdf)
 Package luatex.def Info: example-image-b.pdf  used on input line 46.
 (luatex.def)             Requested size: 411.93877pt x 308.9648pt.
  [6</usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-b.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 59--77
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--77
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--77
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--77
+
+ []
+
+[7]
 File: example-image-b.pdf Graphic file (type pdf)
 <use example-image-b.pdf>
-Package luatex.def Info: example-image-b.pdf  used on input line 62.
+Package luatex.def Info: example-image-b.pdf  used on input line 79.
 (luatex.def)             Requested size: 411.93877pt x 308.9648pt.
-
-[7] [8]) [9] [10]
+ [8] [9]) [10]
 Chapter 3.
 (./implementation/implementation.tex
 LaTeX Font Info:    Try loading font information for TS1+lmr on input line 9.
@@ -1220,59 +1239,62 @@ Underfull \hbox (badness 10000) in paragraph at lines 315--323
  []
 
 [25]
-Underfull \hbox (badness 10000) in paragraph at lines 325--330
+File: example-image-b.pdf Graphic file (type pdf)
+<use example-image-b.pdf>
+Package luatex.def Info: example-image-b.pdf  used on input line 330.
+(luatex.def)             Requested size: 411.93877pt x 308.9648pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 325--332
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 325--330
+Underfull \hbox (badness 10000) in paragraph at lines 325--332
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 367--370
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 381--390
+Underfull \hbox (badness 10000) in paragraph at lines 373--376
 
  []
 
 [26]
-Underfull \hbox (badness 10000) in paragraph at lines 392--403
+Underfull \hbox (badness 10000) in paragraph at lines 387--396
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 392--403
+Underfull \hbox (badness 10000) in paragraph at lines 398--409
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 392--403
+Underfull \hbox (badness 10000) in paragraph at lines 398--409
 
  []
 
 
-Underfull \hbox (badness 1226) in paragraph at lines 392--403
+Underfull \hbox (badness 10000) in paragraph at lines 398--409
+
+ []
+
+
+Underfull \hbox (badness 1226) in paragraph at lines 398--409
 \OT1/lmr/m/n/12 In this sce-nario, I pro-ceed by at-tempt-ing to iden-tify the 
 heart rate in
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 405--411
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 411--417
 
  []
 
-[27]
+[28]
 File: example-image-a.pdf Graphic file (type pdf)
 <use example-image-a.pdf>
-Package luatex.def Info: example-image-a.pdf  used on input line 442.
+Package luatex.def Info: example-image-a.pdf  used on input line 448.
 (luatex.def)             Requested size: 411.93877pt x 308.9648pt.
- [28]) [29] [30
-
-]
+ [29]) [30]
 Chapter 4.
 (./evaluation/evaluation.tex
 Underfull \hbox (badness 10000) in paragraph at lines 19--26
@@ -1280,6 +1302,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--26
  []
 
 [31
+
 
 ]
 File: example-image-a.pdf Graphic file (type pdf)
@@ -1413,12 +1436,12 @@ Package luatex.def Info: proposal/main.pdf , page5 used on input line 168.
  [48<./proposal/main.pdf>] (./diss.aux))
 
 Here is how much of LuaTeX's memory you used:
- 30139 strings out of 494291
+ 30143 strings out of 494291
  932664,12246980 words of node,token memory allocated
  806 words of node memory still in use:
    22 hlist, 2 vlist, 10 rule, 8 glue, 1 kern, 51 glue_spec, 2 write, 16 pdf_lit
 eral, 16 pdf_colorstack nodes
-   avail lists: 1:10,2:60,3:241342,4:66,5:234,6:35,7:5280,8:68,9:464,10:25,11:32
+   avail lists: 1:10,2:63,3:241342,4:66,5:234,6:34,7:5280,8:68,9:464,10:25,11:32
 3
  32962 multiletter control sequences out of 65536+600000
  74 fonts using 3071795 bytes
@@ -1443,7 +1466,7 @@ share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public
 fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmro12.
 pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on diss.pdf (54 pages, 1152559 bytes).
+Output written on diss.pdf (54 pages, 1153787 bytes).
 
 PDF statistics: 366 PDF objects out of 1000 (max. 8388607)
  246 compressed objects within 3 object streams

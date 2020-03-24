@@ -72,7 +72,6 @@ As a result, wearables will tend to use lower sampling rates than that of a medi
 \\\\
 Together these factors, and numerous others, result in a much noisier and, as a result, less accurate, PPG signal. 
 Although, this comes with the large benefit of providing easier access to heart rate data.
-
 % The most obvious change between a standard pulse oximeter and a wrist-based PPG sensor is that since the sensor is place on the wrist and light cannot 
 % Firstly, the PPG sensor in a smartwatch is placed on the wrist rather than on the finger, as is common in a hospital setting. As a result, there is an increasing amount of body matter that disrupts the light signal emitted by the LED. 
 
@@ -83,19 +82,49 @@ Although, this comes with the large benefit of providing easier access to heart 
 \section{Remote photoplethysmography (rPPG)}
 % Give a summary about how the literature proceeds
 % Show the mapping between how we use the camera and how PPG sensors work
+This project, instead, is concerned with the development of a virtual PPG sensor which can infer the heart rate of a user from a camera only.
+That is, without an LED, as present in a wearable device or pulse oximeter, and without a dedicated light sensor in contact with the skin. 
+This is generally denoted in the literature as \textit{remote photoplethysmography} (rPPG) and is an active area of research.
+\\\\
+The most obvious approach to designing such a system, is to attempt to map the data returned by a camera onto one of the two methods of heart rate sensing described. In other words, to attempt 
+to mimic an already existing, well-developed sensor.
+Since a camera cannot, as far as I am aware, measure electrical signals at a distance, mimicing an ECG is not a feasible approach. PPG sensors, on the other hand, are based on measuring light intensity, which is precisely the same data captured by a camera.
+\\\\
+A camera works by recording the amount of light that reaches each sensor in an array. As a result, assuming that we have a camera of high enough resolution, one can measure the intensity of light 
+at various points in the scene. The impressive results of early research into rPPG systems is that this can be achieved by a regular webcam or smartphone camera.
+\\\\
+% talk about difficulties of distance + what pixels to consider
+% benefit of we can consider more points which might improve resistance to noise
+% question if being able to consider more pixels provides an overall benefit over reduced distance
+% subject to lighting conditions.
+% Given some light source in the background, this is equivalent to the amount of light reflected by each point in 
+Clearly an rPPG system is different to both the pulse oximeter and a wrist-based PPG sensor, although it attempts to measure the same phenomenon.
+These differences form the basis of its tradeoffs as a sensor. For example, since a camera is likely to be at a greater distance than both of the other PPG sensors described, it is even more
+subject to noise caused by lighting conditions. However, cameras contain much larger numbers of light sensors and so can consider more points. There exists a balance between the number and 
+reliability of each measurement. Although it is difficult to evaluate which sensors are favoured by this balance based on intuition alone.
 
-\subsection{Existing literature}
+\subsection{Literature review}
 % Look at existing literature
+% talk about how literature says that easiest to get data from the face
+% blood vessels near the surface of the skin
+\paragraph{}
 
-\subsection{Possible extensions}
-% Most literature reports heavily on accuracy in stationary cases
-% Little report on movement and  changing distance
-% Few efforts to describe performance and few optimisations
+
+\subsection{Extensions to current literature}
+% structure argument around increasing availability
+% Most literature reports heavily on accuracy in stationary cases => not robust
+% Little report on movement and changing distance => extension of the project
+% Few efforts to describe performance and few optimisations => important for availability
+% since rPPG fundamentally is an effort to increase availability, it's useless to have some offline model that takes ages to run
+% Most consider all the pixels in the bounding box of the face => makes sense because they're not 
+% considering motion and are at close distances so resistance to noise is less important
+Remote heart rate sensing should be viewed as a means of widening access to health data. Under the assumption that cameras are more widespread than wearable devices, this must be the case.
+
 
 \section{Relevant computer vision techniques}
 \subsection{Face detection}
 % Talk about viola-jones and why it sucks
-% Talk about movement towards neural net based solutions 
+% Talk about movement towards neural net based solutions \\\\
 
 \subsection{Optical flow}
 % Describe the optimisation problem
