@@ -175,15 +175,27 @@ For the purposes of this project, there are two main criteria by which the stren
 
 % Talk about viola-jones and why it sucks
 % Talk about movement towards neural net based solutions 
+% Evaluate each of three criteria
 
 \paragraph{Viola-Jones algorithm} 
 % Talk about how it was seminal for real time face detection but has poor accuracy and lots of false positives
 % Also tends to give large box sizes
+% less tight boxes + high FPR + strong performance
+The Viola-Jones face detection algorithm\cite{Viola2004}, the first of its kind to achieve real-time performance with exceptional accuracy, is implemented as a cascade of 
+individually weak classifiers. Each classifier returns a binary outcome as to whether or not a face might be contained in the region considered.
+A face is `detected' when a region passes all of the classifiers. The principle underpinning the speed of the algorithm is that most regions will fail in one of the first few classifiers
+and so it is rare to apply the entire sequence.
+
+%  their own classify faces poorly, but when combined achieve 
 
 
 \paragraph{Neural network approaches}
 % VJ largely replaced by DNNs
-% Fewer false positives and have tighter bounding box
+% Fewer false positives and have tighter bounding box with similar performance
+Neural networks for face detection have been trained since the year 1998 \cite{655647}, although, at the time, the performance of the Viola-Jones algorithm was considered superior, advances in 
+computing hardware have nullified this. In fact, I conducted early-stage experiments which suggested that neural networks, specifically the model provided by the OpenCV library (see 
+Section \ref{section:open_cv}) returned smaller face detection regions with similar computational costs.
+
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{example-image-c}
@@ -224,6 +236,7 @@ For the purposes of this project, there are two main criteria by which the stren
 % Directly targets the Android OS
 
 \subsection{Libraries}
+\label{section:open_cv}
 \paragraph{OpenCV}
 \paragraph{Mobile Vision API}
 
