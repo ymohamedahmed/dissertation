@@ -101,13 +101,17 @@ at various points in the scene. The impressive results of early research into rP
 Clearly an rPPG system is different to both the pulse oximeter and a wrist-based PPG sensor, although it attempts to measure the same phenomenon.
 These differences form the basis of its tradeoffs as a sensor. For example, since a camera is likely to be at a greater distance than both of the other PPG sensors described, it is even more
 subject to noise caused by lighting conditions. However, cameras contain much larger numbers of light sensors and so can consider more points. There exists a balance between the number and 
-reliability of each measurement. Although it is difficult to evaluate which sensors are favoured by this balance based on intuition alone.
+reliability of each measurement. It is difficult, based on reasoning alone, to evaluate which approach is favoured by this tradeoff. 
 
 \subsection{Literature review}
 \label{ref:literature_review}
 % Look at existing literature
 % talk about how literature says that easiest to get data from the face
 % blood vessels near the surface of the skin
+\paragraph{Verkyuysse et al. \cite{Verkruysse2008}}
+
+\paragraph{Balakrishnan et al. \cite{Balakrishnan_2013_CVPR}}
+
 \paragraph{}
 
 
@@ -138,7 +142,17 @@ rPPG is easiest to achieve by considering pixels in the face of the user. So fac
 % Talk about viola-jones and why it sucks
 % Talk about movement towards neural net based solutions 
 \paragraph{Viola-Jones algorithm}
+% Talk about how it was seminal for real time face detection but has poor accuracy and lots of false positives
+%  Also tends to give large box sizes
+
 \paragraph{Neural network approaches}
+% VJ largely replaced by DNNs
+% Fewer false positives and have tighter bounding box
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{example-image-c}
+   \caption{Example face detection outputs by the Viola-Jones algorithm (left) and a neural network (right) } 
+\end{figure}
 
 \subsection{Optical flow}
 % Describe the optimisation problem

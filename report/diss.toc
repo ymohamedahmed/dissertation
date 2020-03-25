@@ -8,16 +8,19 @@
 \contentsline {subsubsection}{Wearable PPG sensors}{7}% 
 \contentsline {section}{\numberline {2.2}Remote photoplethysmography (rPPG)}{9}% 
 \contentsline {subsection}{\numberline {2.2.1}Literature review}{10}% 
+\contentsline {paragraph}{Verkyuysse et al. \cite {Verkruysse2008}}{10}% 
 \contentsline {paragraph}{}{10}% 
 \contentsline {subsection}{\numberline {2.2.2}Extensions to current literature}{10}% 
 \contentsline {section}{\numberline {2.3}Relevant computer vision techniques}{11}% 
 \contentsline {subsection}{\numberline {2.3.1}Face detection}{11}% 
+\contentsline {paragraph}{Viola-Jones algorithm}{11}% 
+\contentsline {paragraph}{Neural network approaches}{11}% 
 \contentsline {subsection}{\numberline {2.3.2}Optical flow}{11}% 
 \contentsline {subsection}{\numberline {2.3.3}Harris corner detection}{11}% 
 \contentsline {section}{\numberline {2.4}Approaches to signal processing}{11}% 
 \contentsline {subsection}{\numberline {2.4.1}Independent Component Analysis}{11}% 
 \contentsline {subsection}{\numberline {2.4.2}Principal Component Analysis}{11}% 
-\contentsline {subsection}{\numberline {2.4.3}Fourier transformation}{11}% 
+\contentsline {subsection}{\numberline {2.4.3}Fourier transformations}{11}% 
 \contentsline {section}{\numberline {2.5}Languages and tooling}{11}% 
 \contentsline {subsection}{\numberline {2.5.1}Languages}{11}% 
 \contentsline {paragraph}{Python}{11}% 
@@ -25,9 +28,9 @@
 \contentsline {subsection}{\numberline {2.5.2}Libraries}{11}% 
 \contentsline {paragraph}{OpenCV}{11}% 
 \contentsline {paragraph}{Mobile Vision API}{11}% 
-\contentsline {section}{\numberline {2.6}Starting Point}{11}% 
-\contentsline {section}{\numberline {2.7}Requirements analysis}{11}% 
-\contentsline {section}{\numberline {2.8}Professional practice}{11}% 
+\contentsline {section}{\numberline {2.6}Starting Point}{12}% 
+\contentsline {section}{\numberline {2.7}Requirements analysis}{12}% 
+\contentsline {section}{\numberline {2.8}Professional practice}{12}% 
 \contentsline {chapter}{\numberline {3}Implementation}{13}% 
 \contentsline {section}{\numberline {3.1}Overview}{13}% 
 \contentsline {section}{\numberline {3.2}System design}{13}% 

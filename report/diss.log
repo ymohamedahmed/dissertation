@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2020.1.29)  24 MAR 2020 21:23
+This is LuaTeX, Version 1.10.0 (TeX Live 2019/Debian)  (format=lualatex 2020.1.29)  25 MAR 2020 08:10
  system commands enabled.
 **diss
 (./diss.tex
@@ -1075,21 +1075,10 @@ ter and a
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 121--127
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 121--127
-
- []
-
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 128.
-(/usr/share/texmf/tex/latex/lm/ts1lmr.fd
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 130.
+ (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [10]) [11] [12
-
-]
+) [10]) [11] [12]
 Chapter 3.
 (./implementation/implementation.tex
 Underfull \hbox (badness 10000) in paragraph at lines 17--22
@@ -1107,6 +1096,7 @@ Overfull \hbox (26.53932pt too wide) in paragraph at lines 117--27
  []
 
 [13
+
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 29--35
@@ -1467,14 +1457,14 @@ Package luatex.def Info: proposal/main.pdf , page5 used on input line 168.
  [50<./proposal/main.pdf>] (./diss.aux))
 
 Here is how much of LuaTeX's memory you used:
- 30143 strings out of 494291
+ 30145 strings out of 494291
  932664,12246980 words of node,token memory allocated
  806 words of node memory still in use:
    22 hlist, 2 vlist, 10 rule, 8 glue, 1 kern, 51 glue_spec, 2 write, 16 pdf_lit
 eral, 16 pdf_colorstack nodes
    avail lists: 1:10,2:60,3:241342,4:66,5:234,6:34,7:5280,8:68,9:464,10:25,11:32
 3
- 32962 multiletter control sequences out of 65536+600000
+ 32964 multiletter control sequences out of 65536+600000
  74 fonts using 3071795 bytes
  78i,19n,136p,841b,3112s stack positions out of 5000i,500n,10000p,713372b,100000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/share/texmf/fonts/enc/dvi
@@ -1497,7 +1487,7 @@ share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public
 fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmro12.
 pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on diss.pdf (56 pages, 1156810 bytes).
+Output written on diss.pdf (56 pages, 1158564 bytes).
 
 PDF statistics: 372 PDF objects out of 1000 (max. 8388607)
  250 compressed objects within 3 object streams
