@@ -3,6 +3,7 @@ import cv2 as cv
 from sklearn.cluster import KMeans
 from scipy.stats import truncnorm
 from functools import partial
+from helper import display_heatmap
 
 def _cluster_skin_distance(ycrcb_colour):
     """
@@ -109,10 +110,13 @@ class BayesianSkinDetector(RegionSelector):
 
 
         not_skin_dm = self._max_distance(skin_tone)-distance_matrix
+        display_heatmap([not_skin_dm])
         not_skin_probs = np.array(list(map(partial(self._pdf, self.non_skin_std), not_skin_dm)))
+        # not_skin_probs = 1-skin_probs
         # not_skin_denominator = np.sum(self._pdf(self._dist(all_skin_tones, skin_tone)))
-
-        return skin_probs, not_skin_probs
+        denominator = (skin_probs+not_skin_probs)#*(1/(256**2))
+        # print(f"Skin probs: {skin_probs} \n non-skin probs: {not_skin_probs} \n denominator: {denominator}")
+        return skin_probs/denominator, not_skin_probs/denominator
         # return numerator/denominator
     
     def _max_distance(self, skin_tone):
@@ -135,6 +139,8 @@ class BayesianSkinDetector(RegionSelector):
         self._frame_number += 1
         skin_probs, ns_probs = self._class_conditional(image, self.skin_tone)
         skin_post, ns_post = skin_probs*self._prior(image), ns_probs*(1-self._prior(image))
+        print("Should be all ones")
+        print(skin_post + ns_post)
         return skin_post, ns_post, skin_post>ns_post
         # return (*self._prior(image))#>self.threshold
     

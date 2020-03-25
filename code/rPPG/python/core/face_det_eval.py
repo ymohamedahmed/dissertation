@@ -4,8 +4,7 @@ import cv2 as cv
 from face_det import KLTBoxingWithThresholding, FaceTracker, RepeatedDetector, DNNDetector
 import pandas as pd
 from mahnob import get_avi_bdf
-
-PATH = "rPPG/"
+from configuration import PATH
 
 def matrix_from_face(face, width, height):
     x,y,w,h = face

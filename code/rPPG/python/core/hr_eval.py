@@ -6,7 +6,7 @@ from biosppy.signals import ecg as ECG
 import pyedflib
 import numpy as np
 from pipeline import tracking_pipeline
-from configuration import Configuration
+from configuration import Configuration, PATH
 from numpy import genfromtxt
 import pandas as pd
 
@@ -74,7 +74,7 @@ for dist in ["1", "1.5", "2"]:
         for repeat in range(1,4):
             file = f"{base_path}{dist}_{exer}_{repeat}"
             print(f"Considering base file: {file}")
-            result = evaluate(f"rPPG/{file}.csv", f"rPPG/{file}.EDF", f"{file}.mp4", config)
+            result = evaluate(f"{PATH}{file}.csv", f"{PATH}{file}.EDF", f"{PATH}{file}.mp4", config)
             print(result)
             print(f"ECG: {result[0]}")
             print(f"rPPG: {result[1]}")

@@ -80,6 +80,7 @@ Although, this comes with the large benefit of providing easier access to heart 
    \caption{An example PPG signal as taken from a wearable watch} 
 \end{figure}
 \section{Remote photoplethysmography (rPPG)}
+\label{ref:rPPG_prep}
 % Give a summary about how the literature proceeds
 % Show the mapping between how we use the camera and how PPG sensors work
 This project, instead, is concerned with the development of a virtual PPG sensor which can infer the heart rate of a user from a camera only.
@@ -108,11 +109,33 @@ reliability of each measurement. It is difficult, based on reasoning alone, to e
 % Look at existing literature
 % talk about how literature says that easiest to get data from the face
 % blood vessels near the surface of the skin
-\paragraph{Verkyuysse et al. \cite{Verkruysse2008}}
+Early research into remote heart estimation navigated the difficulties of attempting to mimic a traditional PPG sensor.
+Therefore, understanding the existing literature on the topic is critical to a successful implementation. Furthermore, it can reveal areas for additional experimentation beyond the existing 
+research.
+The existing literature also provides clarity as to a concrete implementation grounded in the intuition described in Section \ref{ref:rPPG_prep}.
+For example, the description in Section \ref{ref:rPPG_prep} leaves several questions which must be answered before an implementation could possible be designed.
+\begin{itemize}
+    \item Which parts of the body are best to extract a PPG signal from?
+    \item How can the recorded signal reveal the heart rate?
+    \item What efforts must be undertaken to reduce the effect of noise?
+\end{itemize}
+% The existing literature on remote heart rate estimation provides 
+\paragraph{Verkyuysse et al.}
+% first paper to show it was possible
+In 2008, Verkyuysse et al. \cite{Verkruysse2008} were the first to show that remote heart rate sensing is possible. This was shown using a standard camera and no additional source of 
+illumination. Crucially, they reported that the face, as opposed to other regions of the body, provides the strongest PPG signal and verified this experimentally, which was subsequently
+verified by several additional studies \cite{vanderKooij2019}. Intuitively, this is because
+it is believed that the tissue on the surface of the face is particularly thin and so it is easier to extract a signal from. 
+Although the selection of the region of the face to consider, referred to as the \textit{region of interest} (ROI) in the literature, was done manually for each frame. This is not desirable and, 
+as a result, the automation of this is the subject of much discussion in this project. Finally, Verkyuysse et al. \cite{Verkruysse2008} described the use of Fourier techniques for isolating the 
+heart beat in the colour signal returned by the camera.
 
-\paragraph{Balakrishnan et al. \cite{Balakrishnan_2013_CVPR}}
-
-\paragraph{}
+\paragraph{Poh et al.}
+% introduced idea of BSS
+% idea that signal is a mixture of separate signals 
+Poh et al. \cite{poh2010non} introduced the idea of applying more rigourous signal processing techniques to the recorded signal, in an attempt to further reduce noise and isolate the heart rate.
+Specifically they introduced the use of \textit{blind source separation} techniques to attempt to isolate the pulse from the observed colours changes. The problem of blind source separation is 
+outlined in Section \ref{ref:bss_prep} and was an important discovery in reducing the effect of noise.
 
 
 \subsection{Extensions to current literature}
@@ -136,14 +159,27 @@ Under this analysis, several extensions to the current literature were formulate
 
 \section{Relevant computer vision techniques}
 Remote heart rate sensing operates directly on a camera stream. To such end, understanding the composition of frames is a critical 
-aspect of the system, in the same way that an ECG relies on interpreting electrical signals. In Section \ref{ref:literature_review} it was stated that it is widely believed that 
-rPPG is easiest to achieve by considering pixels in the face of the user. So face detection, a common task in the field of Computer Vision, is required.
+aspect of the system, in the same way that an ECG sensor relies on interpreting electrical signals. 
+The field of automatically inferring knowledge from image data is generally known as Computer Vision and there are several relevant techniques to this project.
+
 \subsection{Face detection}
+In Section \ref{ref:literature_review} it was stated that it is 
+easiest to estimate the heart rate by considering pixels in the face of the user. 
+This means that, given a frame from the camera, the region(s) containing a face must be ascertained. For this, many algorithms have been developed, not all of which perform equally well.
+For the purposes of this project, there are two main criteria by which the strength of a face detection algorithm can be evaluated.
+\begin{itemize}
+    \item Tightness of bounding box: typically face detection algorithms return a bounding box within which the face is believed to be, as exemplified in Figure \ref{fig:face_det_example}. The size of this box is of great importance since any additional background pixels contain no pulse information and will add unnecessary noise
+    \item False positive rate: any false detections will impact accuracy by potentially considering incorrect regions of the frame
+    \item Performance: the wider objective of this project is to increase the availability of heart rate sensing technology, to such end, particular costly algorithms which cannot run effectively on standard computing devices, are of no real use
+\end{itemize}
+
 % Talk about viola-jones and why it sucks
 % Talk about movement towards neural net based solutions 
-\paragraph{Viola-Jones algorithm}
+
+\paragraph{Viola-Jones algorithm} 
 % Talk about how it was seminal for real time face detection but has poor accuracy and lots of false positives
-%  Also tends to give large box sizes
+% Also tends to give large box sizes
+
 
 \paragraph{Neural network approaches}
 % VJ largely replaced by DNNs
@@ -152,6 +188,7 @@ rPPG is easiest to achieve by considering pixels in the face of the user. So fac
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{example-image-c}
    \caption{Example face detection outputs by the Viola-Jones algorithm (left) and a neural network (right) } 
+   \label{fig:face_det_example}
 \end{figure}
 
 \subsection{Optical flow}
@@ -165,10 +202,12 @@ rPPG is easiest to achieve by considering pixels in the face of the user. So fac
 
 % \section{Conditional Random Fields}
 % \section{Semantic Segmentation}
-\section{Approaches to signal processing}
+\section{Relevant signal processing techniques}
+\subsection{Blind source separation}
+\label{ref:bss_prep}
+\subsubsection{Independent Component Analysis}
+\subsubsection{Principal Component Analysis}
 
-\subsection{Independent Component Analysis}
-\subsection{Principal Component Analysis}
 \subsection{Fourier transformations}
 
 % \section{Halide}

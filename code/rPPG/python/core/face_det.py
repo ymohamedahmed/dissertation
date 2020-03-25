@@ -13,6 +13,7 @@ import scipy
 import tikzplotlib
 import pyedflib
 import time as Timing
+from configuration import PATH
 
 class FaceTracker(object):
     def __init__(self, detector, scaled_width=300, scaled_height=300):
@@ -202,7 +203,7 @@ class RepeatedDetector(FaceTracker):
 
 class DNNDetector():
     def __init__(self):
-        MODEL_PATH = "rPPG/models/"
+        MODEL_PATH = f"{PATH}/models/"
         modelFile = MODEL_PATH + "opencv_face_detector_uint8.pb"
         configFile = MODEL_PATH + "opencv_face_detector.pbtxt"
         self.dnn = cv.dnn.readNetFromTensorflow(modelFile, configFile)

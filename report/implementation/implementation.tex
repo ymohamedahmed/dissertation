@@ -267,12 +267,11 @@ Which, from Bayes' theorem, can be re-written as:
 \begin{align*}
    \frac{\Pr(C_\mathrm{skin}, x_i, s)}{\Pr(x_i, s)} = \frac{\Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i)\Pr(x_i)}{\Pr(x_i,s)}
 \end{align*}
-By neglecting constants across both classes, classification can proceed using $\Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i)$.
-We proceed with classification as follows, for some threshold probability $t$ that defines the decision boundary: 
+We could proceed with classification as follows, for some threshold probability $t$ that defines the decision boundary: 
 \begin{equation*}
     \text{isSkin}(x_i) = 
     \begin{cases}
-        \texttt{True}, \quad \text{if} \Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i) > t \\
+        \texttt{True}, \quad \text{if} \Pr(C_{\mathrm{skin}}| x_i, s) > t \\
         \texttt{False}, \quad \text{otherwise}
     \end{cases}
 \end{equation*}
@@ -293,11 +292,15 @@ The most obvious selection would be to classify the pixel based on which class h
 % \end{equation*}
 % \Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i) > t
 \paragraph{Defining probability distributions}
+\subparagraph{Prior distribution}
 Usually, one might attempt to learn these distributions from some relevant dataset. That is the prior distribution $\Pr(C_\mathrm{skin}|x_i)$ and the distribution $\Pr(s|C_\mathrm{skin}, x_i)$.
 The prior $\Pr(C_\mathrm{skin}|x_i)$ was computed as the empirical distribution from 
 the dataset discussed in Section \ref{section:colour-filter}. This dataset consists of randomly sampled pixels that are classified as skin or not, it does not include entire classified faces.
 Furthermore, to the best of my knowledge at the time of implementation, there are no such adequately sized datasets. Hence, attempting to learn the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ was not deemed to be feasible.
+Once the distribution $\Pr(C_\mathrm{skin}|x_i,s)$ has been computed for a single frame, it is used as the prior for subsequent frames. This is for the purpose of providing greater resistance to 
+sudden changes in the image.
 \\\\
+\subparagraph{Class conditional distribution}
 As a result, a reasonable approach is to define the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ based on the assumption that a skin pixel is likely close in colour to the overall skin tone. We want a function which returns a large probability if the Euclidean distance between the pixel and the skin tone is small.
 There are, however, an infinite number of functions which could encode this. The only requirements is that the probability of being a skin pixel is decreasing as a function of the distance between the colour of the pixel and the skin tone of the face. 
 \\\\
@@ -309,7 +312,7 @@ However, since colours are only represented in a finite interval, for example, b
 The above model has a non-zero probability associated with impossible skin-tones, since there are minimum and maximum possible distances.
 As a result, I use a \textit{truncated} Normal distribution\footnote{A truncated distribution modifies the domain of a distribution by defining an updated probability density function which is zero outside a particular range $[a,b]$. This is achieved in such a way that the properties of a valid probability distribution are maintained.} instead.
 \\\\
-The probability density function of a truncated normal distribution between the values $a$ and $b$, mean $\mu$ and variance $\sigma$ is defined as: 
+The probability density function of a truncated normal distribution between the values $a$ and $b$ and with mean, $\mu$, and variance, $\sigma$, is defined as: 
 \begin{equation*}
     f(x) = \frac{1}{\sigma}\frac{\phi(\frac{x-\mu}{\sigma})}{\Phi(\frac{b-\mu}{\sigma}) - \Phi(\frac{a-\mu}{\sigma})}
 \end{equation*}
