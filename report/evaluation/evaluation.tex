@@ -19,8 +19,8 @@ Specifically, any described performance gains must be shown clearly as working a
 In order to better understand the performance of face tracking, a test set of several videos with varying amounts of movement was used. Some of the videos were taken from the MAHNOB dataset \cite{Mahnob}, which forms one of the key sources of data for the evaluation of this project.
 Initially, generated as a dataset for study into affective computing, it consists of several thousand videos of participants as they are exposed to stimuli, with their ECG responses being recorded. 
 \\\\
-MAHNOB \cite{Mahnob} only consists of videos where the participants are stationary and at a fixed distance from the camera, this alone, would not be adeqeuate for the testing of face tracking. Hence, it was augmented with several videos which I recorded with varying amounts and types of movement.
-I recorded a video with strictly `translational' movement, that is, the size of the face of the user remains largely constant as they move from one side of the frame to the other.
+MAHNOB \cite{Mahnob} only consists of videos where the participants are stationary and at a fixed distance from the camera, this alone, would not be adeqeuate for the testing of face tracking. Hence, it was augmented with several videos which I recorded with varying amounts and types of movement, as well as at different distances.
+Some of these videos contained strictly `translational' movement, that is, the size of the face of the user remains largely constant as they move from one side of the frame to the other.
 Another more challenging kind of movement, denoted here as `rotational', is where the user rotates their face so that different parts of the face are in a view in different frames.
 Intuitively, one would expect this to be more difficult for the face tracker to deal with, since points will come in and out of view regularly.
 \paragraph{Metrics}
@@ -59,7 +59,9 @@ Under the following notation:
 \\\\
 \end{itemize}
 The time to process each frame is also recorded as a means of measuring the relative performance of each algorithm.
+% Furthermore, the signal to nois
 % Finally, the distance moved by each set of points being tracked between frames is recorded. This metric acts a means of encoding the amount of movement in the video.
+
 
 \paragraph{Results}
 
@@ -74,7 +76,7 @@ Recall from Section \ref{section:face_tracking_impl} that the following inequali
     \frac{R}{W} < \frac{f(n)-g(p,n)}{f(n)+s(p,f)}
 \end{equation*}\footnote{Notation: $R$: number of redetections, $W$: number of frames considered, $f(n)$: time to detect a face in a frame of size $n$, $g(p,n)$: time to track $p$ points on a face of size $n$, $s(p,f)$: time to select $p$ points on a face of size $f$ }
 The above inequality relates the rate of redetections ($R/W$) and the costs of several required algorithms. It was shown in Section \ref{section:face_tracking_impl} that when this inequality holds, face tracking provides a performance benefit.
-In order to justify this, the value of the right hand side is evaluated experimentally on a variety of videos and is shown the exceed the value $R/W$.
+In order to justify this, the value of the right hand side is evaluated experimentally on a variety of videos and is shown to exceed the value $R/W$.
 
 \subparagraph{Thresholds}
 
@@ -116,6 +118,7 @@ This evaluation, hence, is concerned with the validation of these assumptions.
 %-effect on accuracy of overall hr prediction
 %-time cost
 
+
 \paragraph{Results}
 
 \paragraph{Summary}
@@ -131,6 +134,9 @@ This evaluation, hence, is concerned with the validation of these assumptions.
 \label{section:bss}
 \paragraph{Research question}
 % ICA vs PCA
+\begin{itemize}
+    \item Which algorithm for blind source separation performs better for identifying the pulse signal?
+\end{itemize}
 \paragraph{Metrics}
 \paragraph{Results}
 %The PCA approach comes with the benefit of identifying the pulse signal as a natural part of the algorithm.
@@ -140,6 +146,9 @@ This evaluation, hence, is concerned with the validation of these assumptions.
 \subsubsection{Independent components analysis}
 \label{section:ica_assumption}
 \paragraph{Research question}
+\begin{itemize}
+    \item How often does the frequency of maximum power correspond to the true heart rate?
+\end{itemize}
 % evaluate correctness of assumption of maximum power from ICA applied to each signal
 \paragraph{Metrics}
 \paragraph{Results}
@@ -149,17 +158,20 @@ This evaluation, hence, is concerned with the validation of these assumptions.
 \subsubsection{Principal components analysis}
 \paragraph{Research question}
 % does component with most variance actually correspond to the pulse
+\begin{itemize}
+    \item How correct is the assumption that the signal of maximum variance corresponds to the pulse?
+\end{itemize}
 \paragraph{Metrics}
 \paragraph{Results}
-%
 \paragraph{Summary}
 
+% EXTRA JUST IN CASE
 % Not that important?
-\subsection{Window and stride size}
-\paragraph{Research question}
-\paragraph{Metrics}
-\paragraph{Results}
-\paragraph{Summary}
+% \subsection{Window and stride size}
+% \paragraph{Research question}
+% \paragraph{Metrics}
+% \paragraph{Results}
+% \paragraph{Summary}
 
 
 \section{Evaluation of remote heart rate sensing}
@@ -177,6 +189,12 @@ This evaluation, hence, is concerned with the validation of these assumptions.
 % -is it better than a smartwatch?
 % NEED TO TALK ABOUT INCREASED COMPUTATIONAL AVAILABILITY FOR A PHONE OVER SMARTWATCH
 % But also greater difficulty of sensing
+% need to say that more data must be collected before production but initial results are promising
+\begin{itemize}
+    \item Is remote heart rate sensing viable for stationary videos?
+    \item To what extent does accuracy depend on distance and movement?
+    \item Can rPPG replicate the performance of a wearable device?
+\end{itemize}
 \paragraph{Metrics}
 \paragraph{Results}
 
@@ -188,8 +206,7 @@ This evaluation, hence, is concerned with the validation of these assumptions.
 % \paragraph{Results}
 
 % \subsection{Time cost}
-% \paragraph{Resea-is RPPG viable for stationary videos?
-% -is it better than a smartwatch?rch question}
+% \paragraph{Research question}
 % \paragraph{Metrics}
 % \paragraph{Results}
 

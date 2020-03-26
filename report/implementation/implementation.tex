@@ -299,6 +299,7 @@ the dataset discussed in Section \ref{section:colour-filter}. This dataset consi
 Furthermore, to the best of my knowledge at the time of implementation, there are no such adequately sized datasets. Hence, attempting to learn the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ was not deemed to be feasible.
 Once the distribution $\Pr(C_\mathrm{skin}|x_i,s)$ has been computed for a single frame, it is used as the prior for subsequent frames. This is for the purpose of providing greater resistance to 
 sudden changes in the image.
+This is the key benefit of taking a Bayesian approach. It allows a principled means of incorporationg prior knowledge about the problem space.
 \\\\
 \subparagraph{Class conditional distribution}
 As a result, a reasonable approach is to define the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ based on the assumption that a skin pixel is likely close in colour to the overall skin tone. We want a function which returns a large probability if the Euclidean distance between the pixel and the skin tone is small.

@@ -1,9 +1,11 @@
 import numpy as np
 import cv2 as cv
 from sklearn.cluster import KMeans
-from scipy.stats import truncnorm
+from scipy.stats import truncnorm, truncexpon
 from functools import partial
 from helper import display_heatmap
+import pandas as pd
+from configuration import PATH
 
 def _cluster_skin_distance(ycrcb_colour):
     """
@@ -88,6 +90,23 @@ class BayesianSkinDetector(RegionSelector):
         self._freshness = skin_tone_freshness
         self.skin_tone = None
         self.distribution = None
+        self._load_prior()
+    
+    def _load_prior(self):
+        dataset_path = f"{PATH}/skin/Skin_NonSkin.txt"
+        data = pd.read_csv(dataset_path, sep="\t", header=None)
+        data.columns = ["B", "G", "R", "Skin"]
+        image = data[["B", "G", "R"]].values
+        size,_ = image.shape
+        image = np.uint8(image.reshape(size,1,3))
+        new_data = np.zeros(shape=(size,4))
+        new_data[:,:3] = cv.cvtColor(image, cv.COLOR_BGR2YCrCb).reshape(size, 3)
+        new_data[:,3] = data["Skin"]-1
+        new_data = pd.DataFrame(new_data, columns=["Y", "Cr", "Cb", "Skin"])
+        # new_data[:,0] = 0
+        new_data.groupby(by=["Cr", "Cb"]).apply({"Skin":np.mean})
+        print(new_data)
+
 
     def _prior(self, image):
         return 0.7
@@ -97,8 +116,11 @@ class BayesianSkinDetector(RegionSelector):
         # print(f"Image: {image}")
         # print(f"Skin tone: {skin_tone}")
         distance_matrix = self._dist(image, skin_tone, axis=2)
-        # print(f"Distance matrix: {distance_matrix}")
-        skin_probs = np.array(list(map(partial(self._pdf, self.skin_std), distance_matrix)))
+        print(f"Distance matrix: {distance_matrix}")
+        display_heatmap([distance_matrix])
+        self.skin_std = 0.5*np.mean(distance_matrix)
+        print(f"Std: {self.skin_std}")
+        skin_probs = np.array(list(map(partial(self._pdf, self.skin_std, np.max(distance_matrix)), distance_matrix)))
         # numerator = np.array(list(map(self._pdf, distance_matrix)))
 
         # x = np.zeros(256**2)
@@ -108,15 +130,18 @@ class BayesianSkinDetector(RegionSelector):
 
         # print(f"Numerator: {numerator}, Denominator: {denominator}")
 
-
         not_skin_dm = self._max_distance(skin_tone)-distance_matrix
+        display_heatmap([skin_probs])
+        # display_heatmap([skin_probs/denominator])
         display_heatmap([not_skin_dm])
-        not_skin_probs = np.array(list(map(partial(self._pdf, self.non_skin_std), not_skin_dm)))
+        not_skin_probs = np.array(list(map(partial(self._pdf, 1.5*self.skin_std, np.max(not_skin_dm)), not_skin_dm)))
         # not_skin_probs = 1-skin_probs
         # not_skin_denominator = np.sum(self._pdf(self._dist(all_skin_tones, skin_tone)))
+        display_heatmap([not_skin_probs])
         denominator = (skin_probs+not_skin_probs)#*(1/(256**2))
         # print(f"Skin probs: {skin_probs} \n non-skin probs: {not_skin_probs} \n denominator: {denominator}")
-        return skin_probs/denominator, not_skin_probs/denominator
+        display_heatmap([skin_probs/denominator])
+        return denominator, not_skin_probs/denominator
         # return numerator/denominator
     
     def _max_distance(self, skin_tone):
@@ -128,20 +153,24 @@ class BayesianSkinDetector(RegionSelector):
     def _dist(self, x, y, axis=1):
         return np.sqrt(np.sum(np.square(x-y), axis=axis))
 
-    def _pdf(self, std, x):
-        return truncnorm.pdf(x=x, a=0, loc=self.mean, b=self._max_distance(self.skin_tone), scale=std)
+    def _pdf(self, std, upper_limit, x):
+        # return truncnorm.pdf(x=x, a=0, loc=self.mean, b=self._max_distance(self.skin_tone), scale=std)
+        return truncnorm.pdf(x=x, a=0, loc=self.mean, b=upper_limit, scale=std)
+        # return truncexpon.pdf(x=x, b=upper_limit, scale=100)
 
     def detect(self, image):
         image = cv.cvtColor(image, cv.COLOR_BGR2YCrCb)
         image[:, :, 0] = 0
         if(self._frame_number % self._freshness == 0):
-            self.skin_tone = skin_tone(image)
+            self.skin_tone = skin_tone(image, clusters=2)
         self._frame_number += 1
         skin_probs, ns_probs = self._class_conditional(image, self.skin_tone)
         skin_post, ns_post = skin_probs*self._prior(image), ns_probs*(1-self._prior(image))
+        print("Priors")
+        print(skin_probs + ns_probs)
         print("Should be all ones")
         print(skin_post + ns_post)
-        return skin_post, ns_post, skin_post>ns_post
+        return skin_post, ns_post, skin_post>ns_post, skin_post>0.5
         # return (*self._prior(image))#>self.threshold
     
     def __str__(self):
