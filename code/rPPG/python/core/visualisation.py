@@ -26,22 +26,27 @@ class Visualiser():
       self.tracker.overlay(frame, faces)
       x,y,w,h = faces[0]
 
-      area_of_interest = np.pad(area_of_interest, ((y,height-(y+h)),(x,width-(x+w))), 'constant', constant_values=0)
+      area_of_interest = np.pad(np.ones(shape=(h,w)), ((y,height-(y+h)),(x,width-(x+w))), 'constant', constant_values=0)
+      rectangle = np.array(list(map(self.cmap, area_of_interest)))
       area_of_interest = np.repeat(area_of_interest[:, :, np.newaxis], 3, axis=2)
 
       # Overlay the points being considered and the rectangle of the face
       # rectangle = np.full(shape=(height,width,3), fill_value=[0,255,0], dtype=np.uint8)
-      rectangle = np.array(list(map(self.cmap, area_of_interest)))
+      rectangle = rectangle[:,:,:3]
       # Need to take and with one vector since otherwise we get 254 instead of the desired value of 0 at each point outside the mask
       # i.e. NOT(0000 0001) = 1111 1110 rather than 0
-      mask_of_roi = cv.bitwise_and(cv.bitwise_not(area_of_interest), np.ones(shape=(height,width,3), dtype=np.uint8))
+      mask_of_roi = area_of_interest
+      # mask_of_roi = cv.bitwise_and(cv.bitwise_not(area_of_interest), np.ones(shape=(height,width,3), dtype=np.uint8))
       alpha = 0.5
       foreground = rectangle.astype(float)
       background = frame.astype(float)
       mask_of_roi = mask_of_roi.astype(float)/2
+      # print(mask_of_roi.shape)
+      # print(rectangle.shape)
       foreground = cv.multiply(mask_of_roi, foreground)
       background = cv.multiply(1.0-mask_of_roi, background)
       blended = cv.addWeighted(foreground, alpha, background, 1, 0)
       if self.crop:
         blended = cv.resize(blended, (self.frame_width, self.frame_height), interpolation = cv.INTER_AREA)
-      self.out.write(np.uint8(blended))
+      return rectangle, foreground, background, blended
+      # self.out.write(np.uint8(blended))

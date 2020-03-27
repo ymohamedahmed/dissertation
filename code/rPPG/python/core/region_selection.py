@@ -197,8 +197,8 @@ class BayesianSkinDetector(RegionSelector):
             self.skin_tone = skin_tone(image)
         self._frame_number += 1
         skin_probs, ns_probs = self._class_conditional(image, self.skin_tone)
-        if self.prior is None:
-            self.prior = self._prior(image)
+        # if self.prior is None:
+        self.prior = self._prior(image)
         skin_post, ns_post = skin_probs*self.prior, ns_probs*(1-self.prior)
         # print("Prior heatmap")
         # display_heatmap([self.prior])
@@ -206,7 +206,7 @@ class BayesianSkinDetector(RegionSelector):
         # print("Should be all ones")
         # print(skin_post + ns_post)
         skin_post = skin_post*1/np.max(skin_post)
-        self.prior = skin_post
+        # self.prior = skin_post
         threshold = np.percentile(skin_post, 0.2)
         # return skin_post*1/np.max(skin_post), ns_post, skin_post>ns_post, skin_post>0.5
         mask = skin_post > threshold

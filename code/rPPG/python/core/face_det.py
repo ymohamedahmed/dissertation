@@ -87,8 +87,11 @@ class NaiveKLTBoxing(FaceTracker):
         super().__init__(detector)
 
     def _overlay(self, frame):
+        h,w,_ = frame.shape
         for i in self.old_points:
           x,y = i.ravel()
+          x = int(w*x/super().scaled_width)
+          y = int(h*y/super().scaled_height)
           cv.circle(frame,(x,y),3,255,-1)
   
     def _to_gray(self, frame):
