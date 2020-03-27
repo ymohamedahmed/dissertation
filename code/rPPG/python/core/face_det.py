@@ -138,7 +138,7 @@ class NaiveKLTBoxing(FaceTracker):
             return f, {}
 
     def __str__(self):
-        return f"{self.__class__.__name__}-{self.detector.__name__}-scale_{self.scale}"
+        return f"{self.__class__.__name__}-{str(self.detector)}-scale_{self.scale}"
 
 class KLTBoxingWithThresholding(NaiveKLTBoxing):
 
@@ -184,7 +184,7 @@ class KLTBoxingWithThresholding(NaiveKLTBoxing):
         print(f"{self.redetects}/{self.frame_number}={100*self.redetects/self.frame_number}%")
 
     def __str__(self):
-        return f"{self.__class__.__name__}-{self.detector.__name__}"
+        return f"{self.__class__.__name__}-{str(self.detector)}"
 
 class RepeatedDetector(FaceTracker):
 
@@ -199,7 +199,7 @@ class RepeatedDetector(FaceTracker):
     pass
 
   def __str__(self):
-     return f"{self.__class__.__name__}-{self.detector.__name__}"
+     return f"{self.__class__.__name__}-{str(self.detector)}"
 
 class DNNDetector():
     def __init__(self):
@@ -223,3 +223,6 @@ class DNNDetector():
                 y2 = int(detections[0, 0, i, 6] * h)
                 faces.append((x1,y1,x2-x1,y2-y1))
         return faces
+    
+    def __str__(self):
+        return self.__class__.__name__

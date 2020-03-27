@@ -32,6 +32,9 @@ class ICAProcessor(Processor):
 
     def _select_maximum_power_frequency(self, rates):
         return max(rates, key=itemgetter(1))[0]
+    
+    def __str__(self):
+        return self.__class__.__name__
 
 class PCAProcessor(Processor):
     
@@ -39,3 +42,6 @@ class PCAProcessor(Processor):
         pca = PCA()
         pca_result = pca.fit_transform(values)
         return self._prevalent_freq(pca_result[:,0], framerate)
+
+    def __str__(self):
+        return self.__class__.__name__

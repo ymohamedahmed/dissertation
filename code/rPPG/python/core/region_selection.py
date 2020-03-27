@@ -29,6 +29,14 @@ def skin_tone(frame, alpha=1, beta=5, clusters=5):
     scores = np.array([(alpha*counts[i]) - (beta*_cluster_skin_distance(centers[i])) for i in range(len(centers))])
     return centers[scores.argmax()]
 
+# def mean(frame, mask):
+#     """Assumes mask has one for pixels to consider and zero otherwise"""
+#     return np.sum(mask*frame, axis=0)/np.sum(mask)
+
+def mean(frame, distribution):
+    distribution = distribution/np.sum(distribution)
+    return np.array([np.sum(distribution*frame[:,:,i]) for i in range(3)])
+
 class RegionSelector():
     def detect(self, image):
         pass
@@ -37,7 +45,8 @@ class PrimitiveROI(RegionSelector):
     
     def detect(self, image):
         h,w,_ = image.shape
-        return np.uint8(np.zeros(shape=(h,w)))
+        mask = np.uint8(np.pnes(shape=(h,w)))
+        return mask, mean(image, mask)
     
     def __str__(self):
         return self.__class__.__name__
@@ -48,7 +57,7 @@ class IntervalSkinDetector(RegionSelector):
         ycrcb = cv.cvtColor(image, cv.COLOR_BGR2YCrCb)
         ycrcb[:, :, 0] = 0
         unary = np.logical_or.reduce((ycrcb[:,:,1] >= 181, ycrcb[:,:,1] <= 137, ycrcb[:,:,2] >= 126, ycrcb[:,:,2] <= 74))
-        return np.uint8(unary)
+        return np.uint8(unary), mean(unary)
     
     def detect(self, image):
         hmap = self._skin_intervals(image)
@@ -70,18 +79,16 @@ class RepeatedKMeansSkinDetector(RegionSelector):
         kmeans = KMeans(n_clusters=2, n_jobs=-1, max_iter=50).fit(arr)
         counts = np.bincount(kmeans.labels_)
         dominant = counts.argmax()
-        labels = kmeans.labels_
-        if dominant == 1:
-            labels = np.uint8(labels==0)
+        labels = np.uint8(kmeans.labels_==dominant)
         labels = labels.reshape(*(image.shape[:2]))
-        return np.uint8(labels)
+        return np.uint8(labels), mean(frame, labels)
     
     def __str__(self):
         return self.__class__.__name__
 
 class BayesianSkinDetector(RegionSelector):
 
-    def __init__(self, threshold=0.5, skin_tone_freshness=30, mean=0, skin_std=20, non_skin_std=100):
+    def __init__(self, threshold=0.5, skin_tone_freshness=30, mean=0, skin_std=20, non_skin_std=100, weighted=True):
         self.threshold = threshold
         self.skin_std=skin_std
         self.non_skin_std=non_skin_std
@@ -90,7 +97,9 @@ class BayesianSkinDetector(RegionSelector):
         self._freshness = skin_tone_freshness
         self.skin_tone = None
         self.distribution = None
-        self.prior = self._load_prior()
+        self.prior_lookup = self._load_prior()
+        self.weighted = weighted
+        self.prior = None
     
     def _load_prior(self):
         dataset_path = f"{PATH}/skin/Skin_NonSkin.txt"
@@ -111,7 +120,7 @@ class BayesianSkinDetector(RegionSelector):
         return lookup
 
     def _safe_prior_lookup(self, colour):
-        p =  self.prior[colour[1], colour[2]]
+        p =  self.prior_lookup[colour[1], colour[2]]
         if p == 0: return 0.3
         return p
         # try:
@@ -130,10 +139,10 @@ class BayesianSkinDetector(RegionSelector):
         # print(f"Image: {image}")
         # print(f"Skin tone: {skin_tone}")
         distance_matrix = self._dist(image, skin_tone, axis=2)
-        print(f"Distance matrix: {distance_matrix}")
-        display_heatmap([distance_matrix])
+        # print(f"Distance matrix: {distance_matrix}")
+        # display_heatmap([distance_matrix])
         self.skin_std = 0.5*np.mean(distance_matrix)
-        print(f"Std: {self.skin_std}")
+        # print(f"Std: {self.skin_std}")
         skin_probs = np.array(list(map(partial(self._pdf, self.skin_std, np.max(distance_matrix)), distance_matrix)))
         # numerator = np.array(list(map(self._pdf, distance_matrix)))
 
@@ -147,22 +156,22 @@ class BayesianSkinDetector(RegionSelector):
         not_skin_dm = self._max_distance(skin_tone)-distance_matrix
         # display_heatmap(_cluster_skin_distance(image))
 
-        print("Cluster skin distance")
-        display_heatmap([np.apply_along_axis(_cluster_skin_distance, 2, image)])
-        print("Skin probability")
-        display_heatmap([skin_probs])
-        # display_heatmap([skin_probs/denominator])
-        print("Not skin distance matrix")
-        display_heatmap([not_skin_dm])
+        # print("Cluster skin distance")
+        # display_heatmap([np.apply_along_axis(_cluster_skin_distance, 2, image)])
+        # print("Skin probability")
+        # display_heatmap([skin_probs])
+        # # display_heatmap([skin_probs/denominator])
+        # print("Not skin distance matrix")
+        # display_heatmap([not_skin_dm])
         not_skin_probs = np.array(list(map(partial(self._pdf, 1.2*self.skin_std, np.max(not_skin_dm)), not_skin_dm)))
         # not_skin_probs = 1-skin_probs
         # not_skin_denominator = np.sum(self._pdf(self._dist(all_skin_tones, skin_tone)))
-        print("Not skin probability")
-        display_heatmap([not_skin_probs])
+        # print("Not skin probability")
+        # display_heatmap([not_skin_probs])
         denominator = (skin_probs+not_skin_probs)#*(1/(256**2))
         # print(f"Skin probs: {skin_probs} \n non-skin probs: {not_skin_probs} \n denominator: {denominator}")
-        print("Weighted skin probability")
-        display_heatmap([skin_probs/denominator])
+        # print("Weighted skin probability")
+        # display_heatmap([skin_probs/denominator])
         return denominator, not_skin_probs/denominator
         # return numerator/denominator
     
@@ -180,23 +189,28 @@ class BayesianSkinDetector(RegionSelector):
         return truncnorm.pdf(x=x, a=0, loc=self.mean, b=upper_limit, scale=std)
         # return truncexpon.pdf(x=x, b=upper_limit, scale=100)
 
-    def detect(self, image):
-        image = cv.GaussianBlur(image,(5,5),cv.BORDER_DEFAULT) 
+    def detect(self, frame):
+        image = cv.GaussianBlur(frame,(5,5),cv.BORDER_DEFAULT) 
         image = cv.cvtColor(image, cv.COLOR_BGR2YCrCb)
         image[:, :, 0] = 0
         if(self._frame_number % self._freshness == 0):
             self.skin_tone = skin_tone(image)
         self._frame_number += 1
         skin_probs, ns_probs = self._class_conditional(image, self.skin_tone)
-        prior = self._prior(image)
-        skin_post, ns_post = skin_probs*prior, ns_probs*(1-prior)
-        print("Prior heatmap")
-        display_heatmap([prior])
-        print(skin_probs + ns_probs)
-        print("Should be all ones")
-        print(skin_post + ns_post)
+        if self.prior is None:
+            self.prior = self._prior(image)
+        skin_post, ns_post = skin_probs*self.prior, ns_probs*(1-self.prior)
+        # print("Prior heatmap")
+        # display_heatmap([self.prior])
+        # print(skin_probs + ns_probs)
+        # print("Should be all ones")
+        # print(skin_post + ns_post)
         skin_post = skin_post*1/np.max(skin_post)
-        return skin_post*1/np.max(skin_post), ns_post, skin_post>ns_post, skin_post>0.5
+        self.prior = skin_post
+        threshold = np.percentile(skin_post, 0.2)
+        # return skin_post*1/np.max(skin_post), ns_post, skin_post>ns_post, skin_post>0.5
+        mask = skin_post > threshold
+        return skin_post, mean(frame, skin_post if self.weighted else mask)
         # return (*self._prior(image))#>self.threshold
     
     def __str__(self):
