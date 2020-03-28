@@ -33,7 +33,7 @@ class FaceTracker(object):
 
     def overlay(self, frame, faces):
         self._draw_rectangle(frame, faces)
-        self._overlay(frame)
+        self._overlay(frame, self.scaled_width, self.scaled_height)
 
     def _detect(self, frame):
         faces =  self.detector.detect_face(frame)
@@ -86,12 +86,12 @@ class NaiveKLTBoxing(FaceTracker):
         self.old_points = None
         super().__init__(detector)
 
-    def _overlay(self, frame):
+    def _overlay(self, frame, scaled_width, scaled_height):
         h,w,_ = frame.shape
         for i in self.old_points:
           x,y = i.ravel()
-          x = int(w*x/super().scaled_width)
-          y = int(h*y/super().scaled_height)
+          x = int(w*x/scaled_width)
+          y = int(h*y/scaled_height)
           cv.circle(frame,(x,y),3,255,-1)
   
     def _to_gray(self, frame):
@@ -198,7 +198,7 @@ class RepeatedDetector(FaceTracker):
   def _track(self, frame):
     return self._detect(frame),{}
   
-  def _overlay(self, frame):
+  def _overlay(self, frame, scaled_width, scaled_height):
     pass
 
   def __str__(self):

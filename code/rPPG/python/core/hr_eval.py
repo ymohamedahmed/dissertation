@@ -68,7 +68,7 @@ def mean(image):
 config = Configuration(KLTBoxingWithThresholding(DNNDetector(), 0.2), PrimitiveROI(), ICAProcessor(), mean, 1200, 60)
 base_path = "experiments/yousuf-re-run/"
 output_path = "rPPG/output/hr_evaluation.csv"
-rows = ["Video", "Distance", "Exercise", "Detector", "ROI", "Signal processor", "Window size", "Offset size", "Repeat", "Heart Rate Number", "ECG HR", "PPG HR", "rPPG HR", "SNR of rPPG"]
+rows = ["Video", "Distance", "Exercise", "Detector", "ROI", "Signal processor", "Window size", "Offset size", "Repeat", "Heart Rate Number", "ECG HR", "PPG HR", "rPPG HR", "SNR of rPPG", "ICA 1", "ICA 2", "ICA 3", "PCA 1", "PCA 2", "PCA 3"]
 for dist in ["1", "1.5", "2"]:
     for exer in ["stat", "star", "jog"]:
         for repeat in range(1,4):
