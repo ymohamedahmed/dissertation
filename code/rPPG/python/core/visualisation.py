@@ -2,6 +2,7 @@ import cv2 as cv
 import numpy as np
 import matplotlib
 import matplotlib.cm as cm
+import helper
 
 class Visualiser():
 
@@ -20,9 +21,9 @@ class Visualiser():
 
   def display(self, frame, faces, area_of_interest):
     height, width, _ = frame.shape
-    self.tracker.overlay(frame, faces)
+    # self.tracker.overlay(frame, faces)
     x,y,w,h = faces[0]
-    cmap = cm.get_cmap('ocean')
+    cmap = cm.get_cmap('jet')
     # print(area_of_interest)
 
     area_of_interest = np.pad(area_of_interest, ((y,height-(y+h)),(x,width-(x+w))), 'constant', constant_values=0)
@@ -47,5 +48,7 @@ class Visualiser():
     foreground = cv.multiply(mask_of_roi, foreground)
     background = cv.multiply(1.0-mask_of_roi, background)
     blended = cv.addWeighted(foreground, alpha, background, 1, 0)
+    # helper.show_images_plt([np.uint8(blended/255)])
     # return rectangle, foreground, background, blended
     self.out.write(np.uint8(blended))
+    # self.out.write(np.uint8(blended))

@@ -28,7 +28,9 @@ class ICAProcessor(Processor):
     def get_hr(self, values, framerate):
         ica = FastICA(n_components=3, max_iter=4000)
         signals = ica.fit_transform(values)
-        return self._select_maximum_power_frequency([self._prevalent_freq(signals[:,i], framerate) for i in range(3)])
+        freqs = [self._prevalent_freq(signals[:,i], framerate) for i in range(3)]
+        return freqs
+        # return self._select_maximum_power_frequency([self._prevalent_freq(signals[:,i], framerate) for i in range(3)])
 
     def _select_maximum_power_frequency(self, rates):
         return max(rates, key=itemgetter(1))[0]
@@ -41,7 +43,8 @@ class PCAProcessor(Processor):
     def get_hr(self, values, framerate):
         pca = PCA()
         pca_result = pca.fit_transform(values)
-        return self._prevalent_freq(pca_result[:,0], framerate)
+        freqs = [self._prevalent_freq(pca_result[:,i], framerate) for i in range(3)]
+        return freqs
 
     def __str__(self):
         return self.__class__.__name__
