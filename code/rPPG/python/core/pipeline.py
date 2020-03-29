@@ -32,6 +32,7 @@ def tracking_pipeline(video_path, config:Configuration, display = False):
             cap.release()
             cv.destroyAllWindows()
             break
+
         face_found = False
         faces, cropped = None, None
         while(not(face_found)):
@@ -53,22 +54,33 @@ def tracking_pipeline(video_path, config:Configuration, display = False):
         x,y,w,h = faces[0]
         
         start = Timing.time()
-        area_of_interest, value = config.region_selector.detect(cropped)
+        try: 
+            area_of_interest, value = config.region_selector.detect(cropped)
+        except Exception as e: 
+            print("ERROR")
+            print(e)
+            print(f"FACE: ({x},{y},{w},{h})")
+            print(f"Frame shape: {frame.shape}")
+            print(f"Cropped: {cropped.shape}")
+            print(frame)
+            print(frame.shape)
         time_roi += (Timing.time()-start)
         
-        # area_of_interest = np.pad(area_of_interest, ((y,height-(y+h)),(x,width-(x+w))), 'constant', constant_values=1)
-        # area_of_interest = np.repeat(area_of_interest[:, :, np.newaxis], 3, axis=2)
-        # frame = np.ma.masked_array(frame, mask=area_of_interest)
-        # value = config.aggregate_function(frame)
+    # area_of_interest = np.pad(area_of_interest, ((y,height-(y+h)),(x,width-(x+w))), 'constant', constant_values=1)
+    # area_of_interest = np.repeat(area_of_interest[:, :, np.newaxis], 3, axis=2)
+    # frame = np.ma.masked_array(frame, mask=area_of_interest)
+    # value = config.aggregate_function(frame)
         values.append(value)
         if display:
             start = Timing.time()
             visualiser.display(frame, faces, area_of_interest)
             time_display += (Timing.time()-start)
-            
+        
         start = Timing.time()
         # if this is the first time we've reached the required number of values
         if frame_number % config.window_size == 0 and frame_number//config.window_size == 1:
+            print(np.array(values[:config.window_size]).shape)
+            print(np.array(values[:config.window_size]))
             heart_rates.append(config.signal_processor.get_hr(np.array(values[:config.window_size]), frame_rate))
         elif (frame_number-config.window_size)%config.offset == 0 and frame_number>config.window_size:
             n = int((frame_number-config.window_size)/config.offset)

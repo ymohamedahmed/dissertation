@@ -5,4 +5,4 @@ from region_selection import BayesianSkinDetector
 from hr_isolator import ICAProcessor
 
 config = Configuration(KLTBoxingWithThresholding(DNNDetector()),  BayesianSkinDetector(), ICAProcessor(), 1200, 60)
-results = pipeline.tracking_pipeline("mahnob/21/P1-Rec1-2009.07.09.17.53.46_C1 trigger _C_Section_21.avi",config,display=True)
+results = pipeline.tracking_pipeline("experiments/yousuf-re-run/2_star_1.mp4",config,display=True)

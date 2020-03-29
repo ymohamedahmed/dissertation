@@ -19,7 +19,7 @@ def _cluster_skin_distance(ycrcb_colour):
     dy = max(abs(py - y) - height / 2, 0)
     return (dx * dx) + (dy * dy)
 
-def skin_tone(frame, alpha=1, beta=5, clusters=5):
+def skin_tone(frame, alpha=10, beta=3, clusters=5):
     h,w,_ = frame.shape
     arr = frame.reshape((h*w,2))
     kmeans = KMeans(n_clusters=clusters, n_jobs=-1, max_iter=50).fit(arr)
@@ -83,13 +83,12 @@ class RepeatedKMeansSkinDetector(RegionSelector):
 
 class BayesianSkinDetector(RegionSelector):
 
-    def __init__(self, threshold=0.5, skin_tone_freshness=1200, mean=0, skin_std=20, non_skin_std=100, weighted=True):
+    def __init__(self, threshold=0.5, mean=0, skin_std=20, non_skin_std=100, weighted=True):
         self.threshold = threshold
         self.skin_std=skin_std
         self.non_skin_std=non_skin_std
         self.mean=mean
         self._frame_number = 0
-        self._freshness = skin_tone_freshness
         self.skin_tone = None
         self.distribution = None
         self.prior_lookup = self._load_prior()
@@ -107,7 +106,6 @@ class BayesianSkinDetector(RegionSelector):
         new_data[:,:3] = cv.cvtColor(image, cv.COLOR_BGR2YCrCb).reshape(size, 3)
         new_data[:,3] = data["Skin"]-1
         new_data = pd.DataFrame(new_data, columns=["Y", "Cr", "Cb", "Skin"])
-        # new_data[:,0] = 0
         prior = new_data.groupby(by=["Cr", "Cb"]).agg({"Skin":[np.mean, len]})
         lookup = 0.3*np.ones(shape=(256,256))
         for (x,y) in prior.index:
@@ -124,8 +122,9 @@ class BayesianSkinDetector(RegionSelector):
         return skin_probs
     
     def _max_distance(self, skin_tone):
-        # Since there are eight corners of the cube, but Y is zero for all of them 
-        # since we're not considering the Y value in the YCrCb colour space
+        """
+            Measure distance against each of the corners
+        """
         corners = np.array([[0,0], [0,255], [255,0], [255,255]])
         return np.max(self._dist(corners, skin_tone, axis=1))
 
@@ -136,10 +135,15 @@ class BayesianSkinDetector(RegionSelector):
         self.prior_lookup[image[:,:,0], image[:,:,1]] = posterior
 
     def detect(self, frame):
-        image = cv.GaussianBlur(frame,(5,5),cv.BORDER_DEFAULT) 
-        image = cv.cvtColor(image, cv.COLOR_BGR2YCrCb)
+        try: 
+            image = cv.cvtColor(frame, cv.COLOR_BGR2YCrCb)
+            image = cv.GaussianBlur(image,(5,5),cv.BORDER_DEFAULT) 
+        except Exception as e: 
+            print("CONVERSION COLOUR")
+            print(e)
+            print(frame.shape)
+
         image = image[:, :, 1:3] 
-        # if((self._frame_number % self._freshness) == 0):
         if(self._frame_number == 0):
             start = time.time()
             self.skin_tone = skin_tone(image)

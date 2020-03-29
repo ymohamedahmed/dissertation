@@ -213,19 +213,29 @@ class DNNDetector():
 
     def detect_face(self, image):
         faces = []
+        # print("FACE DETECTION")
         blob = cv.dnn.blobFromImage(image, 1.0, (300, 300), [104, 117, 123], False, False)
         h,w,_ = image.shape
         self.dnn.setInput(blob)
         detections = self.dnn.forward()
-        for i in range(detections.shape[2]):
-            confidence = detections[0, 0, i, 2]
-            if confidence > 0.5:
-                x1 = int(detections[0, 0, i, 3] * w)
-                y1 = int(detections[0, 0, i, 4] * h)
-                x2 = int(detections[0, 0, i, 5] * w)
-                y2 = int(detections[0, 0, i, 6] * h)
-                faces.append((x1,y1,x2-x1,y2-y1))
-        return faces
+        # print(f"Number of detections: {len(detections)}")
+        # for i in range(detections.shape[2]):
+        #     confidence = detections[0, 0, i, 2]
+        #     print(f"Confidence: {confidence}")
+        #     if confidence > 0.5:
+        #         x1 = int(detections[0, 0, i, 3] * w)
+        #         y1 = int(detections[0, 0, i, 4] * h)
+        #         x2 = int(detections[0, 0, i, 5] * w)
+        #         y2 = int(detections[0, 0, i, 6] * h)
+        #         faces.append((x1,y1,x2-x1,y2-y1))
+        if detections.shape[2] > 0 and detections[0,0,0,2] > 0.3:
+            x1 = int(detections[0, 0, 0, 3] * w)
+            y1 = int(detections[0, 0, 0, 4] * h)
+            x2 = int(detections[0, 0, 0, 5] * w)
+            y2 = int(detections[0, 0, 0, 6] * h)
+            return [(x1,y1,x2-x1,y2-y1)]
+        else:
+            return []
     
     def __str__(self):
         return self.__class__.__name__
