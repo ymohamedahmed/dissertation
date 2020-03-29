@@ -1,4 +1,5 @@
 from biosppy import storage
+import pandas as pd
 from os import listdir
 from os.path import isfile, join, isdir
 from region_selection import KMeans, IntervalSkinDetector, PrimitiveROI, BayesianSkinDetector
@@ -12,6 +13,7 @@ from configuration import Configuration, PATH
 from numpy import genfromtxt
 import pandas as pd
 from operator import itemgetter
+import time
 from scipy.stats import signaltonoise
 
 def get_ecg_signal(file_path):
@@ -56,42 +58,14 @@ def mean_heart_rate(signal, sampling_freq):
     avg_hr = 60*len(rpeaks)*sampling_freq/len(signal)
     return avg_hr
 
-def evaluate(video, ppg_file, ecg_file, config):
-    window_size, offset = config.window_size, config.offset
-    values,pred_heart_rates, _, _ = tracking_pipeline(video, config)
-
-    ecg, ecg_sf = get_ecg_signal(ecg_file)
-    ecg_ws, ecg_o = len(ecg)*window_size/len(values), len(ecg)*offset/len(values)
-    ecg_hr = []
-
-    ppg_sf = 1000
-    ppg = add_time_to_ppg(get_ppg_signal(ppg_file))
-    # ppg_ws, ppg_o = len(ppg)*window_size/len(values), len(ppg)*offset/len(values)
-    ppg_ws, ppg_o = 60.0*window_size/len(values), 60.0 * offset/len(values)
-    ppg_hr = []
-
-    for i in range(len(pred_heart_rates)):
-        e_low, e_high = int(i*ecg_o), int((i*ecg_o)+ecg_ws)
-        ecg_hr.append(mean_heart_rate(ecg[e_low:e_high],ecg_sf))
-
-        #TODO add check for missing ppg data
-        p_low, p_high = int(i*ppg_o), int((i*ppg_o)+ppg_ws)
-        filtered = ppg[(ppg["Time"] < p_high)&(ppg["Time"]>p_low)]
-        if (len(filtered) > window_size):
-            signal = upsample(filtered, p_low, p_high)
-            ppg_hr.append(mean_heart_rate(signal, ppg_sf))
-        else: 
-            ppg_hr.append(None)
-
-    return (pred_heart_rates, ppg_hr, ecg_hr)
-
 def track_ppg(video_path, config:Configuration):
     cap = cv.VideoCapture(PATH + video_path)
     values = []
+    times = np.array([])
     width = int(cap.get(cv.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv.CAP_PROP_FRAME_HEIGHT))
     frame_number = 0
-    frame_rate = int(cap.get(cv.CAP_PROP_FPS))
+    framerate = int(cap.get(cv.CAP_PROP_FPS))
 
     while(cap.isOpened()):
         ret, frame = cap.read()
@@ -117,11 +91,12 @@ def track_ppg(video_path, config:Configuration):
         frame_number += 1
         x,y,w,h = faces[0]
         
+        start = time.time()
         area_of_interest, value = config.region_selector.detect(cropped)
+        end = time.time()
         values.append(value)
-            
-        start = Timing.time()
-        return values
+        np.append(times, end-start)
+    return values, framerate, np.mean(times), np.std(times)
 
 def test_data():
     # in order video file, ppg, ecg
@@ -142,27 +117,74 @@ def hr_with_max_power(freqs):
     return max(freqs, key=itemgetter(1))[0]
 
 def write_ppg_out(files):
-    ppp_meta_output = f"{PATH}output/hr_evaluation/ppg_meta.csv"
-    meta_columns = ["Video file", "PPG file", "Tracker", "Region selector" "Time mean", "Time std", "Number of frames", "Total time", "SNR"]
+    ppg_meta_output = f"{PATH}output/hr_evaluation/ppg_meta.csv"
+    meta_columns = ["Video file", "rPPG file", "PPG file", "ECG file", "Framerate", "Tracker", "Region selector" "Time mean", "Time std", "Number of frames", "Total time", "SNR"]
     with open(ppg_meta_output, 'a') as fd:
         fd.write(meta_columns)
 
-    for vid in files[:, 0]:
+    for file_set in files:
         for tr in range(3):
             for rs in range(4):
+                vid, ppg_file, ecg_file = file_set[0], file_set[1], file_set[1]
                 config = map_config([tr, rs, 0], 0, 0)
                 start = time.time()
-                values, mean_time, time_std = track_ppg(vid, config)
+                values, mean_time, time_std, framerate = track_ppg(vid, config)
                 total = time.time()-start
                 value_output = f"{vid[:-4]}-{str(config.tracker)}-{str(config.region_selector)}.csv"
-                meta_row = [vid, value_output, str(config.tracker), str(config.region_selector), mean_time, time_std, len(values), total, signaltonoise(values)]
+                meta_row = [vid, value_output, ppg_file, ecg_file, framerate, str(config.tracker), str(config.region_selector), mean_time, time_std, len(values), total, signaltonoise(values)]
                 with open(ppg_meta_output, 'a') as fd:
                     fd.write(meta_row)
                 np.savetxt(value_output, values)
 
-def signal_processing_experiments(files):
+def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
+    rppg_hr_pca = np.array([])
+    rppg_hr_ica = np.array([])
+
+    ecg, ecg_sf = get_ecg_signal(ecg_file)
+    ecg_ws, ecg_o = len(ecg)*window_size/len(rppg_signal), len(ecg)*offset/len(rppg_signal)
+    ecg_hr = []
+
+    ppg_sf = 1000
+    ppg = add_time_to_ppg(get_ppg_signal(ppg_file))
+    ppg_ws, ppg_o = 60.0*window_size/len(rppg_signal), 60.0 * offset/len(rppg_signal)
+    ppg_hr = []
+
+    for i, base in enumerate(np.arange(0, len(rppg_signal)-window_size+1, offset)):
+        sig = rppg_signal[base:base+window_size]
+        np.append(rppg_hr_pca, PCAProcessor().get_hr(sig, framerate))
+        np.append(rppg_hr_ica, ICAProcessor().get_hr(sig, framerate))
+
+        e_low, e_high = int(i*ecg_o), int((i*ecg_o)+ecg_ws)
+        ecg_hr.append(mean_heart_rate(ecg[e_low:e_high],ecg_sf))
+
+        p_low, p_high = int(i*ppg_o), int((i*ppg_o)+ppg_ws)
+        filtered = ppg[(ppg["Time"] < p_high)&(ppg["Time"]>p_low)]
+        if (len(filtered) > window_size):
+            signal = upsample(filtered, p_low, p_high)
+            ppg_hr.append(mean_heart_rate(signal, ppg_sf))
+        else: 
+            ppg_hr.append(None)
+
+    return (rppg_hr_ica, rppg_hr_pca, ppg_hr, ecg_hr)
+
+
+def signal_processing_experiments(files, ppg_meta_file):
     sp_output = f"{PATH}output/hr_evaluation/sp.csv"
-    rows = ["Video", "Distance", "Exercise", "Detector", "ROI", "Signal processor", "Window size", "Offset size", "Repeat", "Heart Rate Number", "rPPG HR", "PPG HR", "ECG HR", "SNR of rPPG", "ICA 1 HR", "ICA 1 Power", "ICA 2 HR", "ICA 2 Power", "ICA 3 HR", "ICA 3 Power", "PCA 1 HR", "PCA 1 Power", "PCA 2 HR", "PCA 2 Power", "PCA 3 HR", "PCA 3 Power"]
+    columns = ["Video", "Tracker", "Region selector", "Window size", "Offset size", "Heart Rate Number", "rPPG HR ICA", "rPPG HR PCA", "PPG HR", "ECG HR", "ICA 1 HR", "ICA 1 Power", "ICA 2 HR", "ICA 2 Power", "ICA 3 HR", "ICA 3 Power", "PCA 1 HR", "PCA 1 Power", "PCA 2 HR", "PCA 2 Power", "PCA 3 HR", "PCA 3 Power"]
+    ppg_meta = pd.read_csv(ppg_meta_file)
+    with open(sp_output, 'a') as fd:
+        fd.write(columns)
+    for ppg_row in ppg_meta:
+        signal = np.loadtxt(ppg_row["rPPG file"])
+        for ws in np.arange(120, 1800, 10):
+            for off in np.arange(10, 100, 5):
+                rppg_ica, rppg_pca, ppg_hr, ecg_hr = evaluate(signal, ppg_row["PPG file"], ppg_row["ECG file"], ws, off, ppg_row["Framerate"])
+                for i in range(len(rppg_ica)):
+                    row = [ppg_row["Video file"], ppg_row["Tracker"], ppg_row["Region selector"], ws, off, i, hr_with_max_power(rppg_ica[i]), rppg_pca[i][0][0], ppg_hr[i], ecg_hr[i], rppg_ica[i][0][0], rppg_ica[i][0][1], rppg_ica[i][1][0], rppg_ica[i][1][1], rppg_ica[i][2][0], rppg_ica[i][2][1], rppg_pca[i][0][0], rppg_pca[i][0][1], rppg_pca[i][1][0], rppg_pca[i][1][1], rppg_pca[i][2][0], rppg_pca[i][2][1]]
+                    with open(sp_output, 'a') as fd:
+                        fd.write(row)
+                
+
 
 
 def map_config(config: list, window_size, offset):
@@ -180,25 +202,5 @@ def map_config(config: list, window_size, offset):
     return Configuration(trackers[t], region_selectors[rs], signal_processor[sp], window_size, offset)
 
 files = test_data()
-config = Configuration(KLTBoxingWithThresholding(DNNDetector(), 0.2), PrimitiveROI(), ICAProcessor(), 1200, 60)
-output_path = "rPPG/output/hr_evaluation.csv"
-rows = ["Video", "Distance", "Exercise", "Detector", "ROI", "Signal processor", "Window size", "Offset size", "Repeat", "Heart Rate Number", "rPPG HR", "PPG HR", "ECG HR", "SNR of rPPG", "ICA 1 HR", "ICA 1 Power", "ICA 2 HR", "ICA 2 Power", "ICA 3 HR", "ICA 3 Power", "PCA 1 HR", "PCA 1 Power", "PCA 2 HR", "PCA 2 Power", "PCA 3 HR", "PCA 3 Power"]
-
-for file in files:
-    results = evaluate(file[0], file[1], file[2], config)
-    for i in range(len(results[0])):
-        powers = results[0][i]
-        ica = [powers[0], powers[]] if ica else [None for _ in range(6)]
-        pca = []
-        row = [file[0], "", "", str(config.tracker), str(config.region_selector), str(config.signal_processor), window_size, offset_size, "", i, ]
-"""
-            print(f"Considering base file: {file}")
-            result = evaluate(f"{PATH}{file}.csv", f"{PATH}{file}.EDF", f"{PATH}{file}.mp4", config)
-            print(result)
-            print(f"ECG: {result[0]}")
-            print(f"rPPG: {result[1]}")
-            print(f"PPG: {result[2]}")
-            break
 
 
-"""
