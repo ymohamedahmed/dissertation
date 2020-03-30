@@ -205,8 +205,42 @@ Section \ref{section:libraries}) returned smaller face detection regions with si
 % Describe the optimisation problem
 % Why it often works poorly for long periods of time
 % Descibe Lucas-Kanade
+% Given a pair of images taken of the same scene that are separated in either time or space, inferring which points in each image are of the same location in the scene is known as the 
+% correspondence problem.
 
-\subsection{Harris corner detection}
+The correspondence problem, well known in Computer Vision, is the task of, given a pair of images of the same scene which are taken either at different times or from different positions, finding 
+which pixels in the images correspond to the same position in the scene.
+For example, given two images of a car that are taken a second apart, one might like to discover where the same wheel has moved to between frames.
+Optical flow is a variant of the correspondence problem, where we specifically consider images taken at different times but from the same position and attempt to infer motion between the observer 
+and the scene. This can loosely be thought of as a notion of `tracking' points in a scene between frames.
+\\\\
+Fleet and Weiss \cite{Fleet2006} provide a formal description of the optical flow problem which has been outlined and summarised below.
+Suppose we have a function $I(x,y,t)$ which describes the intensity at each point $(x,y)$ in an image taken at time $t$. 
+The task is to find for each point of interest, $(x_i, y_i)$,
+a pair $(\Delta x_i, \Delta y_i)$ such that $I(x_i,y_i,t) = I(x_i + \Delta x_i, y_i + \Delta y_i, t+\Delta t)$ for the image taken at time $t+\Delta t$.
+By taking the Taylor series we find that: $I(x_i + \Delta x_i, y_i + \Delta y_i, t+\Delta t) = I(x_i,y_i,t) + \frac{\partial I}{\partial x_i}\Delta x_i + \frac{\partial I}{\partial y_i} \Delta y_i + \frac{\partial I}{\partial t} \Delta t + ...$
+
+This sets up the key equation of optical flow: 
+\begin{equation*}
+    \frac{\partial I}{\partial x_i}\Delta x_i + \frac{\partial I}{\partial y_i} \Delta y_i + \frac{\partial I}{\partial t} \Delta t  = 0
+\end{equation*}
+\\\\
+It is important to note that this technique assumes that we can track points by only considering their brightness. Implicitly this assumes that the illumination incident onto a surface is constant
+between frames. Clearly this is a very large assumption and would fail if there is reflection within the surface, for example, if there are any specular highlights. However, this assumption, as 
+reported by Fleet and Weiss \cite{Fleet2006} works surprisingly well in practice. 
+
+
+
+
+\paragraph{Lucas-Kanade}
+% Assumes constant flow in a small enough region
+% Uses differential methods to solve the optical flow equations by minimising least-squares error
+% Very popular
+
+\paragraph{Harris corner detection}
+% Could track all points in the scene
+% Computationally expensive and was tried
+% Instead if we choose to track fewer points, we need to select them intelligently
 % Describe algorithm and why it is useful
 % idea is tracking certain points are easier than others
 
@@ -215,10 +249,20 @@ Section \ref{section:libraries}) returned smaller face detection regions with si
 \section{Relevant signal processing techniques}
 \subsection{Blind source separation}
 \label{ref:bss_prep}
-\subsubsection{Independent Component Analysis}
-\subsubsection{Principal Component Analysis}
+% Describe the problem
+% Cocktail party problem, humans have ability to pick up an individual conversation despite many going on a tthe same time
+% Important property since allows for the separation of noise
+% Possible solutions are introduced in Section \ref{implementation:pca_ica}
 
-\subsection{Fourier transformations}
+
+% \subsubsection{Independent Component Analysis}
+
+
+% \subsubsection{Principal Component Analysis}
+
+\subsection{Fourier transforms}
+% Decompose function into constituent frequencies
+
 
 % \section{Halide}
 % \section{RenderScript}

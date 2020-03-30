@@ -1,5 +1,6 @@
 from biosppy import storage
 import pandas as pd
+import heartpy as hp
 from os import listdir
 from os.path import isfile, join, isdir
 from region_selection import KMeans, IntervalSkinDetector, PrimitiveROI, BayesianSkinDetector
@@ -13,8 +14,9 @@ from configuration import Configuration, PATH
 from numpy import genfromtxt
 import pandas as pd
 from operator import itemgetter
+import cv2 as cv
 import time
-from scipy.stats import signaltonoise
+import csv
 
 def get_ecg_signal(file_path):
     f = pyedflib.EdfReader(file_path)
@@ -46,6 +48,8 @@ def get_ppg_signal(file_path):
 def upsample(data, low, high):
     x = np.arange(low, high, 1/1000)
     y = np.interp(x, data["Time"], data["PPG"])
+    y = hp.filter_signal(y, [0.7, 3.5], sample_rate=1000, 
+                            order=3, filtertype='bandpass')
     return y
 
 def add_time_to_ppg(data):
@@ -59,8 +63,8 @@ def mean_heart_rate(signal, sampling_freq):
     return avg_hr
 
 def track_ppg(video_path, config:Configuration):
-    cap = cv.VideoCapture(PATH + video_path)
-    values = []
+    cap = cv.VideoCapture(video_path)
+    values = np.array([])
     times = np.array([])
     width = int(cap.get(cv.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv.CAP_PROP_FRAME_HEIGHT))
@@ -82,7 +86,7 @@ def track_ppg(video_path, config:Configuration):
                 face_found = True
             else:
                 ret, frame = cap.read()
-                values.append(None)
+                values = np.append(values, [np.nan, np.nan, np.nan])
                 if ret == False:
                     cap.release()
                     cv.destroyAllWindows()
@@ -94,8 +98,17 @@ def track_ppg(video_path, config:Configuration):
         start = time.time()
         area_of_interest, value = config.region_selector.detect(cropped)
         end = time.time()
-        values.append(value)
-        np.append(times, end-start)
+        values = np.append(values, value)
+        times = np.append(times, end-start)
+    values = values.reshape(len(values)//3, 3)
+    length,_ = values.shape
+    # Interpolate none values
+    xp = np.arange(length)
+    for i in range(3):
+        nan_indices = xp[np.isnan(values[:,i])]
+        nans = np.isnan(values[:,i])
+        nan_indices = xp[nans]
+        values[nan_indices,i] = np.interp(nan_indices, xp[~nans], values[~nans,i]) 
     return values, framerate, np.mean(times), np.std(times)
 
 def test_data():
@@ -116,24 +129,52 @@ def test_data():
 def hr_with_max_power(freqs):
     return max(freqs, key=itemgetter(1))[0]
 
-def write_ppg_out(files):
-    ppg_meta_output = f"{PATH}output/hr_evaluation/ppg_meta.csv"
-    meta_columns = ["Video file", "rPPG file", "PPG file", "ECG file", "Framerate", "Tracker", "Region selector" "Time mean", "Time std", "Number of frames", "Total time", "SNR"]
-    with open(ppg_meta_output, 'a') as fd:
-        fd.write(meta_columns)
+def noise(data, framerate):
+    data = (data-np.mean(data))/np.std(data)
+    transform = np.fft.rfft(data)
+    freqs = np.fft.rfftfreq(len(data), 1.0/framerate)
+    freqs = 60*freqs
+    band_pass = np.where((freqs < 40) | (freqs > 240) )[0]
+    transform = np.abs(transform)**2
+    noise = np.sum(transform[band_pass])
+    return noise
 
-    for file_set in files:
+def map_config(config: list, window_size, offset):
+    """
+        Take a list of three numbers and return a configuration
+        Configurations based on the following:
+        tracker in {RepeatedDetector, KLTBoxingWithThresholding}
+        region_selector in {PrimitiveROI, IntervalThresholding, BayesianSkinDetector(weighted=False), BayesianSkinDetector(weighted=True)}
+        signal_processor in {PCA, ICA}
+    """
+    trackers = [RepeatedDetector(DNNDetector()), KLTBoxingWithThresholding(DNNDetector(), recompute_threshold=0.15), KLTBoxingWithThresholding(DNNDetector())]
+    region_selectors = [PrimitiveROI(), IntervalSkinDetector(), BayesianSkinDetector(weighted=False), BayesianSkinDetector(weighted=True)]
+    signal_processor = [PCAProcessor(), ICAProcessor()]
+    t, rs, sp = config[0], config[1], config[2]
+    return Configuration(trackers[t], region_selectors[rs], signal_processor[sp], window_size, offset)
+
+def write_ppg_out(files, ppg_meta_output):
+    meta_columns = ["Video file", "rPPG file", "PPG file", "ECG file", "Framerate", "Tracker", "Region selector" "Time mean", "Time std", "Number of frames", "Total time", "Noise"]
+    with open(ppg_meta_output, 'a') as fd:
+        writer = csv.writer(fd)
+        writer.writerow(meta_columns)
+
+    for index, file_set in enumerate(files):
         for tr in range(3):
             for rs in range(4):
-                vid, ppg_file, ecg_file = file_set[0], file_set[1], file_set[1]
+                vid, ppg_file, ecg_file = file_set[0], file_set[1], file_set[2]
                 config = map_config([tr, rs, 0], 0, 0)
+                print("========================")
+                print(f"Experiments completion: {100*((12*index) + (4*tr) + rs)/len(files)}%")
+                print(f"Video: {vid}, PPG file: {ppg_file}, ECG file: {ecg_file}, Tracker: {tr}, Region selector: {rs}")
                 start = time.time()
                 values, mean_time, time_std, framerate = track_ppg(vid, config)
                 total = time.time()-start
-                value_output = f"{vid[:-4]}-{str(config.tracker)}-{str(config.region_selector)}.csv"
-                meta_row = [vid, value_output, ppg_file, ecg_file, framerate, str(config.tracker), str(config.region_selector), mean_time, time_std, len(values), total, signaltonoise(values)]
+                value_output = f"{PATH}output/hr_evaluation/{vid.split('/')[-1][:-4]}-{str(config.tracker)}-{str(config.region_selector)}.csv"
+                meta_row = [vid, value_output, ppg_file, ecg_file, framerate, str(config.tracker), str(config.region_selector), mean_time, time_std, len(values), total, noise(values, framerate)]
                 with open(ppg_meta_output, 'a') as fd:
-                    fd.write(meta_row)
+                    writer = csv.writer(fd)
+                    writer.writerow(meta_row)
                 np.savetxt(value_output, values)
 
 def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
@@ -145,23 +186,28 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
     ecg_hr = []
 
     ppg_sf = 1000
-    ppg = add_time_to_ppg(get_ppg_signal(ppg_file))
+    if not(ppg_file is None):
+        ppg = add_time_to_ppg(get_ppg_signal(ppg_file))
     ppg_ws, ppg_o = 60.0*window_size/len(rppg_signal), 60.0 * offset/len(rppg_signal)
     ppg_hr = []
 
     for i, base in enumerate(np.arange(0, len(rppg_signal)-window_size+1, offset)):
         sig = rppg_signal[base:base+window_size]
-        np.append(rppg_hr_pca, PCAProcessor().get_hr(sig, framerate))
-        np.append(rppg_hr_ica, ICAProcessor().get_hr(sig, framerate))
+        rppg_hr_pca = np.append(rppg_hr_pca, PCAProcessor().get_hr(sig, framerate))
+        rppg_hr_ica = np.append(rppg_hr_ica, ICAProcessor().get_hr(sig, framerate))
 
         e_low, e_high = int(i*ecg_o), int((i*ecg_o)+ecg_ws)
         ecg_hr.append(mean_heart_rate(ecg[e_low:e_high],ecg_sf))
 
         p_low, p_high = int(i*ppg_o), int((i*ppg_o)+ppg_ws)
-        filtered = ppg[(ppg["Time"] < p_high)&(ppg["Time"]>p_low)]
-        if (len(filtered) > window_size):
-            signal = upsample(filtered, p_low, p_high)
-            ppg_hr.append(mean_heart_rate(signal, ppg_sf))
+        
+        if not(ppg_file is None):
+            filtered = ppg[(ppg["Time"] < p_high)&(ppg["Time"]>p_low)]
+            if (len(filtered) > window_size):
+                signal = upsample(filtered, p_low, p_high)
+                ppg_hr.append(mean_heart_rate(signal, ppg_sf))
+            else: 
+                ppg_hr.append(None)
         else: 
             ppg_hr.append(None)
 
@@ -173,34 +219,29 @@ def signal_processing_experiments(files, ppg_meta_file):
     columns = ["Video", "Tracker", "Region selector", "Window size", "Offset size", "Heart Rate Number", "rPPG HR ICA", "rPPG HR PCA", "PPG HR", "ECG HR", "ICA 1 HR", "ICA 1 Power", "ICA 2 HR", "ICA 2 Power", "ICA 3 HR", "ICA 3 Power", "PCA 1 HR", "PCA 1 Power", "PCA 2 HR", "PCA 2 Power", "PCA 3 HR", "PCA 3 Power"]
     ppg_meta = pd.read_csv(ppg_meta_file)
     with open(sp_output, 'a') as fd:
-        fd.write(columns)
-    for ppg_row in ppg_meta:
+        writer = csv.writer(fd)
+        writer.writerow(columns)
+    for index, ppg_row in enumerate(ppg_meta):
         signal = np.loadtxt(ppg_row["rPPG file"])
         for ws in np.arange(120, 1800, 10):
             for off in np.arange(10, 100, 5):
                 rppg_ica, rppg_pca, ppg_hr, ecg_hr = evaluate(signal, ppg_row["PPG file"], ppg_row["ECG file"], ws, off, ppg_row["Framerate"])
+                print("===================================")
+                print(f"Experiment progress: {100*index/len(ppg_meta)}%")
+                vid_name = ppg_row["Video file"]
+                print(f"Considering: {vid_name}, Window size: {ws}, Offset: {off}")
+                
                 for i in range(len(rppg_ica)):
                     row = [ppg_row["Video file"], ppg_row["Tracker"], ppg_row["Region selector"], ws, off, i, hr_with_max_power(rppg_ica[i]), rppg_pca[i][0][0], ppg_hr[i], ecg_hr[i], rppg_ica[i][0][0], rppg_ica[i][0][1], rppg_ica[i][1][0], rppg_ica[i][1][1], rppg_ica[i][2][0], rppg_ica[i][2][1], rppg_pca[i][0][0], rppg_pca[i][0][1], rppg_pca[i][1][0], rppg_pca[i][1][1], rppg_pca[i][2][0], rppg_pca[i][2][1]]
                     with open(sp_output, 'a') as fd:
-                        fd.write(row)
+                        writer = csv.writer(fd)
+                        writer.writerow(row)
                 
 
 
 
-def map_config(config: list, window_size, offset):
-    """
-        Take a list of three numbers and return a configuration
-        Configurations based on the following:
-        tracker in {RepeatedDetector, KLTBoxingWithThresholding}
-        region_selector in {PrimitiveROI, IntervalThresholding, BayesianSkinDetector(weighted=False), BayesianSkinDetector(weighted=True)}
-        signal_processor in {PCA, ICA}
-    """
-    trackers = [RepeatedDetector(DNNDetector()), KLTBoxingWithThresholding(DNNDetector(), recompute_threshold=0.15), KLTBoxingWithThresholding(DNNDetector)]
-    region_selectors = [PrimitiveROI(), IntervalSkinDetector(), BayesianSkinDetector(weighted=False), BayesianSkinDetector(weighted=True)]
-    signal_processor = [PCAProcessor(), ICAProcessor()]
-    t, rs, sp = config[0], config[1], config[2]
-    return Configuration(trackers[t], region_selectors[rs], signal_processor[sp], window_size, offset)
 
 files = test_data()
-
-
+ppg_meta_output = f"{PATH}output/hr_evaluation/ppg_meta.csv"
+write_ppg_out(files, ppg_meta_output)
+signal_processing_experiments(files, ppg_meta_output)

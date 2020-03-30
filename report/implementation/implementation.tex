@@ -384,6 +384,7 @@ To simplify this approach the problem is broken down into two subtasks:
 Although, as will be explained, there is some overlap between the two to aide with correctly identifying the pulse.
 
 \subsection{Blind-source separation}
+\label{implementation:pca_ica}
 Suppose that our observed colour signal, $\mathbf{I}(t)$, a vector-valued function, consists of a mixture of several underlying signals, $x_i(t)$ one of which is the pulse, $p(t)$. 
 Our observed signal exists in three dimensions (i.e. the particular colour space in use), is the result of the mixing of three underlying signals by some mixing matrix $\mathbf{A}$.
 \begin{equation*}

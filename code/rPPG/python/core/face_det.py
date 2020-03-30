@@ -184,7 +184,8 @@ class KLTBoxingWithThresholding(NaiveKLTBoxing):
         return faces, profiling
   
     def __del__(self):
-        print(f"{self.redetects}/{self.frame_number}={100*self.redetects/self.frame_number}%")
+        if(self.frame_number > 0):
+            print(f"{self.redetects}/{self.frame_number}={100*self.redetects/self.frame_number}%")
 
     def __str__(self):
         return f"{self.__class__.__name__}-{str(self.detector)}"
