@@ -217,32 +217,61 @@ and the scene. This can loosely be thought of as a notion of `tracking' points i
 Fleet and Weiss \cite{Fleet2006} provide a formal description of the optical flow problem which has been outlined and summarised below.
 Suppose we have a function $I(x,y,t)$ which describes the intensity at each point $(x,y)$ in an image taken at time $t$. 
 The task is to find for each point of interest, $(x_i, y_i)$,
-a pair $(\Delta x_i, \Delta y_i)$ such that $I(x_i,y_i,t) = I(x_i + \Delta x_i, y_i + \Delta y_i, t+\Delta t)$ for the image taken at time $t+\Delta t$.
-By taking the Taylor series we find that: $I(x_i + \Delta x_i, y_i + \Delta y_i, t+\Delta t) = I(x_i,y_i,t) + \frac{\partial I}{\partial x_i}\Delta x_i + \frac{\partial I}{\partial y_i} \Delta y_i + \frac{\partial I}{\partial t} \Delta t + ...$
-
-This sets up the key equation of optical flow: 
+a pair $(\Delta x_i, \Delta y_i)$ such that for an subsequently taken at time $t + \Delta t$
+\begin{equation}
+ I(x_i,y_i,t) = I(x_i + \Delta x_i, y_i + \Delta y_i, t+\Delta t)
+ \label{eq:1}
+\end{equation}
+In other words, we wish to find where each point has moved to between frames.
+By taking the Taylor series expansion of equation \ref{eq:1}: 
+\begin{equation}
+I(x_i + \Delta x_i, y_i + \Delta y_i, t+\Delta t) = I(x_i,y_i,t) + \frac{\partial I}{\partial x_i}\Delta x_i + \frac{\partial I}{\partial y_i} \Delta y_i + \frac{\partial I}{\partial t} \Delta t + ... 
+\label{eq:2}
+\end{equation}
+This sets up the key equation of optical flow which a valid solution must satisfy. 
 \begin{equation*}
     \frac{\partial I}{\partial x_i}\Delta x_i + \frac{\partial I}{\partial y_i} \Delta y_i + \frac{\partial I}{\partial t} \Delta t  = 0
+    \label{eq:3}
 \end{equation*}
-\\\\
-It is important to note that this technique assumes that we can track points by only considering their brightness. Implicitly this assumes that the illumination incident onto a surface is constant
-between frames. Clearly this is a very large assumption and would fail if there is reflection within the surface, for example, if there are any specular highlights. However, this assumption, as 
-reported by Fleet and Weiss \cite{Fleet2006} works surprisingly well in practice. 
-
-
-
+If we denote, the respective velocities $V_{x_i} = \frac{\Delta x_i}{\Delta t}$ and $V_{y_i} = \frac{\Delta y_i}{\Delta t}$ then the constraint in equation \ref{eq:3} 
+can be rewritten in terms of the velocities $V_{x_i}$ and $V_{y_i}$.
+\begin{equation*}
+    \frac{\partial I}{\partial x_i}V_{x_i} + \frac{\partial I}{\partial y_i}  V_{y_i} + \frac{\partial I}{\partial t}  = 0
+\end{equation*}
+Attempting to find $V_{x_i}$ and $V_{y_i}$ from this equation directly is not feasible, as a single equation in two unknowns, it cannot be solved uniquely from this representation.
+Therefore, large bodies of work have been dedicated to investigating further sets of assumptions which can turn this into a tractable problem.
+Typically, these additional assumptions are used to generate further equations in the variables $V_{x_i}$ and $V_{y_i}$ to overcome the problem described. A widely used technique that achieves this is
+known as the Lucas-Kanade method \cite{LucasKanade}.
 
 \paragraph{Lucas-Kanade}
 % Assumes constant flow in a small enough region
 % Uses differential methods to solve the optical flow equations by minimising least-squares error
 % Very popular
-
-\paragraph{Harris corner detection}
+Instead of considering an individual pixel, one might instead assume that the movement in a small enough region of the frame is constant. That is, we assume that a region of $n$ pixels all move in the same direction between frames.
+In this scenario, we can construct $n$ equations in two variables and so for any $n>1$, we can attempt to solve for $V_{x_i}$ and $V_{y_i}$. Typically, $n>2$ is used and so the sets of equations are over-determined and thus it may
+be the case that no values of $V_{x_i}$ and $V_{y_i}$ exist that perfectly solve the set of equations. In this case, the Lucas-Kanade method computes the solution minimising the least squares error.
+\\\\
+It is important to note that all optical flow techniques assumes that we can track points by only considering their brightness. Implicitly this further assumes that the illumination incident onto a surface 
+is constant between frames. Clearly this is a very large assumption and would fail if there is reflection within the surface, for example, if there are any specular highlights. However, this assumption, as reported by 
+Fleet and Weiss \cite{Fleet2006} works surprisingly well in practice and so is deemed to be acceptable. Naturally, however, these assumptions will not hold perfectly in reality, this, combined with the further assumptions
+of the Lucas-Kanade method means that optical flow should not be expected to work perfectly in practice. 
+\paragraph{Shi-Tomasi corner detection}
 % Could track all points in the scene
 % Computationally expensive and was tried
 % Instead if we choose to track fewer points, we need to select them intelligently
 % Describe algorithm and why it is useful
 % idea is tracking certain points are easier than others
+Given the Lucas-Kanade method of optical flow, it would be plausible to track all points in the image by applying the algorithm to every pixel. This is known as dense optical flow and is, naturally, more computationally 
+intensive. As an alternative, one might use sparse optical flow where some subset of all the pixels in the image are tracked between frames. 
+The selection of this subset is non-obvious. It is clear, however, that not all points in an image are equally easy to track. For example, a pixel surrounded by a large region of uniform colour cannot be easily followed but points
+found at boundaries are likely to be easier to track. 
+\\\\
+Shi and Tomasi \cite{ShiTomasi} proposed a method for the selection of points with the purpose of ease of tracking which they termed \textit{GoodFeaturesToTrack}. 
+The approach taken is to find points which are surrounded by regions of differing textures, such points are known as `corners'.
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{example-image-c}
+   \caption{An example output of the Shi-Tomasi corner detector applied to a face image} 
+\end{figure}
 
 % \section{Conditional Random Fields}
 % \section{Semantic Segmentation}
