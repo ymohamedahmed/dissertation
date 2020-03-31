@@ -3,6 +3,7 @@ Before being able to proceed with the project, understanding the required topics
 and described in relation to this project.
 
 \section{Heart rate sensing}
+\label{prep:hr_sensing}
 Before attempting to develop a system which can estimate the heart rate of a user without physical contact, it is useful to understand how traditional heart rate sensors work.
 Although it is clear that a non-contact system is constrained by different requirements, it is common when developing low fidelity sensors to begin by attempting to mimic high fidelity alternatives. \\\\
 This project can be viewed as the development of a virtual sensor\footnote{A sensor which does not dervie its results from a direct physical realisation of that sensor} that derives its data from an existing sensor, the camera. It is for this reason, that the planning of the project proceeds by, first, understanding the workings of the two main alternative sensors and then reasoning about how one might derive these results from a camera instead.
@@ -152,7 +153,7 @@ performance and robustness are of equal importance. That is, the computations in
 Furthermore, heart rate estimations must be robust to changing conditions or, at the very least, their failure scenarios should be well documented. 
 Under this analysis, several extensions to the current literature were formulated and researched throughout the project:
 \begin{itemize}
-    \item document the performance of associated algorithms and attempt to achieve reasonable performance on standard devices
+    \item attempt to achieve reasonable performance on standard computing devices
     \item investigate the effect of motion and distance on accuracy.
 \end{itemize}
 
@@ -267,11 +268,17 @@ The selection of this subset is non-obvious. It is clear, however, that not all 
 found at boundaries are likely to be easier to track. 
 \\\\
 Shi and Tomasi \cite{ShiTomasi} proposed a method for the selection of points with the purpose of ease of tracking which they termed \textit{GoodFeaturesToTrack}. 
-The approach taken is to find points which are surrounded by regions of differing textures, such points are known as `corners'.
+The approach taken is to find points which are surrounded by regions of differing illumination, such points are known as `corners'. Corners tend to be easier to track
+and so form a good basis for selecting points for use with sparse optical flow.
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{example-image-c}
    \caption{An example output of the Shi-Tomasi corner detector applied to a face image} 
 \end{figure}
+
+\subsection{Clustering}
+% Describe problem of finding clusters
+
+\paragraph{K-Means}
 
 % \section{Conditional Random Fields}
 % \section{Semantic Segmentation}
@@ -282,6 +289,19 @@ The approach taken is to find points which are surrounded by regions of differin
 % Cocktail party problem, humans have ability to pick up an individual conversation despite many going on a tthe same time
 % Important property since allows for the separation of noise
 % Possible solutions are introduced in Section \ref{implementation:pca_ica}
+In a busy restaurant with multiple conversations occurring simultaneously, humans can, peculiarly, focus on a single conversation comfortably.
+This means that humans, given signals from both ears which contain a mixture of many different conversations, can identify an individual signal corresponding to the dialogue
+of interest.
+This is an example of the selective attention that can be displayed by humans and is often referred to as the \textit{cocktail party effect} \cite{Cherry}.
+\\\\
+The task of identifying sources of interest from multiple mixed signals is known as the blind source separation problem and is an important problem in the field of digital 
+signal processing. 
+In the example of a restaurant, each source is an audio signal representing the individual conversation occurring. The brain, having received signals 
+from each ear containing a mixture of conversations, is tasked with producing a coherent, individual signal representing the conversation of interest. Although this appears
+to be trivial for the brain it is much more difficult to achieve computationally.
+The relevance of the blind source separation and possible solutions are introduced fully in Section \ref{implementation:pca_ica}.
+% which are different mixtures of the conversations within earshot. It is then tasked with identifying a single audio signal representing the conversation
+% of interest.
 
 
 % \subsubsection{Independent Component Analysis}
@@ -289,20 +309,27 @@ The approach taken is to find points which are surrounded by regions of differin
 
 % \subsubsection{Principal Component Analysis}
 
-\subsection{Fourier transforms}
+\subsection{Fourier analysis}
 % Decompose function into constituent frequencies
+The signals recorded by a heart rate sensor as described in Section \ref{prep:hr_sensing} are functions of time. A sensor records a particular physical 
+phenomenon as time passes and later uses this to infer a property in the frequency domain - the heart rate.
+As a result, there must be a kind of mapping between the signal which exists in the time domain and the heart rate of the user that exists in the 
+frequency domain. A naïve way to achieve this might be to count the number of beats of the heart in a certain interval. In that case, the frequency 
+of the heart beats \textit{or} the heart rate, is the ratio of the number of heart beats and the size of the window.
+However, a formal approach to the mapping of a function from the time domain into the frequency domain exists and is known as a Fourier transform. 
 
 
 % \section{Halide}
 % \section{RenderScript}
 % \section{Differentiable Programming}
-\section{Clustering}
-\paragraph{K-Means}
+
+
 
 \section{Languages and tooling}
 \subsection{Languages}
 \paragraph{Python}
 % large provisions for rapid development
+
 \paragraph{Kotlin}
 % Power of the JVM which has lots of libraries
 % Directly targets the Android OS
@@ -316,11 +343,22 @@ The approach taken is to find points which are surrounded by regions of differin
 \section{Starting Point}
 % Courses this year which were relevant: Mobile and sensor systems, Computer Vision, Information Theory
 % did not take DSP course but read the DSP notes
+% had no previous experience of kotlin and some limited experience of python
+
 
 \section{Requirements analysis}
+% Goals develop a python implementation of rPPG
+% Develop an additional output of an Android implementation to move towards higher availabiltiy sensing
+% Evaluate on a database of stationary videos and compare with ECG
+% Reasonable accuracy on stationary videos
 
+% Extensions:
+% evaluate compared to a smart watch
+% real time perforamance 
+% 
 
 \section{Professional practice}
 % planning 
 % prototyping leverages speed of development in python
 % android implementation completes the movement towards higher availability but overall focus was on the Python implementation
+% use of libraries
