@@ -1,4 +1,6 @@
 from operator import itemgetter
+import matplotlib 
+import matplotlib.pyplot as plt
 import sklearn
 from sklearn.decomposition import FastICA, PCA
 import numpy as np
@@ -10,7 +12,8 @@ class Processor():
         """
         Return the most prevalent frequency using power spectrum
         """
-        data = (data-np.mean(data))/np.std(data)
+        if not(np.std(data) == 0):
+            data = (data-np.mean(data))/np.std(data)
         transform = np.fft.rfft(data)
         freqs = np.fft.rfftfreq(len(data), 1.0/framerate)
         freqs = 60*freqs
@@ -26,7 +29,7 @@ class Processor():
 class ICAProcessor(Processor):
 
     def get_hr(self, values, framerate):
-        ica = FastICA(n_components=3, max_iter=4000)
+        ica = FastICA(n_components=3, max_iter=40000)
         signals = ica.fit_transform(values)
         freqs = [self._prevalent_freq(signals[:,i], framerate) for i in range(3)]
         return freqs
