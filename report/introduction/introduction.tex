@@ -3,23 +3,29 @@
 Optical heart rate monitors, increasingly standard in modern wearable devices, measure the amount of light emitted by the surface of the 
 skin as a proxy for understanding the blood flow beneath.
 The most common light sensing device of all is the camera and so, naturally, the question arises of whether a camera can be used to measure heart rate?
-Research has shown that such a system can be implemented using a standard camera pointed at the face of the user \cite{poh2010non}\cite{vanderKooij2019}\cite{Verkruysse2008}. This project is concerned with the implementation of such a system and the further investigation of its sensing capabilities.
+Research has shown that such a system can be implemented using a standard camera pointed at the face of the user \cite{poh2010non}\cite{vanderKooij2019}\cite{Verkruysse2008}. I refer to this as \textit{non-contact heart rate estimation} and this project is concerned with the implementation of a system capable of this.  
+% system and the further investigation of its sensing capabilities.
 % Given this signal, a heart rate can be extracted by analysing the predominant frequencies in this signal. In principle, 
 % this notion, can be extended to traditional cameras such as those present in smartphones, which also work by effectively measuring light intensity.
 % This project is concerned with the implementation of such a system which can infer the heart rate of a user from a video of that user, recorded by a simple camera such as those
 % present in a smartphone or similar device.
 
 \paragraph{Motivation}
-In general, sensing technology has progressed, in recent times, from high fidelity and low availability to low fidelity and high availability.
-Low cost sensors are developed which attempt to measure the same phenomenon as high cost alternatives, but compromise on accuracy.
-As a result, newly developed low cost sensors arrive in a wider array of devices and hence more people have access to them.
-For example, heart rate sensing used to be the remit of expensive electrocardiogram devices in hospitals, but is now commonplace in relatively low cost wearable devices. Although the latter cannot be used to diagnose medical conditions, in general, it is adequate for the majority of users.
+% In general, sensing technology has progressed, in recent times, from high fidelity and low availability to low fidelity and high availability.
+In general, sensing technology has progressed, in recent times, from high to low fidelity but with costs decreasing.
+Often, low cost sensors are developed which attempt to measure the same phenomenon as a high cost alternative, but with a compromise on accuracy.
+As a result, newly developed low cost sensors arrive in a wider array of devices and hence access to their capabilities increases.
+For example, heart rate sensing used to be the remit of expensive electrocardiogram devices in hospitals, but is now commonplace in relatively low cost wearable devices. Although the latter cannot be used to diagnose medical conditions, in general, it is adequate for the majority of users. This phenomenon
+is a key pattern in the field and is of great relevance to the project.
 \\\\
-This trend allows increasing number of users to gain access to their own health data albeit at the cost of fidelity.
-Smartphones are, I argue, in fact, of greater availability than wearables and, thereby, the development of heart rate sensing capabilities for 
-smartphones represents a step of further progress within this wider trend. 
-In fact, I will later argue that smartphones, with their increased computational power 
-could be of greater fidelity than wearables for heart rate sensing, in which case, they represent a much more significant 
+% talk about how common cameras are and many people already own one, so repurposing an existing sensor is better than the development of a new one
+This trend allows increasing number of users to gain access to their own health data albeit at the cost of decreased fidelity.
+Expanding the scope of sensing, and computation in general, is a key principle of ubiquitous computing and since, cameras are, I argue, more common than heart rate monitors, the potential impact of this project in the context of ubiquitous computing is large. 
+\\\\
+% and, thereby, the development of heart rate sensing capabilities for 
+% smartphones represents a step of further progress within this wider trend. 
+In fact, I will later argue that smartphones, with their increased computational power, 
+could be of greater fidelity than wearables for heart rate sensing, in which case, this represents a much more significant 
 leap forward than might initally be anticipated.
 % \paragraph{Literature}
 %  This project, as a result, evaluates the value of 

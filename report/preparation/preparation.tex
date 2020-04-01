@@ -344,18 +344,49 @@ However, a formal approach to the mapping of a function from the time domain int
 % Courses this year which were relevant: Mobile and sensor systems, Computer Vision, Information Theory
 % did not take DSP course but read the DSP notes
 % had no previous experience of kotlin and some limited experience of python
-
-
+As a rather interdisciplinary project, a wide array of background knowledge was required, some of which has not featured in Tripos.
+For example, I had to understand the basics of how modern heart rate sensors work, for which I used internet resources as well explanations by my supervisor.
+\\\\
+Understanding existing literature regarding remote photoplethysmography was equally important and so during the early stages of the project, I reviewed
+a large number of journal papers to gain an understanding of the state of the art techniques being used.
+\\\\
+A variety of Part II courses proved to be relevant this year, including but not limited to: Mobile and Sensor Systems, Computer Vision, Information Theory and Digital Signal Processing. Many of these courses occurred after a large body of the work was completed, however, were, nonetheless, useful.
+\\\\
+I had no previous experience programming in Kotlin and only relatively little in Python, however, both have a plethora of online resources which I used 
+during the development process.
 \section{Requirements analysis}
 % Goals develop a python implementation of rPPG
 % Develop an additional output of an Android implementation to move towards higher availabiltiy sensing
 % Evaluate on a database of stationary videos and compare with ECG
 % Reasonable accuracy on stationary videos
-
+\textbf{Goals:}
+\begin{itemize}
+    \item Primary output: develop a Python implementation capable of reasonable accuracy under good lighting and for stationary users
+    % \item Application should be capable of 
+    \item Supplementary output: a primitive Android implementation to as a proof of concept
+\end{itemize}
 % Extensions:
 % evaluate compared to a smart watch
-% real time perforamance 
-% 
+% real time performance 
+\textbf{Extensions:}
+\begin{itemize}
+   \item Evaluate performance in comparison to a smartwatch
+   \item Achieve real-time performance, that is, the frequency of frame processing is less than or equal to the frame rate of the camera
+   \item Investigate performance under more realistic scenarios:
+        \begin{itemize}
+            \item with the camera further away from the user
+            \item with the user moving within the frame
+        \end{itemize}
+    \item 
+\end{itemize}
+These tasks are summarised in the table according to both their difficulty and importance to the overall project.
+
+\paragraph{Android application}
+% Need to explain reasoning why android application is not the primary output
+% Reasons: 
+% - show that it's possible to do on Android
+% - but much larger provisions for desktop applications and focus is on algorithms rather than implementation
+% - all experimentation is done using a smartphone camera
 
 \section{Professional practice}
 % planning 
