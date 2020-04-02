@@ -67,6 +67,7 @@ def mean_heart_rate(signal, sampling_freq):
     except Exception as e:
         print(e)
         print(len(rpeaks))
+        return None
     avg_hr = 60*len(rpeaks)*sampling_freq/len(signal)
     return avg_hr
 
@@ -217,7 +218,8 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
     ecg_hr = []
 
     ppg_sf = 1000
-    if not(ppg_file is None):
+    ppg_file_exists = not(ppg_file is None or ppg_file == "" or np.isnan(ppg_file))
+    if ppg_file_exists:
         ppg = add_time_to_ppg(get_ppg_signal(ppg_file))
     ppg_ws, ppg_o = 60.0*window_size/len(rppg_signal), 60.0 * offset/len(rppg_signal)
     ppg_hr = []
@@ -232,12 +234,13 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
             ecg_hr.append(mean_heart_rate(ecg[e_low:e_high],ecg_sf))
         except Exception as e:
             print(e)
+            ecg_hr.append(None)
             plt.plot(ecg[e_low:e_high])
             plt.show()
 
         p_low, p_high = int(i*ppg_o), int((i*ppg_o)+ppg_ws)
         
-        if not(ppg_file is None):
+        if ppg_file_exists:
             filtered = ppg[(ppg["Time"] < p_high)&(ppg["Time"]>p_low)]
             # if (len(filtered) > window_size):
             if(enough_ppg_samples(filtered)):
@@ -277,22 +280,24 @@ def signal_processing_experiments(files, ppg_meta_file):
     ppg_meta["Framerate"] = ppg_meta["Time mean"]
     ppg_meta["Time mean"] = temp
     for index, ppg_row in ppg_meta.iterrows():
-        signal = np.loadtxt(ppg_row["rPPG file"])
-        # for ws in np.arange(600, 1200, 100):
-        #     for off in np.arange(30, 120, 30):
-        ws, off = 1200, 60
-        print("===================================")
-        print(f"Experiment progress: {100*index/len(ppg_meta)}%")
-        vid_name = ppg_row["Video file"]
-
-        print(f"Considering: {vid_name}, Window size: {ws}, Offset: {off}")
-        rppg_ica, rppg_pca, ppg_hr, ecg_hr = evaluate(signal, ppg_row["PPG file"], ppg_row["ECG file"], ws, off, ppg_row["Framerate"])
-        n_rows, _ = rppg_ica.shape
-        for i in range(n_rows):
-            row = [ppg_row["Video file"], ppg_row["Tracker"], ppg_row["Region selector"], ws, off, i, hr_with_max_power(rppg_ica[i, :]), rppg_pca[i,0], ppg_hr[i], ecg_hr[i], rppg_ica[i,0], rppg_ica[i,1], rppg_ica[i,2], rppg_ica[i,3], rppg_ica[i,4], rppg_ica[i,5], rppg_pca[i,0], rppg_pca[i,1], rppg_pca[i,2], rppg_pca[i,3], rppg_pca[i,4], rppg_pca[i,5]]
-            with open(sp_output, 'a') as fd:
-                writer = csv.writer(fd)
-                writer.writerow(row)
+        if (ppg_row["Video file"].endswith(".avi")):
+            signal = np.loadtxt(ppg_row["rPPG file"])
+            # for ws in np.arange(600, 1200, 100):
+            #     for off in np.arange(30, 120, 30):
+            ws, off = 1200, 60
+            print("===================================")
+            progress = 100*index/len(ppg_meta)
+            print(f"Experiment progress: {progress}%")
+            vid_name = ppg_row["Video file"]
+            if(progress > 81.4):
+                print(f"Considering: {vid_name}, Window size: {ws}, Offset: {off}")
+                rppg_ica, rppg_pca, ppg_hr, ecg_hr = evaluate(signal, ppg_row["PPG file"], ppg_row["ECG file"], ws, off, ppg_row["Framerate"])
+                n_rows, _ = rppg_ica.shape
+                for i in range(n_rows):
+                    row = [ppg_row["Video file"], ppg_row["Tracker"], ppg_row["Region selector"], ws, off, i, hr_with_max_power(rppg_ica[i, :]), rppg_pca[i,0], ppg_hr[i], ecg_hr[i], rppg_ica[i,0], rppg_ica[i,1], rppg_ica[i,2], rppg_ica[i,3], rppg_ica[i,4], rppg_ica[i,5], rppg_pca[i,0], rppg_pca[i,1], rppg_pca[i,2], rppg_pca[i,3], rppg_pca[i,4], rppg_pca[i,5]]
+                    with open(sp_output, 'a') as fd:
+                        writer = csv.writer(fd)
+                        writer.writerow(row)
                 
 
 if __name__ == "__main__":
