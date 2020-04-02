@@ -295,10 +295,11 @@ def signal_processing_experiments(files, ppg_meta_file):
                 writer.writerow(row)
                 
 
+if __name__ == "__main__":
+    files = test_data()
+    ppg_meta_output = f"{PATH}output/hr_evaluation/ppg_meta.csv"
+    # write_ppg_out(files, ppg_meta_output)
+    signal_processing_experiments(files, ppg_meta_output)
+    pass
 
 
-
-files = test_data()
-ppg_meta_output = f"{PATH}output/hr_evaluation/ppg_meta.csv"
-# write_ppg_out(files, ppg_meta_output)
-signal_processing_experiments(files, ppg_meta_output)

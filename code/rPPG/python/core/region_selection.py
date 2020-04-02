@@ -158,4 +158,4 @@ class BayesianSkinDetector(RegionSelector):
         return skin_post, mean(frame, skin_post if self.weighted else mask)
     
     def __str__(self):
-        return self.__class__.__name__
+        return f"{self.__class__.__name__}-{'weighted' if self.weighted else 'thresholded'}"

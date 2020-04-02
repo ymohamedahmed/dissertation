@@ -19,7 +19,9 @@ This is critical since at the beat of a heart there is a very specific electrica
 \textit{depolarization}. This is a change in the overall electric charge of the cell and is measurable by the electodes. \\\\
 Through this mechanism, the electrodes can record each beat of the heart and the average number of beats in a given window, is known as the heart rate.
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{example-image-a}
+    % \includegraphics[width=\textwidth]{example-image-a}
+    \centering
+    \input{preparation/ecg.tex}
    \caption{An example ECG signal} 
 \end{figure}
 \noindent
@@ -77,8 +79,10 @@ Although, this comes with the large benefit of providing easier access to heart 
 % Firstly, the PPG sensor in a smartwatch is placed on the wrist rather than on the finger, as is common in a hospital setting. As a result, there is an increasing amount of body matter that disrupts the light signal emitted by the LED. 
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{example-image-b}
-   \caption{An example PPG signal as taken from a wearable watch} 
+    \centering
+    \input{preparation/wear_ppg.tex}
+    % \includegraphics[width=\textwidth]{example-image-b}
+   \caption{An example PPG signal as taken from a wearable watch, with inferred heart beats on a filtered signal} 
 \end{figure}
 \section{Remote photoplethysmography (rPPG)}
 \label{ref:rPPG_prep}
@@ -363,7 +367,7 @@ during the development process.
 \begin{itemize}
     \item Primary output: develop a Python implementation capable of reasonable accuracy under good lighting and for stationary users
     % \item Application should be capable of 
-    \item Supplementary output: a primitive Android implementation to as a proof of concept
+    \item Supplementary output: an Android implementation as a proof of concept that remote heart rate sensing is viable for mobile devices
 \end{itemize}
 % Extensions:
 % evaluate compared to a smart watch
@@ -377,16 +381,34 @@ during the development process.
             \item with the camera further away from the user
             \item with the user moving within the frame
         \end{itemize}
-    \item 
+    \item Ability of tracking multiple users simultaneously
 \end{itemize}
 These tasks are summarised in the table according to both their difficulty and importance to the overall project.
+\begin{table}[H]
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{Objective} & \textbf{Difficulty} & \textbf{Importance} & \textbf{Status} \\ \hline
+    Python implementation & {\color[HTML]{F56B00} Medium} & {\color[HTML]{CB0000} High} & {\color[HTML]{CB0000} Core} \\ \hline
+    Android demonstration of rPPG & {\color[HTML]{F56B00} Medium} & {\color[HTML]{F56B00} Medium} & {\color[HTML]{CB0000} Core} \\ \hline
+    Tracking multiple users & {\color[HTML]{CB0000} High} & {\color[HTML]{009901} Low} & {\color[HTML]{009901} Extension} \\ \hline
+    Real-time performance & {\color[HTML]{CB0000} High} & {\color[HTML]{F56B00} Medium} & {\color[HTML]{009901} Extension} \\ \hline
+    Evaluating in comparison to smartwatch & {\color[HTML]{F56B00} Medium} & {\color[HTML]{F56B00} Medium} & {\color[HTML]{009901} Extension} \\ \hline
+    \end{tabular}
+    \caption{A summary of the requirements of the project}
+\end{table}
 
-\paragraph{Android application}
-% Need to explain reasoning why android application is not the primary output
-% Reasons: 
-% - show that it's possible to do on Android
-% - but much larger provisions for desktop applications and focus is on algorithms rather than implementation
-% - all experimentation is done using a smartphone camera
+% \paragraph{Android application}
+% % Need to explain reasoning why android application is not the primary output
+% % Reasons: 
+% % - show that it's possible to do on Android
+% % - but much larger provisions for desktop applications and focus is on algorithms rather than implementation
+% % - all experimentation is done using a smartphone camera
+% % - android implementation is mostly to act as a demo of the ideas and move towards more availability
+% The Android application is only considered a supplementary output of the project, the primary focus was on the desktop application written in Python.
+% This is because there exist much larger provisions for  
+
+% The focus of the project is on 
+% Since there are much larger provisions for 
 
 \section{Professional practice}
 % planning 

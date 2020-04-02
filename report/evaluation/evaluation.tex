@@ -67,6 +67,7 @@ The time to process each frame is also recorded as a means of measuring the rela
 
 \subparagraph{Accuracy}
 % The performance of the above algorithm, clearly depends on the proportion that each of the two branches are executed.
+% Most important is not having false positives, so emphasis precision
 \subparagraph{Motion resistance}
 
 \subparagraph{Performance cost}
@@ -78,10 +79,16 @@ Recall from Section \ref{section:face_tracking_impl} that the following inequali
 The above inequality relates the rate of redetections ($R/W$) and the costs of several required algorithms. It was shown in Section \ref{section:face_tracking_impl} that when this inequality holds, face tracking provides a performance benefit.
 In order to justify this, the value of the right hand side is evaluated experimentally on a variety of videos and is shown to exceed the value $R/W$.
 
+% plot redetection rates and max value
+
+% plot mean time per frame with std
+
 \subparagraph{Thresholds}
 
+% show how threshold affects time and precision
 
 \paragraph{Summary}
+% Provides a huge performance benefit with little cost
 
 % \paragraph{Correctness}
 

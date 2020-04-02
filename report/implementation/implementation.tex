@@ -332,7 +332,7 @@ Given this, the probability is defined in proportion to the probability density 
     \centering
     % Give an example image with prior etc.
     \includegraphics[width=\textwidth]{example-image-b}
-   \caption{An example result from the describe skin detection algorithm} 
+   \caption{An example result from the described skin detection algorithm} 
 \end{figure}
 %Discrete or not??
 % There is a finite range of possible values for the Euclidean distance between the colour of a pixel and the skin tone. This is because colours are discretised by the camera and therefore must lie between some set of bounds (usually 0 and 255). As a result, the defined distribution should also be discrete in nature.
@@ -447,7 +447,9 @@ For example, the Fourier transform enables easy analysis of the relative powers 
 %Main way to bypass this is to reward several close peaks together
 %Hence the use of a butterworth filter
 %Give EXAMPLE graphs
-In practice, however, the true heart rate is not present in the resulting Fourier transform as a clear single peak. Instead, often, it will correspond to several peaks that are close by with smaller powers as is reported by van der Kooij et al. \cite{vanderKooij2019}. In order to avoid this, a Butterworth filter is applied which removes isolated peaks and increases the power of peaks close together as is recommended by van der Kooij et al. \cite{vanderKooij2019}.
+In practice, however, the true heart rate is not present in the resulting Fourier transform as a clear single peak. Instead, often, it will correspond to several peaks that are close by each with smaller powers. A larger peak unrelated to the heart rate
+might be present in the resulting transform which is unrelated to the heart rate. This phenomenon was reported by van der Kooij et al. \cite{vanderKooij2019} and is denoted here as the \textit{split peak issue}.
+In order to avoid this, a Butterworth filter is applied which removes isolated peaks and increases the power of peaks close together as is recommended by van der Kooij et al. \cite{vanderKooij2019}.
 \begin{figure}[H]
     % Add an image showing how in noisy Fourier transforms the HR is not just highest peak with result from Butterworth filter
     \includegraphics[width=\textwidth]{example-image-a}
