@@ -1,4 +1,7 @@
-PATH = "/home/yousuf/workspace/dissertation/code/rPPG/"
+MAC = True
+LINUX_PATH = "/home/yousuf/workspace/dissertation/code/rPPG/"
+MAC_PATH = "/Users/yousuf/Workspace/dissertation/code/rPPG/"
+PATH =  MAC_PATH if MAC else LINUX_PATH
 class Configuration():
     def __init__(self, tracker, region_selector, signal_processor, window_size:int, offset:int):
         self.tracker = tracker
