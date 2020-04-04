@@ -207,7 +207,7 @@ class RepeatedDetector(FaceTracker):
 
 class DNNDetector():
     def __init__(self):
-        MODEL_PATH = f"{PATH}/models/"
+        MODEL_PATH = f"{PATH}models/"
         modelFile = MODEL_PATH + "opencv_face_detector_uint8.pb"
         configFile = MODEL_PATH + "opencv_face_detector.pbtxt"
         self.dnn = cv.dnn.readNetFromTensorflow(modelFile, configFile)

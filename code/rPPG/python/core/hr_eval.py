@@ -57,10 +57,10 @@ def get_ppg_signal(file_path):
     return pd.read_csv(check_path(file_path))
 
 def upsample(data, low, high):
-    x = np.arange(low, high, 1/1000)
-    y = np.interp(x, data["Time"], data["PPG"])
-
-    y = hp.filter_signal(y, [0.7, 3.5], sample_rate=1000, 
+    # x = np.arange(low, high, 1/1000)
+    # y = np.interp(x, data["Time"], data["PPG"])
+    sf = len(data)/(high-low)
+    y = hp.filter_signal(data["PPG"], [0.7, 3.5], sample_rate=sf, 
                             order=3, filtertype='bandpass')
     return y
 
@@ -70,14 +70,24 @@ def add_time_to_ppg(data):
     return data
 
 def mean_heart_rate(signal, sampling_freq):
-    try:
-        signal = hp.filter_signal(signal, [0.7, 3.5], sample_rate=sampling_freq, 
-                        order=3, filtertype='bandpass') 
-        _, m = hp.process(hp.scale_data(signal), sampling_freq)
-        return m["bpm"]
-    except Exception as e:
-        print(e)
-        return None
+    rpeaks = biosppy.ecg.engzee_segmenter(signal, sampling_rate=sampling_freq)[0]
+    time = len(signal)/sampling_freq
+    hr = 60*len(rpeaks)/time
+    return hr
+
+    # try:
+    #     # signal = hp.filter_signal(signal, [0.7, 3.5], sample_rate=sampling_freq, 
+    #     #                 order=3, filtertype='bandpass') 
+    #     _, m = hp.process(signal, sampling_freq)
+    #     return m["bpm"]
+    # except Exception as e:
+    #     try:
+    #         _, m = hp.process(hp.scale_data(signal), sampling_freq)
+    #         return m["bpm"]
+    #     except Exception as e:
+    #         print(e)
+    #         print("Error extracting heart rate from ECG")
+    #         return None
 
 def track_ppg(video_path, config:Configuration):
     cap = cv.VideoCapture(video_path)
@@ -179,23 +189,22 @@ def write_ppg_out(files, ppg_meta_output):
         writer.writerow(meta_columns)
 
     for index, file_set in enumerate(files):
-        for tr in range(3):
+        for tr in range(2):
             for rs in range(4):
                 vid, ppg_file, ecg_file = file_set[0], file_set[1], file_set[2]
-                if vid.endswith(".avi"):
-                    config = map_config([tr, rs, 0], 0, 0)
-                    print("========================")
-                    print(f"Experiments completion: {100*((12*index) + (4*tr) + rs)/(12*len(files))}%")
-                    print(f"Video: {vid}, PPG file: {ppg_file}, ECG file: {ecg_file}, Tracker: {tr}, Region selector: {rs}")
-                    start = time.time()
-                    values, mean_time, time_std, framerate = track_ppg(vid, config)
-                    total = time.time()-start
-                    value_output = f"{PATH}output/hr_evaluation/{vid.split('/')[-1][:-4]}-{str(config.tracker)}-{str(config.region_selector)}.csv"
-                    meta_row = [vid, value_output, ppg_file, ecg_file, framerate, str(config.tracker), str(config.region_selector), mean_time, time_std, len(values), total, noise(values, framerate)]
-                    with open(ppg_meta_output, 'a') as fd:
-                        writer = csv.writer(fd)
-                        writer.writerow(meta_row)
-                    np.savetxt(value_output, values)
+                config = map_config([tr, rs, 0], 0, 0)
+                print("========================")
+                print(f"Experiments completion: {100*((12*index) + (4*tr) + rs)/(12*len(files))}%")
+                print(f"Video: {vid}, PPG file: {ppg_file}, ECG file: {ecg_file}, Tracker: {tr}, Region selector: {rs}")
+                start = time.time()
+                values, framerate, mean_time, time_std = track_ppg(vid, config)
+                total = time.time()-start
+                value_output = f"{PATH}output/hr_evaluation/{vid.split('/')[-1][:-4]}-{str(config.tracker)}-{str(config.region_selector)}-fixed.csv"
+                meta_row = [vid, value_output, ppg_file, ecg_file, framerate, str(config.tracker), str(config.region_selector), mean_time, time_std, len(values), total, noise(values, framerate)]
+                with open(ppg_meta_output, 'a') as fd:
+                    writer = csv.writer(fd)
+                    writer.writerow(meta_row)
+                np.savetxt(value_output, values)
 
 def enough_ppg_samples(ppg_signal):
     n_rows = len(ppg_signal["Time"])
@@ -225,14 +234,16 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
     ecg, ecg_sf = get_ecg_signal(ecg_file)
     ecg_ws, ecg_o = len(ecg)*window_size/len(rppg_signal), len(ecg)*offset/len(rppg_signal)
     ecg_hr = []
+    ecg_hr_fft = []
 
-    ppg_sf = 1000
     print(ppg_file)
     ppg_file_exists = not(ppg_file is None) and not(ppg_file == "") if type(ppg_file) == str else not(np.isnan(ppg_file)) #and not(np.isnan(ppg_file))
     if ppg_file_exists:
         ppg = add_time_to_ppg(get_ppg_signal(ppg_file))
+        ppg_sf = len(ppg)/60.0
     ppg_ws, ppg_o = 60.0*window_size/len(rppg_signal), 60.0 * offset/len(rppg_signal)
     ppg_hr = []
+    ppg_hr_fft = []
 
     for i, base in enumerate(np.arange(0, len(rppg_signal)-window_size+1, offset)):
         sig = rppg_signal[base:base+window_size]
@@ -241,6 +252,7 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
         rppg_hr_rgb = np.append(rppg_hr_rgb, PrimitiveProcessor().get_hr(sig, framerate))
 
         e_low, e_high = int(i*ecg_o), int((i*ecg_o)+ecg_ws)
+        ecg_hr_fft.append(Processor()._prevalent_freq(ecg[e_low:e_high], ecg_sf)[0])
         try:
             ecg_hr.append(mean_heart_rate(ecg[e_low:e_high],ecg_sf))
         except Exception as e:
@@ -255,13 +267,19 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
         if ppg_file_exists:
             filtered = ppg[(ppg["Time"] < p_high)&(ppg["Time"]>p_low)]
             # if (len(filtered) > window_size):
+            if(len(filtered) > window_size):
+                hr_fft = Processor()._prevalent_freq(filtered["PPG"], ppg_sf)[0]
+                ppg_hr_fft.append(hr_fft)
+            else: 
+                ppg_hr_fft.append(None)
             if(enough_ppg_samples(filtered)):
                 signal = upsample(filtered, p_low, p_high)
                 if DEBUG: 
                     plt.plot(signal)
                     plt.show()
                 try:
-                    _, m = hp.process(hp.scale_data(signal), ppg_sf)
+                    # _, m = hp.process(hp.scale_data(signal), ppg_sf)
+                    _, m = hp.process(signal, ppg_sf)
                     ppg_hr.append(m["bpm"])
                 except Exception as e:
                     print("Error for PPG signal")
@@ -274,21 +292,27 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
                         plt.show()
             else: 
                 ppg_hr.append(None)
+                # ppg_hr_fft.append(None)
         else: 
             ppg_hr.append(None)
+            ppg_hr_fft.append(None)
+
     rppg_hr_ica = rppg_hr_ica.reshape((len(rppg_hr_ica)//9, 9))
     rppg_hr_pca = rppg_hr_pca.reshape((len(rppg_hr_pca)//9, 9))
     rppg_hr_rgb = rppg_hr_rgb.reshape((len(rppg_hr_rgb)//9, 9))
-    return (rppg_hr_ica, rppg_hr_pca, rppg_hr_rgb, ppg_hr, ecg_hr)
+    return (rppg_hr_ica, rppg_hr_pca, rppg_hr_rgb, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft)
 
 
 def signal_processing_experiments(files, ppg_meta_file):
-    sp_output = f"{PATH}output/hr_evaluation/sp-with-beat-counting-threshold-0.09.csv"
+    sp_output = f"{PATH}output/hr_evaluation/sp-fixed-bpm-2.csv"
     ppg_meta_file = check_path(ppg_meta_file)
     columns = ["Video", "Tracker", "Region selector", "Window size", "Offset size", "Heart Rate Number", 
-    "rPPG HR ICA", "rPPG HR PCA", "PPG HR", "ECG HR", 
+     "rPPG HR ICA", "rPPG HR PCA", 
+     "PPG HR BC", "PPG HR FFT",
+     "ECG HR BC", "ECG HR FFT",
      "ICA 1 HR", "ICA 1 Power", "ICA 1 BC",
-     "ICA 2 HR", "ICA 2 Power", "ICA 2 BC", "ICA 3 HR", "ICA 3 Power", "ICA 3 BC",
+     "ICA 2 HR", "ICA 2 Power", "ICA 2 BC", 
+     "ICA 3 HR", "ICA 3 Power", "ICA 3 BC",
      "PCA 1 HR", "PCA 1 Power", "PCA 1 BC",
      "PCA 2 HR", "PCA 2 Power", "PCA 2 BC",
      "PCA 3 HR", "PCA 3 Power", "PCA 3 BC",
@@ -301,9 +325,11 @@ def signal_processing_experiments(files, ppg_meta_file):
         writer = csv.writer(fd)
         writer.writerow(columns)
     #Correct for swapped time mean and framerate
-    temp = ppg_meta["Framerate"]
-    ppg_meta["Framerate"] = ppg_meta["Time mean"]
-    ppg_meta["Time mean"] = temp
+
+    # temp = ppg_meta["Framerate"]
+    # ppg_meta["Framerate"] = ppg_meta["Time mean"]
+    # ppg_meta["Time mean"] = temp
+
     for index, ppg_row in ppg_meta.iterrows():
         # if (ppg_row["Video file"].endswith(".avi")):
         signal = np.loadtxt(check_path(ppg_row["rPPG file"]))
@@ -315,17 +341,14 @@ def signal_processing_experiments(files, ppg_meta_file):
         print(f"Experiment progress: {progress}%")
         vid_name = ppg_row["Video file"]
         print(f"Considering: {vid_name}, Window size: {ws}, Offset: {off}")
-        rppg_ica, rppg_pca, rppg_rgb, ppg_hr, ecg_hr = evaluate(signal, ppg_row["PPG file"], ppg_row["ECG file"], ws, off, ppg_row["Framerate"])
+        rppg_ica, rppg_pca, rppg_rgb, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft = evaluate(signal, ppg_row["PPG file"], ppg_row["ECG file"], ws, off, ppg_row["Framerate"])
         n_rows, _ = rppg_ica.shape
         for i in range(n_rows):
-            # print(len(ppg_hr))
-            # print(len(ecg_hr))
-            # print(rppg_ica.shape)
-            # print(rppg_pca.shape)
-            # print(rppg_rgb.shape)
             row = [
                 ppg_row["Video file"], ppg_row["Tracker"], ppg_row["Region selector"], ws, off, i, 
-                hr_with_max_power(rppg_ica[i, :]), rppg_pca[i,0], ppg_hr[i], ecg_hr[i], 
+                hr_with_max_power(rppg_ica[i, :]), rppg_pca[i,0], 
+                ppg_hr[i], ppg_hr_fft[i],
+                ecg_hr[i], ecg_hr_fft[i],
                 rppg_ica[i,0], rppg_ica[i,1], rppg_ica[i,2], 
                 rppg_ica[i,3], rppg_ica[i,4], rppg_ica[i,5], 
                 rppg_ica[i,6], rppg_ica[i,7], rppg_ica[i,8], 
@@ -343,8 +366,8 @@ def signal_processing_experiments(files, ppg_meta_file):
 
 if __name__ == "__main__":
     files = test_data()
-    ppg_meta_output = f"{PATH}output/hr_evaluation/ppg_meta.csv"
-    # write_ppg_out(files, ppg_meta_output)
+    ppg_meta_output = f"{PATH}output/hr_evaluation/ppg_meta_2.csv"
+    write_ppg_out(files, ppg_meta_output)
     signal_processing_experiments(files, ppg_meta_output)
     pass
 

@@ -1,3 +1,34 @@
+\section{Data collection}
+In order to be able to evaluate the project, a dataset consisting of videos with an associated ground truth heart rate is required.
+For this, I used the MAHNOB dataset \cite{Mahnob}, initially collected for research into affective computing, it is widely used in the remote photoplethmysography literature for performance benchmarking.
+MAHNOB \cite{Mahnob}, however, only consists of videos where the participants are stationary and at a fixed, close distance to the camera, this alone, would not be adeqeuate for the testing of many aspects of the project.
+As a result, I augmented the dataset with my own experiments with varying amounts of movement and at different distances to the camera. This acts as a means of testing the boundaries of remote heart rate sensing.
+
+
+face tracking. 
+Hence, it was augmented with several videos which I recorded with varying amounts and types of movement, as well as at different distances.
+% In order to better understand the performance of face tracking, a test set of several videos with varying amounts of movement was used. Some of the videos were taken from the MAHNOB dataset \cite{Mahnob}, which forms one of the key sources of data for the evaluation of this project.
+% Initially, generated as a dataset for study into affective computing, it consists of several thousand videos of participants as they are exposed to stimuli, with their ECG responses being recorded. A subset of videos 
+% were randomly selected and were augmented with additional videso to form the test dataset for this project.
+% \\\\
+Some of these videos contained strictly `translational' movement, that is, the size of the face of the user remains largely constant as they move from one side of the frame to the other.
+Another more challenging kind of movement, denoted here as `rotational', is where the user rotates their face so that different parts of the face are in a view in different frames.
+Intuitively, one would expect this to be more difficult for the face tracker to deal with, since points will come in and out of view regularly.
+\subsection{Methodology}
+
+\paragraph{}
+
+\paragraph{Dataset}
+
+\paragraph{Experimental setup}
+% talk about testing different distances
+% movement
+% ecg as ground truth
+% developed a logging app which records raw sensor values from a smart watch, used for comparison
+% tested on myself
+
+% \paragraph{Ethics}
+
 \section{Face tracking}
 \label{section:face_tracking}
 Face tracking was proposed in Section \ref{section:face_tracking_impl} as an alternative to detecting the face in each frame independently.
@@ -15,14 +46,6 @@ Specifically, any described performance gains must be shown clearly as working a
 % -is it resistant to motion?
 % -is it as accurate?
 % -effect on HR accuracy?
-\paragraph{Dataset}
-In order to better understand the performance of face tracking, a test set of several videos with varying amounts of movement was used. Some of the videos were taken from the MAHNOB dataset \cite{Mahnob}, which forms one of the key sources of data for the evaluation of this project.
-Initially, generated as a dataset for study into affective computing, it consists of several thousand videos of participants as they are exposed to stimuli, with their ECG responses being recorded. 
-\\\\
-MAHNOB \cite{Mahnob} only consists of videos where the participants are stationary and at a fixed distance from the camera, this alone, would not be adeqeuate for the testing of face tracking. Hence, it was augmented with several videos which I recorded with varying amounts and types of movement, as well as at different distances.
-Some of these videos contained strictly `translational' movement, that is, the size of the face of the user remains largely constant as they move from one side of the frame to the other.
-Another more challenging kind of movement, denoted here as `rotational', is where the user rotates their face so that different parts of the face are in a view in different frames.
-Intuitively, one would expect this to be more difficult for the face tracker to deal with, since points will come in and out of view regularly.
 \paragraph{Metrics}
 Face detection is a binary classification task. As an algorithm, it defines a boundary within which all pixels are defined as belonging to face or not.
 As a result, if we consider face detection as a ground truth, the results of face tracking can be compared using standard classification metrics. In this case, I proceed by considering the following outcomes from the face tracker.
@@ -62,15 +85,20 @@ The time to process each frame is also recorded as a means of measuring the rela
 % Furthermore, the signal to nois
 % Finally, the distance moved by each set of points being tracked between frames is recorded. This metric acts a means of encoding the amount of movement in the video.
 
-
 \paragraph{Results}
 
-\subparagraph{Accuracy}
+\paragraph{Robustness}
 % The performance of the above algorithm, clearly depends on the proportion that each of the two branches are executed.
 % Most important is not having false positives, so emphasis precision
-\subparagraph{Motion resistance}
+It is important to recognise that the face detector being used as a ground truth here, is in itself, imperfect. This is because, in general, face detection returns a bounding box
+that will contain some pixels from the background of the image but contain all of face pixels. In this sense, the face detector has a perfect recall. 
+It returns all face pixels, with some number of background pixels included. 
+As a result, the cost of false negatives and false positives is not equal.  
+A false negative, that is, the face tracker has incorrectly classified a pixel as non-skin
 
-\subparagraph{Performance cost}
+\paragraph{Motion resistance}
+
+\paragraph{Performance cost}
 % talk about redetection rates
 Recall from Section \ref{section:face_tracking_impl} that the following inequality was introduced that describes the performance of face tracking.
 \begin{equation*}
@@ -83,7 +111,7 @@ In order to justify this, the value of the right hand side is evaluated experime
 
 % plot mean time per frame with std
 
-\subparagraph{Thresholds}
+\paragraph{Thresholds}
 
 % show how threshold affects time and precision
 
@@ -182,9 +210,6 @@ This evaluation, hence, is concerned with the validation of these assumptions.
 
 
 \section{Evaluation of remote heart rate sensing}
-\subsection{Evaluation method}
-\paragraph{Experimental setup}
-\paragraph{Ethics}
 % \section{Performance}
 \subsection{Accuracy}
 % cover stationary and exercise videos

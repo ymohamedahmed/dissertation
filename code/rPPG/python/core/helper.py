@@ -5,9 +5,10 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 from face_det import DNNDetector
+from configuration import PATH
 
 def get_test_images():
-    return [cv.imread(file, cv.IMREAD_UNCHANGED) for file in glob.glob("/home/yousuf/workspace/dissertation/code/rPPG/test-roi-images/*.jpg")]
+    return [cv.imread(file, cv.IMREAD_UNCHANGED) for file in glob.glob(f"{PATH}test-roi-images/*.jpg")]
 
 def get_cropped_test_images():
     images = []

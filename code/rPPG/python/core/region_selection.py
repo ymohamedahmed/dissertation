@@ -51,7 +51,8 @@ class IntervalSkinDetector(RegionSelector):
     def _skin_intervals(self, image):
         ycrcb = cv.cvtColor(image, cv.COLOR_BGR2YCrCb)
         ycrcb[:, :, 0] = 0
-        unary = np.logical_or.reduce((ycrcb[:,:,1] >= 181, ycrcb[:,:,1] <= 137, ycrcb[:,:,2] >= 126, ycrcb[:,:,2] <= 74))
+        # unary = np.logical_or.reduce((ycrcb[:,:,1] >= 181, ycrcb[:,:,1] <= 137, ycrcb[:,:,2] >= 126, ycrcb[:,:,2] <= 74))
+        unary = np.logical_and.reduce((ycrcb[:,:,1] <= 181, ycrcb[:,:,1] >= 137, ycrcb[:,:,2] <= 126, ycrcb[:,:,2] >= 74))
         return np.uint8(unary)
     
     def detect(self, image):
@@ -66,12 +67,12 @@ class IntervalSkinDetector(RegionSelector):
 
 class RepeatedKMeansSkinDetector(RegionSelector):
     
-    def detect(self, frame):
+    def detect(self, frame, clusters=2):
         image = cv.cvtColor(frame, cv.COLOR_BGR2YCrCb)
         image[:, :, 0] = 0
         h,w,_ = image.shape
         arr = image.reshape((h*w,3))
-        kmeans = KMeans(n_clusters=2, n_jobs=-1, max_iter=50).fit(arr)
+        kmeans = KMeans(n_clusters=clusters, n_jobs=-1, max_iter=50).fit(arr)
         counts = np.bincount(kmeans.labels_)
         dominant = counts.argmax()
         labels = np.uint8(kmeans.labels_==dominant)
@@ -93,44 +94,66 @@ class BayesianSkinDetector(RegionSelector):
         self.prior_lookup = self._load_prior()
         self.weighted = weighted
         self.prior = None
+        self.class_conditional = None
     
     def _load_prior(self):
-        dataset_path = f"{PATH}/skin/Skin_NonSkin.txt"
-        data = pd.read_csv(dataset_path, sep="\t", header=None)
-        data.columns = ["B", "G", "R", "Skin"]
-        image = data[["B", "G", "R"]].values
-        size,_ = image.shape
-        image = np.uint8(image.reshape(size,1,3))
-        new_data = np.zeros(shape=(size,4))
-        new_data[:,:3] = cv.cvtColor(image, cv.COLOR_BGR2YCrCb).reshape(size, 3)
-        new_data[:,3] = data["Skin"]-1
-        new_data = pd.DataFrame(new_data, columns=["Y", "Cr", "Cb", "Skin"])
-        prior = new_data.groupby(by=["Cr", "Cb"]).agg({"Skin":[np.mean, len]})
-        lookup = 0.3*np.ones(shape=(256,256))
-        for (x,y) in prior.index:
-            lookup[int(x),int(y)] = max(1-prior.loc[x,y]["Skin"]["mean"],0.3)
-        return lookup
+        # start = time.time()
+        # dataset_path = f"{PATH}skin/Skin_NonSkin.txt"
+        # data = pd.read_csv(dataset_path, sep="\t", header=None)
+        # end = time.time()
+        # print(f"Loaded prior: {end-start}s")
+        # data.columns = ["B", "G", "R", "Skin"]
+        # image = data[["B", "G", "R"]].values
+        # size,_ = image.shape
+        # image = np.uint8(image.reshape(size,1,3))
+        # new_data = np.zeros(shape=(size,4))
+        # new_data[:,:3] = cv.cvtColor(image, cv.COLOR_BGR2YCrCb).reshape(size, 3)
+        # new_data[:,3] = data["Skin"]-1
+        # new_data = pd.DataFrame(new_data, columns=["Y", "Cr", "Cb", "Skin"])
+        # prior = new_data.groupby(by=["Cr", "Cb"]).agg({"Skin":[np.mean, len]})
+        # lookup = 0.9*np.ones(shape=(256,256))
+        # for (x,y) in prior.index:
+        #     lookup[int(x),int(y)] = max(1-prior.loc[x,y]["Skin"]["mean"],0.9)
+        # print(f"Overall prior time: {time.time()-start}")
+        # return lookup
+        return np.loadtxt(f"{PATH}skin/prior.txt")
+    
+    def _load_class_conditional(self, skin_tone):
+        cr, cb = int(skin_tone[0]), int(skin_tone[1])
+        return np.loadtxt(f"{PATH}skin/{cr}-{cb}.txt")
 
     def _prior(self, image):
         return self.prior_lookup[image[:,:,0], image[:,:,1]]
 
-    def _class_conditional(self, image, skin_tone):
-        distance_matrix = self._dist(image, skin_tone, axis=2)
-        self.skin_std = 0.5*np.mean(distance_matrix)
-        skin_probs = truncnorm.pdf(x=distance_matrix, a=0, loc=self.mean, b=np.max(distance_matrix), scale=self.skin_std)
-        return skin_probs
-    
-    def _max_distance(self, skin_tone):
-        """
-            Measure distance against each of the corners
-        """
-        corners = np.array([[0,0], [0,255], [255,0], [255,255]])
-        return np.max(self._dist(corners, skin_tone, axis=1))
+    def _class_conditional_lookup(self, image, skin_tone):
+        start = time.time()
+        distance_matrix = self._dist(image, skin_tone)
+        return self.class_conditional[np.uint8(distance_matrix)]
+        # print(f"Dist: {time.time()-start}")
 
-    def _dist(self, x, y, axis=1):
+        # start = time.time()
+        # self.skin_std = 0.5*np.mean(distance_matrix)
+        # print(f"mean: {time.time()-start}")
+
+        # start = time.time()
+        # rv = truncnorm(a=0, b=np.max(distance_matrix))
+        # print(f"Construct rv: {time.time()-start}")
+
+        # start = time.time()
+        # # skin_probs = rv.pdf(distance_matrix)
+        # print(f"truncnorm: {time.time()-start}")
+        # print(f"Skin std: {self.skin_std}")
+        # corners = np.array([[0,0], [0,255], [255,0], [255,255]])
+        # max_dist = np.max(self._dist(corners, skin_tone, axis=1))
+        # # skin_probs = truncnorm.pdf(x=distance_matrix, a=0, loc=self.mean, b=np.max(distance_matrix), scale=10)
+        # skin_probs = truncnorm.pdf(x=np.uint8(distance_matrix), a=0, loc=self.mean, b=max_dist, scale=10)
+        # return skin_probs
+    
+
+    def _dist(self, x, y, axis=2):
         return np.sqrt(np.sum(np.square(x-y), axis=axis))
     
-    def _update_lookup(self, image, posterior):
+    def _update_prior(self, image, posterior):
         self.prior_lookup[image[:,:,0], image[:,:,1]] = posterior
 
     def detect(self, frame):
@@ -146,14 +169,27 @@ class BayesianSkinDetector(RegionSelector):
         if(self._frame_number == 0):
             start = time.time()
             self.skin_tone = skin_tone(image)
+            self.class_conditional = self._load_class_conditional(self.skin_tone)
             print(f"Frame: {self._frame_number}, time to find skin tone: {time.time()-start}")
         self._frame_number += 1
-        skin_probs = self._class_conditional(image, self.skin_tone)
+
+
+        start = time.time()
+        skin_probs = self._class_conditional_lookup(image, self.skin_tone)
+        # print(f"Class condtional: {time.time()-start}s")
+
+        start = time.time()
         self.prior = self._prior(image)
+        # print(f"Prior: {time.time()-start}")
+
         skin_post = skin_probs*self.prior
-        skin_post = skin_post*1/np.max(skin_post)
+        # skin_post = skin_post*1/np.max(skin_post)
+        # skin_post = skin_post*1/np.max(skin_post)
+        skin_post = np.minimum(skin_post*(1/np.mean(skin_post)), 0.8*np.ones(skin_post.shape))
         threshold = np.percentile(skin_post, 0.2)
-        # self._update_lookup(image, skin_post)
+        start = time.time()
+        self._update_prior(image, skin_post)
+        # print(f"Update lookup: {time.time()-start}s")
         mask = skin_post > threshold
         return skin_post, mean(frame, skin_post if self.weighted else mask)
     
