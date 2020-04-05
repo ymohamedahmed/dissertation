@@ -144,7 +144,7 @@ A dataset of $\sim$250000 skin and non-skin pixels was collected by Bhatt et al.
 This approach takes no consideration of the particular face that it is considering. Since it is not contexualised, it can fail in several circumstances.
 For example, there are some hair colours which could be a skin tone on another individual but are clearly not on the particular example in question.
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{example-image-c}
+    \includegraphics[width=0.5\textwidth]{example-image-c}
    \caption{An example of the hair failure case} 
 \end{figure}
 Instead, an algorithm should attempt to identify skin on the particular face in question.
@@ -169,7 +169,7 @@ are skin pixels, we return the largest cluster as our set of skin pixels.
 
 \begin{figure}[H]
     % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
-    \includegraphics[width=\textwidth]{example-image-a}
+    \includegraphics[width=0.5\textwidth]{example-image-a}
    \caption{An example of the application of the k-means algorithm to skin detection} 
 \end{figure}
 %\subsubsection{Hierarchical clustering}
@@ -205,7 +205,7 @@ The k-means algorithm, although it improves on the results of the rudimentary ap
 
 \begin{figure}[H]
     % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
-    \includegraphics[width=\textwidth]{example-image-a}
+    \includegraphics[width=0.5\textwidth]{example-image-a}
    \caption{An example of the effect of differing the number of clusters} 
 \end{figure}
 
@@ -331,7 +331,7 @@ Given this, the probability is defined in proportion to the probability density 
 \begin{figure}[H]
     \centering
     % Give an example image with prior etc.
-    \includegraphics[width=\textwidth]{example-image-b}
+    \includegraphics[width=0.5\textwidth]{example-image-b}
    \caption{An example result from the described skin detection algorithm} 
 \end{figure}
 %Discrete or not??
@@ -452,7 +452,7 @@ might be present in the resulting transform which is unrelated to the heart rate
 In order to avoid this, a Butterworth filter is applied which removes isolated peaks and increases the power of peaks close together as is recommended by van der Kooij et al. \cite{vanderKooij2019}.
 \begin{figure}[H]
     % Add an image showing how in noisy Fourier transforms the HR is not just highest peak with result from Butterworth filter
-    \includegraphics[width=\textwidth]{example-image-a}
+    \includegraphics[width=0.5\textwidth]{example-image-a}
    \caption{An example of the split peak issue with a Butterworth filter applied} 
 \end{figure}
 

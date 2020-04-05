@@ -40,16 +40,16 @@ When a heart beat occurs, blood flows outwards from the heart towards the extrem
 This can be physically realised by a pulse oximeter, which consists of a light that illuminates the skin and a sensor that measures the amount of light absorbed. Typically a pulse oximeter is placed on the end of a finger. An LED emits light on one side of the finger and sensor on the other side measures the amount of light passing through the finger.
 Greater volumes of blood will cause more absorption of the light. 
 Hence, the amount of light reaching the sensor decreases as the blood reaches the blood vessels between the LED and light sensor.
-\begin{figure}[H]
-    \includegraphics[width=\textwidth]{example-image-b}
-   \caption{A diagram outlining the functioning of a pulse oximeter} 
-\end{figure}
-\noindent
-\begin{figure}[H]
-    \includegraphics[width=\textwidth]{example-image-b}
-   \caption{An example PPG signal} 
-\end{figure}
-\noindent
+% \begin{figure}[H]
+%     \includegraphics[width=\textwidth]{example-image-b}
+%    \caption{A diagram outlining the functioning of a pulse oximeter} 
+% \end{figure}
+% \noindent
+% \begin{figure}[H]
+%     \includegraphics[width=\textwidth]{example-image-b}
+%    \caption{An example PPG signal} 
+% \end{figure}
+% \noindent
 Given this, heart beats can be recognised as peaks in the signal. In this form, pulse oximetry is of high fidelity and is commmonly used in medical scenarios.
 However, this requires a relatively stationary finger and, as a result, is not considered practical for sporting activities. In this sense, this form of PPG sensing is not of greater availability than an ECG. As a result, more practical PPG sensors have been developed and incorporated into wearable devices. 
 
@@ -201,7 +201,7 @@ Neural networks for face detection have been trained since approximately the yea
 advances in computing hardware have nullified this \cite{v-j-vs-ann}. In fact, I conducted early-stage experiments which suggested that neural networks, specifically the model provided by the OpenCV library (see 
 Section \ref{section:libraries}) returned smaller face detection regions with similar computational costs. For this reason, the Viola-Jones algorithm, although popular, was deemed unsuitable for this project.
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{example-image-c}
+    \includegraphics[width=0.5\textwidth]{example-image-c}
    \caption{Example face detection outputs by the Viola-Jones algorithm (left) and a neural network (right) } 
    \label{fig:face_det_example}
 \end{figure}
@@ -275,7 +275,7 @@ Shi and Tomasi \cite{ShiTomasi} proposed a method for the selection of points wi
 The approach taken is to find points which are surrounded by regions of differing illumination, such points are known as `corners'. Corners tend to be easier to track
 and so form a good basis for selecting points for use with sparse optical flow.
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{example-image-c}
+    \includegraphics[width=0.5\textwidth]{example-image-c}
    \caption{An example output of the Shi-Tomasi corner detector applied to a face image} 
 \end{figure}
 
