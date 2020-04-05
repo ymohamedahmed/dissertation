@@ -313,14 +313,14 @@ The relevance of the blind source separation and possible solutions are introduc
 
 % \subsubsection{Principal Component Analysis}
 
-\subsection{Fourier analysis}
-% Decompose function into constituent frequencies
-The signals recorded by a heart rate sensor as described in Section \ref{prep:hr_sensing} are functions of time. A sensor records a particular physical 
-phenomenon as time passes and later uses this to infer a property in the frequency domain - the heart rate.
-As a result, there must be a kind of mapping between the signal which exists in the time domain and the heart rate of the user that exists in the 
-frequency domain. A naïve way to achieve this might be to count the number of beats of the heart in a certain interval. In that case, the frequency 
-of the heart beats \textit{or} the heart rate, is the ratio of the number of heart beats and the size of the window.
-However, a formal approach to the mapping of a function from the time domain into the frequency domain exists and is known as a Fourier transform. 
+% \subsection{Fourier analysis}
+% % Decompose function into constituent frequencies
+% The signals recorded by a heart rate sensor as described in Section \ref{prep:hr_sensing} are functions of time. A sensor records a particular physical 
+% phenomenon as time passes and later uses this to infer a property in the frequency domain - the heart rate.
+% As a result, there must be a kind of mapping between the signal which exists in the time domain and the heart rate of the user that exists in the 
+% frequency domain. A naïve way to achieve this might be to count the number of beats of the heart in a certain interval. In that case, the frequency 
+% of the heart beats \textit{or} the heart rate, is the ratio of the number of heart beats and the size of the window.
+% However, a formal approach to the mapping of a function from the time domain into the frequency domain exists and is known as a Fourier transform. 
 
 
 % \section{Halide}
@@ -329,40 +329,40 @@ However, a formal approach to the mapping of a function from the time domain int
 
 
 
-\section{Languages and tooling}
-\subsection{Languages}
-\paragraph{Python}
-% large provisions for rapid development
-The majority of the project will be developed in Python. As a language with large support for both computer vision and signal processing applications, it
-was a natural choice for the project. 
+% \section{Languages and tooling}
+% \subsection{Languages}
+% \paragraph{Python}
+% % large provisions for rapid development
+% The majority of the project will be developed in Python. As a language with large support for both computer vision and signal processing applications, it
+% was a natural choice for the project. 
 
-\paragraph{Kotlin}
-% Power of the JVM which has lots of libraries
-% Directly targets the Android OS
-A part of my core requirements is the development of an example application capable of rPPG that can run on the Android operating system. To such end, a language that can target the JVM\footnote{Java Virtual Machine} is required. With support for more functional syntax and with complete interoperability with Java, Kotlin was a convenient choice.
-
-
-\subsection{Libraries}
-\label{section:libraries}
-\paragraph{OpenCV}
-\paragraph{Mobile Vision}
-\paragraph{Numpy}
+% \paragraph{Kotlin}
+% % Power of the JVM which has lots of libraries
+% % Directly targets the Android OS
+% A part of my core requirements is the development of an example application capable of rPPG that can run on the Android operating system. To such end, a language that can target the JVM\footnote{Java Virtual Machine} is required. With support for more functional syntax and with complete interoperability with Java, Kotlin was a convenient choice.
 
 
-\section{Starting Point}
-% Courses this year which were relevant: Mobile and sensor systems, Computer Vision, Information Theory
-% did not take DSP course but read the DSP notes
-% had no previous experience of kotlin and some limited experience of python
-As a rather interdisciplinary project, a wide array of background knowledge was required, some of which has not featured in Tripos.
-For example, I had to understand the basics of how modern heart rate sensors work, for which I used internet resources as well explanations by my supervisor.
-\\\\
-Understanding existing literature regarding remote photoplethysmography was equally important and so during the early stages of the project, I reviewed
-a large number of journal papers to gain an understanding of the state of the art techniques being used.
-\\\\
-A variety of Part II courses proved to be relevant this year, including but not limited to: Mobile and Sensor Systems, Computer Vision, Information Theory and Digital Signal Processing. Many of these courses occurred after a large body of the work was completed, however, were, nonetheless, useful.
-\\\\
-I had no previous experience programming in Kotlin and only relatively little in Python, however, both have a plethora of online resources which I used 
-during the development process.
+% \subsection{Libraries}
+% \label{section:libraries}
+% \paragraph{OpenCV}
+% \paragraph{Mobile Vision}
+% \paragraph{Numpy}
+
+
+% \section{Starting Point}
+% % Courses this year which were relevant: Mobile and sensor systems, Computer Vision, Information Theory
+% % did not take DSP course but read the DSP notes
+% % had no previous experience of kotlin and some limited experience of python
+% As a rather interdisciplinary project, a wide array of background knowledge was required, some of which has not featured in Tripos.
+% For example, I had to understand the basics of how modern heart rate sensors work, for which I used internet resources as well explanations by my supervisor.
+% \\\\
+% Understanding existing literature regarding remote photoplethysmography was equally important and so during the early stages of the project, I reviewed
+% a large number of journal papers to gain an understanding of the state of the art techniques being used.
+% \\\\
+% A variety of Part II courses proved to be relevant this year, including but not limited to: Mobile and Sensor Systems, Computer Vision, Information Theory and Digital Signal Processing. Many of these courses occurred after a large body of the work was completed, however, were, nonetheless, useful.
+% \\\\
+% I had no previous experience programming in Kotlin and only relatively little in Python, however, both have a plethora of online resources which I used 
+% during the development process.
 \section{Requirements analysis}
 % Goals develop a python implementation of rPPG
 % Develop an additional output of an Android implementation to move towards higher availabiltiy sensing

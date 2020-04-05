@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2020.3.30)  5 APR 2020 13:31
+This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2020.3.30)  5 APR 2020 19:04
  system commands enabled.
 **diss
 (./diss.tex
@@ -48,7 +48,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.052 seconds
+luaotfload | main : initialization completed in 0.060 seconds
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2018/09/03 v1.4i Standard LaTeX document class
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/size12.clo
@@ -1245,7 +1245,11 @@ er and a
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.2.2
 '
 ] [7] [8] [9]
-<example-image-c.pdf, id=355, 321.2pt x 240.9pt>
+
+LaTeX Warning: Reference `section:libraries' on page 10 undefined on input line 
+202.
+
+<example-image-c.pdf, id=334, 321.2pt x 240.9pt>
 File: example-image-c.pdf Graphic file (type pdf)
 <use example-image-c.pdf>
 Package luatex.def Info: example-image-c.pdf  used on input line 204.
@@ -1282,32 +1286,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 296--309
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.2.4
 '
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 356--366
-
- []
-
-
-Underfull \hbox (badness 2644) in paragraph at lines 356--366
-\TU/lmr/m/n/12 Understanding ex-ist-ing lit-er-a-ture re-gard-ing re-mote pho-t
-o-plethys-mog-ra-phy
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 356--366
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 356--366
-
- []
-
-[14] [15]
 Overfull \hbox (19.98534pt too wide) in paragraph at lines 393--402
 [][]
  []
 
-) [16
+) [14
 warning  (pdf backend): ignoring duplicate destination with the name 'table.2.1'
 
 ]
@@ -1327,7 +1310,7 @@ Overfull \hbox (26.84547pt too wide) in paragraph at lines 117--27
  [][] 
  []
 
-[17
+[15
 
 
 ]
@@ -1335,7 +1318,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 29--35
 
  []
 
-[18
+[16
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.3.1
 '
 ]
@@ -1343,7 +1326,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 44--49
 
  []
 
-[19]
+[17]
 \openout3 = diss.pyg
  (./_minted-diss/default-pyg-prefix.pygstyle)
 (./_minted-diss/default.pygstyle)
@@ -1351,7 +1334,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 44--49
 1.pygtex
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 3.
-) [20
+) [18
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.3.2
 '
 ]
@@ -1364,9 +1347,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 98--101
 
  []
 
-[21]
+[19]
 
-LaTeX Warning: Reference `section:region_selection' on page 22 undefined on inpu
+LaTeX Warning: Reference `section:region_selection' on page 20 undefined on inpu
 t line 116.
 
 
@@ -1389,13 +1372,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 126--130
 
  []
 
-[22] (./implementation/skin-dataset-2.tex) (./implementation/skin-dataset-1.tex
+[20] (./implementation/skin-dataset-2.tex) (./implementation/skin-dataset-1.tex
 )
 Overfull \hbox (57.86913pt too wide) in paragraph at lines 20567--141
  [][] 
  []
 
-[23
+[21
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.3.3
 '
 ]
@@ -1429,19 +1412,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 159--169
 
  []
 
-[24
+[22
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.3.4
 '
 
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.3.5
 '
 ]
-<example-image-a.pdf, id=488, 321.2pt x 240.9pt>
+<example-image-a.pdf, id=450, 321.2pt x 240.9pt>
 File: example-image-a.pdf Graphic file (type pdf)
 <use example-image-a.pdf>
 Package luatex.def Info: example-image-a.pdf  used on input line 172.
 (luatex.def)             Requested size: 205.96938pt x 154.48056pt.
- [25
+ [23
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.3.6
 '
 </usr/local/texlive/2019/texmf-dist/tex/latex/mwe/example-image-a.pdf>]
@@ -1454,7 +1437,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 216--220
 
  []
 
-[26
+[24
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.3.7
 '
 ]
@@ -1469,14 +1452,10 @@ ris-tic, it be-
  []
 
 
-LaTeX Warning: Reference `section:skin_tone_detection' on page 27 undefined on i
+LaTeX Warning: Reference `section:skin_tone_detection' on page 25 undefined on i
 nput line 234.
 
 
-LaTeX Warning: Reference `section:skin_tone_detection' on page 27 undefined on i
-nput line 246.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 237--249
 
  []
@@ -1496,64 +1475,54 @@ Underfull \hbox (badness 10000) in paragraph at lines 237--249
 
  []
 
-[27]
+[25]
 Underfull \hbox (badness 10000) in paragraph at lines 250--257
 
  []
 
-[28]
-Underfull \hbox (badness 10000) in paragraph at lines 296--304
+[26]
+Underfull \hbox (badness 10000) in paragraph at lines 295--303
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 296--304
-
- []
-
-[29]
-Underfull \hbox (badness 10000) in paragraph at lines 305--309
+Underfull \hbox (badness 10000) in paragraph at lines 295--303
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 311--317
+Underfull \hbox (badness 10000) in paragraph at lines 304--308
+
+ []
+
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 310--316
 
  []
 
 
-Underfull \hbox (badness 1622) in paragraph at lines 311--317
+Underfull \hbox (badness 1622) in paragraph at lines 310--316
 \TU/lmr/m/n/12 The prob-a-bil-ity den-sity func-tion of a trun-cated nor-mal di
 s-tri-bu-tion be-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--327
+Underfull \hbox (badness 10000) in paragraph at lines 318--326
 
  []
 
-[30]
-<example-image-b.pdf, id=546, 321.2pt x 240.9pt>
+[28]
+<example-image-b.pdf, id=507, 321.2pt x 240.9pt>
 File: example-image-b.pdf Graphic file (type pdf)
 <use example-image-b.pdf>
-Package luatex.def Info: example-image-b.pdf  used on input line 334.
+Package luatex.def Info: example-image-b.pdf  used on input line 333.
 (luatex.def)             Requested size: 205.96938pt x 154.48056pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 329--336
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 329--336
-
- []
-
 
 Underfull \hbox (badness 10000) in paragraph at lines 377--380
 
  []
 
-[31
+[29
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.3.8
 '
 </usr/local/texlive/2019/texmf-dist/tex/latex/mwe/example-image-b.pdf>]
@@ -1562,67 +1531,66 @@ Underfull \hbox (badness 10000) in paragraph at lines 392--401
  []
 
 
-LaTeX Warning: Reference `section:ica_assumption' on page 32 undefined on input 
-line 412.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 403--414
+Underfull \hbox (badness 10000) in paragraph at lines 403--415
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 403--414
+Underfull \hbox (badness 10000) in paragraph at lines 403--415
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 403--414
+Underfull \hbox (badness 10000) in paragraph at lines 403--415
 
  []
 
 
-Underfull \hbox (badness 1231) in paragraph at lines 403--414
+Underfull \hbox (badness 1231) in paragraph at lines 403--415
 \TU/lmr/m/n/12 In this sce-nario, I pro-ceed by at-tempt-ing to iden-tify the h
 eart rate in
  []
 
-[32]
-Underfull \hbox (badness 10000) in paragraph at lines 416--422
+[30]
+Underfull \hbox (badness 10000) in paragraph at lines 417--423
 
  []
 
 
-LaTeX Warning: Reference `section:bss' on page 33 undefined on input line 439.
+LaTeX Warning: Reference `section:bss' on page 31 undefined on input line 440.
 
-[33]
 File: example-image-a.pdf Graphic file (type pdf)
 <use example-image-a.pdf>
-Package luatex.def Info: example-image-a.pdf  used on input line 455.
+Package luatex.def Info: example-image-a.pdf  used on input line 456.
 (luatex.def)             Requested size: 205.96938pt x 154.48056pt.
-) [34
+[31]) [32
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.3.9
 '
 ]
 Chapter 4.
-(./evaluation/evaluation.tex [35
+(./evaluation/evaluation.tex [33
 
 
-] [36] [37] (./evaluation/tracking_time.pgf)
-Overfull \hbox (21.68123pt too wide) in paragraph at lines 1128--162
+] [34] [35] (./evaluation/redect.pgf)
+Overfull \hbox (21.68123pt too wide) in paragraph at lines 1613--159
  [][] 
  []
 
-[38]) [39] [40
+[36] (./evaluation/tracking_time.pgf)
+Overfull \hbox (21.68123pt too wide) in paragraph at lines 1019--175
+ [][] 
+ []
 
-]
+[37]) [38]
 Chapter 5.
-(./conclusion/conclusion.tex) [41
+(./conclusion/conclusion.tex) [39
 
-] [42
 
-] (./diss.bbl [43
+] [40
 
-]) [44]
+] (./diss.bbl [41
+
+]) [42]
 File: example-image-a.pdf Graphic file (type pdf)
 <use example-image-a.pdf>
 Package luatex.def Info: example-image-a.pdf  used on input line 185.
@@ -1635,7 +1603,7 @@ File: example-image-c.pdf Graphic file (type pdf)
 <use example-image-c.pdf>
 Package luatex.def Info: example-image-c.pdf  used on input line 195.
 (luatex.def)             Requested size: 205.96938pt x 154.48056pt.
- [45
+ [43
 
 
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.Alp
@@ -1643,12 +1611,12 @@ h0.1'
 
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.Alp
 h0.2'
-] [46
+] [44
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.Alp
 h0.3'
 ]
 Appendix A.
-<proposal/main.pdf, id=674, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=632, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf>
 Package luatex.def Info: proposal/main.pdf  used on input line 202.
@@ -1657,7 +1625,7 @@ File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf>
 Package luatex.def Info: proposal/main.pdf  used on input line 202.
 (luatex.def)             Requested size: 614.29349pt x 794.96806pt.
-<proposal/main.pdf, id=677, page=1, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=635, page=1, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
 Package luatex.def Info: proposal/main.pdf , page1 used on input line 202.
@@ -1666,7 +1634,7 @@ File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
 Package luatex.def Info: proposal/main.pdf , page1 used on input line 202.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-[47
+[45
 
 
 ]
@@ -1682,70 +1650,70 @@ File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
 Package luatex.def Info: proposal/main.pdf , page1 used on input line 202.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+ [46<./proposal/main.pdf>]
+<proposal/main.pdf, id=666, page=2, 614.295pt x 794.97pt>
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 2>
+Package luatex.def Info: proposal/main.pdf , page2 used on input line 202.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 2>
+Package luatex.def Info: proposal/main.pdf , page2 used on input line 202.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 2>
+Package luatex.def Info: proposal/main.pdf , page2 used on input line 202.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+ [47<./proposal/main.pdf>]
+<proposal/main.pdf, id=671, page=3, 614.295pt x 794.97pt>
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 3>
+Package luatex.def Info: proposal/main.pdf , page3 used on input line 202.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 3>
+Package luatex.def Info: proposal/main.pdf , page3 used on input line 202.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 3>
+Package luatex.def Info: proposal/main.pdf , page3 used on input line 202.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
  [48<./proposal/main.pdf>]
-<proposal/main.pdf, id=706, page=2, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=680, page=4, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 2>
-Package luatex.def Info: proposal/main.pdf , page2 used on input line 202.
+<use proposal/main.pdf, page 4>
+Package luatex.def Info: proposal/main.pdf , page4 used on input line 202.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 2>
-Package luatex.def Info: proposal/main.pdf , page2 used on input line 202.
+<use proposal/main.pdf, page 4>
+Package luatex.def Info: proposal/main.pdf , page4 used on input line 202.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 2>
-Package luatex.def Info: proposal/main.pdf , page2 used on input line 202.
+<use proposal/main.pdf, page 4>
+Package luatex.def Info: proposal/main.pdf , page4 used on input line 202.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
  [49<./proposal/main.pdf>]
-<proposal/main.pdf, id=711, page=3, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=685, page=5, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 3>
-Package luatex.def Info: proposal/main.pdf , page3 used on input line 202.
+<use proposal/main.pdf, page 5>
+Package luatex.def Info: proposal/main.pdf , page5 used on input line 202.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 3>
-Package luatex.def Info: proposal/main.pdf , page3 used on input line 202.
+<use proposal/main.pdf, page 5>
+Package luatex.def Info: proposal/main.pdf , page5 used on input line 202.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 3>
-Package luatex.def Info: proposal/main.pdf , page3 used on input line 202.
+<use proposal/main.pdf, page 5>
+Package luatex.def Info: proposal/main.pdf , page5 used on input line 202.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
  [50<./proposal/main.pdf>]
-<proposal/main.pdf, id=720, page=4, 614.295pt x 794.97pt>
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 4>
-Package luatex.def Info: proposal/main.pdf , page4 used on input line 202.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 4>
-Package luatex.def Info: proposal/main.pdf , page4 used on input line 202.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 4>
-Package luatex.def Info: proposal/main.pdf , page4 used on input line 202.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
- [51<./proposal/main.pdf>]
-<proposal/main.pdf, id=725, page=5, 614.295pt x 794.97pt>
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 5>
-Package luatex.def Info: proposal/main.pdf , page5 used on input line 202.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 5>
-Package luatex.def Info: proposal/main.pdf , page5 used on input line 202.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 5>
-Package luatex.def Info: proposal/main.pdf , page5 used on input line 202.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
- [52<./proposal/main.pdf>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 204.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 204.
  (./diss.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 204.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 204.
 Package rerunfilecheck Info: File `diss.out' has not changed.
-(rerunfilecheck)             Checksum: 1F00AA6DFA09F3DC1D782011C7655E78;2772.
+(rerunfilecheck)             Checksum: 0AC539602C9AA18B4F1D3F17C9B07AB9;2514.
 
 
 LaTeX Warning: There were undefined references.
@@ -1754,14 +1722,14 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 204.
 )
 
 Here is how much of LuaTeX's memory you used:
- 34254 strings out of 494291
- 1822006,12246980 words of node,token memory allocated
- 1095 words of node memory still in use:
-   14 hlist, 2 vlist, 10 rule, 9 glue, 4 kern, 1 glyph, 78 attribute, 55 glue_sp
-ec, 78 attribute_list, 2 write, 16 pdf_literal, 16 pdf_colorstack nodes
-   avail lists: 1:13,2:484416,3:241352,4:119,5:281,6:63,7:4969,8:68,9:475,10:26,
-11:302
- 36810 multiletter control sequences out of 65536+600000
+ 34247 strings out of 494291
+ 1822004,12246980 words of node,token memory allocated
+ 1084 words of node memory still in use:
+   14 hlist, 2 vlist, 10 rule, 8 glue, 4 kern, 1 glyph, 77 attribute, 55 glue_sp
+ec, 77 attribute_list, 2 write, 16 pdf_literal, 16 pdf_colorstack nodes
+   avail lists: 1:13,2:484416,3:241352,4:117,5:281,6:62,7:4577,8:68,9:475,10:26,
+11:281
+ 36807 multiletter control sequences out of 65536+600000
  74 fonts using 6101287 bytes
  78i,19n,136p,946b,3121s stack positions out of 5000i,500n,10000p,899145b,100000s
 </usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.ot
@@ -1791,10 +1759,10 @@ cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/c
 msy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.
 pfb>
-Output written on diss.pdf (58 pages, 1070761 bytes).
+Output written on diss.pdf (56 pages, 1068260 bytes).
 
-PDF statistics: 868 PDF objects out of 1000 (max. 8388607)
- 709 compressed objects within 8 object streams
- 190 named destinations out of 1000 (max. 131072)
- 512 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 827 PDF objects out of 1000 (max. 8388607)
+ 671 compressed objects within 7 object streams
+ 177 named destinations out of 1000 (max. 131072)
+ 480 words of extra memory for PDF output out of 10000 (max. 100000000)
 

@@ -242,9 +242,9 @@ Implicitly, the above solution also relies on the assumption that any change in 
 It assumes that in subsequent frames, the true skin pixels remain closer (in terms of Euclidean distance) to the skin tone than the non-skin pixels.
 %That is, the pixels which were within the skin cluster when k-means was applied, are still closer to the skin tone than non-skin pixels in subsequent frames. 
 This is a fairly strong assumption and is affected by phenomena such as shadows and specular reflection, which will, clearly, not affect all pixels equally.
-However, it is useful enough to make the problem more tractable than it was previously, without undermining the fidelity of the algorithm, if the skin tone is detected frequently enough. 
-The validity of this assumption is made clear by the evaluation of the algorithm presented in Section \ref{section:skin_tone_detection}.
-Therefore, we proceed by classifying pixels based on their Euclidean distance from the skin tone.
+However, it is useful enough to make the problem more tractable than it was previously, without undermining the fidelity of the algorithm. %if the skin tone is detected frequently enough. 
+%The validity of this assumption is made clear by the evaluation of the algorithm presented in Section \ref{section:skin_tone_detection}.
+% Therefore, we proceed by classifying pixels based on their Euclidean distance from the skin tone.
 \\ \\
 \paragraph{A Bayesian approach}
 Recall that the first approach described classifies skin based on knowledge about the range of possible human skin tones. 
@@ -291,8 +291,7 @@ The most obvious selection would be to classify the pixel based on which class h
 % \Pr(s|C_\mathrm{skin}, x_i)+\Pr(C_\mathrm{skin}|x_i) > 1
 % \end{equation*}
 % \Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i) > t
-\paragraph{Defining probability distributions}
-\subparagraph{Prior distribution}
+\paragraph{Prior distribution}
 Usually, one might attempt to learn these distributions from some relevant dataset. That is the prior distribution $\Pr(C_\mathrm{skin}|x_i)$ and the distribution $\Pr(s|C_\mathrm{skin}, x_i)$.
 The prior $\Pr(C_\mathrm{skin}|x_i)$ was computed as the empirical distribution from 
 the dataset discussed in Section \ref{section:colour-filter}. This dataset consists of randomly sampled pixels that are classified as skin or not, it does not include entire classified faces.
@@ -301,7 +300,7 @@ Once the distribution $\Pr(C_\mathrm{skin}|x_i,s)$ has been computed for a singl
 sudden changes in the image.
 This is the key benefit of taking a Bayesian approach. It allows a principled means of incorporationg prior knowledge about the problem space.
 \\\\
-\subparagraph{Class conditional distribution}
+\paragraph{Class conditional distribution}
 As a result, a reasonable approach is to define the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ based on the assumption that a skin pixel is likely close in colour to the overall skin tone. We want a function which returns a large probability if the Euclidean distance between the pixel and the skin tone is small.
 There are, however, an infinite number of functions which could encode this. The only requirements is that the probability of being a skin pixel is decreasing as a function of the distance between the colour of the pixel and the skin tone of the face. 
 \\\\
@@ -327,13 +326,14 @@ Given this, the probability is defined in proportion to the probability density 
 \begin{equation*}
     \Pr(s|C_\mathrm{skin}, x_i) = \frac{f(d(s,x_i))}{\sum_{s' \in C}f(d(s',x_i))}
 \end{equation*}
-\\\\
+\paragraph{Accelerating class conditional computation}
 \begin{figure}[H]
     \centering
     % Give an example image with prior etc.
     \includegraphics[width=0.5\textwidth]{example-image-b}
    \caption{An example result from the described skin detection algorithm} 
 \end{figure}
+
 %Discrete or not??
 % There is a finite range of possible values for the Euclidean distance between the colour of a pixel and the skin tone. This is because colours are discretised by the camera and therefore must lie between some set of bounds (usually 0 and 255). As a result, the defined distribution should also be discrete in nature.
 % \\\\ 
@@ -409,10 +409,11 @@ Crucially, however, this approach returns the signals $x_1(t)$, $x_2(t)$ and $x_
 \\\\
 In this scenario, I proceed by attempting to identify the heart rate in each of these signals independently. This results in returning three different heart rate values, each of which has an associated power.
 This power value, which is the magnitude of the term in the Fourier transform associated with a given frequency, acts as a natural way of quantifying the importance of a particular frequency on the overall signal.
-Hence, I assume that the correct heart rate corresponds to whichever has the largest power. This particular assumption is evaluated in Section \ref{section:ica_assumption}.
+Hence, I assume that the correct heart rate corresponds to whichever has the largest power.
+%  This particular assumption is evaluated in Section \ref{section:ica_assumption}.
 % For example, the pulse is likely to be the most periodic of these signals, in which case, we could identify the pulse as simply the 
 
-\subsubsection{Principal components analysis (PCA)}
+% \subsubsection{Principal components analysis (PCA)}
 Alternatively, one might reframe the problem as finding a new orthogonal basis $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ to represent each vector $\mathbf{I}(t)$ in. The basis vectors are in the directions of maximal variance of the observed signal $\mathbf{I}(t)$. Finding these basis vectors is known as Principal Components Analysis.
 \\\\
 In this scenario, we assume that the pulse occurs in the direction of most variance.

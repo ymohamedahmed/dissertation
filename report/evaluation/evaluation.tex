@@ -1,7 +1,12 @@
+This project seeks to increase access to heart rate sensing technology.
+Since sensors, in general, behave in an online way, that is, they return measurements as and when they become available, the project should be expected to behave in the same way.
+It should not rely on lengthy computations which a normal sensor would not be able to perform. Furthermore, the fidelity of its outputs should be in line with similar alternative sensors.
+As a result, the evaluation proceeds by exemplifying the success of the project with respect to both of these criteria.
+
 \section{Data collection}
 In order to be able to evaluate the project, a dataset consisting of videos with an associated ground truth heart rate is required.
 For this, I used the \textit{MAHNOB} dataset \cite{Mahnob}, initially collected by Imperial College London for research into affective computing, it is widely used in remote photoplethmysography literature for performance benchmarking \cite{novel}\cite{mahnob-example}\cite{mahnob-example-2}.
-MAHNOB, however, only consists of videos where the participants are stationary and at a fixed, close distance to the camera, this alone, would not be adeqeuate for testing many aspects of the project.
+MAHNOB, however, only consists of videos where the participants are stationary and at a fixed, close distance to the camera (see Appendix for examples), this alone, would not be adeqeuate for testing many aspects of the project.
 As a result, I augmented the dataset with my own experiments that contained varying amounts of movement and were recorded at different distances to the camera. 
 Through this, the limitations of the project can be documented more effectively.
 % This acts as a means of testing the boundaries and feasibility of remote heart rate sensing.
@@ -68,6 +73,8 @@ The activities used are as follows with the latter two having been selected as t
 
 \section{Analysis of performance}
 \label{section:face_tracking}
+
+\subsection{Face tracking}
 Face tracking was proposed in Section \ref{section:face_tracking_impl} as an alternative to detecting the face in each frame independently.
 From the implementation alone, it is unclear as to whether or not it is beneficial. To answer this, several separate aspects of the algorithm must be evaluated. 
 Specifically, any described performance gains must be shown clearly as working across stationary scenarios and situations with movement of the face being tracked. Furthermore, it must be ensured that face tracking is not less accurate than simply repeatedly detecting the face in each frame. To evaluate these properties several metrics are defined and are measured across a variety of test videos.
@@ -134,6 +141,7 @@ could be achieved by returning the entire frame as the bounding box of the face.
 % As a result, the cost of false negatives and false positives is not equal.  
 % A false negative, that is, the face tracker has incorrectly classified a pixel as non-skin
 
+% GRAPH here
 % \paragraph{Motion resistance}
 
 \paragraph{Performance cost}
@@ -144,6 +152,11 @@ Recall from Section \ref{section:face_tracking_impl} that the following inequali
 \end{equation*}
 The above inequality relates the rate of redetections ($R/W$) and the costs of several required algorithms. It was shown in Section \ref{section:face_tracking_impl} that when this inequality holds, face tracking provides a performance benefit.
 In order to justify this, the value of the right hand side is evaluated experimentally on a variety of videos and is shown to exceed the value $R/W$.
+\begin{figure}[H]
+    \centering
+    \input{evaluation/redect.pgf}
+%    \caption{} 
+\end{figure}
 
 % plot redetection rates and max value
 
@@ -161,8 +174,16 @@ In order to justify this, the value of the right hand side is evaluated experime
 %    \caption{} 
 \end{figure}
 
+% show graph of overall error
+\begin{figure}[H]
+    
+\end{figure}
 \paragraph{Summary}
 % Provides a huge performance benefit with little cost
+% Drives up the possible frame rate and hence sampling rate of the virtual sensor
+
+
+
 Face tracking, as described, provides
 % \paragraph{Correctness}
 
@@ -292,3 +313,7 @@ Face tracking, as described, provides
 % \paragraph{Results}
 
 \section{Summary of findings}
+% Face tracking provides large performance benefit without which 'real-time' performance would not be possible
+% Allows for Bayesian Skin Detection to be plausible
+% rPPG not feasible for all scenarios depends on the amount and extent of movement
+% it's not much less suitable than smart watch critically 
