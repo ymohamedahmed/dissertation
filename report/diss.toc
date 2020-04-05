@@ -27,9 +27,10 @@
 \contentsline {subsection}{\numberline {2.5.1}Languages}{17}{subsection.2.5.1}% 
 \contentsline {paragraph}{Python}{17}{section*.17}% 
 \contentsline {paragraph}{Kotlin}{17}{section*.18}% 
-\contentsline {subsection}{\numberline {2.5.2}Libraries}{17}{subsection.2.5.2}% 
-\contentsline {paragraph}{OpenCV}{17}{section*.19}% 
-\contentsline {paragraph}{Mobile Vision}{17}{section*.20}% 
+\contentsline {subsection}{\numberline {2.5.2}Libraries}{18}{subsection.2.5.2}% 
+\contentsline {paragraph}{OpenCV}{18}{section*.19}% 
+\contentsline {paragraph}{Mobile Vision}{18}{section*.20}% 
+\contentsline {paragraph}{Numpy}{18}{section*.21}% 
 \contentsline {section}{\numberline {2.6}Starting Point}{18}{section.2.6}% 
 \contentsline {section}{\numberline {2.7}Requirements analysis}{18}{section.2.7}% 
 \contentsline {section}{\numberline {2.8}Professional practice}{19}{section.2.8}% 
@@ -38,76 +39,74 @@
 \contentsline {section}{\numberline {3.2}System design}{21}{section.3.2}% 
 \contentsline {section}{\numberline {3.3}Face detection}{23}{section.3.3}% 
 \contentsline {subsection}{\numberline {3.3.1}Face tracking}{23}{subsection.3.3.1}% 
-\contentsline {subsubsection}{Point tracking}{23}{section*.21}% 
-\contentsline {paragraph}{Impact of the rate of redetections}{24}{section*.22}% 
-\contentsline {paragraph}{Details}{25}{section*.23}% 
+\contentsline {subsubsection}{Point tracking}{23}{section*.22}% 
+\contentsline {paragraph}{Impact of the rate of redetections}{24}{section*.23}% 
+\contentsline {paragraph}{Details}{25}{section*.24}% 
 \contentsline {section}{\numberline {3.4}Region selection}{26}{section.3.4}% 
 \contentsline {subsection}{\numberline {3.4.1}Skin detection}{26}{subsection.3.4.1}% 
-\contentsline {subsubsection}{Colour-based filtering}{26}{section*.24}% 
-\contentsline {paragraph}{Issues}{28}{section*.25}% 
-\contentsline {subsubsection}{K-Means}{29}{section*.26}% 
-\contentsline {paragraph}{Issues}{30}{section*.27}% 
+\contentsline {subsubsection}{Colour-based filtering}{26}{section*.25}% 
+\contentsline {paragraph}{Issues}{28}{section*.26}% 
+\contentsline {subsubsection}{K-Means}{29}{section*.27}% 
+\contentsline {paragraph}{Issues}{30}{section*.28}% 
 \contentsline {subsection}{\numberline {3.4.2}Improving the previous approaches}{32}{subsection.3.4.2}% 
-\contentsline {subsubsection}{Identifying the skin tone}{33}{section*.28}% 
-\contentsline {subsubsection}{Identifying skin pixels using the skin tone}{33}{section*.29}% 
-\contentsline {paragraph}{A Bayesian approach}{34}{section*.30}% 
-\contentsline {paragraph}{Defining the threshold}{35}{section*.31}% 
-\contentsline {paragraph}{Defining probability distributions}{35}{section*.32}% 
-\contentsline {subparagraph}{Prior distribution}{35}{section*.33}% 
-\contentsline {subparagraph}{Class conditional distribution}{35}{section*.34}% 
+\contentsline {subsubsection}{Identifying the skin tone}{33}{section*.29}% 
+\contentsline {subsubsection}{Identifying skin pixels using the skin tone}{33}{section*.30}% 
+\contentsline {paragraph}{A Bayesian approach}{34}{section*.31}% 
+\contentsline {paragraph}{Defining the threshold}{35}{section*.32}% 
+\contentsline {paragraph}{Defining probability distributions}{35}{section*.33}% 
+\contentsline {subparagraph}{Prior distribution}{35}{section*.34}% 
+\contentsline {subparagraph}{Class conditional distribution}{35}{section*.35}% 
 \contentsline {section}{\numberline {3.5}Heart rate isolation}{37}{section.3.5}% 
 \contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{38}{subsection.3.5.1}% 
-\contentsline {subsubsection}{Independent components analysis (ICA)}{38}{section*.35}% 
-\contentsline {subsubsection}{Principal components analysis (PCA)}{39}{section*.36}% 
-\contentsline {paragraph}{Conclusion}{39}{section*.37}% 
+\contentsline {subsubsection}{Independent components analysis (ICA)}{38}{section*.36}% 
+\contentsline {subsubsection}{Principal components analysis (PCA)}{39}{section*.37}% 
+\contentsline {paragraph}{Conclusion}{39}{section*.38}% 
 \contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{39}{subsection.3.5.2}% 
-\contentsline {subsubsection}{The split peak issue}{40}{section*.38}% 
+\contentsline {subsubsection}{The split peak issue}{40}{section*.39}% 
 \contentsline {section}{\numberline {3.6}Repository overview}{41}{section.3.6}% 
 \contentsline {chapter}{\numberline {4}Evaluation}{43}{chapter.4}% 
-\contentsline {section}{\numberline {4.1}Face tracking}{43}{section.4.1}% 
-\contentsline {paragraph}{Research questions}{43}{section*.39}% 
-\contentsline {paragraph}{Dataset}{43}{section*.40}% 
-\contentsline {paragraph}{Metrics}{44}{section*.41}% 
-\contentsline {paragraph}{Computing the classification outcomes}{45}{section*.42}% 
-\contentsline {paragraph}{Results}{45}{section*.43}% 
-\contentsline {subparagraph}{Accuracy}{46}{section*.44}% 
-\contentsline {subparagraph}{Motion resistance}{46}{section*.45}% 
-\contentsline {subparagraph}{Performance cost}{46}{section*.46}% 
-\contentsline {subparagraph}{Thresholds}{46}{section*.47}% 
-\contentsline {paragraph}{Summary}{46}{section*.48}% 
-\contentsline {section}{\numberline {4.2}Region selection}{46}{section.4.2}% 
-\contentsline {subsection}{\numberline {4.2.1}Skin tone detection}{47}{subsection.4.2.1}% 
-\contentsline {paragraph}{Research questions}{47}{section*.49}% 
-\contentsline {paragraph}{Metrics}{47}{section*.50}% 
-\contentsline {paragraph}{Results}{47}{section*.51}% 
-\contentsline {paragraph}{Summary}{47}{section*.52}% 
-\contentsline {section}{\numberline {4.3}Heart rate isolation}{47}{section.4.3}% 
-\contentsline {subsection}{\numberline {4.3.1}Identifying the pulse signal}{47}{subsection.4.3.1}% 
-\contentsline {paragraph}{Research question}{47}{section*.53}% 
-\contentsline {paragraph}{Metrics}{47}{section*.54}% 
-\contentsline {paragraph}{Results}{47}{section*.55}% 
-\contentsline {paragraph}{Summary}{47}{section*.56}% 
-\contentsline {subsection}{\numberline {4.3.2}Extracting the heart rate from the pulse signal}{48}{subsection.4.3.2}% 
-\contentsline {subsubsection}{Independent components analysis}{48}{section*.57}% 
-\contentsline {paragraph}{Research question}{48}{section*.58}% 
-\contentsline {paragraph}{Metrics}{48}{section*.59}% 
-\contentsline {paragraph}{Results}{48}{section*.60}% 
-\contentsline {paragraph}{Summary}{48}{section*.61}% 
-\contentsline {subsubsection}{Principal components analysis}{48}{section*.62}% 
-\contentsline {paragraph}{Research question}{48}{section*.63}% 
-\contentsline {paragraph}{Metrics}{48}{section*.64}% 
-\contentsline {paragraph}{Results}{48}{section*.65}% 
-\contentsline {paragraph}{Summary}{48}{section*.66}% 
-\contentsline {section}{\numberline {4.4}Evaluation of remote heart rate sensing}{48}{section.4.4}% 
-\contentsline {subsection}{\numberline {4.4.1}Evaluation method}{48}{subsection.4.4.1}% 
-\contentsline {paragraph}{Experimental setup}{48}{section*.67}% 
-\contentsline {paragraph}{Ethics}{48}{section*.68}% 
-\contentsline {subsection}{\numberline {4.4.2}Accuracy}{49}{subsection.4.4.2}% 
-\contentsline {paragraph}{Research questions}{49}{section*.69}% 
-\contentsline {paragraph}{Metrics}{49}{section*.70}% 
-\contentsline {paragraph}{Results}{49}{section*.71}% 
-\contentsline {paragraph}{Summary}{49}{section*.72}% 
-\contentsline {section}{\numberline {4.5}Summary}{49}{section.4.5}% 
+\contentsline {section}{\numberline {4.1}Data collection}{43}{section.4.1}% 
+\contentsline {subsection}{\numberline {4.1.1}Methodology}{43}{subsection.4.1.1}% 
+\contentsline {paragraph}{Experimental setup}{44}{section*.40}% 
+\contentsline {section}{\numberline {4.2}Face tracking}{44}{section.4.2}% 
+\contentsline {paragraph}{Research questions}{44}{section*.41}% 
+\contentsline {paragraph}{Metrics}{45}{section*.42}% 
+\contentsline {paragraph}{Computing the classification outcomes}{46}{section*.43}% 
+\contentsline {paragraph}{Robustness}{46}{section*.44}% 
+\contentsline {paragraph}{Performance cost}{46}{section*.45}% 
+\contentsline {paragraph}{Results}{47}{section*.46}% 
+\contentsline {paragraph}{Summary}{47}{section*.47}% 
+\contentsline {section}{\numberline {4.3}Region selection}{47}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}Skin tone detection}{48}{subsection.4.3.1}% 
+\contentsline {paragraph}{Research questions}{48}{section*.48}% 
+\contentsline {paragraph}{Metrics}{48}{section*.49}% 
+\contentsline {paragraph}{Results}{48}{section*.50}% 
+\contentsline {paragraph}{Summary}{48}{section*.51}% 
+\contentsline {section}{\numberline {4.4}Heart rate isolation}{48}{section.4.4}% 
+\contentsline {subsection}{\numberline {4.4.1}Identifying the pulse signal}{48}{subsection.4.4.1}% 
+\contentsline {paragraph}{Research question}{48}{section*.52}% 
+\contentsline {paragraph}{Metrics}{49}{section*.53}% 
+\contentsline {paragraph}{Results}{49}{section*.54}% 
+\contentsline {paragraph}{Summary}{49}{section*.55}% 
+\contentsline {subsection}{\numberline {4.4.2}Extracting the heart rate from the pulse signal}{49}{subsection.4.4.2}% 
+\contentsline {subsubsection}{Independent components analysis}{49}{section*.56}% 
+\contentsline {paragraph}{Research question}{49}{section*.57}% 
+\contentsline {paragraph}{Metrics}{49}{section*.58}% 
+\contentsline {paragraph}{Results}{49}{section*.59}% 
+\contentsline {paragraph}{Summary}{49}{section*.60}% 
+\contentsline {subsubsection}{Principal components analysis}{49}{section*.61}% 
+\contentsline {paragraph}{Research question}{49}{section*.62}% 
+\contentsline {paragraph}{Metrics}{49}{section*.63}% 
+\contentsline {paragraph}{Results}{49}{section*.64}% 
+\contentsline {paragraph}{Summary}{49}{section*.65}% 
+\contentsline {section}{\numberline {4.5}Evaluation of remote heart rate sensing}{50}{section.4.5}% 
+\contentsline {subsection}{\numberline {4.5.1}Accuracy}{50}{subsection.4.5.1}% 
+\contentsline {paragraph}{Research questions}{50}{section*.66}% 
+\contentsline {paragraph}{Metrics}{50}{section*.67}% 
+\contentsline {paragraph}{Results}{50}{section*.68}% 
+\contentsline {paragraph}{Summary}{50}{section*.69}% 
+\contentsline {section}{\numberline {4.6}Summary}{50}{section.4.6}% 
 \contentsline {chapter}{\numberline {5}Conclusion}{51}{chapter.5}% 
 \contentsline {chapter}{Bibliography}{53}{chapter.5}% 
-\contentsline {chapter}{\numberline {A}Project Proposal}{55}{appendix.A}% 
+\contentsline {subsection}{\numberline {.0.1}Experiment}{55}{subsection.Alph0.0.1}% 
+\contentsline {chapter}{\numberline {A}Project Proposal}{57}{appendix.A}% 

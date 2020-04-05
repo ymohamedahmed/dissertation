@@ -1,0 +1,154 @@
+% This file was created by tikzplotlib v0.9.1.
+\begin{tikzpicture}
+
+\definecolor{color0}{rgb}{0.839292579777009,0.184544405997693,0.152864282968089}
+\definecolor{color1}{rgb}{0.419684736639754,0.749788542868128,0.39038831218762}
+\definecolor{color2}{rgb}{0.154555940023068,0.621683967704729,0.326874279123414}
+\definecolor{color3}{rgb}{0.0279892349096501,0.459515570934256,0.242599000384468}
+
+\begin{axis}[
+legend cell align={left},
+legend style={fill opacity=0.8, draw opacity=1, text opacity=1, draw=white!80!black},
+tick align=outside,
+tick pos=left,
+x grid style={white!69.0196078431373!black},
+xmin=-0.24, xmax=2.84,
+xtick style={color=black},
+xtick={0.3,1.3,2.3},
+xticklabels={Stationary,Jogging,Star jumps},
+y grid style={white!69.0196078431373!black},
+ylabel={Mean time to process a frame},
+ymin=0, ymax=0.0732392068977935,
+ytick style={color=black}
+]
+\draw[draw=white,fill=color0] (axis cs:-0.1,0) rectangle (axis cs:0.1,0.0561886426133148);
+\addlegendimage{ybar,ybar legend,draw=white,fill=color0};
+\addlegendentry{OpenCV Face detector}
+
+\draw[draw=white,fill=color0] (axis cs:0.9,0) rectangle (axis cs:1.1,0.066168644713505);
+\draw[draw=white,fill=color0] (axis cs:1.9,0) rectangle (axis cs:2.1,0.0660809727944685);
+\draw[draw=white,fill=color1] (axis cs:0.1,0) rectangle (axis cs:0.3,0.00703953122690934);
+\addlegendimage{ybar,ybar legend,draw=white,fill=color1};
+\addlegendentry{Proposed tracker w/ threshold of 0.3}
+
+\draw[draw=white,fill=color1] (axis cs:1.1,0) rectangle (axis cs:1.3,0.0246678327669565);
+\draw[draw=white,fill=color1] (axis cs:2.1,0) rectangle (axis cs:2.3,0.0209901897770584);
+\draw[draw=white,fill=color2] (axis cs:0.3,0) rectangle (axis cs:0.5,0.00703858527159923);
+\addlegendimage{ybar,ybar legend,draw=white,fill=color2};
+\addlegendentry{Proposed tracker w/ threshold of 0.4}
+
+\draw[draw=white,fill=color2] (axis cs:1.3,0) rectangle (axis cs:1.5,0.0220463949371532);
+\draw[draw=white,fill=color2] (axis cs:2.3,0) rectangle (axis cs:2.5,0.0200507604392471);
+\draw[draw=white,fill=color3] (axis cs:0.5,0) rectangle (axis cs:0.7,0.00703145181979506);
+\addlegendimage{ybar,ybar legend,draw=white,fill=color3};
+\addlegendentry{Proposed tracker w/ threshold of 0.5}
+
+\draw[draw=white,fill=color3] (axis cs:1.5,0) rectangle (axis cs:1.7,0.020812001908291);
+\draw[draw=white,fill=color3] (axis cs:2.5,0) rectangle (axis cs:2.7,0.0197429444379867);
+\path [draw=black, semithick]
+(axis cs:0,0.0518140698712351)
+--(axis cs:0,0.0605632153553945);
+
+\path [draw=black, semithick]
+(axis cs:1,0.0627526737072828)
+--(axis cs:1,0.0695846157197273);
+
+\path [draw=black, semithick]
+(axis cs:2,0.0624103199719909)
+--(axis cs:2,0.0697516256169462);
+
+\path [draw=black, semithick]
+(axis cs:0.2,0.00451220708773128)
+--(axis cs:0.2,0.0095668553660874);
+
+\path [draw=black, semithick]
+(axis cs:1.2,0.00502893586653493)
+--(axis cs:1.2,0.044306729667378);
+
+\path [draw=black, semithick]
+(axis cs:2.2,0.0069643358175172)
+--(axis cs:2.2,0.0350160437365996);
+
+\path [draw=black, semithick]
+(axis cs:0.4,0.00478899113082616)
+--(axis cs:0.4,0.0092881794123723);
+
+\path [draw=black, semithick]
+(axis cs:1.4,0.00552348636811538)
+--(axis cs:1.4,0.038569303506191);
+
+\path [draw=black, semithick]
+(axis cs:2.4,0.00745483061938764)
+--(axis cs:2.4,0.0326466902591065);
+
+\path [draw=black, semithick]
+(axis cs:0.6,0.00502311681316732)
+--(axis cs:0.6,0.0090397868264228);
+
+\path [draw=black, semithick]
+(axis cs:1.6,0.00627586113534765)
+--(axis cs:1.6,0.0353481426812344);
+
+\path [draw=black, semithick]
+(axis cs:2.6,0.00824970194758887)
+--(axis cs:2.6,0.0312361869283846);
+
+\addplot [semithick, black, mark=-, mark size=10, mark options={solid}, only marks]
+table {%
+0 0.0518140698712351
+1 0.0627526737072828
+2 0.0624103199719909
+};
+\addlegendentry{Proposed tracker w/ threshold of 0.5}
+\addplot [semithick, black, mark=-, mark size=10, mark options={solid}, only marks]
+table {%
+0 0.0605632153553945
+1 0.0695846157197273
+2 0.0697516256169462
+};
+\addlegendentry{Proposed tracker w/ threshold of 0.5}
+\addplot [semithick, black, mark=-, mark size=10, mark options={solid}, only marks]
+table {%
+0.2 0.00451220708773128
+1.2 0.00502893586653493
+2.2 0.0069643358175172
+};
+\addlegendentry{Proposed tracker w/ threshold of 0.5}
+\addplot [semithick, black, mark=-, mark size=10, mark options={solid}, only marks]
+table {%
+0.2 0.0095668553660874
+1.2 0.044306729667378
+2.2 0.0350160437365996
+};
+\addlegendentry{Proposed tracker w/ threshold of 0.5}
+\addplot [semithick, black, mark=-, mark size=10, mark options={solid}, only marks]
+table {%
+0.4 0.00478899113082616
+1.4 0.00552348636811538
+2.4 0.00745483061938764
+};
+\addlegendentry{Proposed tracker w/ threshold of 0.5}
+\addplot [semithick, black, mark=-, mark size=10, mark options={solid}, only marks]
+table {%
+0.4 0.0092881794123723
+1.4 0.038569303506191
+2.4 0.0326466902591065
+};
+\addlegendentry{Proposed tracker w/ threshold of 0.5}
+\addplot [semithick, black, mark=-, mark size=10, mark options={solid}, only marks]
+table {%
+0.6 0.00502311681316732
+1.6 0.00627586113534765
+2.6 0.00824970194758887
+};
+\addlegendentry{Proposed tracker w/ threshold of 0.5}
+\addplot [semithick, black, mark=-, mark size=10, mark options={solid}, only marks]
+table {%
+0.6 0.0090397868264228
+1.6 0.0353481426812344
+2.6 0.0312361869283846
+};
+\addlegendentry{Proposed tracker w/ threshold of 0.5}
+\end{axis}
+
+\end{tikzpicture}

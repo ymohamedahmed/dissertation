@@ -1,24 +1,33 @@
 \section{Data collection}
 In order to be able to evaluate the project, a dataset consisting of videos with an associated ground truth heart rate is required.
-For this, I used the MAHNOB dataset \cite{Mahnob}, initially collected for research into affective computing, it is widely used in the remote photoplethmysography literature for performance benchmarking.
-MAHNOB \cite{Mahnob}, however, only consists of videos where the participants are stationary and at a fixed, close distance to the camera, this alone, would not be adeqeuate for the testing of many aspects of the project.
-As a result, I augmented the dataset with my own experiments with varying amounts of movement and at different distances to the camera. This acts as a means of testing the boundaries of remote heart rate sensing.
+For this, I used the \textit{MAHNOB} dataset \cite{Mahnob}, initially collected by Imperial College London for research into affective computing, it is widely used in remote photoplethmysography literature for performance benchmarking \cite{novel}\cite{mahnob-example}\cite{mahnob-example-2}.
+MAHNOB \cite{Mahnob}, however, only consists of videos where the participants are stationary and at a fixed, close distance to the camera, this alone, would not be adeqeuate for testing many aspects of the project.
+As a result, I augmented the dataset with my own experiments that contained varying amounts of movement and were recorded at different distances to the camera. 
+Through this, the limitations of the project can be documented more effectively.
+% This acts as a means of testing the boundaries and feasibility of remote heart rate sensing.
 
-
-face tracking. 
-Hence, it was augmented with several videos which I recorded with varying amounts and types of movement, as well as at different distances.
+% face tracking. 
+% Hence, it was augmented with several videos which I recorded with varying amounts and types of movement, as well as at different distances.
 % In order to better understand the performance of face tracking, a test set of several videos with varying amounts of movement was used. Some of the videos were taken from the MAHNOB dataset \cite{Mahnob}, which forms one of the key sources of data for the evaluation of this project.
 % Initially, generated as a dataset for study into affective computing, it consists of several thousand videos of participants as they are exposed to stimuli, with their ECG responses being recorded. A subset of videos 
 % were randomly selected and were augmented with additional videso to form the test dataset for this project.
 % \\\\
-Some of these videos contained strictly `translational' movement, that is, the size of the face of the user remains largely constant as they move from one side of the frame to the other.
-Another more challenging kind of movement, denoted here as `rotational', is where the user rotates their face so that different parts of the face are in a view in different frames.
-Intuitively, one would expect this to be more difficult for the face tracker to deal with, since points will come in and out of view regularly.
+% Some of these videos contained strictly `translational' movement, that is, the size of the face of the user remains largely constant as they move from one side of the frame to the other.
+% Another more challenging kind of movement, denoted here as `rotational', is where the user rotates their face so that different parts of the face are in a view in different frames.
+% Intuitively, one would expect this to be more difficult for the face tracker to deal with, since points will come in and out of view regularly.
 \subsection{Methodology}
+% data is used to evaluate: effect of distance, movement, stationery, smartwatch
+The data collected has been used for two distinct reasons: the justification of implementation decisions and the profiling of the overall success of the project.
+Since this project regards the measurement of health data, it is critical to understand in what scenarios its outputs cannot be considered reliable.
+With this in mind, experiments were designed to discover any fundamental limitations of this kind of technology. The data was collected with the following overarching questions in mind:
+\begin{itemize}
+    \item Can the results of remote heart rate sensing be trusted?
+    \item To what extent does the user's distance from the camera affect the fidelity of the outputs?
+    \item Does the user have to be stationary with respect to the camera for the results to be accurate?
+    \item How does the project compare to a PPG sensor on a wearable device?
+\end{itemize}
 
-\paragraph{}
-
-\paragraph{Dataset}
+% The data collected will be used to evaluate several different aspects of the program.
 
 \paragraph{Experimental setup}
 % talk about testing different distances
@@ -26,6 +35,34 @@ Intuitively, one would expect this to be more difficult for the face tracker to 
 % ecg as ground truth
 % developed a logging app which records raw sensor values from a smart watch, used for comparison
 % tested on myself
+% 27 recordings each at 1min
+% smartwatch and ecg used
+% ecg used as a ground truth and is considered accurate enough for use in medical scenarios
+% smartwatch used for comparison against rPPG as a sensor it is designed to compete with
+% raw PPG signal taken from the smartwatch and is processed in the same way as rPPG
+% recorded on Pixel 3a phone videos
+In these additional experiments, videos were recorded of myself at distances of 1m, 1.5m and 2m. 
+At each of these distances, three different activities were recorded, each for one minute with three repeats being conducted, for a total of 27 minutes worth of video and associated heart rate data.
+A ground truth was taken in the form of a chest-based ECG sensor and a smartwatch was used for comparison with the video-based heart rate.
+The data taken from the smartwatch was the raw PPG sensor values, that is, not the estimated heart rate. This is so that the same heart rate isolation algorithms can be applied to both the 
+remote PPG signal and the wrist based PPG signal making for a fair comparison.
+Video recordings were conducted on a Pixel 3A mobile device at a framerate of 30 frames per second.
+
+The activities used are as follows with the latter two having been selected as to test both raised heart rates and significant amounts of movement, thereby providing a test case not present in the MAHNOB database.
+\begin{itemize}
+   \item Stationary for sixty seconds
+   \item Running on the spot for forty seconds followed by twenty seconds of rest
+   \item Star jumps for forty seconds followed by twenty seconds of rest
+\end{itemize}
+
+% As a result, I recorded videos
+%  several experiments on myself whilst wearing an ECG sensor and a Fossil smartwatch.
+% A lightweight application I developed records raw values from the wrist-based PPG sensor 
+
+% \paragraph{Ethics}
+
+% \paragraph{Dataset}
+
 
 % \paragraph{Ethics}
 
@@ -85,18 +122,19 @@ The time to process each frame is also recorded as a means of measuring the rela
 % Furthermore, the signal to nois
 % Finally, the distance moved by each set of points being tracked between frames is recorded. This metric acts a means of encoding the amount of movement in the video.
 
-\paragraph{Results}
 
 \paragraph{Robustness}
 % The performance of the above algorithm, clearly depends on the proportion that each of the two branches are executed.
 % Most important is not having false positives, so emphasis precision
 It is important to recognise that the face detector being used as a ground truth here, is in itself, imperfect. This is because, in general, face detection returns a bounding box
-that will contain some pixels from the background of the image but contain all of face pixels. In this sense, the face detector has a perfect recall. 
-It returns all face pixels, with some number of background pixels included. 
-As a result, the cost of false negatives and false positives is not equal.  
-A false negative, that is, the face tracker has incorrectly classified a pixel as non-skin
+that will contain some pixels from the background of the image but contain the vast majority face pixels. In this sense, the face detector itself has almost perfect recall but imperfect precision.
+Since the face tracker was designed, as described in Section \ref{section:face_tracking_impl}, to mimic face detection with better performance, recall is the most important metric. However, perfect recall
+could be achieved by returning the entire frame as the bounding box of the face. As a result, the overall goal is to achieve perfect recall with a minimal false positive rate.
+% It returns all face pixels, with some number of background pixels included. 
+% As a result, the cost of false negatives and false positives is not equal.  
+% A false negative, that is, the face tracker has incorrectly classified a pixel as non-skin
 
-\paragraph{Motion resistance}
+% \paragraph{Motion resistance}
 
 \paragraph{Performance cost}
 % talk about redetection rates
@@ -111,13 +149,21 @@ In order to justify this, the value of the right hand side is evaluated experime
 
 % plot mean time per frame with std
 
-\paragraph{Thresholds}
-
+% \paragraph{Thresholds}
 % show how threshold affects time and precision
+
+\paragraph{Results}
+
+
+\begin{figure}[H]
+    \centering
+    \input{evaluation/tracking_time.pgf}
+%    \caption{} 
+\end{figure}
 
 \paragraph{Summary}
 % Provides a huge performance benefit with little cost
-
+Face tracking, as described, provides
 % \paragraph{Correctness}
 
 \section{Region selection}

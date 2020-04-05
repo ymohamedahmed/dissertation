@@ -6,7 +6,7 @@ and described in relation to this project.
 \label{prep:hr_sensing}
 Before attempting to develop a system which can estimate the heart rate of a user without physical contact, it is useful to understand how traditional heart rate sensors work.
 Although it is clear that a non-contact system is constrained by different requirements, it is common when developing low fidelity sensors to begin by attempting to mimic high fidelity alternatives. \\\\
-This project can be viewed as the development of a virtual sensor\footnote{A sensor which does not dervie its results from a direct physical realisation of that sensor} that derives its data from an existing sensor, the camera. It is for this reason, that the planning of the project proceeds by, first, understanding the workings of the two main alternative sensors and then reasoning about how one might derive these results from a camera instead.
+This project can be viewed as the development of a virtual sensor\footnote{A sensor which does not derive its results from a direct physical realisation of that sensor} that derives its data from an existing sensor, the camera. It is for this reason, that the planning of the project proceeds by, first, understanding the workings of the two main alternative sensors and then reasoning about how one might derive these results from a camera instead.
 \\\\
 Electrocardiography and photoplethysmography are the two of the most common techniques for measuring heart rate, each of which proceed by measuring alternate phenomena.
 
@@ -42,7 +42,7 @@ Greater volumes of blood will cause more absorption of the light.
 Hence, the amount of light reaching the sensor decreases as the blood reaches the blood vessels between the LED and light sensor.
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{example-image-b}
-   \caption{An diagram outlining the functioning of a pulse oximeter} 
+   \caption{A diagram outlining the functioning of a pulse oximeter} 
 \end{figure}
 \noindent
 \begin{figure}[H]
@@ -333,15 +333,20 @@ However, a formal approach to the mapping of a function from the time domain int
 \subsection{Languages}
 \paragraph{Python}
 % large provisions for rapid development
+The majority of the project will be developed in Python. As a language with large support for both computer vision and signal processing applications, it
+was a natural choice for the project. 
 
 \paragraph{Kotlin}
 % Power of the JVM which has lots of libraries
 % Directly targets the Android OS
+A part of my core requirements is the development of an example application capable of rPPG that can run on the Android operating system. To such end, a language that can target the JVM\footnote{Java Virtual Machine} is required. With support for more functional syntax and with complete interoperability with Java, Kotlin was a convenient choice.
+
 
 \subsection{Libraries}
 \label{section:libraries}
 \paragraph{OpenCV}
 \paragraph{Mobile Vision}
+\paragraph{Numpy}
 
 
 \section{Starting Point}

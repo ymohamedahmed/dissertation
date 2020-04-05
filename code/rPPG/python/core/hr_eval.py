@@ -176,11 +176,21 @@ def map_config(config: list, window_size, offset):
         region_selector in {PrimitiveROI, IntervalThresholding, BayesianSkinDetector(weighted=False), BayesianSkinDetector(weighted=True)}
         signal_processor in {PCA, ICA}
     """
-    trackers = [RepeatedDetector(DNNDetector()), KLTBoxingWithThresholding(DNNDetector(), recompute_threshold=0.15), KLTBoxingWithThresholding(DNNDetector())]
-    region_selectors = [PrimitiveROI(), IntervalSkinDetector(), BayesianSkinDetector(weighted=False), BayesianSkinDetector(weighted=True)]
-    signal_processor = [PCAProcessor(), ICAProcessor()]
+    def map_tracker(i):
+        if i == 0: return RepeatedDetector(DNNDetector())
+        elif i == 1: return KLTBoxingWithThresholding(DNNDetector(), recompute_threshold=0.15)
+    
+    def map_region_selector(i):
+        if i == 0: return PrimitiveROI()
+        elif i == 1: return IntervalSkinDetector()
+        elif i == 2: return BayesianSkinDetector(weighted=False)
+        elif i == 3: return BayesianSkinDetector(weighted=True)
+    
+    def map_signal_processor(i):
+        if i == 1: return PCAProcessor()
+        elif i == 2: return ICAProcessor()
     t, rs, sp = config[0], config[1], config[2]
-    return Configuration(trackers[t], region_selectors[rs], signal_processor[sp], window_size, offset)
+    return Configuration(map_tracker(t), map_region_selector(rs), map_signal_processor(sp), window_size, offset)
 
 def write_ppg_out(files, ppg_meta_output):
     meta_columns = ["Video file", "rPPG file", "PPG file", "ECG file", "Framerate", "Tracker", "Region selector", "Time mean", "Time std", "Number of frames", "Total time", "Noise"]

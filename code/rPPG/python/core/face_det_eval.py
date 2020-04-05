@@ -108,4 +108,4 @@ for t_index, t in enumerate(thresholds):
     for v_index, v in enumerate(videos):
         print(f"Beginning experiment: {(t_index*len(videos))+v_index}/{len(thresholds)*len(videos)} threshold: {t} and video: {v}")
         results = results.append(tracker_vs_detector(v,t))
-        results.to_csv(f"{PATH}output/tracking_vs_detecting_large_scale_6.csv")
+        results.to_csv(f"{PATH}output/tracking_vs_detecting_large_scale_7.csv")
