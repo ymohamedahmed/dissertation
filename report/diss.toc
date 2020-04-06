@@ -49,28 +49,31 @@
 \contentsline {section}{\numberline {3.5}Heart rate isolation}{29}{section.3.5}% 
 \contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{30}{subsection.3.5.1}% 
 \contentsline {subsubsection}{Independent components analysis (ICA)}{30}{section*.31}% 
-\contentsline {paragraph}{Conclusion}{31}{section*.32}% 
 \contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{31}{subsection.3.5.2}% 
-\contentsline {subsubsection}{The split peak issue}{31}{section*.33}% 
+\contentsline {subsubsection}{The split peak issue}{31}{section*.32}% 
+\contentsline {subsubsection}{Majority voting heuristic}{32}{section*.33}% 
 \contentsline {section}{\numberline {3.6}Repository overview}{32}{section.3.6}% 
 \contentsline {chapter}{\numberline {4}Evaluation}{33}{chapter.4}% 
 \contentsline {section}{\numberline {4.1}Data collection}{33}{section.4.1}% 
 \contentsline {subsection}{\numberline {4.1.1}Methodology}{33}{subsection.4.1.1}% 
 \contentsline {paragraph}{Experimental setup}{34}{section*.34}% 
-\contentsline {section}{\numberline {4.2}Analysis of performance}{34}{section.4.2}% 
-\contentsline {subsection}{\numberline {4.2.1}Face tracking}{34}{subsection.4.2.1}% 
+\contentsline {section}{\numberline {4.2}Analysis of performance}{35}{section.4.2}% 
+\contentsline {subsection}{\numberline {4.2.1}Face tracking}{35}{subsection.4.2.1}% 
 \contentsline {paragraph}{Research questions}{35}{section*.35}% 
 \contentsline {paragraph}{Metrics}{35}{section*.36}% 
 \contentsline {paragraph}{Robustness}{36}{section*.37}% 
-\contentsline {paragraph}{Performance cost}{36}{section*.38}% 
+\contentsline {paragraph}{Performance cost}{37}{section*.38}% 
 \contentsline {paragraph}{Results}{38}{section*.39}% 
 \contentsline {paragraph}{Summary}{38}{section*.40}% 
-\contentsline {section}{\numberline {4.3}Analysis of sensing fidelity}{38}{section.4.3}% 
-\contentsline {paragraph}{Research questions}{38}{section*.41}% 
-\contentsline {paragraph}{Metrics}{38}{section*.42}% 
-\contentsline {paragraph}{Results}{38}{section*.43}% 
-\contentsline {paragraph}{Summary}{38}{section*.44}% 
-\contentsline {section}{\numberline {4.4}Summary of findings}{38}{section.4.4}% 
-\contentsline {chapter}{\numberline {5}Conclusion}{39}{chapter.5}% 
-\contentsline {chapter}{Bibliography}{41}{chapter.5}% 
-\contentsline {chapter}{\numberline {A}Project Proposal}{45}{appendix.A}% 
+\contentsline {section}{\numberline {4.3}Analysis of sensing fidelity}{40}{section.4.3}% 
+\contentsline {paragraph}{Research questions}{40}{section*.41}% 
+\contentsline {subsection}{\numberline {4.3.1}Stationary videos}{40}{subsection.4.3.1}% 
+\contentsline {subsection}{\numberline {4.3.2}The effect of movement}{40}{subsection.4.3.2}% 
+\contentsline {subsection}{\numberline {4.3.3}Comparative fidelity}{40}{subsection.4.3.3}% 
+\contentsline {paragraph}{Metrics}{40}{section*.42}% 
+\contentsline {paragraph}{Results}{40}{section*.43}% 
+\contentsline {paragraph}{Summary}{40}{section*.44}% 
+\contentsline {section}{\numberline {4.4}Summary of findings}{40}{section.4.4}% 
+\contentsline {chapter}{\numberline {5}Conclusion}{41}{chapter.5}% 
+\contentsline {chapter}{Bibliography}{43}{chapter.5}% 
+\contentsline {chapter}{\numberline {A}Project Proposal}{47}{appendix.A}% 

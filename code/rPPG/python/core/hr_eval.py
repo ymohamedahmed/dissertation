@@ -312,12 +312,23 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
     rppg_hr_rgb = rppg_hr_rgb.reshape((len(rppg_hr_rgb)//9, 9))
     return (rppg_hr_ica, rppg_hr_pca, rppg_hr_rgb, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft)
 
+def majority_vote(freqs):
+    hrs = [freqs[0], freqs[3], freqs[6]]
+    powers = [freqs[1], freqs[4], freqs[7]]
+    i = np.argsort(powers)
+    hr_max_power = hrs[i[-1]]
+    mean_of_non_max = 1/2 * (np.sum(hrs)- hr_max_power)
+    if abs(hr_max_power - mean_of_non_max)/hr_max_power > 0.3:
+        # return mean_heart_rate
+        return hrs[i[-2]]
+    else:
+        return hr_max_power
 
 def signal_processing_experiments(files, ppg_meta_file):
-    sp_output = f"{PATH}output/hr_evaluation/sp-fixed-bpm-2.csv"
+    sp_output = f"{PATH}output/hr_evaluation/sp-fixed-bpm-trilogy-mv-thresh-0.3.csv"
     ppg_meta_file = check_path(ppg_meta_file)
     columns = ["Video", "Tracker", "Region selector", "Window size", "Offset size", "Heart Rate Number", 
-     "rPPG HR ICA", "rPPG HR PCA", 
+     "rPPG HR ICA", "rPPG HR MV", "rPPG HR PCA", 
      "PPG HR BC", "PPG HR FFT",
      "ECG HR BC", "ECG HR FFT",
      "ICA 1 HR", "ICA 1 Power", "ICA 1 BC",
@@ -342,7 +353,8 @@ def signal_processing_experiments(files, ppg_meta_file):
 
     for index, ppg_row in ppg_meta.iterrows():
         # if (ppg_row["Video file"].endswith(".avi")):
-        signal = np.loadtxt(check_path(ppg_row["rPPG file"]))
+        rppg_file = ppg_row["rPPG file"]
+        signal = np.loadtxt(check_path(rppg_file))
         # for ws in np.arange(600, 1200, 100):
         #     for off in np.arange(30, 120, 30):
         ws, off = 600, 60
@@ -350,34 +362,35 @@ def signal_processing_experiments(files, ppg_meta_file):
         progress = 100*index/len(ppg_meta)
         print(f"Experiment progress: {progress}%")
         vid_name = ppg_row["Video file"]
-        print(f"Considering: {vid_name}, Window size: {ws}, Offset: {off}")
-        rppg_ica, rppg_pca, rppg_rgb, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft = evaluate(signal, ppg_row["PPG file"], ppg_row["ECG file"], ws, off, ppg_row["Framerate"])
-        n_rows, _ = rppg_ica.shape
-        for i in range(n_rows):
-            row = [
-                ppg_row["Video file"], ppg_row["Tracker"], ppg_row["Region selector"], ws, off, i, 
-                hr_with_max_power(rppg_ica[i, :]), rppg_pca[i,0], 
-                ppg_hr[i], ppg_hr_fft[i],
-                ecg_hr[i], ecg_hr_fft[i],
-                rppg_ica[i,0], rppg_ica[i,1], rppg_ica[i,2], 
-                rppg_ica[i,3], rppg_ica[i,4], rppg_ica[i,5], 
-                rppg_ica[i,6], rppg_ica[i,7], rppg_ica[i,8], 
-                rppg_pca[i,0], rppg_pca[i,1], rppg_pca[i,2], 
-                rppg_pca[i,3], rppg_pca[i,4], rppg_pca[i,5],
-                rppg_pca[i,6], rppg_pca[i,7], rppg_pca[i,8],
-                rppg_rgb[i,0], rppg_rgb[i,1], rppg_rgb[i,2], 
-                rppg_rgb[i,3], rppg_rgb[i,4], rppg_rgb[i,5],
-                rppg_rgb[i,6], rppg_rgb[i,7], rppg_rgb[i,8]
-                ]
-            with open(sp_output, 'a') as fd:
-                writer = csv.writer(fd)
-                writer.writerow(row)
+        if ("KLTBoxingWithThresholding" in rppg_file and "BayesianSkinDetector-weighted" in rppg_file):
+            print(f"Considering: {vid_name}, Window size: {ws}, Offset: {off}")
+            rppg_ica, rppg_pca, rppg_rgb, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft = evaluate(signal, ppg_row["PPG file"], ppg_row["ECG file"], ws, off, ppg_row["Framerate"])
+            n_rows, _ = rppg_ica.shape
+            for i in range(n_rows):
+                row = [
+                    ppg_row["Video file"], ppg_row["Tracker"], ppg_row["Region selector"], ws, off, i, 
+                    hr_with_max_power(rppg_ica[i, :]), majority_vote(rppg_ica[i,:]), rppg_pca[i,0], 
+                    ppg_hr[i], ppg_hr_fft[i],
+                    ecg_hr[i], ecg_hr_fft[i],
+                    rppg_ica[i,0], rppg_ica[i,1], rppg_ica[i,2], 
+                    rppg_ica[i,3], rppg_ica[i,4], rppg_ica[i,5], 
+                    rppg_ica[i,6], rppg_ica[i,7], rppg_ica[i,8], 
+                    rppg_pca[i,0], rppg_pca[i,1], rppg_pca[i,2], 
+                    rppg_pca[i,3], rppg_pca[i,4], rppg_pca[i,5],
+                    rppg_pca[i,6], rppg_pca[i,7], rppg_pca[i,8],
+                    rppg_rgb[i,0], rppg_rgb[i,1], rppg_rgb[i,2], 
+                    rppg_rgb[i,3], rppg_rgb[i,4], rppg_rgb[i,5],
+                    rppg_rgb[i,6], rppg_rgb[i,7], rppg_rgb[i,8]
+                    ]
+                with open(sp_output, 'a') as fd:
+                    writer = csv.writer(fd)
+                    writer.writerow(row)
             
 
 if __name__ == "__main__":
     files = test_data()
     ppg_meta_output = f"{PATH}output/hr_evaluation/ppg_meta_2.csv"
-    write_ppg_out(files, ppg_meta_output)
+    # write_ppg_out(files, ppg_meta_output)
     signal_processing_experiments(files, ppg_meta_output)
     pass
 

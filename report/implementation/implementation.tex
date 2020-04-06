@@ -414,11 +414,11 @@ Hence, I assume that the correct heart rate corresponds to whichever has the lar
 % For example, the pulse is likely to be the most periodic of these signals, in which case, we could identify the pulse as simply the 
 
 % \subsubsection{Principal components analysis (PCA)}
-Alternatively, one might reframe the problem as finding a new orthogonal basis $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ to represent each vector $\mathbf{I}(t)$ in. The basis vectors are in the directions of maximal variance of the observed signal $\mathbf{I}(t)$. Finding these basis vectors is known as Principal Components Analysis.
-\\\\
-In this scenario, we assume that the pulse occurs in the direction of most variance.
-Under the assumption that $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ are in order from most to least variance, we return $p(t) = \mathbf{I}(t)\cdot\mathbf{v}_1$.
-Since we are only interested in the first basis vector, this is equivalent to fitting a plane to the three dimensional signal $\mathbf{I}(t)$ that minimises the squared error. The resulting pulse signal is the projection of $\mathbf{I}(t)$ onto this plane.
+% Alternatively, one might reframe the problem as finding a new orthogonal basis $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ to represent each vector $\mathbf{I}(t)$ in. The basis vectors are in the directions of maximal variance of the observed signal $\mathbf{I}(t)$. Finding these basis vectors is known as Principal Components Analysis.
+% \\\\
+% In this scenario, we assume that the pulse occurs in the direction of most variance.
+% Under the assumption that $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ are in order from most to least variance, we return $p(t) = \mathbf{I}(t)\cdot\mathbf{v}_1$.
+% Since we are only interested in the first basis vector, this is equivalent to fitting a plane to the three dimensional signal $\mathbf{I}(t)$ that minimises the squared error. The resulting pulse signal is the projection of $\mathbf{I}(t)$ onto this plane.
 % ASSUMPTION OF CAMERA FEED BEING A MIXTURE OF INDEPENDENT SOURCES INCLUDING HEART RATE
 
 % SELECTION OF RESULTING COMPONENT => HIGHEST PEAK
@@ -436,8 +436,8 @@ Since we are only interested in the first basis vector, this is equivalent to fi
 
 
 %talk about filtering stuff
-\paragraph{Conclusion}
-The evaluation of these two algorithms reflects whether the assumption of statistical independence or maximal variance better reflects the issue of isolating the heart rate. The performance of these two approaches are evaluated in Section \ref{section:bss}, from which it is concluded that ICA better serves the requirements of heart rate isolation. Hence, it is concluded that the assumption of statistical independence is more valid.
+% \paragraph{Conclusion}
+% The evaluation of these two algorithms reflects whether the assumption of statistical independence or maximal variance better reflects the issue of isolating the heart rate. The performance of these two approaches are evaluated in Section \ref{section:bss}, from which it is concluded that ICA better serves the requirements of heart rate isolation. Hence, it is concluded that the assumption of statistical independence is more valid.
 \subsection{Identifying the heart rate}
 % given the pulse signal return HR
 Given a pulse signal, the heart rate corresponds to the average number of beats of the heart (seen as spikes in the signal) in a minute. A possible approach to identifying this is to simply count the number of peaks in the signal. The heart rate could also be taken as the most prevalent frequency in the Fourier transform, that is, specifically, the frequency with the largest associated power. Since the Fourier transform provides a particularly rich representation from which to identify the heart rate, the latter approach is used. 
@@ -456,5 +456,7 @@ In order to avoid this, a Butterworth filter is applied which removes isolated p
     \includegraphics[width=0.5\textwidth]{example-image-a}
    \caption{An example of the split peak issue with a Butterworth filter applied} 
 \end{figure}
+
+\subsubsection{Majority voting heuristic}
 
 \section{Repository overview}

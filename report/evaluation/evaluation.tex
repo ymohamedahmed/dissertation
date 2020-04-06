@@ -1,6 +1,7 @@
 This project seeks to increase access to heart rate sensing technology.
 Since sensors, in general, behave in an online way, that is, they return measurements as and when they become available, the project should be expected to behave in the same way.
-It should not rely on lengthy computations which a normal sensor would not be able to perform. Furthermore, the fidelity of its outputs should be in line with similar alternative sensors.
+It should not rely on lengthy computations which a standard sensor would not be able to perform. 
+Furthermore, the fidelity of its outputs should be in line with similar alternative sensors.
 As a result, the evaluation proceeds by exemplifying the success of the project with respect to both of these criteria.
 
 \section{Data collection}
@@ -54,9 +55,10 @@ remote PPG signal and the wrist based PPG signal making for a fair comparison.
 Video recordings were conducted on a Pixel 3A mobile device at a framerate of 30 frames per second.
 
 The activities used are as follows with the latter two having been selected as to test both raised heart rates and significant amounts of movement, thereby providing a test case not present in the MAHNOB database.
+These exercises were, thereby, selected to be representative of the kind of scenarios in which rPPG might be used.
 \begin{itemize}
    \item Stationary for sixty seconds
-   \item Running on the spot for forty seconds followed by twenty seconds of rest
+   \item Jogging on the spot for forty seconds followed by twenty seconds of rest
    \item Star jumps for forty seconds followed by twenty seconds of rest
 \end{itemize}
 
@@ -73,11 +75,15 @@ The activities used are as follows with the latter two having been selected as t
 
 \section{Analysis of performance}
 \label{section:face_tracking}
+The main technique introduced for improving runtime performance is \textit{face tracking}. It is not clear, initially, the extent of the performance improvement and what error, if any, it might have 
+on heart rate measurements. In this section, it is shown to give a performance boost across all tested videos with a minimum speedup of 3x and a maximum of 8x, with no, statistically significant, detrimental effect on measurement accuracy.
 
 \subsection{Face tracking}
 Face tracking was proposed in Section \ref{section:face_tracking_impl} as an alternative to detecting the face in each frame independently.
 From the implementation alone, it is unclear as to whether or not it is beneficial. To answer this, several separate aspects of the algorithm must be evaluated. 
-Specifically, any described performance gains must be shown clearly as working across stationary scenarios and situations with movement of the face being tracked. Furthermore, it must be ensured that face tracking is not less accurate than simply repeatedly detecting the face in each frame. To evaluate these properties several metrics are defined and are measured across a variety of test videos.
+Specifically, any described performance gains must be shown clearly as working across stationary scenarios and situations with movement of the face being tracked. 
+Furthermore, it must be ensured that face tracking is not less accurate than simply repeatedly detecting the face in each frame. 
+To evaluate these properties several metrics are defined and are measured across a variety of test videos.
 \paragraph{Research questions}
 \begin{itemize}
     \item Does face tracking provide a performance boost over face detection?
@@ -91,7 +97,7 @@ Specifically, any described performance gains must be shown clearly as working a
 % -is it as accurate?
 % -effect on HR accuracy?
 \paragraph{Metrics}
-Face detection is a binary classification task. As an algorithm, it defines a boundary within which all pixels are defined as belonging to face or not.
+Face detection is a binary classification task. As an algorithm, it defines a boundary within which all pixels are defined as belonging to a face or not.
 As a result, if we consider face detection as a ground truth, the results of face tracking can be compared using standard classification metrics. In this case, I proceed by considering the following outcomes from the face tracker.
 \begin{itemize}
    \item False negative (FN): pixel is incorrectly classified as not belonging to a face
@@ -103,6 +109,11 @@ These metrics can be combined to define the recall and precision of the output o
 \begin{equation*}
     \mathrm{recall} = \frac{\mathrm{TP}}{\mathrm{TP} + \mathrm{FN}} \text{ and } \mathrm{precision} = \frac{\mathrm{TP}}{\mathrm{TP}+\mathrm{FP}}
 \end{equation*}
+The face detector being used as a ground truth here, is in itself, imperfect. This is because, in general, face detection returns a bounding box
+that will contain some pixels from the background of the image but contain the vast majority face pixels. In this sense, the face detector itself has almost perfect recall but imperfect precision.
+Since the face tracker was designed, as described in Section \ref{section:face_tracking_impl}, to mimic face detection with better performance, recall is the most important metric. However, perfect recall
+could be achieved by returning the entire frame as the bounding box of the face. As a result, the overall goal is to achieve perfect recall with a minimal false positive rate and so these are the metrics investigated.
+
 % \begin{figure}[H]
 %     \centering
 %     \includegraphics[width=0.5\textwidth]{example-image-a}
@@ -125,7 +136,9 @@ These metrics can be combined to define the recall and precision of the output o
 %     \item $\neg$ is a NOT operator on each element in the matrix
 % \\\\
 % \end{itemize}
-The time to process each frame is also recorded as a means of measuring the relative performance of each algorithm.
+Since face tracking is being proposed as an optimisation, the time to process each frame is also recorded as a means of measuring the relative performance of each algorithm.
+\par
+Finally, the entire test suite is run using both face detection and tracking to ensure there are no statistically significant increases or decreases in the error of the heart rate measurements.
 % Furthermore, the signal to nois
 % Finally, the distance moved by each set of points being tracked between frames is recorded. This metric acts a means of encoding the amount of movement in the video.
 
@@ -133,16 +146,36 @@ The time to process each frame is also recorded as a means of measuring the rela
 \paragraph{Robustness}
 % The performance of the above algorithm, clearly depends on the proportion that each of the two branches are executed.
 % Most important is not having false positives, so emphasis precision
-It is important to recognise that the face detector being used as a ground truth here, is in itself, imperfect. This is because, in general, face detection returns a bounding box
-that will contain some pixels from the background of the image but contain the vast majority face pixels. In this sense, the face detector itself has almost perfect recall but imperfect precision.
-Since the face tracker was designed, as described in Section \ref{section:face_tracking_impl}, to mimic face detection with better performance, recall is the most important metric. However, perfect recall
-could be achieved by returning the entire frame as the bounding box of the face. As a result, the overall goal is to achieve perfect recall with a minimal false positive rate.
 % It returns all face pixels, with some number of background pixels included. 
 % As a result, the cost of false negatives and false positives is not equal.  
 % A false negative, that is, the face tracker has incorrectly classified a pixel as non-skin
-
-% GRAPH here
+% \begin{figure}[H]
+%     \centering
+%     \input{evaluation/recall.pgf}
+% %    \caption{} 
+% \end{figure}
 % \paragraph{Motion resistance}
+Lower threshold values, as expected, tend to result in better recall by the tracker, at the cost of more redetection. However, the extent to which this is true is not a constant across all videos.
+Videos with more movement, cause a faster degradation in recall as the threshold is increased. Hence, a more conservative threshold value is favourable, especially since all recorded threshold values 
+showed a perfromance boost.
+\begin{table}[]
+    \begin{tabular}{c|cc|cc|cc}
+    \textbf{} & \multicolumn{2}{c|}{\textbf{Stationary}} & \multicolumn{2}{c|}{\textbf{Star jumps}} & \multicolumn{2}{c}{\textbf{Jogging}} \\
+    \textbf{Threshold} & \textbf{Recall} & \textbf{FPR} & \textbf{Recall} & \textbf{FPR} & \textbf{Recall} & \textbf{FPR} \\ \hline
+    \textbf{0.100} & 0.931237 & 0.000766 & 0.948175 & 0.002220 & 0.949240 & 0.000384 \\
+    \textbf{0.125} & 0.925882 & 0.000764 & 0.943530 & 0.002673 & 0.928708 & 0.000507 \\
+    \textbf{0.150} & 0.921940 & 0.000682 & 0.938508 & 0.003175 & 0.909149 & 0.000868 \\
+    \textbf{0.175} & 0.920470 & 0.000696 & 0.936067 & 0.002992 & 0.894600 & 0.000742 \\
+    \textbf{0.200} & 0.919102 & 0.000826 & 0.936017 & 0.003432 & 0.871856 & 0.002099 \\
+    \textbf{0.250} & 0.921081 & 0.000775 & 0.937609 & 0.004346 & 0.846058 & 0.001295 \\
+    \textbf{0.300} & 0.916228 & 0.000728 & 0.934811 & 0.005084 & 0.824485 & 0.001196 \\
+    \textbf{0.350} & 0.911905 & 0.000648 & 0.932703 & 0.005788 & 0.816987 & 0.001551 \\
+    \textbf{0.400} & 0.918874 & 0.000866 & 0.936631 & 0.007110 & 0.798890 & 0.001676 \\
+    \textbf{0.450} & 0.918034 & 0.000810 & 0.932281 & 0.007136 & 0.800861 & 0.001595 \\
+    \textbf{0.500} & 0.916427 & 0.001041 & 0.927878 & 0.008250 & 0.783104 & 0.003307
+    \end{tabular}
+    \caption{\textit{A table showing the recall and false positive rate (FPR) of the face tracker across the test suite and at with different threshold values}}
+    \end{table}
 
 \paragraph{Performance cost}
 % talk about redetection rates
@@ -151,12 +184,13 @@ Recall from Section \ref{section:face_tracking_impl} that the following inequali
     \frac{R}{W} < \frac{f(n)-g(p,n)}{f(n)+s(p,f)}
 \end{equation*}
 The above inequality relates the rate of redetections ($R/W$) and the costs of several required algorithms. It was shown in Section \ref{section:face_tracking_impl} that when this inequality holds, face tracking provides a performance benefit.
-In order to justify this, the value of the right hand side is evaluated experimentally on a variety of videos and is shown to exceed the value $R/W$.
+In order to justify this, the value of the right hand side is evaluated experimentally on a variety of videso and is shown to exceed the value $R/W$ across all videos and thresholds tested, as shown below.
 \begin{figure}[H]
     \centering
-    \input{evaluation/redect.pgf}
-%    \caption{} 
+    \scalebox{0.8}{\input{evaluation/redect.pgf}}
+   \caption{\textit{The redection rate, $R/W$, computed over a number of different classes of videos. The theoretical upper bound is computed with a confidence interval shown.}} 
 \end{figure}
+As is expected, as the threshold increases the number of redetections, decreases. However, crucially, across all the thresholds tested, the redection rate is beneath the upper bound specified.
 
 % plot redetection rates and max value
 
@@ -166,25 +200,48 @@ In order to justify this, the value of the right hand side is evaluated experime
 % show how threshold affects time and precision
 
 \paragraph{Results}
-
-
-\begin{figure}[H]
+Across all the videos tested and all the threshold values, face tracking is shown to give performance benefits over face detection.
+Ranging from an average of 8x in the stationary case, to 3x in exercise videos.
+\begin{figure}
     \centering
-    \input{evaluation/tracking_time.pgf}
-%    \caption{} 
+    \scalebox{0.8}{\input{evaluation/tracking_time.pgf}}
+   \caption{\textit{The mean time (with confidence intervals) to a process a single frame is shown for both face detection and face tracking.}} 
 \end{figure}
+\noindent
+Using a null hypothesis that both face tracking and face detection have an identical expected error, an independent two sample t-test, p-values over each type of video tested are reported.
+Given a significance threshold of 0.1, the null hypothesis cannot be rejected for both stationary and videos with jogging.
+It is in fact rejected for the case of star jumps, but in favour of the the proposed face tracker.
+On these grounds, I deem that it would be unreasonable to suggest that face tracking, as 
+opposed to face detection, introduces any unexpected error in the outputs of the program.
+% \begin{figure}[H]
+%     \centering
+%     \input{evaluation/tracker_err.pgf}
+%    \caption{\textit{Using face tracking with a threshold of 0.3, the percentage error with face detection and face tracking is shown.}} 
+% \end{figure}
+\begin{table}
+    \begin{tabular}{c|cc|cc|cc}
+    \multicolumn{1}{l|}{} & \multicolumn{2}{c}{\textbf{OpenCV}} & \multicolumn{2}{c|}{\textbf{Proposed}} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\
+    \textbf{Type of video} & \textbf{MAE (bpm)} & \textbf{std.} & \textbf{MAE (bpm)} & \textbf{std.} & \textbf{t-statistic} & \textbf{p} \\ \hline
+    Stationary & 9.007 & 9.309 & 7.959 & 9.391 & 2.172 & 0.030 \\
+    Jogging & 65.551 & 15.146 & 64.128 & 16.655 & 1.732 & 0.084 \\
+    \rowcolor[HTML]{EFEFEF} 
+    Star jumps & 20.035 & 15.314 & 19.752 & 14.989 & 0.366 & 0.714 \\ \hline
+    \end{tabular}
+    \caption{\textit{A table reporting the mean absolute error (MAE) in estimating the heart rate when using the OpenCV face detector on each frame vs the proposed face tracker, with independent two-sample t-tests shown. }}
+    \end{table}
 
 % show graph of overall error
-\begin{figure}[H]
-    
-\end{figure}
+
+
 \paragraph{Summary}
 % Provides a huge performance benefit with little cost
 % Drives up the possible frame rate and hence sampling rate of the virtual sensor
+% Improves performance on all tested videos and at all tested thresholds with no significant change in accuracy of fidelity
 
-
-
-Face tracking, as described, provides
+Face tracking, as described, provides large performance benefits across all videos tested.
+Critically, this comes without any evidence of a detrimental effect on fidelity. As an optimisation, this
+is important since, although the videos in the test suite have a fixed frame rate, which would be exceeded by face detection, it allows future work to 
+use higher frame rate cameras whilst still maintaining real-time behaviour. 
 % \paragraph{Correctness}
 
 % \section{Region selection}
@@ -280,6 +337,9 @@ Face tracking, as described, provides
 % \section{Performance}
 % \subsection{Accuracy}
 % cover stationary and exercise videos
+% Performance, without sensing fidelity is entirely irrelevant. A sensor wit
+The fidelity of a sensor forms the key basis upon which it is evaluated. It is critical to be able to reason about how trustworthy its outputs are and, more importantly, to understand
+when its results cannot be trusted. To such end, evaluating the project, in this vein, is paramount. I proceed by defining metrics to quantify this and end by comparing to a wrist-based PPG sensor.
 
 \paragraph{Research questions}
 % essentially this is where we evaluate vs a smartwatch
@@ -297,7 +357,15 @@ Face tracking, as described, provides
     \item To what extent does accuracy depend on distance and movement?
     \item Can it replicate or exceed the performance of a wearable device?
 \end{itemize}
+
+% \subsection{Stationary videos}
+% \subsection{The effect of movement}
+% \subsection{Comparative fidelity}
 \paragraph{Metrics}
+\begin{itemize}
+    \item Mea
+    \item 
+\end{itemize}
 \paragraph{Results}
 
 \paragraph{Summary}
