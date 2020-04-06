@@ -128,24 +128,25 @@ Considering that skin tones tend to fall within a certain range of colours, one 
 A dataset of $\sim$250000 skin and non-skin pixels was collected by Bhatt et al. \cite{skinDataset} and was sampled across a variety of skin tones, genders and ages. One could define the range of skin tones present in this dataset as a rudimentary skin detector. Clearly this will fail in many scenarios but serves as a useful baseline for comparison with more advanced techniques.
 \\ \\
 
-\begin{figure}[H]
+\begin{figure}
     % \includegraphics[width=\textwidth]{example-image-b}
     \centering
-    \input{implementation/skin-dataset-2.tex}
-   \caption{A randomly sampled subset of the skin dataset represented in the Cb-Cr axes of YCbCr space} 
+    \scalebox{0.8}{ \input{implementation/skin-dataset-2.tex}}
+   \caption{\textit{A randomly sampled subset of the skin dataset represented in the Cb-Cr axes of YCbCr space} }
 \end{figure}
-\begin{figure}[H]
+\begin{figure}
     % \includegraphics[width=\textwidth]{example-image-b}
     \centering
-    \input{implementation/skin-dataset-1.tex}
-   \caption{The range of skin tones present in the dataset with the skin and non-skin pixels plotted} 
+    \scalebox{0.8}{\input{implementation/skin-dataset-1.tex}}
+   \caption{\textit{The range of skin tones present in the dataset with the skin and non-skin pixels plotted} }
 \end{figure}
 \paragraph{Issues}
 This approach takes no consideration of the particular face that it is considering. Since it is not contexualised, it can fail in several circumstances.
 For example, there are some hair colours which could be a skin tone on another individual but are clearly not on the particular example in question.
 \begin{figure}[H]
+    \centering
     \includegraphics[width=0.5\textwidth]{example-image-c}
-   \caption{An example of the hair failure case} 
+   \caption{\textit{An example of the hair failure case}}
 \end{figure}
 Instead, an algorithm should attempt to identify skin on the particular face in question.
 % EXPLAIN PERCEPTUAL UNIFORMITY 
@@ -168,9 +169,10 @@ are skin pixels, we return the largest cluster as our set of skin pixels.
 \\ \\
 
 \begin{figure}[H]
+    \centering
     % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
     \includegraphics[width=0.5\textwidth]{example-image-a}
-   \caption{An example of the application of the k-means algorithm to skin detection} 
+   \caption{\textit{An example of the application of the k-means algorithm to skin detection}}
 \end{figure}
 %\subsubsection{Hierarchical clustering}
 %\subsubsection{Markov clustering}
@@ -204,6 +206,7 @@ The k-means algorithm, although it improves on the results of the rudimentary ap
 \end{itemize}
 
 \begin{figure}[H]
+    \centering
     % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
     \includegraphics[width=0.5\textwidth]{example-image-a}
    \caption{An example of the effect of differing the number of clusters} 
@@ -231,7 +234,7 @@ By considering both of these properties together, as a heuristic, it becomes mor
     \mathrm{score}(C) = \alpha\cdot |C| - \beta\cdot d_C
 \end{equation*}
 The constants $\alpha$ and $\beta$ were selected experimentally. The skin tone is identified as the center of the cluster with the maximum score.
-This is shown to improve on simply selecting the largest cluster in Section \ref{section:skin_tone_detection}.
+% This is shown to improve on simply selecting the largest cluster in Section \ref{section:skin_tone_detection}.
 
 \subsubsection{Identifying skin pixels using the skin tone}
 Identifying the skin tone, as described, requires the use of the k-means algorithm. However, as previously mentioned, this is not a particularly suitable algorithm for real-time applications. Thus, the skin tone can only be identified periodically rather than for every frame. So given the skin tone identified in some earlier frame, the value must be used to robustly detect skin pixels in subsequent frames. This is challenging since there will almost certainly be changing illumination conditions as well as changing positions of the skin pixels.
@@ -399,7 +402,7 @@ The above formulation is not enough to isolate the signal $p(t)$. Thus assumptio
 % \\ \\ 
 % We can reframe this as finding some basis for our vector space $I(t) = \sum_{i}^{n}I(t)\cdot(v_i)v_i$
 
-\subsubsection{Independent components analysis (ICA)}
+\subsubsection{Independent component analysis (ICA)}
 A possible assumption might be that each of the $x_i(t)$ are statistically independent. That is, informally, one cannot gain any information about one of these signals given an other. This assumption encodes the notion that the pulse, should be entirely independent from the other phenomena impacting the observed signal.
 \\\\
 For example, suppose that the some of the $x_i(t)$ are the result of some physical phenomenon such as lighting conditions. In this case, it is intuitive to expect there to be no mutual information between the pulse and the other constituent signals. The ICA algorithm attempts to identify these signals based on this assumption, by using non-Gaussianity as a proxy for statistical independence.
@@ -453,6 +456,7 @@ might be present in the resulting transform which is unrelated to the heart rate
 In order to avoid this, a Butterworth filter is applied which removes isolated peaks and increases the power of peaks close together as is recommended by van der Kooij et al. \cite{vanderKooij2019}.
 \begin{figure}[H]
     % Add an image showing how in noisy Fourier transforms the HR is not just highest peak with result from Butterworth filter
+    \centering
     \includegraphics[width=0.5\textwidth]{example-image-a}
    \caption{An example of the split peak issue with a Butterworth filter applied} 
 \end{figure}
