@@ -397,6 +397,37 @@ Note that this
     \scalebox{0.6}{\input{evaluation/fidelity.pgf}}
    \caption{\textit{A graph showcasing the mean absolute error and root mean squared error, in beats per minute, achieved on the collected data}}
 \end{figure}
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+    \centering
+\scalebox{0.7}{
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+    \begin{tabular}{cc|c|c|c|c|cccc}
+    \textbf{} & \textbf{} & \multicolumn{2}{c|}{\textbf{Smartwatch}} & \multicolumn{2}{c|}{\textbf{Proposed}} &  &  &  &  \\
+    \multicolumn{1}{c|}{\textbf{Exercise}} & \textbf{Distance} & \textbf{MAE} & \textbf{RMSE} & \textbf{MAE} & \textbf{RMSE} & \multicolumn{1}{c|}{\textbf{$t_{MAE}$}} & \multicolumn{1}{c|}{\textbf{$p_{MAE}$}} & \multicolumn{1}{c|}{\textbf{$t_{RMSE}$}} & \textbf{$p_{RMSE}$} \\ \hline
+    \rowcolor[HTML]{CEF2CE} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}\textbf{Stationary}} & 1.0 & 24.3271 & 31.101 & 8.1443 & 13.1871 & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-5.8566} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}4.7376e-07} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-3.8488} & 0.0003967 \\
+    \rowcolor[HTML]{CEF2CE} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}\textbf{Stationary}} & 1.5 & 12.1434 & 13.3007 & 7.981 & 9.3286 & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-4.2034} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}5.0180e-05} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-3.5903} & 0.0005042 \\
+    \multicolumn{1}{c|}{\textbf{Stationary}} & 2.0 & 25.0661 & 40.1543 & 15.734 & 34.8932 & \multicolumn{1}{c|}{-0.9185} & \multicolumn{1}{c|}{0.3683} & \multicolumn{1}{c|}{-0.3244} & 0.7488 \\
+    \rowcolor[HTML]{FFDBD9} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}\textbf{Jogging}} & 1.0 & 46.5215 & 47.796 & 42.7873 & 49.0403 & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}6.2848} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}9.1124e-09} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}7.7032} & 2.0095e-11 \\
+    \rowcolor[HTML]{FFDBD9} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}\textbf{Jogging}} & 1.5 & 35.5262 & 37.394 & 55.4532 & 60.6769 & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}10.9089} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}4.3155e-19} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}10.6435} & 1.8475e-17 \\
+    \rowcolor[HTML]{FFDBD9} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}\textbf{Jogging}} & 2.0 & 32.9423 & 36.6214 & 35.5231 & 45.2086 & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}3.8566} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}0.0007285} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}4.6909} & 0.0001218 \\
+    \rowcolor[HTML]{CEF2CE} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}\textbf{Star jumps}} & 1.0 & 43.3262 & 46.2494 & 26.7984 & 29.2383 & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-6.6244} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}1.2608e-09} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-7.4695} & 3.4237e-11 \\
+    \rowcolor[HTML]{CEF2CE} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}\textbf{Star jumps}} & 1.5 & 51.2919 & 52.2412 & 19.1177 & 25.1191 & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-14.5253} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}6.3123e-27} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-12.6585} & 4.3824e-24 \\
+    \multicolumn{1}{c|}{\textbf{Star jumps}} & 2.0 & 28.9574 & 31.9423 & 28.0886 & 33.4622 & \multicolumn{1}{c|}{-1.3990} & \multicolumn{1}{c|}{0.1735} & \multicolumn{1}{c|}{-0.7828} & 0.4415
+    \end{tabular}}
+    \caption{\textit{A table showing the mean absolute error and root mean squared error for both the Fossil smartwatch and the proposed system, with associated hypothesis testing. Highlighted rows show significant results in terms of both the MAE and RMSE, red indicating in favour of the smartwatch and green in favour of the proposed system.}}
+    \end{table}
 
 \paragraph{Results and discussion}
 

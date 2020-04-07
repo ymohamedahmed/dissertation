@@ -280,8 +280,6 @@ We could proceed with classification as follows, for some threshold probability 
         \texttt{False}, \quad \text{otherwise}
     \end{cases}
 \end{equation*}
-\paragraph{Defining the threshold}
-The most obvious selection would be to classify the pixel based on which class has the maximum posterior probability. That is the threshold value $t$ would be $\Pr(C_\text{not-skin}| x_i, s)$, where $C_\text{not-skin}$ is the class of pixels classified as not skin. Since this is a binary classification task, this is equivalent to $t=1/2$.
 % \begin{align*}
 %     \Pr(C_\mathrm{skin}, x_i, s) &> \Pr(C_\mathrm{not-skin}, x_i, s) \\
 %     \frac{\Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i)\Pr(x_i)}{\Pr(x_i,s)} &> \frac{\Pr(s|C_\mathrm{not-skin}, x_i)\Pr(C_\mathrm{not-skin}|x_i)\Pr(x_i)}{\Pr(x_i,s)} \\
@@ -331,7 +329,17 @@ Given this, the probability is defined in proportion to the probability density 
 \begin{equation*}
     \Pr(s|C_\mathrm{skin}, x_i) = \frac{f(d(s,x_i))}{\sum_{s' \in C}f(d(s',x_i))}
 \end{equation*}
+\paragraph{Defining the threshold}
+The best choice of the threshold value is not obvious. Since the main goal of the algorithm is to minimise the effect of non-skin pixels, we instead take a weighted 
+mean colour based on the probability of each pixel being a skin pixel. 
+
 \paragraph{Accelerating class conditional computation}
+Computing the class-conditional distribution for each pixel in the bounding box of the face is a costly computation. 
+The distribution defined is continuous in nature and so maintaining floating point accuracy means the distribution cannot be precomputed (with finite memory).
+By instead, representing each component of the skin tone an integer and by rounding the Euclidean distance to the nearest integer, the distributions are precomputed 
+for every possible skin tone. At runtime, the class conditional probability is achieved by lookup. Since the skin detection algorithm is applied to every frame in the video, 
+using precomputed distributions achieves a 2x speedup in the overall pipeline (see Appendix.).
+
 \begin{figure}[H]
     \centering
     % Give an example image with prior etc.
@@ -414,7 +422,8 @@ Crucially, however, this approach returns the signals $x_1(t)$, $x_2(t)$ and $x_
 \\\\
 In this scenario, I proceed by attempting to identify the heart rate in each of these signals independently. This results in returning three different heart rate values, each of which has an associated power.
 This power value, which is the magnitude of the term in the Fourier transform associated with a given frequency, acts as a natural way of quantifying the importance of a particular frequency on the overall signal.
-Hence, I assume that the correct heart rate corresponds to whichever has the largest power.
+% In 
+% Hence, I assume that the correct heart rate corresponds to whichever has the largest power.
 %  This particular assumption is evaluated in Section \ref{section:ica_assumption}.
 % For example, the pulse is likely to be the most periodic of these signals, in which case, we could identify the pulse as simply the 
 
@@ -445,8 +454,12 @@ Hence, I assume that the correct heart rate corresponds to whichever has the lar
 % The evaluation of these two algorithms reflects whether the assumption of statistical independence or maximal variance better reflects the issue of isolating the heart rate. The performance of these two approaches are evaluated in Section \ref{section:bss}, from which it is concluded that ICA better serves the requirements of heart rate isolation. Hence, it is concluded that the assumption of statistical independence is more valid.
 \subsection{Identifying the heart rate}
 % given the pulse signal return HR
-Given a pulse signal, the heart rate corresponds to the average number of beats of the heart (seen as spikes in the signal) in a minute. A possible approach to identifying this is to simply count the number of peaks in the signal. The heart rate could also be taken as the most prevalent frequency in the Fourier transform, that is, specifically, the frequency with the largest associated power. Since the Fourier transform provides a particularly rich representation from which to identify the heart rate, the latter approach is used. 
+Given a pulse signal, the heart rate corresponds to the average number of beats of the heart (seen as spikes in the signal) in a minute. 
+A possible approach to identifying this is to simply count the number of peaks in the signal. 
+The heart rate could also be taken as the most prevalent frequency in the Fourier transform, that is, specifically, the frequency with the largest associated power. 
+Since the Fourier transform provides a particularly rich representation from which to identify the heart rate, the latter approach is used. 
 For example, the Fourier transform enables easy analysis of the relative powers of different peaks present in the power spectrum, which would not be easily possible with the former approach.
+However, it is not always the case that the most prevalent frequency is the true heart rate. There are two cases where this may not be true.
 
 \subsubsection{The split peak issue}
 %Talk about how heart rate can split over several peaks
@@ -464,5 +477,14 @@ In order to avoid this, a Butterworth filter is applied which removes isolated p
 \end{figure}
 
 \subsubsection{Majority voting heuristic}
+In scenarios where there are large amounts of movement in the video, the most prevalent frequency may not correspond to the heart rate. This is problematic, if the movement occurs at a frequency 
+which could be otherwise interpreted as a heart rate, that is between 0.6Hz (36 beats per minute) and 4Hz (240 beats per minute). As a result, selecting the highest peak in this case could be 
+incorrect. For these scenarios, I have developed a heuristic denoted here as the \textit{majority voting heuristic}.
+\\\\
+Given the three independent signals returned by ICA, we identify the largest peak in each signal. In most scenarios, these three heart rates will be relatively close together, but they tend not to be 
+in scenarios with lots of movement, where a single large peak at a very different frequency is common. 
+If this is the case, then we discard the frequency of maximum power and return the frequency with greatest power of the two remaining signals.
+This helps to guard against a common pitfall of PPG-based systems where the frequency of movement is returned instead of the heart rate\cite{souza2019heart}.
+
 
 \section{Repository overview}

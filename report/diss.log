@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2020.3.30)  7 APR 2020 15:18
+This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2020.3.30)  7 APR 2020 19:50
  system commands enabled.
 **diss
 (./diss.tex
@@ -48,7 +48,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.056 seconds
+luaotfload | main : initialization completed in 0.049 seconds
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2018/09/03 v1.4i Standard LaTeX document class
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/size12.clo
@@ -1470,33 +1470,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 255--262
  []
 
 
-Underfull \hbox (badness 1168) in paragraph at lines 300--308
+Underfull \hbox (badness 1168) in paragraph at lines 298--306
 []\TU/lmr/bx/n/12 Prior dis-tri-bu-tion[] \TU/lmr/m/n/12 Usu-ally, one might at
 -tempt to learn these dis-tri-bu-tions from
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 300--308
+Underfull \hbox (badness 10000) in paragraph at lines 298--306
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 300--308
+Underfull \hbox (badness 10000) in paragraph at lines 298--306
 
  []
 
 [23]
-Underfull \hbox (badness 10000) in paragraph at lines 309--313
+Underfull \hbox (badness 10000) in paragraph at lines 307--311
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 315--321
+Underfull \hbox (badness 10000) in paragraph at lines 313--319
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 323--331
+Underfull \hbox (badness 10000) in paragraph at lines 321--329
 
  []
 
@@ -1504,10 +1504,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 323--331
 <example-image-b.pdf, id=503, 321.2pt x 240.9pt>
 File: example-image-b.pdf Graphic file (type pdf)
 <use example-image-b.pdf>
-Package luatex.def Info: example-image-b.pdf  used on input line 338.
+Package luatex.def Info: example-image-b.pdf  used on input line 346.
 (luatex.def)             Requested size: 234.8775pt x 176.16429pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 382--385
+Underfull \hbox (badness 10000) in paragraph at lines 390--393
 
  []
 
@@ -1515,34 +1515,39 @@ Underfull \hbox (badness 10000) in paragraph at lines 382--385
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.3.8
 '
 </usr/local/texlive/2019/texmf-dist/tex/latex/mwe/example-image-b.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 397--406
+Underfull \hbox (badness 10000) in paragraph at lines 405--414
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--420
+Underfull \hbox (badness 10000) in paragraph at lines 416--429
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--420
+Underfull \hbox (badness 10000) in paragraph at lines 416--429
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 408--420
+Underfull \hbox (badness 10000) in paragraph at lines 416--429
 
  []
 
 [26]
 File: example-image-a.pdf Graphic file (type pdf)
 <use example-image-a.pdf>
-Package luatex.def Info: example-image-a.pdf  used on input line 462.
+Package luatex.def Info: example-image-a.pdf  used on input line 475.
 (luatex.def)             Requested size: 234.8775pt x 176.16429pt.
-) [27
+ [27]
+Underfull \hbox (badness 10000) in paragraph at lines 480--488
+
+ []
+
+) [28
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.3.9
 '
-] [28]
+]
 Chapter 4.
 (./evaluation/evaluation.tex [29
 
@@ -1564,22 +1569,31 @@ warning  (pdf backend): ignoring duplicate destination with the name 'figure.4.2
 
 warning  (pdf backend): ignoring duplicate destination with the name 'table.4.2'
 
-] (./evaluation/mahnob.pgf) (./evaluation/fidelity.pgf)) [35] [36
+] (./evaluation/mahnob.pgf) (./evaluation/fidelity.pgf)
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 403.
+
+) [35] [36
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.4.3
 '
+
+warning  (pdf backend): ignoring duplicate destination with the name 'table.4.3'
+
 ] [37
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.4.4
 '
-] [38
-
-]
+] [38]
 Chapter 5.
 (./conclusion/conclusion.tex [39
+
 
 ]) [40] (./diss.bbl [41
 
 
-]) [42]
+] [42]) [43] [44
+
+]
 File: example-image-a.pdf Graphic file (type pdf)
 <use example-image-a.pdf>
 Package luatex.def Info: example-image-a.pdf  used on input line 186.
@@ -1592,129 +1606,131 @@ File: example-image-c.pdf Graphic file (type pdf)
 <use example-image-c.pdf>
 Package luatex.def Info: example-image-c.pdf  used on input line 196.
 (luatex.def)             Requested size: 234.8775pt x 176.16429pt.
- [43
 
-
+[45
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.Alp
 h0.1'
 
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.Alp
 h0.2'
-] [44
+] (./evaluation/precomputed.pgf) [46
 warning  (pdf backend): ignoring duplicate destination with the name 'figure.Alp
 h0.3'
+
+warning  (pdf backend): ignoring duplicate destination with the name 'figure.Alp
+h0.4'
 ]
 Appendix A.
-<proposal/main.pdf, id=671, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=687, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf>
-Package luatex.def Info: proposal/main.pdf  used on input line 203.
+Package luatex.def Info: proposal/main.pdf  used on input line 209.
 (luatex.def)             Requested size: 614.29349pt x 794.96806pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf>
-Package luatex.def Info: proposal/main.pdf  used on input line 203.
+Package luatex.def Info: proposal/main.pdf  used on input line 209.
 (luatex.def)             Requested size: 614.29349pt x 794.96806pt.
-<proposal/main.pdf, id=674, page=1, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=690, page=1, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package luatex.def Info: proposal/main.pdf , page1 used on input line 203.
+Package luatex.def Info: proposal/main.pdf , page1 used on input line 209.
 (luatex.def)             Requested size: 614.295pt x 795.01657pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package luatex.def Info: proposal/main.pdf , page1 used on input line 203.
+Package luatex.def Info: proposal/main.pdf , page1 used on input line 209.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-[45
+[47
 
 
 ]
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package luatex.def Info: proposal/main.pdf , page1 used on input line 203.
+Package luatex.def Info: proposal/main.pdf , page1 used on input line 209.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package luatex.def Info: proposal/main.pdf , page1 used on input line 203.
+Package luatex.def Info: proposal/main.pdf , page1 used on input line 209.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
 <use proposal/main.pdf, page 1>
-Package luatex.def Info: proposal/main.pdf , page1 used on input line 203.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
- [46<./proposal/main.pdf>]
-<proposal/main.pdf, id=704, page=2, 614.295pt x 794.97pt>
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 2>
-Package luatex.def Info: proposal/main.pdf , page2 used on input line 203.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 2>
-Package luatex.def Info: proposal/main.pdf , page2 used on input line 203.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 2>
-Package luatex.def Info: proposal/main.pdf , page2 used on input line 203.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
- [47<./proposal/main.pdf>]
-<proposal/main.pdf, id=709, page=3, 614.295pt x 794.97pt>
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 3>
-Package luatex.def Info: proposal/main.pdf , page3 used on input line 203.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 3>
-Package luatex.def Info: proposal/main.pdf , page3 used on input line 203.
-(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
-File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 3>
-Package luatex.def Info: proposal/main.pdf , page3 used on input line 203.
+Package luatex.def Info: proposal/main.pdf , page1 used on input line 209.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
  [48<./proposal/main.pdf>]
-<proposal/main.pdf, id=718, page=4, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=719, page=2, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 4>
-Package luatex.def Info: proposal/main.pdf , page4 used on input line 203.
+<use proposal/main.pdf, page 2>
+Package luatex.def Info: proposal/main.pdf , page2 used on input line 209.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 4>
-Package luatex.def Info: proposal/main.pdf , page4 used on input line 203.
+<use proposal/main.pdf, page 2>
+Package luatex.def Info: proposal/main.pdf , page2 used on input line 209.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 4>
-Package luatex.def Info: proposal/main.pdf , page4 used on input line 203.
+<use proposal/main.pdf, page 2>
+Package luatex.def Info: proposal/main.pdf , page2 used on input line 209.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
  [49<./proposal/main.pdf>]
-<proposal/main.pdf, id=723, page=5, 614.295pt x 794.97pt>
+<proposal/main.pdf, id=724, page=3, 614.295pt x 794.97pt>
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 5>
-Package luatex.def Info: proposal/main.pdf , page5 used on input line 203.
+<use proposal/main.pdf, page 3>
+Package luatex.def Info: proposal/main.pdf , page3 used on input line 209.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 5>
-Package luatex.def Info: proposal/main.pdf , page5 used on input line 203.
+<use proposal/main.pdf, page 3>
+Package luatex.def Info: proposal/main.pdf , page3 used on input line 209.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
 File: proposal/main.pdf Graphic file (type pdf)
-<use proposal/main.pdf, page 5>
-Package luatex.def Info: proposal/main.pdf , page5 used on input line 203.
+<use proposal/main.pdf, page 3>
+Package luatex.def Info: proposal/main.pdf , page3 used on input line 209.
 (luatex.def)             Requested size: 614.26537pt x 794.93167pt.
  [50<./proposal/main.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 205.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
+<proposal/main.pdf, id=733, page=4, 614.295pt x 794.97pt>
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 4>
+Package luatex.def Info: proposal/main.pdf , page4 used on input line 209.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 4>
+Package luatex.def Info: proposal/main.pdf , page4 used on input line 209.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 4>
+Package luatex.def Info: proposal/main.pdf , page4 used on input line 209.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+ [51<./proposal/main.pdf>]
+<proposal/main.pdf, id=738, page=5, 614.295pt x 794.97pt>
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 5>
+Package luatex.def Info: proposal/main.pdf , page5 used on input line 209.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 5>
+Package luatex.def Info: proposal/main.pdf , page5 used on input line 209.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+File: proposal/main.pdf Graphic file (type pdf)
+<use proposal/main.pdf, page 5>
+Package luatex.def Info: proposal/main.pdf , page5 used on input line 209.
+(luatex.def)             Requested size: 614.26537pt x 794.93167pt.
+ [52<./proposal/main.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 211.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 211.
  (./diss.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 205.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 211.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 211.
 Package rerunfilecheck Info: File `diss.out' has not changed.
 (rerunfilecheck)             Checksum: C4CE3D8CCD5FBC02ACB9D8B3631982E2;2712.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 211.
 )
 
 Here is how much of LuaTeX's memory you used:
- 34732 strings out of 494291
+ 34748 strings out of 494291
  2277527,12246980 words of node,token memory allocated
  1099 words of node memory still in use:
    14 hlist, 2 vlist, 10 rule, 9 glue, 4 kern, 1 glyph, 79 attribute, 55 glue_sp
 ec, 79 attribute_list, 2 write, 16 pdf_literal, 16 pdf_colorstack nodes
-   avail lists: 1:15,2:484537,3:322322,4:189,5:328,6:65,7:4262,8:69,9:706,10:30,
-11:281
- 37252 multiletter control sequences out of 65536+600000
+   avail lists: 1:15,2:484537,3:322322,4:523,5:792,6:65,7:6612,8:69,9:1291,10:30
+,11:336
+ 37253 multiletter control sequences out of 65536+600000
  74 fonts using 6101287 bytes
  78i,21n,136p,946b,3144s stack positions out of 5000i,500n,10000p,899145b,100000s
 </usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.ot
@@ -1744,10 +1760,10 @@ cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/c
 msy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.
 pfb>
-Output written on diss.pdf (56 pages, 1087706 bytes).
+Output written on diss.pdf (58 pages, 1095799 bytes).
 
-PDF statistics: 867 PDF objects out of 1000 (max. 8388607)
- 710 compressed objects within 8 object streams
- 194 named destinations out of 1000 (max. 131072)
+PDF statistics: 882 PDF objects out of 1000 (max. 8388607)
+ 723 compressed objects within 8 object streams
+ 200 named destinations out of 1000 (max. 131072)
  504 words of extra memory for PDF output out of 10000 (max. 100000000)
 

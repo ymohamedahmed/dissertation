@@ -40,10 +40,10 @@
 \contentsline {subsubsection}{Identifying the skin tone}{22}{section*.23}% 
 \contentsline {subsubsection}{Identifying skin pixels using the skin tone}{22}{section*.24}% 
 \contentsline {paragraph}{A Bayesian approach}{23}{section*.25}% 
-\contentsline {paragraph}{Defining the threshold}{23}{section*.26}% 
-\contentsline {paragraph}{Prior distribution}{24}{section*.27}% 
-\contentsline {paragraph}{Class conditional distribution}{24}{section*.28}% 
-\contentsline {paragraph}{Accelerating class conditional computation}{25}{figure.3.8}% 
+\contentsline {paragraph}{Prior distribution}{23}{section*.26}% 
+\contentsline {paragraph}{Class conditional distribution}{24}{section*.27}% 
+\contentsline {paragraph}{Defining the threshold}{25}{section*.28}% 
+\contentsline {paragraph}{Accelerating class conditional computation}{25}{section*.29}% 
 \contentsline {section}{\numberline {3.5}Heart rate isolation}{25}{section.3.5}% 
 \contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{26}{subsection.3.5.1}% 
 \contentsline {subsubsection}{Independent component analysis (ICA)}{26}{section*.30}% 
@@ -70,11 +70,11 @@
 \contentsline {paragraph}{Experiment test suite}{35}{section*.43}% 
 \contentsline {paragraph}{Results and discussion}{35}{section*.44}% 
 \contentsline {paragraph}{Summary}{35}{section*.45}% 
-\contentsline {section}{\numberline {4.4}Summary of findings}{36}{section.4.4}% 
+\contentsline {section}{\numberline {4.4}Summary of findings}{38}{section.4.4}% 
 \contentsline {chapter}{\numberline {5}Conclusion}{39}{chapter.5}% 
 \contentsline {section}{\numberline {5.1}Significance of results}{39}{section.5.1}% 
 \contentsline {section}{\numberline {5.2}Successes and failures}{39}{section.5.2}% 
 \contentsline {section}{\numberline {5.3}Personal remarks}{40}{section.5.3}% 
 \contentsline {section}{\numberline {5.4}Future work}{40}{section.5.4}% 
 \contentsline {chapter}{Bibliography}{41}{section.5.4}% 
-\contentsline {chapter}{\numberline {A}Project Proposal}{45}{appendix.A}% 
+\contentsline {chapter}{\numberline {A}Project Proposal}{47}{appendix.A}% 
