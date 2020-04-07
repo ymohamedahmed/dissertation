@@ -202,6 +202,7 @@ advances in computing hardware have nullified this \cite{v-j-vs-ann}. In fact, I
 % (see Section \ref{section:libraries}) 
 returned smaller face detection regions with similar computational costs. For this reason, the Viola-Jones algorithm, although popular, was deemed unsuitable for this project.
 \begin{figure}[H]
+    \centering
     \includegraphics[width=0.5\textwidth]{example-image-c}
    \caption{Example face detection outputs by the Viola-Jones algorithm (left) and a neural network (right) } 
    \label{fig:face_det_example}
@@ -330,40 +331,8 @@ The relevance of the blind source separation and possible solutions are introduc
 
 
 
-% \section{Languages and tooling}
-% \subsection{Languages}
-% \paragraph{Python}
-% % large provisions for rapid development
-% The majority of the project will be developed in Python. As a language with large support for both computer vision and signal processing applications, it
-% was a natural choice for the project. 
-
-% \paragraph{Kotlin}
-% % Power of the JVM which has lots of libraries
-% % Directly targets the Android OS
-% A part of my core requirements is the development of an example application capable of rPPG that can run on the Android operating system. To such end, a language that can target the JVM\footnote{Java Virtual Machine} is required. With support for more functional syntax and with complete interoperability with Java, Kotlin was a convenient choice.
 
 
-% \subsection{Libraries}
-% \label{section:libraries}
-% \paragraph{OpenCV}
-% \paragraph{Mobile Vision}
-% \paragraph{Numpy}
-
-
-% \section{Starting Point}
-% % Courses this year which were relevant: Mobile and sensor systems, Computer Vision, Information Theory
-% % did not take DSP course but read the DSP notes
-% % had no previous experience of kotlin and some limited experience of python
-% As a rather interdisciplinary project, a wide array of background knowledge was required, some of which has not featured in Tripos.
-% For example, I had to understand the basics of how modern heart rate sensors work, for which I used internet resources as well explanations by my supervisor.
-% \\\\
-% Understanding existing literature regarding remote photoplethysmography was equally important and so during the early stages of the project, I reviewed
-% a large number of journal papers to gain an understanding of the state of the art techniques being used.
-% \\\\
-% A variety of Part II courses proved to be relevant this year, including but not limited to: Mobile and Sensor Systems, Computer Vision, Information Theory and Digital Signal Processing. Many of these courses occurred after a large body of the work was completed, however, were, nonetheless, useful.
-% \\\\
-% I had no previous experience programming in Kotlin and only relatively little in Python, however, both have a plethora of online resources which I used 
-% during the development process.
 \section{Requirements analysis}
 % Goals develop a python implementation of rPPG
 % Develop an additional output of an Android implementation to move towards higher availabiltiy sensing
@@ -416,8 +385,50 @@ These tasks are summarised in the table according to both their difficulty and i
 % The focus of the project is on 
 % Since there are much larger provisions for 
 
+\section{Languages and tooling}
+\subsection{Languages}
+\paragraph{Python}
+% large provisions for rapid development
+The majority of the project will be developed in the Python\cite{Python} programming language. As a language with large support for both computer vision and signal processing applications, it
+was a natural choice for the project. 
+
+\paragraph{Kotlin}
+% Power of the JVM which has lots of libraries
+% Directly targets the Android OS
+A part of my core requirements is the development of an example application capable of rPPG that can run on the Android operating system. 
+To such end, a language that can target the JVM\footnote{Java Virtual Machine} is required. 
+With support for more functional syntax and with complete interoperability with Java, Kotlin\cite{Kotlin} was a convenient choice.
+
+\subsection{Libraries}
+\label{section:libraries}
+\paragraph{OpenCV} 
+Originally developed by the Intel Corporation, OpenCV\cite{OpenCV} is an open-source library for Computer Vision applications and has built in support for face detection, as is required by the project.
+% \paragraph{Mobile Vision}
+
+% \paragraph{Numpy}
+
 \section{Professional practice}
+% agile methodology
 % planning 
 % prototyping leverages speed of development in python
 % android implementation completes the movement towards higher availability but overall focus was on the Python implementation
 % use of libraries
+% GITHUb
+Since large portions of the project were investigative, an agile model of development was utilised. 
+This was to allow for shorter development cycles and protoyping phases, which were short enough to ensure that I was staying on track with the 
+initial timeline outlined in the proposal. Furthermore, this aligned well with regular meetings with my supervisor.
+
+\section{Starting Point}
+% Courses this year which were relevant: Mobile and sensor systems, Computer Vision, Information Theory
+% did not take DSP course but read the DSP notes
+% had no previous experience of kotlin and some limited experience of python
+As a rather interdisciplinary project, a wide array of background knowledge was required, some of which has not featured in Tripos.
+For example, I had to understand the basics of how modern heart rate sensors work, for which I used internet resources as well explanations by my supervisor.
+\\\\
+Understanding existing literature regarding remote photoplethysmography was equally important and so during the early stages of the project, I reviewed
+a large number of journal papers to gain an understanding of the state of the art techniques being used.
+\\\\
+A variety of Part II courses proved to be relevant this year, including but not limited to: Mobile and Sensor Systems, Computer Vision, Information Theory and Digital Signal Processing. Many of these courses occurred after a large body of the work was completed, however, were, nonetheless, useful.
+\\\\
+I had no previous experience programming in Kotlin and only relatively little in Python, however, both have a plethora of online resources which I used 
+during the development process.

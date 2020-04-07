@@ -21,60 +21,67 @@
 \contentsline {section}{\numberline {2.4}Relevant signal processing techniques}{11}{section.2.4}% 
 \contentsline {subsection}{\numberline {2.4.1}Blind source separation}{11}{subsection.2.4.1}% 
 \contentsline {section}{\numberline {2.5}Requirements analysis}{12}{section.2.5}% 
-\contentsline {section}{\numberline {2.6}Professional practice}{12}{section.2.6}% 
-\contentsline {chapter}{\numberline {3}Implementation}{13}{chapter.3}% 
-\contentsline {section}{\numberline {3.1}Overview}{13}{section.3.1}% 
-\contentsline {section}{\numberline {3.2}System design}{13}{section.3.2}% 
-\contentsline {section}{\numberline {3.3}Face detection}{15}{section.3.3}% 
-\contentsline {subsection}{\numberline {3.3.1}Face tracking}{15}{subsection.3.3.1}% 
-\contentsline {subsubsection}{Point tracking}{15}{section*.16}% 
-\contentsline {paragraph}{Impact of the rate of redetections}{16}{section*.17}% 
-\contentsline {paragraph}{Details}{17}{section*.18}% 
-\contentsline {section}{\numberline {3.4}Region selection}{17}{section.3.4}% 
-\contentsline {subsection}{\numberline {3.4.1}Skin detection}{18}{subsection.3.4.1}% 
-\contentsline {subsubsection}{Colour-based filtering}{18}{section*.19}% 
-\contentsline {paragraph}{Issues}{18}{section*.20}% 
-\contentsline {subsubsection}{K-Means}{19}{section*.21}% 
-\contentsline {paragraph}{Issues}{20}{section*.22}% 
-\contentsline {subsection}{\numberline {3.4.2}Improving the previous approaches}{21}{subsection.3.4.2}% 
-\contentsline {subsubsection}{Identifying the skin tone}{22}{section*.23}% 
-\contentsline {subsubsection}{Identifying skin pixels using the skin tone}{22}{section*.24}% 
-\contentsline {paragraph}{A Bayesian approach}{23}{section*.25}% 
-\contentsline {paragraph}{Prior distribution}{23}{section*.26}% 
-\contentsline {paragraph}{Class conditional distribution}{24}{section*.27}% 
-\contentsline {paragraph}{Defining the threshold}{25}{section*.28}% 
-\contentsline {paragraph}{Accelerating class conditional computation}{25}{section*.29}% 
-\contentsline {section}{\numberline {3.5}Heart rate isolation}{25}{section.3.5}% 
-\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{26}{subsection.3.5.1}% 
-\contentsline {subsubsection}{Independent component analysis (ICA)}{26}{section*.30}% 
-\contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{27}{subsection.3.5.2}% 
-\contentsline {subsubsection}{The split peak issue}{27}{section*.31}% 
-\contentsline {subsubsection}{Majority voting heuristic}{28}{section*.32}% 
-\contentsline {section}{\numberline {3.6}Repository overview}{28}{section.3.6}% 
-\contentsline {chapter}{\numberline {4}Evaluation}{29}{chapter.4}% 
-\contentsline {section}{\numberline {4.1}Data collection}{29}{section.4.1}% 
-\contentsline {subsection}{\numberline {4.1.1}Methodology}{29}{subsection.4.1.1}% 
-\contentsline {paragraph}{Experimental setup}{30}{section*.33}% 
-\contentsline {section}{\numberline {4.2}Analysis of performance}{30}{section.4.2}% 
-\contentsline {subsection}{\numberline {4.2.1}Face tracking}{31}{subsection.4.2.1}% 
-\contentsline {paragraph}{Research questions}{31}{section*.34}% 
-\contentsline {paragraph}{Metrics}{31}{section*.35}% 
-\contentsline {paragraph}{Robustness}{32}{section*.36}% 
-\contentsline {paragraph}{Performance cost}{32}{section*.37}% 
-\contentsline {paragraph}{Results}{33}{section*.38}% 
-\contentsline {paragraph}{Summary}{33}{section*.39}% 
-\contentsline {section}{\numberline {4.3}Analysis of sensing fidelity}{35}{section.4.3}% 
-\contentsline {paragraph}{Research questions}{35}{section*.40}% 
-\contentsline {paragraph}{Metrics}{35}{section*.41}% 
-\contentsline {paragraph}{MAHNOB}{35}{section*.42}% 
-\contentsline {paragraph}{Experiment test suite}{35}{section*.43}% 
-\contentsline {paragraph}{Results and discussion}{35}{section*.44}% 
-\contentsline {paragraph}{Summary}{35}{section*.45}% 
-\contentsline {section}{\numberline {4.4}Summary of findings}{38}{section.4.4}% 
-\contentsline {chapter}{\numberline {5}Conclusion}{39}{chapter.5}% 
-\contentsline {section}{\numberline {5.1}Significance of results}{39}{section.5.1}% 
-\contentsline {section}{\numberline {5.2}Successes and failures}{39}{section.5.2}% 
-\contentsline {section}{\numberline {5.3}Personal remarks}{40}{section.5.3}% 
-\contentsline {section}{\numberline {5.4}Future work}{40}{section.5.4}% 
-\contentsline {chapter}{Bibliography}{41}{section.5.4}% 
-\contentsline {chapter}{\numberline {A}Project Proposal}{47}{appendix.A}% 
+\contentsline {section}{\numberline {2.6}Languages and tooling}{13}{section.2.6}% 
+\contentsline {subsection}{\numberline {2.6.1}Languages}{13}{subsection.2.6.1}% 
+\contentsline {paragraph}{Python}{13}{section*.16}% 
+\contentsline {paragraph}{Kotlin}{13}{section*.17}% 
+\contentsline {subsection}{\numberline {2.6.2}Libraries}{13}{subsection.2.6.2}% 
+\contentsline {paragraph}{OpenCV}{13}{section*.18}% 
+\contentsline {section}{\numberline {2.7}Professional practice}{13}{section.2.7}% 
+\contentsline {section}{\numberline {2.8}Starting Point}{13}{section.2.8}% 
+\contentsline {chapter}{\numberline {3}Implementation}{15}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Overview}{15}{section.3.1}% 
+\contentsline {section}{\numberline {3.2}System design}{15}{section.3.2}% 
+\contentsline {section}{\numberline {3.3}Face detection}{17}{section.3.3}% 
+\contentsline {subsection}{\numberline {3.3.1}Face tracking}{17}{subsection.3.3.1}% 
+\contentsline {subsubsection}{Point tracking}{17}{section*.19}% 
+\contentsline {paragraph}{Impact of the rate of redetections}{18}{section*.20}% 
+\contentsline {paragraph}{Details}{19}{section*.21}% 
+\contentsline {section}{\numberline {3.4}Region selection}{19}{section.3.4}% 
+\contentsline {subsection}{\numberline {3.4.1}Skin detection}{20}{subsection.3.4.1}% 
+\contentsline {subsubsection}{Colour-based filtering}{20}{section*.22}% 
+\contentsline {paragraph}{Issues}{20}{section*.23}% 
+\contentsline {subsubsection}{K-Means}{21}{section*.24}% 
+\contentsline {paragraph}{Issues}{22}{section*.25}% 
+\contentsline {subsection}{\numberline {3.4.2}Improving the previous approaches}{23}{subsection.3.4.2}% 
+\contentsline {subsubsection}{Identifying the skin tone}{24}{section*.26}% 
+\contentsline {subsubsection}{Identifying skin pixels using the skin tone}{24}{section*.27}% 
+\contentsline {paragraph}{A Bayesian approach}{25}{section*.28}% 
+\contentsline {paragraph}{Prior distribution}{25}{section*.29}% 
+\contentsline {paragraph}{Class conditional distribution}{26}{section*.30}% 
+\contentsline {paragraph}{Defining the threshold}{27}{section*.31}% 
+\contentsline {paragraph}{Accelerating class conditional computation}{27}{section*.32}% 
+\contentsline {section}{\numberline {3.5}Heart rate isolation}{27}{section.3.5}% 
+\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{28}{subsection.3.5.1}% 
+\contentsline {subsubsection}{Independent component analysis (ICA)}{28}{section*.33}% 
+\contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{29}{subsection.3.5.2}% 
+\contentsline {subsubsection}{The split peak issue}{29}{section*.34}% 
+\contentsline {subsubsection}{Majority voting heuristic}{30}{section*.35}% 
+\contentsline {section}{\numberline {3.6}Repository overview}{30}{section.3.6}% 
+\contentsline {chapter}{\numberline {4}Evaluation}{31}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Data collection}{31}{section.4.1}% 
+\contentsline {subsection}{\numberline {4.1.1}Methodology}{31}{subsection.4.1.1}% 
+\contentsline {paragraph}{Experimental setup}{32}{section*.36}% 
+\contentsline {section}{\numberline {4.2}Analysis of performance}{32}{section.4.2}% 
+\contentsline {subsection}{\numberline {4.2.1}Face tracking}{33}{subsection.4.2.1}% 
+\contentsline {paragraph}{Research questions}{33}{section*.37}% 
+\contentsline {paragraph}{Metrics}{33}{section*.38}% 
+\contentsline {paragraph}{Robustness}{34}{section*.39}% 
+\contentsline {paragraph}{Performance cost}{34}{section*.40}% 
+\contentsline {paragraph}{Results}{35}{section*.41}% 
+\contentsline {paragraph}{Summary}{35}{section*.42}% 
+\contentsline {section}{\numberline {4.3}Analysis of sensing fidelity}{37}{section.4.3}% 
+\contentsline {paragraph}{Research questions}{37}{section*.43}% 
+\contentsline {paragraph}{Metrics}{37}{section*.44}% 
+\contentsline {paragraph}{MAHNOB}{37}{section*.45}% 
+\contentsline {paragraph}{Experiment test suite}{37}{section*.46}% 
+\contentsline {paragraph}{Results and discussion}{37}{section*.47}% 
+\contentsline {paragraph}{Summary}{37}{section*.48}% 
+\contentsline {section}{\numberline {4.4}Summary of findings}{40}{section.4.4}% 
+\contentsline {chapter}{\numberline {5}Conclusion}{41}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}Significance of results}{41}{section.5.1}% 
+\contentsline {section}{\numberline {5.2}Successes and failures}{41}{section.5.2}% 
+\contentsline {section}{\numberline {5.3}Personal remarks}{42}{section.5.3}% 
+\contentsline {section}{\numberline {5.4}Future work}{42}{section.5.4}% 
+\contentsline {chapter}{Bibliography}{43}{section.5.4}% 
+\contentsline {chapter}{\numberline {A}Project Proposal}{49}{appendix.A}% 
