@@ -325,7 +325,7 @@ def majority_vote(freqs):
         return hr_max_power
 
 def signal_processing_experiments(files, ppg_meta_file):
-    sp_output = f"{PATH}output/hr_evaluation/sp-fixed-bpm-trilogy-mv-thresh-0.3.csv"
+    sp_output = f"{PATH}output/hr_evaluation/sp-fixed-bpm-trilogy-new-offset.csv"
     ppg_meta_file = check_path(ppg_meta_file)
     columns = ["Video", "Tracker", "Region selector", "Window size", "Offset size", "Heart Rate Number", 
      "rPPG HR ICA", "rPPG HR MV", "rPPG HR PCA", 
@@ -357,12 +357,12 @@ def signal_processing_experiments(files, ppg_meta_file):
         signal = np.loadtxt(check_path(rppg_file))
         # for ws in np.arange(600, 1200, 100):
         #     for off in np.arange(30, 120, 30):
-        ws, off = 600, 60
+        ws, off = 1200, 120
         print("===================================")
         progress = 100*index/len(ppg_meta)
         print(f"Experiment progress: {progress}%")
         vid_name = ppg_row["Video file"]
-        if ("KLTBoxingWithThresholding" in rppg_file and "BayesianSkinDetector-weighted" in rppg_file):
+        if ("KLTBoxingWithThresholding" in rppg_file and "BayesianSkinDetector-weighted" in rppg_file and "mahnob" in vid_name):
             print(f"Considering: {vid_name}, Window size: {ws}, Offset: {off}")
             rppg_ica, rppg_pca, rppg_rgb, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft = evaluate(signal, ppg_row["PPG file"], ppg_row["ECG file"], ws, off, ppg_row["Framerate"])
             n_rows, _ = rppg_ica.shape

@@ -112,8 +112,10 @@ a face is present. However, naturally, the box will also contain pixels from the
 the image since faces are not, in general, perfectly rectangular.  \\ \\
 These background pixels will not contain any information as to the underlying heart rate of the user.
 As a result, considering the entire bounding box will add unecessary noise to the resulting signal which consists of the mean colour from each region considered in the sequence of frames.
-One approach might be to only consider skin pixels, however, robust, pose-invariant skin detection is a somewhat unsolved problem.
-Furthermore, it is unclear whether all skin pixels are equally useful. For example, it might be that cheeks contain greater predictive power than the nose. Several approaches are presented regarding this problem with associated algorithms that are evaluated in section \ref{section:region_selection}.
+One approach might be to only consider skin pixels, however, robust, pose-invariant skin detection is non-trivial.
+% Nonetheless, I proceed by attempting to maximise the number of relevant pixels considered by the implementation.
+
+% Furthermore, it is unclear whether all skin pixels are equally useful. For example, it might be that cheeks contain greater predictive power than the nose. Several approaches are presented regarding this problem with associated algorithms that are evaluated in section \ref{section:region_selection}.
 % \subsection{Facial landmarks}
 \subsection{Skin detection}
 Suppose that we wish only to consider skin pixels. An obvious approach might be to apply an edge detection algorithm to isolate the boundary between the face and the background. However, edge detection algorithms, like the Canny edge detector, tend to produce large numbers of irrelevant edges and so were not implemented.

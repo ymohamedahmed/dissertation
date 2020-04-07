@@ -9,6 +9,7 @@ In order to be able to evaluate the project, a dataset consisting of videos with
 For this, I used the \textit{MAHNOB} dataset \cite{Mahnob}, initially collected by Imperial College London for research into affective computing, it is widely used in remote photoplethmysography literature for performance benchmarking \cite{novel}\cite{mahnob-example}\cite{mahnob-example-2}.
 MAHNOB, however, only consists of videos where the participants are stationary and at a fixed, close distance to the camera (see Appendix for examples), this alone, would not be adeqeuate for testing many aspects of the project.
 As a result, I augmented the dataset with my own experiments that contained varying amounts of movement and were recorded at different distances to the camera. 
+The final dataset also, as a result, contains a range of genders and skin tones as to ensure robustness.
 Through this, the limitations of the project can be documented more effectively.
 % This acts as a means of testing the boundaries and feasibility of remote heart rate sensing.
 
@@ -159,6 +160,8 @@ Lower threshold values, as expected, tend to result in better recall by the trac
 Videos with more movement, cause a faster degradation in recall as the threshold is increased. Hence, a more conservative threshold value is favourable, especially since all recorded threshold values 
 showed a perfromance boost.
 \begin{table}[]
+    \centering
+\scalebox{0.6}{
     \begin{tabular}{c|cc|cc|cc}
     \textbf{} & \multicolumn{2}{c|}{\textbf{Stationary}} & \multicolumn{2}{c|}{\textbf{Star jumps}} & \multicolumn{2}{c}{\textbf{Jogging}} \\
     \textbf{Threshold} & \textbf{Recall} & \textbf{FPR} & \textbf{Recall} & \textbf{FPR} & \textbf{Recall} & \textbf{FPR} \\ \hline
@@ -173,10 +176,9 @@ showed a perfromance boost.
     \textbf{0.400} & 0.918874 & 0.000866 & 0.936631 & 0.007110 & 0.798890 & 0.001676 \\
     \textbf{0.450} & 0.918034 & 0.000810 & 0.932281 & 0.007136 & 0.800861 & 0.001595 \\
     \textbf{0.500} & 0.916427 & 0.001041 & 0.927878 & 0.008250 & 0.783104 & 0.003307
-    \end{tabular}
+    \end{tabular}}
     \caption{\textit{A table showing the recall and false positive rate (FPR) of the face tracker across the test suite and at with different threshold values}}
-    \end{table}
-
+\end{table}
 \paragraph{Performance cost}
 % talk about redetection rates
 Recall from Section \ref{section:face_tracking_impl} that the following inequality was introduced that describes the performance of face tracking.\footnote{Notation: $R$: number of redetections, $W$: number of frames considered, $f(n)$: time to detect a face in a frame of size $n$, $g(p,n)$: time to track $p$ points on a face of size $n$, $s(p,f)$: time to select $p$ points on a face of size $f$}
@@ -209,10 +211,9 @@ Ranging from an average of 8x in the stationary case, to 3x in exercise videos.
 \end{figure}
 \noindent
 Using a null hypothesis that both face tracking and face detection have an identical expected error, an independent two sample t-test, p-values over each type of video tested are reported.
-Given a significance threshold of 0.1, the null hypothesis cannot be rejected for both stationary and videos with jogging.
-It is in fact rejected for the case of star jumps, but in favour of the the proposed face tracker.
-On these grounds, I deem that it would be unreasonable to suggest that face tracking, as 
-opposed to face detection, introduces any unexpected error in the outputs of the program.
+Given a significance threshold of 0.1, the null hypothesis is rejected for both stationary and videos with jogging, but in favour of the face tracker.
+It is not rejected for the case of star jumps. Since there is no statistically significant evidence to suggest otherwise,
+ I deem that it would be unreasonable to suggest that face tracking, as opposed to face detection, introduces any unexpected error in the outputs of the program.
 % \begin{figure}[H]
 %     \centering
 %     \input{evaluation/tracker_err.pgf}
@@ -339,7 +340,9 @@ use higher frame rate cameras whilst still maintaining real-time behaviour.
 % cover stationary and exercise videos
 % Performance, without sensing fidelity is entirely irrelevant. A sensor wit
 The fidelity of a sensor forms the key basis upon which it is evaluated. It is critical to be able to reason about how trustworthy its outputs are and, more importantly, to understand
-when its results cannot be trusted. To such end, evaluating the project, in this vein, is paramount. I proceed by defining metrics to quantify the fidelity of my rPPG implementation and end by comparing to a wrist-based PPG sensor.
+when its results cannot be trusted. To such end, evaluating the project, in this vein, is paramount.
+I show that over the test suite used, rPPG is comparable in fidelity to a smartwatch, although, crucially, both are detrimentally affected by motion artifacts.
+% I proceed by defining metrics to quantify the fidelity of my rPPG implementation and end by comparing to a wrist-based PPG sensor.
 
 \paragraph{Research questions}
 % essentially this is where we evaluate vs a smartwatch
@@ -350,6 +353,7 @@ when its results cannot be trusted. To such end, evaluating the project, in this
 % But also greater difficulty of sensing
 % need to say that more data must be collected before production but initial results are promising
 
+% 
 % likely to be that rPPG degrades with distance but smartwatches obviously don't
 % certain classes of exercise, where face is stationary but arm is moving is probably better for rPPG
 \begin{itemize}
@@ -362,11 +366,39 @@ when its results cannot be trusted. To such end, evaluating the project, in this
 % \subsection{The effect of movement}
 % \subsection{Comparative fidelity}
 \paragraph{Metrics}
-\begin{itemize}
-    \item 
-    \item 
-\end{itemize}
-\paragraph{Results}
+In this context, we wish to particularly penalise large differences between the true heart rate and the predicted heart rate. For this, 
+the \textit{root mean squared error} is a much more useful metric than \textit{mean absolute error}. However, both are reported since the latter helps
+to give an intuitive understanding about the accuracy of the sensor in question.
+
+
+\paragraph{MAHNOB}
+The benefit of using the MAHNOB dataset for testing, is that it allows for a direct comparison with existing literature on rPPG.
+Techniques proposed by Poh et al. \cite{poh}, Li et al. \cite{li} and Osman et al. \cite{osman} have all been tested on the database, with 
+scores being reported in a comparative survey by Wang et al. \cite{comparative}.
+Although, the precise subset of the database is not specified and nor is the size of each window being considered before estimating a heart rate.
+To such end, it is not a perfectly fair comparison, however, is included as an indicator of state of the art performance, in comparison with my own implementation.
+
+\begin{figure}
+    \centering
+    \scalebox{0.6}{\input{evaluation/mahnob.pgf}}
+   \caption{\textit{A graph comparing the mean absolute error achieved on the MAHNOB database of the proposed implementation with comparisons to state of the art techniques.}}
+\end{figure}
+\paragraph{Experiment test suite}
+% only included windows for which smart watch had adequate data, and only include estimations from both rPPG and the smartwatch
+In the experimentally collected data, there exists three classes of videos. Specifically, the jogging and star jump videos are designed to test the smartwatch and 
+the rPPG system in different ways. The jogging video is designed to be a kind of worst case scenario for the rPPG system. Since it contains enough movement that
+illumination incident onto the face of the user will be constantly changing. Furthermore, this rate will appear in the resulting Fourier transform and is often mistaken
+for the heartrate. This phenomenon also befalls smartwatches and is often referred to as `cadence lock', and occurs when the heart rate reported is actually the frequency 
+of movement.
+Note that this 
+
+\begin{figure}
+    \centering
+    \scalebox{0.6}{\input{evaluation/fidelity.pgf}}
+   \caption{\textit{A graph showcasing the mean absolute error and root mean squared error, in beats per minute, achieved on the collected data}}
+\end{figure}
+
+\paragraph{Results and discussion}
 
 \paragraph{Summary}
 % these ones are EXTRAS just in case
@@ -379,14 +411,19 @@ when its results cannot be trusted. To such end, evaluating the project, in this
 % \paragraph{Research question}
 % \paragraph{Metrics}
 % \paragraph{Results}
-\begin{figure}
-    \centering
-    \scalebox{0.8}{\input{evaluation/fidelity.pgf}}
-   \caption{\textit{}} 
-\end{figure}
 
 \section{Summary of findings}
 % Face tracking provides large performance benefit without which 'real-time' performance would not be possible
 % Allows for Bayesian Skin Detection to be plausible
+
+
 % rPPG not feasible for all scenarios depends on the amount and extent of movement
-% it's not much less suitable than smart watch critically 
+% it's not, in my findings, less suitable than smart watch which is already widely used
+
+% was never expected to match an ECG which is much more expensive and is considered medical grade
+
+% it's clear that exercise has a larger effect than distance
+% but this is cruically also the case for the smartwatch where errors in creased by "2x" 
+
+% camera has access to multiple signals whereas the wrist doesn't (has only a single channel)
+Non-contact heart rate estimation

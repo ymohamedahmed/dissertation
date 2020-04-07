@@ -10,3 +10,60 @@
 % although performance is not perfect, it shows clear improvements over a smartwatch
 
 % effect of illumination was not investigated
+\section{Significance of results}
+Non-contact heart rate estimation, as a technology, shows huge promise. Although, it might never achieve the medical-grade 
+fidelity of an ECG sensor, it has shown that it is certainly a viable alternative to the use of smartwatches. In this project, all video data was 
+recorded on a standard smartphone and the main software base was shown to be easily implementable as an Android application.
+Given that there are 2.5 billion active Android devices across the world\footnote{Google I/O Conference 2019}, a vast number of people could gain access
+to their own heart rate data who might not be able to otherwise. This could have large implications
+for regions of the world where phones could become the most readily available heart rate sensing device. 
+As one of several key indicators of physical wellbeing, this has large scope to benefit those who might otherwise not be able to measure these values.
+% This a large portion of the human population, who, therefore, might benefit from the 
+% Furthermore, there are many scenarios where the use of an ECG is not plausible, for example, attaching electrodes to a newborn infant is not always possible.
+% As a key indicator of physical wellbeing, this project could be useful medical scenarios where an ECG is not available.
+
+
+\section{Successes and failures}
+% Lots of time implementing many different ideas
+% Since topic was more research focused
+% faster iterations would have been favourable
+% I did not expect ot be even close to comparable with a smartwatch which alread has a large uptake
+The project was a resounding success. Having achieved all of my core criteria and two of my three extensions, I am very much pleased with the end result.
+The fact that, there were no statistically significant differences in accuracy, between the Fossil smartwatch and my implementation of rPPG 
+was both surprising and a key success of the project. This means that, in the experiments completed, smartwatches, a widely accepted technology for heart
+rate sensing, are not of greater fidelity than the outputs of my implementation.
+% In the early stages, this did not seem feasible and is the result of perserverance despite many disappointing results along the way.
+Furthermore, the optimisations introduced for the face detection stage were a substantial technical undertaking that ending up being hugely beneficial, by
+allowing more complicated region selection algorithms to become feasible.
+\par 
+However, since the project contained large amounts of research work, where the undertakings may not necessarily be fruitful, it was difficult at times to stay on course.
+Although, this was the nature of the project, I should have allocated more time to these research avenues, and iterated more quickly. This being said, the project
+managed to finish on time, largely due to the conservative initial timeline set out in the proposal.
+
+\section{Personal remarks}
+% Self taught two new programming languages
+% Learnt lots of computer vision and signal processing which i had no experience of previously
+Having self taught two new programming languages as well as learning about Android programming, this project has hugely benefitted my software development 
+skills. The key concepts underpinning this project, specifically in the fields of sensing, computer vision and signal processing were also new to me 
+and have been very rewarding to learn about and implement ideas from.
+
+\section{Future work}
+% because research focused there are many possible lines of future research which were not investigated
+% Didn't test illumination
+% needs much wider testing to be reliable
+%
+% main reason for poor performance is increasing affect of illumination changes on the signal
+% trying to identify where sources of light are and correcting for them could be a possible solution
+% multiple cameras
+% investigate energy cost
+As an active area of research, there are always further aspects of remote heart rate sensing to investigate. Some of which, I intended to pursue but did
+not manage due to time constraints.
+\begin{itemize}
+    \item \textbf{Illumination correction}: the main source of error in videos with increasing amounts of movement, is that the illumination incident onto the user is constantly changing 
+     as they move with respect to the light source. There is lots of research in computer vision as to how we can correct for these effects, such as the presence of 
+     specular highlights \cite{spec1}\cite{spec2}\cite{spec3}. By implementing this, it might be possible to improve the performance of rPPG in scenarios with lots of movement.
+     \item \textbf{Multiple cameras}: being able to integrate signals from multiple camera streams of the same user may help to overcome the issues caused by increasing amounts of movement.
+    \item \textbf{Energy cost}: if we view rPPG as a kind of sensor, then its energy consumption is a critical factor that has not been considered here. 
+    If we wish to use it for continuous heart rate measurement over long periods of time, then suddenly this might become a stumbling block for wider uptake.
+     \item \textbf{Further testing}: it was beyond the scope of this project to conduct very large scale testing across, say, hundreds of users, however, before it can be reliably used across entire populations, it should be tested across a wider variety of people.
+\end{itemize}
