@@ -3,10 +3,13 @@
 
 % Last updated by MR on 2 August 2001
 
-\documentclass[12pt,twoside,notitlepage]{report}
+\documentclass[11pt,twoside,notitlepage]{report}
 
+\usepackage{subfig}
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{a4}
+\usepackage[toc, page]{appendix}
+% \usepackage{standalone}
 \usepackage{hyperref}
 \usepackage{forest}
 \usepackage[margin=1in]{geometry}
@@ -32,6 +35,7 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{pgfplots}
+\usepackage{graphicx}
 \usepgfplotslibrary{groupplots,dateplot}
 \usetikzlibrary{patterns,shapes.arrows}
 \pgfplotsset{compat=newest}
@@ -98,13 +102,13 @@ Name:               & \bf Yousuf Mohamed-Ahmed \\
 College:            & \bf Gonville \& Caius College                     \\
 Project Title:      & \bf Non-contact heart rate estimation from video \\
 Examination:        & \bf Computer Science Tripos - Part II, July 2020    \\
-Word Count:         & \bf 11320\footnotemark[1] \\
+Word Count:         & \bf 11961\footnotemark[1] \\
 Project Originator: & Dr R.~Harle                    \\
 Supervisor:         & Dr R.~Harle                    \\ 
 \end{tabular}
 }
 \footnotetext[1]{This word count was computed
-by the \texttt{TeXcount} script
+by the \texttt{TeXcount} script 
 }
 \stepcounter{footnote}
 
@@ -157,23 +161,23 @@ extent for a comparable purpose.
 
 \chapter{Introduction}
 \input{introduction/introduction.tex}
-\cleardoublepage
+% \cleardoublepage
 
 \chapter{Preparation}
 \input{preparation/preparation.tex}
-\cleardoublepage
+% \cleardoublepage
 
 \chapter{Implementation}
 \input{implementation/implementation.tex}
-\cleardoublepage
+% \cleardoublepage
 
 \chapter{Evaluation}
 \input{evaluation/evaluation.tex}
-\cleardoublepage
+% \cleardoublepage
 
 \chapter{Conclusion}
 \input{conclusion/conclusion.tex}
-\cleardoublepage
+% \cleardoublepage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % the bibliography
@@ -184,34 +188,45 @@ extent for a comparable purpose.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % the appendices
-\appendix
-\section*{Experiment example distances}
+
+\begin{appendices}
+\chapter{Experiment example distances}
 \label{appendix:experiments}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{example-image-a}
+    \includegraphics[width=0.5\textwidth]{evaluation/1.jpg}
    \caption{\textit{Example distance of 1m}}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{example-image-b}
+    \includegraphics[width=0.5\textwidth]{evaluation/1-5.jpg}
    \caption{\textit{Example distance of 1.5m} }
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{example-image-c}
-   \caption{\textit{Example distance of 2m} }
+    \includegraphics[width=0.5\textwidth]{evaluation/2.jpg}
+    \caption{\textit{Example distance of 2m} }
 \end{figure}
-\section*{Precomputing distributions}
+
+\chapter{Region selection}
 \begin{figure}[H]
     \centering
     \input{evaluation/precomputed.pgf}
    \caption{\textit{A graph showing the effective framerate of the entire pipeline, with and without precomputing the class conditional distributions used by the skin detector}} 
 \end{figure}
+\begin{figure}[H]
+    \centering
+    \input{bayesian.pgf}
+   \caption{\textit{A graph showing the mean time to process a single frame when using k-means on each frame vs. the probabilistic approach described}} 
+\end{figure}
+
 
 \cleardoublepage
 
 \chapter{Project Proposal}
-\includepdf[pages=-,pagecommand={},width=\paperwidth]{proposal/main.pdf}
+\input{propbody}
+    
+\end{appendices}
+% \includepdf[pages=-,pagecommand={},width=\paperwidth]{proposal/main.pdf}
 
 \end{document}

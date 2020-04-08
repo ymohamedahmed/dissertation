@@ -1,0 +1,36 @@
+\tikzset{every label/.style={font=\footnotesize, text=black}}
+\begin{forest}
+    for tree={
+      font=\ttfamily,
+      grow'=0,
+      child anchor=west,
+      parent anchor=south,
+      anchor=west,
+      calign=first,
+      edge path={
+        \noexpand\path [draw, \forestoption{edge}]
+        (!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+      },
+      before typesetting nodes={
+        if n=1
+          {insert before={[,phantom]}}
+          {}
+      },
+      fit=band,
+      before computing xy={l=15pt},
+    }
+  [dissertation
+    [Python
+      [tooling, label=right:Related tooling]
+      [evaluation, label=right:Evaluation scripts]
+      [pipeline.py, label=right:Implementation of the overall pipeline]
+      [pre\_compute\_distributions.py, label=right:Script for precomputing the distributions required for skin detection]
+      [visualisation.py, label=right:Code for visualising region selection outputs]
+      [region\_selection.py, label=right:Techniques implemented for region of interest selection]
+      [hr\_isolator.py, label=right:Code to identify the heart rate in a received signal]
+      [face\_det.py, label=right:Face detection and tracking implementations]
+    ]
+    [AndroidRPPG, label=right: An Android based demonstration of rPPG]
+    [PPGLogger, label=right: Smartwatch application for recording PPG sensor values]
+  ]
+  \end{forest}

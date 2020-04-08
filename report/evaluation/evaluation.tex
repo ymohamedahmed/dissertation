@@ -73,6 +73,13 @@ These exercises were, thereby, selected to be representative of the kind of scen
 
 
 % \paragraph{Ethics}
+\paragraph{Hypothesis testing}
+The nature of evaluation is comparative. We would like to be able to compare results from different algorithms and be able to draw reliable conclusions. However, there is an element of 
+chance associated with all of the measurements we would like to compare.
+To such end, hypothesis testing is used throughout to compare values and discern differences which may or may not be significant.
+Specifically, Welch's t-test \cite{welch-t-test}\footnote{Welch's t-test is considered a more reliable alternative to the Student's t-test when samples have unequal variance \cite{superior-welch}}
+is used to test, given two quantities, the hypothesis that they have equal expected values. 
+
 
 \section{Analysis of performance}
 \label{section:face_tracking}
@@ -390,7 +397,6 @@ the rPPG system in different ways. The jogging video is designed to be a kind of
 illumination incident onto the face of the user will be constantly changing. Furthermore, this rate will appear in the resulting Fourier transform and is often mistaken
 for the heartrate. This phenomenon also befalls smartwatches and is often referred to as `cadence lock', and occurs when the heart rate reported is actually the frequency 
 of movement.
-Note that this 
 
 \begin{figure}
     \centering
@@ -402,13 +408,13 @@ Note that this
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
 \begin{table}[]
     \centering
-\scalebox{0.7}{
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\scalebox{0.65}{
     \begin{tabular}{cc|c|c|c|c|cccc}
     \textbf{} & \textbf{} & \multicolumn{2}{c|}{\textbf{Smartwatch}} & \multicolumn{2}{c|}{\textbf{Proposed}} &  &  &  &  \\
-    \multicolumn{1}{c|}{\textbf{Exercise}} & \textbf{Distance} & \textbf{MAE} & \textbf{RMSE} & \textbf{MAE} & \textbf{RMSE} & \multicolumn{1}{c|}{\textbf{$t_{MAE}$}} & \multicolumn{1}{c|}{\textbf{$p_{MAE}$}} & \multicolumn{1}{c|}{\textbf{$t_{RMSE}$}} & \textbf{$p_{RMSE}$} \\ \hline
+    \multicolumn{1}{c|}{\textbf{Exercise}} & \textbf{Distance (m)} & \textbf{MAE (bpm)} & \textbf{RMSE (bpm)} & \textbf{MAE (bpm)} & \textbf{RMSE (bpm)} & \multicolumn{1}{c|}{\textbf{$t_{MAE}$}} & \multicolumn{1}{c|}{\textbf{$p_{MAE}$}} & \multicolumn{1}{c|}{\textbf{$t_{RMSE}$}} & \textbf{$p_{RMSE}$} \\ \hline
     \rowcolor[HTML]{CEF2CE} 
     \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}\textbf{Stationary}} & 1.0 & 24.3271 & 31.101 & 8.1443 & 13.1871 & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-5.8566} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}4.7376e-07} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-3.8488} & 0.0003967 \\
     \rowcolor[HTML]{CEF2CE} 
@@ -426,12 +432,25 @@ Note that this
     \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}\textbf{Star jumps}} & 1.5 & 51.2919 & 52.2412 & 19.1177 & 25.1191 & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-14.5253} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}6.3123e-27} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-12.6585} & 4.3824e-24 \\
     \multicolumn{1}{c|}{\textbf{Star jumps}} & 2.0 & 28.9574 & 31.9423 & 28.0886 & 33.4622 & \multicolumn{1}{c|}{-1.3990} & \multicolumn{1}{c|}{0.1735} & \multicolumn{1}{c|}{-0.7828} & 0.4415
     \end{tabular}}
+    \label{table:welch-mae}
     \caption{\textit{A table showing the mean absolute error and root mean squared error for both the Fossil smartwatch and the proposed system, with associated hypothesis testing. Highlighted rows show significant results in terms of both the MAE and RMSE, red indicating in favour of the smartwatch and green in favour of the proposed system.}}
     \end{table}
 
-\paragraph{Results and discussion}
+\paragraph{Results}
+% no problem with distance really at the amount tested, likely to be due to high resolutions of modern cameras
+The results indicate, clearly, the effect of movement on PPG-based heart rate sensing. Both the smartwatch and the proposed system observe much larger errors in the non-stationary cases, although this has 
+been widely reported before \cite{souza2019heart}, it is, nonetheless, concerning given that these systems are often used in such scenarios. In the jogging use case, both systems showed mean absolute errors around 40BPM,
+which is, not particularly useful as a measurement, given that the range of possible heart rates is around 200BPM.
+\par
+% Given the variability between experiments, there appears to be no significant issue with increasing the distance between the user and the camera.
+However, a key success of the project is the comparative performance with the smartwatch over the test suite. Over the nine classes of exercises and distances tested, seven results were statistically significant at a
+threshold of 0.01, all of which are over an order of magnitude beneath the threshold. 
+In this scenario, there are two null hypotheses, that the absolute and squared errors, respectively, have the same expected value for the smartwatch and proposed system. 
+In the seven cases highlighted in Table 4.3, both null hypotheses were rejected, with four in favour of the proposed system and three in favour of the smartwatch.
+It would be inappropriate to draw overarching conclusions about the relative fidelity of smartwatch heart rate sensing and the proposed system, however, over the test suite used, it is fair to conclude 
+that, the performance of rPPG is, certainly, comparable to that of a smartwatch. Given that smartwatches are already widely accepted as means of heart rate sensing, these results pave the way for rPPG to do the same.
 
-\paragraph{Summary}
+% \paragraph{Summary}
 % these ones are EXTRAS just in case
 % \subsection{Energy consumption}
 % \paragraph{Research question}
@@ -443,7 +462,7 @@ Note that this
 % \paragraph{Metrics}
 % \paragraph{Results}
 
-\section{Summary of findings}
+% \section{Summary of findings}
 % Face tracking provides large performance benefit without which 'real-time' performance would not be possible
 % Allows for Bayesian Skin Detection to be plausible
 
@@ -457,4 +476,4 @@ Note that this
 % but this is cruically also the case for the smartwatch where errors in creased by "2x" 
 
 % camera has access to multiple signals whereas the wrist doesn't (has only a single channel)
-Non-contact heart rate estimation
+% Non-contact heart rate estimation

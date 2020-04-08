@@ -118,7 +118,7 @@ Early research into remote heart estimation navigated the difficulties of attemp
 Therefore, understanding the existing literature on the topic is critical to a successful implementation. Furthermore, it can reveal areas for additional experimentation beyond the existing 
 research.
 The existing literature also provides clarity as to a concrete implementation grounded in the intuition described in Section \ref{ref:rPPG_prep}.
-For example, the description in Section \ref{ref:rPPG_prep} leaves several questions which must be answered before an implementation could possible be designed.
+For example, the description in Section \ref{ref:rPPG_prep} leaves several questions which must be answered before an implementation could possibly be designed.
 \begin{itemize}
     \item Which parts of the body are best to extract a PPG signal from?
     \item How can the recorded signal reveal the heart rate?
@@ -173,7 +173,7 @@ easiest to estimate the heart rate by considering pixels in the face of the user
 This means that, given a frame from the camera, the region(s) containing a face must be ascertained. For this, many algorithms have been developed, not all of which perform equally well.
 For the purposes of this project, there are two main criteria by which the strength of a face detection algorithm can be evaluated.
 \begin{itemize}
-    \item Tightness of bounding box: typically face detection algorithms return a bounding box within which the face is believed to be, as exemplified in Figure \ref{fig:face_det_example}. The size of this box is of great importance since any additional background pixels contain no pulse information and will add unnecessary noise
+    \item Tightness of bounding box: typically face detection algorithms return a bounding box within which the face is believed to be. The size of this box is of great importance since any additional background pixels contain no pulse information and will add unnecessary noise
     \item False positive rate: any false detections will impact accuracy by potentially considering incorrect regions of the frame
     \item Performance: the wider objective of this project is to increase the availability of heart rate sensing technology, to such end, particular costly algorithms which cannot run effectively on standard computing devices, are of no real use
 \end{itemize}
@@ -201,12 +201,12 @@ Neural networks for face detection have been trained since approximately the yea
 advances in computing hardware have nullified this \cite{v-j-vs-ann}. In fact, I conducted early-stage experiments which suggested that neural networks, specifically the model provided by the OpenCV library 
 % (see Section \ref{section:libraries}) 
 returned smaller face detection regions with similar computational costs. For this reason, the Viola-Jones algorithm, although popular, was deemed unsuitable for this project.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{example-image-c}
-   \caption{Example face detection outputs by the Viola-Jones algorithm (left) and a neural network (right) } 
-   \label{fig:face_det_example}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{example-image-c}
+%    \caption{Example face detection outputs by the Viola-Jones algorithm (left) and a neural network (right) } 
+%    \label{fig:face_det_example}
+% \end{figure}
 
 \subsection{Optical flow}
 % Describe the optimisation problem
@@ -360,6 +360,7 @@ The relevance of the blind source separation and possible solutions are introduc
 \end{itemize}
 These tasks are summarised in the table according to both their difficulty and importance to the overall project.
 \begin{table}[H]
+    \centering
     \begin{tabular}{|l|l|l|l|}
     \hline
     \textbf{Objective} & \textbf{Difficulty} & \textbf{Importance} & \textbf{Status} \\ \hline

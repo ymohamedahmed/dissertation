@@ -203,6 +203,11 @@ eprint = {
   howpublished = {\url{numpy.org}},
   note = {Accessed: 2019-10}
 }
+@misc{sklearn,
+  title = {{scikit-learn} library},
+  howpublished = {\url{scikit-learning.org}},
+  note = {Accessed: 2019-10}
+}
 @InProceedings{Chen_2018_ECCV,
 author = {Chen, Weixuan and McDuff, Daniel},
 title = {DeepPhys: Video-Based Physiological Measurement Using Convolutional Attention Networks},
@@ -284,4 +289,96 @@ ABSTRACT={Remotely measuring physiological activity can provide substantial bene
   year={2019},
   publisher={University of Windsor}
 }
+@article{welch-t-test,
+    author = {WELCH, B. L.},
+    title = "{The generalization of ‘student's’ problem when several different population varlances are involved}",
+    journal = {Biometrika},
+    volume = {34},
+    number = {1-2},
+    pages = {28-35},
+    year = {1947},
+    month = {01},
+    issn = {0006-3444},
+    doi = {10.1093/biomet/34.1-2.28},
+    url = {https://doi.org/10.1093/biomet/34.1-2.28},
+    eprint = {https://academic.oup.com/biomet/article-pdf/34/1-2/28/553093/34-1-2-28.pdf},
+}
+
+@article{superior-welch,
+    author = {Ruxton, Graeme D.},
+    title = "{The unequal variance t-test is an underused alternative to Student's t-test and the Mann–Whitney U test}",
+    journal = {Behavioral Ecology},
+    volume = {17},
+    number = {4},
+    pages = {688-690},
+    year = {2006},
+    month = {05},
+    abstract = "{Often in the study of behavioral ecology, and more widely in science, we require to statistically test whether the central tendencies (mean or median) of 2 groups are different from each other on the basis of samples of the 2 groups. In surveying recent issues of Behavioral Ecology (Volume 16, issues 1–5), I found that, of the 130 papers, 33 (25\\%) used at least one statistical comparison of this sort. Three different tests were used to make this comparison: Student's t-test (67 occasions; 26 papers), Mann–Whitney U test (43 occasions; 21 papers), and the t-test for unequal variances (9 occasions; 4 papers). My aim in this forum article is to argue for the greater use of the last of these tests. The numbers just related suggest that this test is not commonly used. In my survey, I was able to identify tests described simply as “t-tests” with confidence as either a Student's t-test or an unequal variance t-test because the calculation of degrees of freedom from the 2 sample sizes is different for the 2 tests (see below). Hence, the neglect of the unequal variance t-test illustrated above is a real phenomenon and can be explained in several (nonexclusive ways) ways:Argument 4 relies on the central limit theorem and would require a combined sample size of at least 30 (Sokal and Rohlf 1987, p. 107); however, in my survey, the majority (47 out of 61) of tests for which sample sizes were provided had a combined sample size below 30. The fallacy of argument 3 has been demonstrated previously on several occasions (e.g., Kasuya 2001; Neuhauser 2002). To explore argument 1 further, imagine that we have 2 sample groups (labeled “1” and “2,” with means [μ1 and μ2], variances [\\batchmode \\documentclass[fleqn,10pt,legalpaper]\\{article\\} \\usepackage\\{amssymb\\} \\usepackage\\{amsfonts\\} \\usepackage\\{amsmath\\} \\pagestyle\\{empty\\} \\begin\\{document\\} \\(s\_\\{1\\}^\\{2\\}\\) \\end\\{document\\} and \\batchmode \\documentclass[fleqn,10pt,legalpaper]\\{article\\} \\usepackage\\{amssymb\\} \\usepackage\\{amsfonts\\} \\usepackage\\{amsmath\\} \\pagestyle\\{empty\\} \\begin\\{document\\} \\(s\_\\{2\\}^\\{2\\}\\) \\end\\{document\\}], and sample sizes [N1 and N2]). For the unpaired Student's t-test, the t statistic is calculated as(1)\\batchmode \\documentclass[fleqn,10pt,legalpaper]\\{article\\} \\usepackage\\{amssymb\\} \\usepackage\\{amsfonts\\} \\usepackage\\{amsmath\\} \\pagestyle\\{empty\\} \\begin\\{document\\} \\[t\\{=\\}\\frac\\{\\mathrm\\{\\{\\mu\\}\\}\_\\{1\\}\\{-\\}\\mathrm\\{\\{\\mu\\}\\}\_\\{2\\}\\}\\{s\_\\{p\\}^\\{2\\}\\sqrt\\{\\left(\\frac\\{1\\}\\{n\_\\{1\\}\\}\\{+\\}\\frac\\{1\\}\\{n\_\\{2\\}\\}\\right)\\}\\},\\] \\end\\{document\\}where the pooled variance \\batchmode \\documentclass[fleqn,10pt,legalpaper]\\{article\\} \\usepackage\\{amssymb\\} \\usepackage\\{amsfonts\\} \\usepackage\\{amsmath\\} \\pagestyle\\{empty\\} \\begin\\{document\\} \\(s\_\\{p\\}^\\{2\\}\\) \\end\\{document\\} is given by(2)\\batchmode \\documentclass[fleqn,10pt,legalpaper]\\{article\\} \\usepackage\\{amssymb\\} \\usepackage\\{amsfonts\\} \\usepackage\\{amsmath\\} \\pagestyle\\{empty\\} \\begin\\{document\\} \\[s\_\\{p\\}^\\{2\\}\\{=\\}\\frac\\{(n\_\\{1\\}\\{-\\}1)s\_\\{1\\}^\\{2\\}\\{+\\}(n\_\\{2\\}\\{-\\}1)s\_\\{2\\}^\\{2\\}\\}\\{n\_\\{1\\}\\{+\\}n\_\\{2\\}\\{-\\}2\\}.\\] \\end\\{document\\}The variances of the 2 samples are pooled in order to achieve the best estimate of the (assumed equal) variances of the 2 populations. Hence, we can see the need for the underlying assumption of equal population variances in this test. The Student's t-test performs badly when these variances are actually unequal, both in terms of Type I and Type II errors (Zar 1996). Figure 1 suggests that unequal sample variances are common in behavioral ecology. Although it is true that unequal variances are less problematic if sample sizes are similar, in practice, we often have quite unequal sample sizes (Figure 2). Hence, I suggest that the Student's t-test is frequently used in behavioral ecology when one of its important underlying assumptions is violated, and consequently, its performance is unreliable. }",
+    issn = {1045-2249},
+    doi = {10.1093/beheco/ark016},
+    url = {https://doi.org/10.1093/beheco/ark016},
+    eprint = {https://academic.oup.com/beheco/article-pdf/17/4/688/17275561/ark016.pdf},
+}
+
+
+@Article{originalPaper,
+author="Verkruysse W, Svaasand LO, Nelson JS",
+title="Remote plethysmographic imaging using ambient light",
+year="2009",
+month="Jul",
+day="29",
+abstract="Plethysmographic signals were measured remotely (> 1m) using ambient light and a simple consumer level digital camera in movie mode. Heart and respiration rates could be quantified up to several harmonics. Although the green channel featuring the strongest plethysmographic signal, corresponding to an absorption peak by (oxy-) hemoglobin, the red and blue channels also contained plethysmographic information. The results show that ambient light photo-plethysmography may be useful for medical purposes such as characterization of vascular skin lesions (e.g., port wine stains) and remote sensing of vital signs (e.g., heart and respiration rates) for triage or sports purposes.",
+issn="1094-4087",
+doi="10.1364/oe.16.021434",
+url="https://doi.org/10.1364/oe.16.021434"
+}
+
+@Article{Peng2014,
+author={Peng, Fulai
+and Zhang, Zhengbo
+and Gou, Xiaoming
+and Liu, Hongyun
+and Wang, Weidong},
+title={Motion artifact removal from photoplethysmographic signals by combining temporally constrained independent component analysis and adaptive filter},
+journal={BioMedical Engineering OnLine},
+year={2014},
+volume={13},
+number={1},
+pages={50},
+abstract={The calculation of arterial oxygen saturation (SpO2) relies heavily on the amplitude information of the high-quality photoplethysmographic (PPG) signals, which could be contaminated by motion artifacts (MA) during monitoring.},
+issn={1475-925X},
+doi={10.1186/1475-925X-13-50},
+url={https://doi.org/10.1186/1475-925X-13-50}
+}
+
+
+@InProceedings{10.1007/978-3-030-01216-8_22,
+author="Chen, Weixuan
+and McDuff, Daniel",
+editor="Ferrari, Vittorio
+and Hebert, Martial
+and Sminchisescu, Cristian
+and Weiss, Yair",
+title="DeepPhys: Video-Based Physiological Measurement Using Convolutional Attention Networks",
+booktitle="Computer Vision -- ECCV 2018",
+year="2018",
+publisher="Springer International Publishing",
+address="Cham",
+pages="356--373",
+abstract="Non-contact video-based physiological measurement has many applications in health care and human-computer interaction. Practical applications require measurements to be accurate even in the presence of large head rotations. We propose the first end-to-end system for video-based measurement of heart and breathing rate using a deep convolutional network. The system features a new motion representation based on a skin reflection model and a new attention mechanism using appearance information to guide motion estimation, both of which enable robust measurement under heterogeneous lighting and major motions. Our approach significantly outperforms all current state-of-the-art methods on both RGB and infrared video datasets. Furthermore, it allows spatial-temporal distributions of physiological signals to be visualized via the attention mechanism.",
+isbn="978-3-030-01216-8"
+}
+
+@article{li2018differentiable,
+  title={Differentiable programming for image processing and deep learning in Halide},
+  author={Li, Tzu-Mao and Gharbi, Micha{\"e}l and Adams, Andrew and Durand, Fr{\'e}do and Ragan-Kelley, Jonathan},
+  journal={ACM Transactions on Graphics (TOG)},
+  volume={37},
+  number={4},
+  pages={139},
+  year={2018},
+  publisher={ACM}
+}
+
+
 

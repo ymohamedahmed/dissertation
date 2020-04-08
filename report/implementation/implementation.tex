@@ -64,7 +64,7 @@ The former wastes computation time for stationary videos where the redetections 
             points = track_points(points)
             face = bounding_box(points)
         redetect = change_in_size(last_detection, face) > threshold
-        previous_face = face
+        last_detection = face
         return face
 \end{minted}
 \caption{A simplified pseudocode representation of an optical-flow based face tracker}
@@ -147,9 +147,21 @@ This approach takes no consideration of the particular face that it is consideri
 For example, there are some hair colours which could be a skin tone on another individual but are clearly not on the particular example in question.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{example-image-c}
+    \subfloat[Original image\protect\footnotemark  ]{{\includegraphics[width=5cm]{implementation/c.jpg} }}%
+    \qquad
+    \subfloat[Mask indicating skin pixels]{{\includegraphics[width=5cm]{implementation/interval.jpg} }}%
+    % \begin{subfigure}{.5\textwidth}
+    %     \centering
+    %     \includegraphics[width=0.3\textwidth]{implementation/c.jpg}
+    % \end{subfigure}%
+    % \begin{subfigure}{.5\textwidth}
+    %     \centering
+    %     \includegraphics[width=0.3\textwidth]{implementation/interval.jpg}
+    % \end{subfigure}%
    \caption{\textit{An example of the hair failure case}}
 \end{figure}
+% \footnotemark[1]
+\footnotetext[1]{ An image of mathematician Katherine Johnson taken from the public domain.}
 Instead, an algorithm should attempt to identify skin on the particular face in question.
 % EXPLAIN PERCEPTUAL UNIFORMITY 
 % SHOW YCbCr REPRESENTATION OF SKIN PIXELS
@@ -171,9 +183,12 @@ are skin pixels, we return the largest cluster as our set of skin pixels.
 \\ \\
 
 \begin{figure}[H]
-    \centering
     % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
-    \includegraphics[width=0.5\textwidth]{example-image-a}
+    \centering
+    \subfloat[Original image]{{\includegraphics[width=5cm]{implementation/c.jpg} }}%
+    \qquad
+    \subfloat[Mask indicating regions considered to be skin.]{{\includegraphics[width=5cm]{implementation/r2.jpg} }}%
+    % \includegraphics[width=0.5\textwidth]{example-image-a}
    \caption{\textit{An example of the application of the k-means algorithm to skin detection}}
 \end{figure}
 %\subsubsection{Hierarchical clustering}
@@ -201,27 +216,45 @@ are skin pixels, we return the largest cluster as our set of skin pixels.
 % Assumption of most pixels being skin fails
 The k-means algorithm, although it improves on the results of the rudimentary approach significantly, has a plethora of pitfalls.
 \begin{itemize}
+    \item \textbf{Performance}: recall from Section \ref{section:system_design} that, since the region selection operates on every frame, it must run in real-time. However, in benchmarking the k-means reference implementation in the scikit-learn\cite{sklearn} library takes an order of magnitude longer than the minimum requirement for this constraint. \footnote{Suppose the camera streams at 30 frames per second, then each frame must be processed within 33ms, the reference implementation operates in the order of 100ms per frame. }
     \item Location: since it encodes no notion of location with respect to other pixels, a lone pixel in the corner that has a similar colour to the skin tone is considered the same as a pixel surrounded by skin pixels
-    \item Number of clusters: there's no rigorous means for deciding the number of clusters to expect in the data and the selection of this value is critical 
-    \item Performance: recall from Section \ref{section:system_design} that, since the region selection operates on every frame, it must run in real-time. However, in benchmarking the k-means reference implementation in the SKLearn library takes an order of magnitude longer than the minimum requirement for this constraint. \footnote{Suppose the camera streams at 30 frames per second, then each frame must be processed within 33ms, the reference implementation operates in the order of 100ms per frame. }
+    \item Number of clusters: there's no rigorous means for deciding the number of clusters to expect in the data and the selection of this value is critical. Too many clusters can cause unexpected behaviour, but too few can result in undesired pixels being considered. 
     \item Illumination resistance: the algorithm is not resistant to differences in illumination. For example, since there is no notion of location encoded, specular reflection on the forehead may not be considered as skin.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
     % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
-    \includegraphics[width=0.5\textwidth]{example-image-a}
-   \caption{An example of the effect of differing the number of clusters} 
-\end{figure}
+    % \includegraphics[width=0.5\textwidth]{example-image-a}
+    \subfloat[Original image]{{\includegraphics[width=3cm]{implementation/c.jpg} }}%
+    \qquad
+    \subfloat[Clustering w/ k=2]{{\includegraphics[width=3cm]{implementation/r2.jpg} }}%
+    \qquad
+    \subfloat[Clustering w/ k=3]{{\includegraphics[width=3cm]{implementation/r3.jpg} }}%
+    \qquad
+    \subfloat[Clustering w/ k=4]{{\includegraphics[width=3cm]{implementation/r4.jpg} }}%
 
+    \subfloat[Original image\protect\footnotemark]{{\includegraphics[width=3cm]{implementation/c-2.jpg} }}%
+    \qquad
+    \subfloat[Clustering w/ k=2]{{\includegraphics[width=3cm]{implementation/r2-2.jpg} }}%
+    \qquad
+    \subfloat[Clustering w/ k=3]{{\includegraphics[width=3cm]{implementation/r3-2.jpg} }}%
+    \qquad
+    \subfloat[Clustering w/ k=4]{{\includegraphics[width=3cm]{implementation/r4-2.jpg} }}%
+   \caption{\textit{An example of the effect of differing the number of clusters} }
+\end{figure}
+\footnotetext[3]{An image of astronaut Neil Armstrong from the public domain. }
 % \subparagraph{Complexity}
 % Not practical to be run for real-time applications, as is one of the requirements outlined in the first section
 
 \subsection{Improving the previous approaches}
 Recall that the purpose of the region selection is to return the mean colour of the pixels considered. The mean value from each frame is taken as a time series which is used to infer the heart rate. So rather than attempting to classify each pixel as either skin or not, I use a combination of the previous techniques to take a weighted mean which emphasises pixels which are believed to be skin pixels, in such a way as to minimise the issues encountered with the previous techniques.
 \\ \\
-Instead of applying k-means to each frame, which is not feasible with the constraint of real-time performance, we apply it periodically. One of the resulting clusters will correspond to the skin tone of the face in question.
-Having identified the skin tone, this colour can be used as part of a probability model which we define to try and encode the likelihood of a particular pixel being part of the skin. This reduces the problem to: 
+Instead of applying k-means to each frame, which is not feasible with the constraint of real-time performance, we apply it once at the start of the video.
+One of the resulting clusters will correspond to the skin tone of the face in question.
+Having identified the skin tone, this colour can be used as part of a probability model which we define to try and encode the likelihood of a particular pixel being part of the skin. 
+In this way, we amortize the cost of skin detection over the entire video rather than per frame.
+This reduces the problem to: 
 \begin{itemize}
    \item Use k-means to identify the skin tone
    \item Use the skin tone to identify skin in the face for some number of consecutive frames 
@@ -241,9 +274,9 @@ The constants $\alpha$ and $\beta$ were selected experimentally. The skin tone i
 \subsubsection{Identifying skin pixels using the skin tone}
 Identifying the skin tone, as described, requires the use of the k-means algorithm. However, as previously mentioned, this is not a particularly suitable algorithm for real-time applications. Thus, the skin tone can only be identified periodically rather than for every frame. So given the skin tone identified in some earlier frame, the value must be used to robustly detect skin pixels in subsequent frames. This is challenging since there will almost certainly be changing illumination conditions as well as changing positions of the skin pixels.
 \\ \\
-A possible approach could be to record the number of pixels that were in the skin cluster when the skin tone was identified. Then, our algorithm could select the $n$ closest pixels in the colour space to the skin tone, where $n$ was the number of pixels in the skin cluster. However, this would not be robust to rotations of the face, since, in subsequent frames, the number of pixels visible to the camera could change. Assuming a static value of $n$ would not be robust.
-\\ \\
-Implicitly, the above solution also relies on the assumption that any change in illumination between frames affects all pixels equally. 
+% A possible approach could be to record the number of pixels that were in the skin cluster when the skin tone was identified. Then, our algorithm could select the $n$ closest pixels in the colour space to the skin tone, where $n$ was the number of pixels in the skin cluster. However, this would not be robust to rotations of the face, since, in subsequent frames, the number of pixels visible to the camera could change. Assuming a static value of $n$ would not be robust.
+% \\ \\
+Implicitly, the clustering approach relies on the assumption that any change in illumination between frames affects all pixels equally. 
 It assumes that in subsequent frames, the true skin pixels remain closer (in terms of Euclidean distance) to the skin tone than the non-skin pixels.
 %That is, the pixels which were within the skin cluster when k-means was applied, are still closer to the skin tone than non-skin pixels in subsequent frames. 
 This is a fairly strong assumption and is affected by phenomena such as shadows and specular reflection, which will, clearly, not affect all pixels equally.
@@ -272,14 +305,14 @@ Which, from Bayes' theorem, can be re-written as:
 \begin{align*}
    \frac{\Pr(C_\mathrm{skin}, x_i, s)}{\Pr(x_i, s)} = \frac{\Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i)\Pr(x_i)}{\Pr(x_i,s)}
 \end{align*}
-We could proceed with classification as follows, for some threshold probability $t$ that defines the decision boundary: 
-\begin{equation*}
-    \text{isSkin}(x_i) = 
-    \begin{cases}
-        \texttt{True}, \quad \text{if} \Pr(C_{\mathrm{skin}}| x_i, s) > t \\
-        \texttt{False}, \quad \text{otherwise}
-    \end{cases}
-\end{equation*}
+% We could proceed with classification as follows, for some threshold probability $t$ that defines the decision boundary: 
+% \begin{equation*}
+%     \text{isSkin}(x_i) = 
+%     \begin{cases}
+%         \texttt{True}, \quad \text{if} \Pr(C_{\mathrm{skin}}| x_i, s) > t \\
+%         \texttt{False}, \quad \text{otherwise}
+%     \end{cases}
+% \end{equation*}
 % \begin{align*}
 %     \Pr(C_\mathrm{skin}, x_i, s) &> \Pr(C_\mathrm{not-skin}, x_i, s) \\
 %     \frac{\Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i)\Pr(x_i)}{\Pr(x_i,s)} &> \frac{\Pr(s|C_\mathrm{not-skin}, x_i)\Pr(C_\mathrm{not-skin}|x_i)\Pr(x_i)}{\Pr(x_i,s)} \\
@@ -330,22 +363,38 @@ Given this, the probability is defined in proportion to the probability density 
     \Pr(s|C_\mathrm{skin}, x_i) = \frac{f(d(s,x_i))}{\sum_{s' \in C}f(d(s',x_i))}
 \end{equation*}
 \paragraph{Defining the threshold}
-The best choice of the threshold value is not obvious. Since the main goal of the algorithm is to minimise the effect of non-skin pixels, we instead take a weighted 
+The best choice of the threshold value is not obvious, but in this context, classification is not the goal.
+The aim of the algorithm is to minimise the effect of non-skin pixels on the mean, so instead I proceed by taking a weighted 
 mean colour based on the probability of each pixel being a skin pixel. 
 
 \paragraph{Accelerating class conditional computation}
 Computing the class-conditional distribution for each pixel in the bounding box of the face is a costly computation. 
 The distribution defined is continuous in nature and so maintaining floating point accuracy means the distribution cannot be precomputed (with finite memory).
-By instead, representing each component of the skin tone an integer and by rounding the Euclidean distance to the nearest integer, the distributions are precomputed 
+By instead, representing each component of the skin tone as an integer and by rounding the Euclidean distance to the nearest integer, the distributions are precomputed 
 for every possible skin tone. At runtime, the class conditional probability is achieved by lookup. Since the skin detection algorithm is applied to every frame in the video, 
 using precomputed distributions achieves a 2x speedup in the overall pipeline (see Appendix.).
 
 \begin{figure}[H]
     \centering
+    % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
+    % \includegraphics[width=0.5\textwidth]{example-image-a}
+    \subfloat[Original image]{{\includegraphics[width=7cm]{implementation/c.jpg} }}%
+    \qquad
+    \subfloat[Proposed]{{\includegraphics[width=7.2cm]{implementation/hmap-763-763.png} }}%
+
+    \subfloat[Original image]{{\includegraphics[width=7cm]{implementation/c-2.jpg} }}%
+    \qquad
+    \subfloat[Proposed]{{\includegraphics[width=7.2cm]{implementation/hmap-678-678.png} }}%
     % Give an example image with prior etc.
-    \includegraphics[width=0.5\textwidth]{example-image-b}
-   \caption{An example result from the described skin detection algorithm} 
+    % \includegraphics[width=0.5\textwidth]{example-image-b}
+    % \input{implementation/test.pgf}
+   \caption{\textit{An example result from the described skin detection algorithm} }
 \end{figure}
+\noindent
+The approach described achieves similar results to applying k-means per frame, but at an amortized cost 
+inversely proportional to the number of frames in the video. In practice, this results in a order of magnitude speedup in the time to process a frame
+for videos with more than a single frame (see Appendix.).
+
 
 %Discrete or not??
 % There is a finite range of possible values for the Euclidean distance between the colour of a pixel and the skin tone. This is because colours are discretised by the camera and therefore must lie between some set of bounds (usually 0 and 255). As a result, the defined distribution should also be discrete in nature.
@@ -469,12 +518,12 @@ However, it is not always the case that the most prevalent frequency is the true
 In practice, however, the true heart rate is not present in the resulting Fourier transform as a clear single peak. Instead, often, it will correspond to several peaks that are close by each with smaller powers. A larger peak unrelated to the heart rate
 might be present in the resulting transform which is unrelated to the heart rate. This phenomenon was reported by van der Kooij et al. \cite{vanderKooij2019} and is denoted here as the \textit{split peak issue}.
 In order to avoid this, a Butterworth filter is applied which removes isolated peaks and increases the power of peaks close together as is recommended by van der Kooij et al. \cite{vanderKooij2019}.
-\begin{figure}[H]
-    % Add an image showing how in noisy Fourier transforms the HR is not just highest peak with result from Butterworth filter
-    \centering
-    \includegraphics[width=0.5\textwidth]{example-image-a}
-   \caption{An example of the split peak issue with a Butterworth filter applied} 
-\end{figure}
+% \begin{figure}[H]
+%     % Add an image showing how in noisy Fourier transforms the HR is not just highest peak with result from Butterworth filter
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{example-image-a}
+%    \caption{An example of the split peak issue with a Butterworth filter applied} 
+% \end{figure}
 
 \subsubsection{Majority voting heuristic}
 In scenarios where there are large amounts of movement in the video, the most prevalent frequency may not correspond to the heart rate. This is problematic, if the movement occurs at a frequency 
