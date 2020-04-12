@@ -110,6 +110,7 @@ class NaiveKLTBoxing(FaceTracker):
             face_mask = np.pad(np.ones(shape=(h,w)), ((y, height-y-h),(x, width-x-w)) , 'constant', constant_values=0)
             start = Timing.time()
             self.old_points = cv.goodFeaturesToTrack(self._to_gray(frame),mask=np.uint8(face_mask), **self.feature_params)
+            self.original_points  = self.old_points
             time_to_select_points = Timing.time()-start
         return faces, time_to_select_points
   
@@ -129,8 +130,9 @@ class NaiveKLTBoxing(FaceTracker):
         x,y,w,h = min_x,min_y,max_x-min_x, max_y-min_y
         faces = [(x,y,w,h)]
         d = np.sqrt(np.sum(np.square(np.abs(new_points-self.old_points)), axis=1))
+        orig_d = np.sqrt(np.sum(np.square(np.abs(new_points-self.original_points)), axis=1))
         self.old_points = new_points.reshape(-1,1,2)
-        return faces, time_to_track_points, np.mean(d), np.std(d)
+        return faces, time_to_track_points, np.mean(d), np.std(d), np.mean(orig_d), np.std(orig_d)
 
     def _track(self, frame):
         if self.frame_number == 0:
@@ -170,13 +172,17 @@ class KLTBoxingWithThresholding(NaiveKLTBoxing):
             faces, time = self._redetect(frame)
             profiling["time_to_select_points"] = time
         else: 
-            faces, time, mean_d, std_d = self._track_points(frame)
+            faces, time, mean_d, std_d, mean_orig_d, std_orig_d = self._track_points(frame)
             profiling["time_to_track_points"] = time
             profiling["point_distance_mean"] = mean_d
             profiling["point_distance_std"] = std_d
+            profiling["orig_point_distance_mean"] = mean_orig_d
+            profiling["orig_point_distance_std"] = std_orig_d
+
             x,y,w,h = faces[0]
             increase_in_size = abs(self.estimated_size - (w*h))/self.estimated_size
             self.cumulative_change += increase_in_size + (increase_in_size*self.cumulative_change)
+            profiling["cumulative_change"] = self.cumulative_change
             self.estimated_size = w*h
             if self.cumulative_change > self.recompute_threshold:
                 faces, time = self._redetect(frame)

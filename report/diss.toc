@@ -9,17 +9,17 @@
 \contentsline {section}{\numberline {2.2}Remote photoplethysmography (rPPG)}{5}{section.2.2}% 
 \contentsline {subsection}{\numberline {2.2.1}Literature review}{6}{subsection.2.2.1}% 
 \contentsline {paragraph}{Verkyuysse et al.}{6}{section*.12}% 
-\contentsline {paragraph}{Poh et al.}{6}{section*.13}% 
-\contentsline {subsection}{\numberline {2.2.2}Extensions to current literature}{6}{subsection.2.2.2}% 
+\contentsline {paragraph}{Poh et al.}{7}{section*.13}% 
+\contentsline {subsection}{\numberline {2.2.2}Extensions to current literature}{7}{subsection.2.2.2}% 
 \contentsline {section}{\numberline {2.3}Relevant computer vision techniques}{7}{section.2.3}% 
 \contentsline {subsection}{\numberline {2.3.1}Face detection}{7}{subsection.2.3.1}% 
-\contentsline {paragraph}{Viola-Jones algorithm}{7}{section*.14}% 
+\contentsline {paragraph}{Viola-Jones algorithm}{8}{section*.14}% 
 \contentsline {paragraph}{Neural network approaches}{8}{section*.15}% 
 \contentsline {subsection}{\numberline {2.3.2}Optical flow}{8}{subsection.2.3.2}% 
 \contentsline {paragraph}{Lucas-Kanade}{9}{section*.16}% 
 \contentsline {paragraph}{Shi-Tomasi corner detection}{9}{section*.17}% 
-\contentsline {section}{\numberline {2.4}Relevant signal processing techniques}{9}{section.2.4}% 
-\contentsline {subsection}{\numberline {2.4.1}Blind source separation}{9}{subsection.2.4.1}% 
+\contentsline {section}{\numberline {2.4}Relevant signal processing techniques}{10}{section.2.4}% 
+\contentsline {subsection}{\numberline {2.4.1}Blind source separation}{10}{subsection.2.4.1}% 
 \contentsline {section}{\numberline {2.5}Requirements analysis}{10}{section.2.5}% 
 \contentsline {section}{\numberline {2.6}Languages and tooling}{11}{section.2.6}% 
 \contentsline {subsection}{\numberline {2.6.1}Languages}{11}{subsection.2.6.1}% 
@@ -28,7 +28,7 @@
 \contentsline {subsection}{\numberline {2.6.2}Libraries}{11}{subsection.2.6.2}% 
 \contentsline {paragraph}{OpenCV}{11}{section*.21}% 
 \contentsline {section}{\numberline {2.7}Professional practice}{11}{section.2.7}% 
-\contentsline {section}{\numberline {2.8}Starting Point}{11}{section.2.8}% 
+\contentsline {section}{\numberline {2.8}Starting Point}{12}{section.2.8}% 
 \contentsline {chapter}{\numberline {3}Implementation}{13}{chapter.3}% 
 \contentsline {section}{\numberline {3.1}Overview}{13}{section.3.1}% 
 \contentsline {section}{\numberline {3.2}System design}{13}{section.3.2}% 
@@ -71,9 +71,14 @@
 \contentsline {paragraph}{Performance cost}{32}{section*.53}% 
 \contentsline {paragraph}{Results}{33}{section*.55}% 
 \contentsline {paragraph}{Summary}{34}{section*.58}% 
-\contentsline {section}{\numberline {4.3}Analysis of sensing fidelity}{34}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.2.2}Accelerating region selection}{34}{subsection.4.2.2}% 
+\contentsline {section}{\numberline {4.3}Analysis of robustness}{34}{section.4.3}% 
+\contentsline {subsection}{\numberline {4.3.1}Gender and skin tone}{34}{subsection.4.3.1}% 
+\contentsline {subsection}{\numberline {4.3.2}Impact of movement}{34}{subsection.4.3.2}% 
+\contentsline {subsection}{\numberline {4.3.3}Relationship with distance}{34}{subsection.4.3.3}% 
+\contentsline {section}{\numberline {4.4}Analysis of sensing fidelity}{34}{section.4.4}% 
 \contentsline {paragraph}{Research questions}{34}{section*.59}% 
-\contentsline {paragraph}{Metrics}{34}{section*.60}% 
+\contentsline {paragraph}{Metrics}{35}{section*.60}% 
 \contentsline {paragraph}{MAHNOB}{35}{section*.61}% 
 \contentsline {paragraph}{Experiment test suite}{35}{section*.63}% 
 \contentsline {paragraph}{Results}{35}{section*.66}% 

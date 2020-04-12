@@ -199,8 +199,8 @@ def write_ppg_out(files, ppg_meta_output):
         writer.writerow(meta_columns)
 
     for index, file_set in enumerate(files):
-        for tr in range(2):
-            for rs in range(4):
+        for tr in range(1,2):
+            for rs in range(3,4):
                 vid, ppg_file, ecg_file = file_set[0], file_set[1], file_set[2]
                 config = map_config([tr, rs, 0], 0, 0)
                 print("========================")
@@ -389,9 +389,9 @@ def signal_processing_experiments(files, ppg_meta_file):
 
 if __name__ == "__main__":
     files = test_data()
-    ppg_meta_output = f"{PATH}output/hr_evaluation/ppg_meta_2.csv"
-    # write_ppg_out(files, ppg_meta_output)
-    signal_processing_experiments(files, ppg_meta_output)
+    ppg_meta_output = f"{PATH}output/hr_evaluation/ppg_meta_12_03_20.csv"
+    write_ppg_out(files, ppg_meta_output)
+    # signal_processing_experiments(files, ppg_meta_output)
     pass
 
 

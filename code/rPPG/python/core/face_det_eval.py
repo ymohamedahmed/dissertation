@@ -13,7 +13,6 @@ def matrix_from_face(face, width, height):
     matrix = np.pad(matrix, ((y,height-(y+h)),(x,width-(x+w))), 'constant', constant_values=0)
     matrix = np.repeat(matrix[:, :, np.newaxis], 3, axis=2)
     return matrix
-    cls = ["Video", "Stationary", "Threshold", "Frame number", "Time of face tracker", "Time of face detector", "FN", "FP", "TN", "TP", "Time to select points", "Time to track points"]
 
 def evaluation_pipeline(detector, tracker, video_path):
     # Profiling
@@ -63,8 +62,8 @@ def evaluation_pipeline(detector, tracker, video_path):
 #         print(f"FN: {fn}, FP: {fp}, TN: {tn}, TP:{tp}")
         # Format (video name, frame number, time_to_track, time_to_detect, FN, FP, TN, TP, time_to_select_points, time_to_track_points)
         selecting = profiling_tr["time_to_select_points"] if "time_to_select_points" in profiling_tr else None
-        tracking = (profiling_tr["time_to_track_points"], profiling_tr["point_distance_mean"], profiling_tr["point_distance_std"]) if "time_to_track_points" in profiling_tr else (None, None, None)
-        results.append([video_path, tracker.recompute_threshold, frame_number, time_tr, time_det, fn, fp, tn, tp, selecting, tracking[0], tracking[1], tracking[2]])
+        tracking = (profiling_tr["time_to_track_points"], profiling_tr["point_distance_mean"], profiling_tr["point_distance_std"], profiling_tr["orig_point_distance_mean"], profiling_tr["orig_point_distance_std"], profiling_tr["cumulative_change"]) if "time_to_track_points" in profiling_tr else (None, None, None, None, None, None)
+        results.append([video_path, tracker.recompute_threshold, frame_number, time_tr, time_det, fn, fp, tn, tp, selecting, tracking[0], tracking[1], tracking[2], tracking[3], tracking[4], tracking[5]])
     return results
 #     return (values, heart_rates, frame_number, total_time, time_tracking, time_roi, time_display, time_ica, time_read)
 def tracker_vs_detector(video, threshold):
@@ -78,18 +77,24 @@ def tracker_vs_detector(video, threshold):
 #     overall_results.to_csv(f"{PATH}output/tracking_vs_detecting_{video_name}.csv")
     return overall_results
 
-folders = ["21", "22", "23", "24", "25", "26", "27", "28", "29"]
+# folders = ["21", "22", "23", "24", "25", "26", "27", "28", "29"]
+# videos = []
+# movement_vids = ["mov-1.mp4", "mov-2.mp4", "mov-3.mp4"]
+# stationary_vids = []
+# movement_vids = [f"test-face-detection-videos/{v}" for v in movement_vids]
+# for folder in folders:
+#     avi, _ = get_avi_bdf(PATH, folder)
+#     stationary_vids.append(f"mahnob/{folder}/{avi}")
+# videos = movement_vids + stationary_vids
+# np.random.shuffle(videos)
 videos = []
-movement_vids = ["mov-1.mp4", "mov-2.mp4", "mov-3.mp4"]
-stationary_vids = []
-movement_vids = [f"test-face-detection-videos/{v}" for v in movement_vids]
-for folder in folders:
-    avi, _ = get_avi_bdf(PATH, folder)
-    stationary_vids.append(f"mahnob/{folder}/{avi}")
-videos = movement_vids + stationary_vids
-np.random.shuffle(videos)
+for d in [1, 1.5, 2]:
+    for e in ["stat", "star", "jog"]:
+        for r in [1,2,3]:
+            videos.append(f"{PATH}experiments/yousuf-re-run/{d}_{e}_{r}.mp4")
+# videos = [f"{PATH}expriments/yousuf-re-run/"
 print(videos)
-cls = ["Video", "Threshold", "Frame number", "Time of face tracker", "Time of face detector", "FN", "FP", "TN", "TP", "Time to select points", "Time to track points", "Point distance mean", "Point distance std."]
+cls = ["Video", "Threshold", "Frame number", "Time of face tracker", "Time of face detector", "FN", "FP", "TN", "TP", "Time to select points", "Time to track points", "Point distance mean", "Point distance std.", "Point distance original mean.", "Point distance original std.", "Cumulative change"]
 """
 results = pd.DataFrame(columns=cls)
 results = results.append(tracker_vs_detector("test-face-detection-videos/mov-3.mp4", 0.4))
@@ -108,4 +113,4 @@ for t_index, t in enumerate(thresholds):
     for v_index, v in enumerate(videos):
         print(f"Beginning experiment: {(t_index*len(videos))+v_index}/{len(thresholds)*len(videos)} threshold: {t} and video: {v}")
         results = results.append(tracker_vs_detector(v,t))
-        results.to_csv(f"{PATH}output/tracking_vs_detecting_large_scale_7.csv")
+        results.to_csv(f"{PATH}output/tracking_vs_detecting_13_04_20.csv")

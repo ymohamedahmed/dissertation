@@ -250,6 +250,8 @@ Face tracking, as described, provides large performance benefits across all vide
 Critically, this comes without any evidence of a detrimental effect on fidelity. As an optimisation, this
 is important since, although the videos in the test suite have a fixed frame rate, which would be exceeded by face detection, it allows future work to 
 use higher frame rate cameras whilst still maintaining real-time behaviour. 
+
+\subsection{Accelerating region selection}
 % \paragraph{Correctness}
 
 % \section{Region selection}
@@ -369,13 +371,19 @@ I show that over the test suite used, rPPG is comparable in fidelity to a smartw
     \item Can it replicate or exceed the performance of a wearable device?
 \end{itemize}
 
-% \subsection{Stationary videos}
-% \subsection{The effect of movement}
-% \subsection{Comparative fidelity}
 \paragraph{Metrics}
 In this context, we wish to particularly penalise large differences between the true heart rate and the predicted heart rate. For this, 
 the \textit{root mean squared error} is a much more useful metric than \textit{mean absolute error}. However, both are reported since the latter helps
 to give an intuitive understanding about the accuracy of the sensor in question.
+
+% \subsection{Stationary videos}
+% \subsection{The effect of movement}
+% \subsection{Comparative fidelity}
+\subsection{Gender and skin tone}
+\subsection{Impact of movement}
+\subsection{Impact of distance}
+\subsection{Overview}
+
 
 
 \paragraph{MAHNOB}
