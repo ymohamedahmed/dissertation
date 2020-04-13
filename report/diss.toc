@@ -72,16 +72,18 @@
 \contentsline {paragraph}{Results}{33}{section*.55}% 
 \contentsline {paragraph}{Summary}{34}{section*.58}% 
 \contentsline {subsection}{\numberline {4.2.2}Accelerating region selection}{34}{subsection.4.2.2}% 
-\contentsline {section}{\numberline {4.3}Analysis of robustness}{34}{section.4.3}% 
-\contentsline {subsection}{\numberline {4.3.1}Gender and skin tone}{34}{subsection.4.3.1}% 
-\contentsline {subsection}{\numberline {4.3.2}Impact of movement}{34}{subsection.4.3.2}% 
-\contentsline {subsection}{\numberline {4.3.3}Relationship with distance}{34}{subsection.4.3.3}% 
-\contentsline {section}{\numberline {4.4}Analysis of sensing fidelity}{34}{section.4.4}% 
+\contentsline {section}{\numberline {4.3}Analysis of sensing fidelity}{34}{section.4.3}% 
 \contentsline {paragraph}{Research questions}{34}{section*.59}% 
-\contentsline {paragraph}{Metrics}{35}{section*.60}% 
+\contentsline {paragraph}{Metrics}{34}{section*.60}% 
+\contentsline {subsection}{\numberline {4.3.1}Impact of noise}{35}{subsection.4.3.1}% 
+\contentsline {subsection}{\numberline {4.3.2}Gender and skin tone}{35}{subsection.4.3.2}% 
+\contentsline {subsection}{\numberline {4.3.3}Impact of movement}{35}{subsection.4.3.3}% 
+\contentsline {subsection}{\numberline {4.3.4}Impact of distance}{35}{subsection.4.3.4}% 
+\contentsline {subsection}{\numberline {4.3.5}Impact of framerate}{35}{subsection.4.3.5}% 
+\contentsline {subsection}{\numberline {4.3.6}Overview}{35}{subsection.4.3.6}% 
 \contentsline {paragraph}{MAHNOB}{35}{section*.61}% 
 \contentsline {paragraph}{Experiment test suite}{35}{section*.63}% 
-\contentsline {paragraph}{Results}{35}{section*.66}% 
+\contentsline {paragraph}{Results}{36}{section*.66}% 
 \contentsline {chapter}{\numberline {5}Conclusion}{38}{chapter.5}% 
 \contentsline {section}{\numberline {5.1}Significance of results}{38}{section.5.1}% 
 \contentsline {section}{\numberline {5.2}Successes and failures}{38}{section.5.2}% 
