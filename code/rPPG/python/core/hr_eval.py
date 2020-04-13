@@ -159,6 +159,9 @@ def hr_with_max_power(freqs):
     return hrs[np.argmax([freqs[1], freqs[4], freqs[7]])]
 
 def noise(data, framerate, true_hr):
+    if true_hr is None:
+        return None
+
     data = (data-np.mean(data))/np.std(data)
     transform = np.fft.rfft(data)
     freqs = np.fft.rfftfreq(len(data), 1.0/framerate)
@@ -237,17 +240,22 @@ def enough_ppg_samples(ppg_signal):
     # return all((hist>lower)&(hist<upper))
     return all(hist > threshold)
 
-def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
-    rppg_hr_pca = np.array([])
+def sample_framerate(ppg, fr, true_fr):
+    ups = np.zeros(shape=(int(len(ppg)//(true_fr/fr)+1), 3))
+    for i in range(3):
+        ups[:,i] = np.interp(np.arange(0, len(ppg), true_fr/fr), np.arange(0, len(ppg)), ppg[:,i])
+    return ups
+
+
+def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate, true_framerate):
     rppg_hr_ica = np.array([])
-    rppg_hr_rgb = np.array([])
 
     ecg, ecg_sf = get_ecg_signal(ecg_file)
+    noises = np.array([])
     ecg_ws, ecg_o = len(ecg)*window_size/len(rppg_signal), len(ecg)*offset/len(rppg_signal)
     ecg_hr = []
     ecg_hr_fft = []
 
-    print(ppg_file)
     ppg_file_exists = not(ppg_file is None) and not(ppg_file == "") if type(ppg_file) == str else not(np.isnan(ppg_file)) #and not(np.isnan(ppg_file))
     if ppg_file_exists:
         ppg = add_time_to_ppg(get_ppg_signal(ppg_file))
@@ -258,9 +266,7 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
 
     for i, base in enumerate(np.arange(0, len(rppg_signal)-window_size+1, offset)):
         sig = rppg_signal[base:base+window_size]
-        rppg_hr_pca = np.append(rppg_hr_pca, PCAProcessor().get_hr(sig, framerate))
-        # rppg_hr_ica = np.append(rppg_hr_ica, ICAProcessor().get_hr(sig, framerate))
-        # rppg_hr_rgb = np.append(rppg_hr_rgb, PrimitiveProcessor().get_hr(sig, framerate))
+        rppg_hr_ica = np.append(rppg_hr_ica, ICAProcessor().get_hr(sig, framerate))
 
         e_low, e_high = int(i*ecg_o), int((i*ecg_o)+ecg_ws)
         ecg_hr_fft.append(Processor()._prevalent_freq(ecg[e_low:e_high], ecg_sf)[0])
@@ -273,6 +279,7 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
                 plt.plot(ecg[e_low:e_high])
                 plt.show()
 
+        noises = np.append([noise(sig[:,i], framerate, ecg_hr[-1]) for i in range(3)])
         p_low, p_high = int(i*ppg_o), int((i*ppg_o)+ppg_ws)
         
         if ppg_file_exists:
@@ -309,9 +316,8 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
             ppg_hr_fft.append(None)
 
     rppg_hr_ica = rppg_hr_ica.reshape((len(rppg_hr_ica)//9, 9))
-    rppg_hr_pca = rppg_hr_pca.reshape((len(rppg_hr_pca)//9, 9))
-    rppg_hr_rgb = rppg_hr_rgb.reshape((len(rppg_hr_rgb)//9, 9))
-    return (rppg_hr_ica, rppg_hr_pca, rppg_hr_rgb, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft)
+    noises = noises.reshape(len(noises)//3, 3)
+    return (rppg_hr_ica, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft, noises)
 
 def majority_vote(freqs):
     hrs = [freqs[0], freqs[3], freqs[6]]
@@ -325,22 +331,15 @@ def majority_vote(freqs):
     else:
         return hr_max_power
 
-def signal_processing_experiments(files, ppg_meta_file):
-    sp_output = f"{PATH}output/hr_evaluation/sp-fixed-bpm-trilogy-new-offset.csv"
+def signal_processing_experiments(files, ppg_meta_file, sp_output):
     ppg_meta_file = check_path(ppg_meta_file)
-    columns = ["Video", "Tracker", "Region selector", "Window size", "Offset size", "Heart Rate Number", 
-     "rPPG HR ICA", "rPPG HR MV", "rPPG HR PCA", 
+    columns = ["Video", "Tracker", "Region selector", "Window size", "Offset size", "Heart Rate Number", "Framerate", 
+     "rPPG HR ICA", "rPPG HR MV", 
      "PPG HR BC", "PPG HR FFT",
      "ECG HR BC", "ECG HR FFT",
-     "ICA 1 HR", "ICA 1 Power", "ICA 1 BC",
-     "ICA 2 HR", "ICA 2 Power", "ICA 2 BC", 
-     "ICA 3 HR", "ICA 3 Power", "ICA 3 BC",
-     "PCA 1 HR", "PCA 1 Power", "PCA 1 BC",
-     "PCA 2 HR", "PCA 2 Power", "PCA 2 BC",
-     "PCA 3 HR", "PCA 3 Power", "PCA 3 BC",
-     "R HR", "R Power", "R BC",
-     "G HR", "G Power", "G BC",
-     "B HR", "B Power", "B BC"
+     "ICA 1 HR", "ICA 1 Power", "ICA 1 BC", "Noise 1",
+     "ICA 2 HR", "ICA 2 Power", "ICA 2 BC", "Noise 2",
+     "ICA 3 HR", "ICA 3 Power", "ICA 3 BC", "Noise 3"
      ]
     ppg_meta = pd.read_csv(ppg_meta_file)
     with open(sp_output, 'a') as fd:
@@ -358,41 +357,42 @@ def signal_processing_experiments(files, ppg_meta_file):
         signal = np.loadtxt(check_path(rppg_file))
         # for ws in np.arange(600, 1200, 100):
         #     for off in np.arange(30, 120, 30):
-        ws, off = 1200, 120
+        ws, off = 600, 120
         print("===================================")
         progress = 100*index/len(ppg_meta)
         print(f"Experiment progress: {progress}%")
         vid_name = ppg_row["Video file"]
-        if ("KLTBoxingWithThresholding" in rppg_file and "BayesianSkinDetector-weighted" in rppg_file and "mahnob" in vid_name):
+        if ("KLTBoxingWithThresholding" in rppg_file and "BayesianSkinDetector-weighted" in rppg_file):
             print(f"Considering: {vid_name}, Window size: {ws}, Offset: {off}")
-            rppg_ica, rppg_pca, rppg_rgb, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft = evaluate(signal, ppg_row["PPG file"], ppg_row["ECG file"], ws, off, ppg_row["Framerate"])
-            n_rows, _ = rppg_ica.shape
-            for i in range(n_rows):
-                row = [
-                    ppg_row["Video file"], ppg_row["Tracker"], ppg_row["Region selector"], ws, off, i, 
-                    hr_with_max_power(rppg_ica[i, :]), majority_vote(rppg_ica[i,:]), rppg_pca[i,0], 
-                    ppg_hr[i], ppg_hr_fft[i],
-                    ecg_hr[i], ecg_hr_fft[i],
-                    rppg_ica[i,0], rppg_ica[i,1], rppg_ica[i,2], 
-                    rppg_ica[i,3], rppg_ica[i,4], rppg_ica[i,5], 
-                    rppg_ica[i,6], rppg_ica[i,7], rppg_ica[i,8], 
-                    rppg_pca[i,0], rppg_pca[i,1], rppg_pca[i,2], 
-                    rppg_pca[i,3], rppg_pca[i,4], rppg_pca[i,5],
-                    rppg_pca[i,6], rppg_pca[i,7], rppg_pca[i,8],
-                    rppg_rgb[i,0], rppg_rgb[i,1], rppg_rgb[i,2], 
-                    rppg_rgb[i,3], rppg_rgb[i,4], rppg_rgb[i,5],
-                    rppg_rgb[i,6], rppg_rgb[i,7], rppg_rgb[i,8]
-                    ]
-                with open(sp_output, 'a') as fd:
-                    writer = csv.writer(fd)
-                    writer.writerow(row)
+            # rppg_ica, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft, noises = evaluate(signal, ppg_row["PPG file"], ppg_row["ECG file"], ws, off, ppg_row["Framerate"])
+            for framerate in [5, 10, 15, 20, 25, 30]:
+                # TODO update window size based on sampeld framerate
+                true_fr = ppg_row["Framerate"]
+                signal = sample_framerate(signal, framerate, true_fr)
+                new_ws, new_off = ws*true_fr/framerate, off*true_fr/framerate
+                rppg_ica, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft, noises = evaluate(signal, ppg_row["PPG file"], ppg_row["ECG file"], new_ws, new_off, framerate, true_fr)
+                n_rows, _ = rppg_ica.shape
+                for i in range(n_rows):
+                    row = [
+                        ppg_row["Video file"], ppg_row["Tracker"], ppg_row["Region selector"], ws, off, i, framerate, 
+                        hr_with_max_power(rppg_ica[i, :]), majority_vote(rppg_ica[i,:]), 
+                        ppg_hr[i], ppg_hr_fft[i],
+                        ecg_hr[i], ecg_hr_fft[i],
+                        rppg_ica[i,0], rppg_ica[i,1], rppg_ica[i,2], noises[i, 0], 
+                        rppg_ica[i,3], rppg_ica[i,4], rppg_ica[i,5], noises[i, 1],
+                        rppg_ica[i,6], rppg_ica[i,7], rppg_ica[i,8], noises[i, 2]
+                        ]
+                    with open(sp_output, 'a') as fd:
+                        writer = csv.writer(fd)
+                        writer.writerow(row)
             
 
 if __name__ == "__main__":
     files = test_data()
     ppg_meta_output = f"{PATH}output/hr_evaluation/ppg_meta_12_03_20.csv"
+    sp_output = f"{PATH}output/hr_evaluation/sp_output_12_03_20.csv"
     write_ppg_out(files, ppg_meta_output)
-    # signal_processing_experiments(files, ppg_meta_output)
+    signal_processing_experiments(files, ppg_meta_output, sp_output)
     pass
 
 
