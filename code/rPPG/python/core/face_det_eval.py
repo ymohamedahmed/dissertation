@@ -107,7 +107,8 @@ results.to_csv(f"{PATH}output/mov_3_tweaked_scaling.csv")
 # thresholds = [0.18, 0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.325, 0.35, 0.375, 0.4]
 # results = tracker_vs_detector("test-face-detection-videos/mov-1.mp4",0.15)
 # results.to_csv(f"{PATH}/mov-1-error-correction.csv")
-thresholds = [0.1, 0.125, 0.15, 0.175, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5]
+# thresholds = [0.1, 0.125, 0.15, 0.175, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5]
+thresholds = [0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.35, 0.45]
 results = pd.DataFrame(columns=cls)
 for t_index, t in enumerate(thresholds): 
     for v_index, v in enumerate(videos):

@@ -158,14 +158,15 @@ def hr_with_max_power(freqs):
     hrs = [freqs[0], freqs[3], freqs[6]]
     return hrs[np.argmax([freqs[1], freqs[4], freqs[7]])]
 
-def noise(data, framerate):
+def noise(data, framerate, true_hr):
     data = (data-np.mean(data))/np.std(data)
     transform = np.fft.rfft(data)
     freqs = np.fft.rfftfreq(len(data), 1.0/framerate)
     freqs = 60*freqs
-    band_pass = np.where((freqs < 40) | (freqs > 240) )[0]
+    delta = 5
+    hr_range = np.where((freqs > 40) & (freqs < 240) & (freqs > (true_hr + delta)) & (freqs < ((true_hr - delta))))[0]
     transform = np.abs(transform)**2
-    noise = np.sum(transform[band_pass])
+    noise = np.sum(transform[hr_range])
     return noise
 
 def map_config(config: list, window_size, offset):
@@ -193,7 +194,7 @@ def map_config(config: list, window_size, offset):
     return Configuration(map_tracker(t), map_region_selector(rs), map_signal_processor(sp), window_size, offset)
 
 def write_ppg_out(files, ppg_meta_output):
-    meta_columns = ["Video file", "rPPG file", "PPG file", "ECG file", "Framerate", "Tracker", "Region selector", "Time mean", "Time std", "Number of frames", "Total time", "Noise"]
+    meta_columns = ["Video file", "rPPG file", "PPG file", "ECG file", "Framerate", "Tracker", "Region selector", "Time mean", "Time std", "Number of frames", "Total time"]
     with open(ppg_meta_output, 'a') as fd:
         writer = csv.writer(fd)
         writer.writerow(meta_columns)
@@ -210,7 +211,7 @@ def write_ppg_out(files, ppg_meta_output):
                 values, framerate, mean_time, time_std = track_ppg(vid, config)
                 total = time.time()-start
                 value_output = f"{PATH}output/hr_evaluation/{vid.split('/')[-1][:-4]}-{str(config.tracker)}-{str(config.region_selector)}-fixed.csv"
-                meta_row = [vid, value_output, ppg_file, ecg_file, framerate, str(config.tracker), str(config.region_selector), mean_time, time_std, len(values), total, noise(values, framerate)]
+                meta_row = [vid, value_output, ppg_file, ecg_file, framerate, str(config.tracker), str(config.region_selector), mean_time, time_std, len(values), total]
                 with open(ppg_meta_output, 'a') as fd:
                     writer = csv.writer(fd)
                     writer.writerow(meta_row)
@@ -258,8 +259,8 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate):
     for i, base in enumerate(np.arange(0, len(rppg_signal)-window_size+1, offset)):
         sig = rppg_signal[base:base+window_size]
         rppg_hr_pca = np.append(rppg_hr_pca, PCAProcessor().get_hr(sig, framerate))
-        rppg_hr_ica = np.append(rppg_hr_ica, ICAProcessor().get_hr(sig, framerate))
-        rppg_hr_rgb = np.append(rppg_hr_rgb, PrimitiveProcessor().get_hr(sig, framerate))
+        # rppg_hr_ica = np.append(rppg_hr_ica, ICAProcessor().get_hr(sig, framerate))
+        # rppg_hr_rgb = np.append(rppg_hr_rgb, PrimitiveProcessor().get_hr(sig, framerate))
 
         e_low, e_high = int(i*ecg_o), int((i*ecg_o)+ecg_ws)
         ecg_hr_fft.append(Processor()._prevalent_freq(ecg[e_low:e_high], ecg_sf)[0])
