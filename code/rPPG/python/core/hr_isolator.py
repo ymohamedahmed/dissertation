@@ -13,8 +13,8 @@ class Processor():
         """
         Return the most prevalent frequency using power spectrum
         """
-        data = hp.filter_signal(data, [0.7, 3.5], sample_rate=framerate, 
-                        order=3, filtertype='bandpass')
+        # data = hp.filter_signal(data, [0.7, 3.5], sample_rate=framerate, 
+        #                 order=3, filtertype='bandpass')
         # sos = scipy.signal.butter(3, 0.2, output='sos')
         # data = scipy.signal.sosfilt(sos, data)
         if not(np.std(data) == 0):
@@ -33,13 +33,13 @@ class Processor():
         # heart_rate = freqs[id]
 
         hr_bc = None
-        try:
-            _, m = hp.process(data, sample_rate = framerate )    
-            hr_bc = m["bpm"]
-        except Exception as e:
-            print(e)
-            print("Error beat counting rPPG")
-            hr_bc = None
+        # try:
+        #     _, m = hp.process(data, sample_rate = framerate )    
+        #     hr_bc = m["bpm"]
+        # except Exception as e:
+        #     print(e)
+        #     print("Error beat counting rPPG")
+        #     hr_bc = None
         return hr, power, hr_bc
         # return heart_rate, np.max(filtered), hr_bc
 

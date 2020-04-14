@@ -19,8 +19,7 @@ def evaluation_pipeline(detector, tracker, video_path):
     total_start = Timing.time()
     results = []
     
-    
-    cap = cv.VideoCapture(PATH + video_path)
+    cap = cv.VideoCapture(video_path)
     heart_rates = []
     width = int(cap.get(cv.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv.CAP_PROP_FRAME_HEIGHT))
@@ -31,7 +30,7 @@ def evaluation_pipeline(detector, tracker, video_path):
         if ret == False:
             cap.release()
             cv.destroyAllWindows()
-            break
+            break    
         face_found = False
         faces_tr, faces_det = [],[]
         time_tr, time_det = 0,0
