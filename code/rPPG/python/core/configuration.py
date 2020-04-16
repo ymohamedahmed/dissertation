@@ -1,4 +1,4 @@
-MAC = False
+MAC = True
 LINUX_PATH = "/home/yousuf/workspace/dissertation/code/rPPG/"
 MAC_PATH = "/Users/yousuf/Workspace/dissertation/code/rPPG/"
 PATH =  MAC_PATH if MAC else LINUX_PATH

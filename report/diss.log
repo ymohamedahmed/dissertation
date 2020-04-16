@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2020.3.30)  13 APR 2020 11:27
+This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2020.3.30)  16 APR 2020 19:30
  system commands enabled.
 **diss
 (./diss.tex
@@ -48,7 +48,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.069 seconds
+luaotfload | main : initialization completed in 0.074 seconds
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2018/09/03 v1.4i Standard LaTeX document class
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/size12.clo
@@ -1949,49 +1949,49 @@ Chapter 4.
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 169.
 
-(./evaluation/redect.pgf) [32] (./evaluation/tracking_time.pgf) [33] [34]
-(./evaluation/mahnob.pgf) [35] (./evaluation/fidelity.pgf)
+(./evaluation/redect.pgf) [32] (./evaluation/tracking_time.pgf) [33]
+(./evaluation/precomputed.pgf) (./bayesian.pgf) [34] [35]
+(./evaluation/mahnob.pgf) (./evaluation/fidelity.pgf)
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 428.
+               Default added (so using `tbp') on input line 458.
 
-[36]) [37]
+[36] [37]) [38]
 Chapter 5.
-(./conclusion/conclusion.tex [38
+(./conclusion/conclusion.tex [39
 
-]) (./diss.bbl [39] [40
+]) (./diss.bbl [40] [41
 
-] [41]) [42] [43
+] [42]) [43] [44
 
+]
+[45
 
 
 ]
 Appendix A.
-<evaluation/1.jpg, id=770, 4047.12pt x 3035.34pt>
+<evaluation/1.jpg, id=781, 4047.12pt x 3035.34pt>
 File: evaluation/1.jpg Graphic file (type jpg)
 <use evaluation/1.jpg>
 Package luatex.def Info: evaluation/1.jpg  used on input line 198.
 (luatex.def)             Requested size: 250.24216pt x 187.6704pt.
-<evaluation/1-5.jpg, id=771, 4047.12pt x 3035.34pt>
+<evaluation/1-5.jpg, id=782, 4047.12pt x 3035.34pt>
 File: evaluation/1-5.jpg Graphic file (type jpg)
 <use evaluation/1-5.jpg>
 Package luatex.def Info: evaluation/1-5.jpg  used on input line 203.
 (luatex.def)             Requested size: 250.24216pt x 187.6704pt.
-<evaluation/2.jpg, id=772, 4047.12pt x 3035.34pt>
+<evaluation/2.jpg, id=783, 4047.12pt x 3035.34pt>
 File: evaluation/2.jpg Graphic file (type jpg)
 <use evaluation/2.jpg>
 Package luatex.def Info: evaluation/2.jpg  used on input line 208.
 (luatex.def)             Requested size: 250.24216pt x 187.6704pt.
-[44
+[46
 
-<./evaluation/1.jpg><./evaluation/1-5.jpg>] [45<./evaluation/2.jpg>]
-Appendix B.
-(./evaluation/precomputed.pgf) (./bayesian.pgf) [46
-
-] [47] [48
+<./evaluation/1.jpg><./evaluation/1-5.jpg>] [47<./evaluation/2.jpg>]
+[48
 
 ]
-Appendix C.
+Appendix B.
 (./propbody.tex
 Underfull \hbox (badness 10000) in paragraph at lines 36--42
 
@@ -2020,14 +2020,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 36--42
 [49
 
 ] [50] [51] [52] [53]) [54]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 233.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 233.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 221.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 221.
  (./diss.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 233.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 233.
-Package rerunfilecheck Info: File `diss.out' has not changed.
-(rerunfilecheck)             Checksum: F04EFFC11C20512B85F3EFA99D65FFD0;3578.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 233.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 221.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 221.
+
+
+Package rerunfilecheck Warning: File `diss.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `diss.out':
+(rerunfilecheck)             Before: 316370B72F67872598E2328730C37FF8;3601
+(rerunfilecheck)             After:  85C32A43DE9A477A2815AD2D058BE0A2;3611.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 221.
 )
 
 Here is how much of LuaTeX's memory you used:
@@ -2036,7 +2043,7 @@ Here is how much of LuaTeX's memory you used:
  1183 words of node memory still in use:
    15 hlist, 2 vlist, 10 rule, 13 glue, 4 kern, 1 glyph, 82 attribute, 62 glue_s
 pec, 82 attribute_list, 2 write, 16 pdf_literal, 16 pdf_colorstack nodes
-   avail lists: 1:15,2:484658,3:322332,4:463,5:689,6:68,7:4371,8:68,9:1135,10:32
+   avail lists: 1:15,2:484658,3:322332,4:527,5:781,6:68,7:6114,8:68,9:1298,10:32
 ,11:308
  57994 multiletter control sequences out of 65536+600000
  82 fonts using 10675703 bytes
@@ -2072,7 +2079,7 @@ cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/c
 msy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.
 pfb>
-Output written on diss.pdf (60 pages, 10746860 bytes).
+Output written on diss.pdf (60 pages, 10746165 bytes).
 
 PDF statistics: 997 PDF objects out of 1000 (max. 8388607)
  838 compressed objects within 9 object streams

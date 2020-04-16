@@ -167,14 +167,24 @@ def noise(data, framerate, true_hr):
     transform = np.fft.rfft(data)
     freqs = np.fft.rfftfreq(len(data), 1.0/framerate)
     freqs = 60*freqs
-    delta = 5
+    delta = 4
+    band_pass = np.where((freqs < 40) | (freqs > 240) )[0]
+    transform[band_pass] = 0
     # hr_range = np.where((freqs > 40) & (freqs < 240) & (freqs > (true_hr + delta)) & (freqs < ((true_hr - delta))))[0]
-    lower = (freqs < 240) & (freqs > (true_hr + delta))
-    upper = (freqs < (true_hr - delta)) & (freqs > 40)
+    lower = (freqs > (true_hr + delta))
+    upper = (freqs < (true_hr - delta))
     hr_range = np.where(lower | upper)[0]
     transform = np.abs(transform)**2
     noise_value = np.sum(transform[hr_range])
-    return noise_value
+    # print(f"Noise value {noise_value}")
+    # print(f"{np.sum(transform[~hr_range])}")
+    numerator = np.sum(transform)-np.sum(transform[hr_range])
+    return numerator/np.sum(transform)
+    # return np.sum(transform)/numerator
+    # return noise_value/np.sum(transform)
+    # return noise_value/np.sum(transform[~hr_range])
+    # return np.sum(transform[~hr_range])/noise_value
+    # return noise_value
 
 def map_config(config: list, window_size, offset):
     """
@@ -260,6 +270,7 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate, tr
 
     ecg, ecg_sf = get_ecg_signal(ecg_file)
     noises = np.array([])
+    selfd_noises = np.array([])
     ecg_ws, ecg_o = len(ecg)*window_size/len(rppg_signal), len(ecg)*offset/len(rppg_signal)
     ecg_hr = []
     ecg_hr_fft = []
@@ -278,7 +289,8 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate, tr
         rppg_hr_ica = np.append(rppg_hr_ica, ICAProcessor().get_hr(sig, framerate))
 
         e_low, e_high = int(i*ecg_o), int((i*ecg_o)+ecg_ws)
-        ecg_hr_fft.append(Processor()._prevalent_freq(ecg[e_low:e_high], ecg_sf)[0])
+        # ecg_hr_fft.append(Processor()._prevalent_freq(ecg[e_low:e_high], ecg_sf)[0])
+        ecg_hr_fft.append(None)
         try:
             ecg_hr.append(mean_heart_rate(ecg[e_low:e_high],ecg_sf))
         except Exception as e:
@@ -288,10 +300,12 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate, tr
                 plt.plot(ecg[e_low:e_high])
                 plt.show()
 
-        noises = np.append(noises, np.array([noise(sig[:,i], framerate, ecg_hr[-1]) for i in range(3)]))
-        p_low, p_high = int(i*ppg_o), int((i*ppg_o)+ppg_ws)
+        noises = np.append(noises, np.array([noise(sig[:,dim], framerate, ecg_hr[-1]) for dim in range(3)]))
+        selfd_noises = np.append(selfd_noises, np.array([noise(sig[:,dim], framerate, majority_vote(rppg_hr_ica[i*9:])) for dim in range(3)]))
+        # p_low, p_high = int(i*ppg_o), int((i*ppg_o)+ppg_ws)
         
-        if ppg_file_exists:
+        # if ppg_file_exists:
+        if False:
             filtered = ppg[(ppg["Time"] < p_high)&(ppg["Time"]>p_low)]
             # if (len(filtered) > window_size):
             if(len(filtered) > window_size):
@@ -326,7 +340,8 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate, tr
 
     rppg_hr_ica = rppg_hr_ica.reshape((len(rppg_hr_ica)//9, 9))
     noises = noises.reshape(len(noises)//3, 3)
-    return (rppg_hr_ica, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft, noises)
+    selfd_noises = selfd_noises.reshape(len(selfd_noises)//3, 3)
+    return (rppg_hr_ica, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft, noises, selfd_noises)
 
 def majority_vote(freqs):
     hrs = [freqs[0], freqs[3], freqs[6]]
@@ -334,7 +349,7 @@ def majority_vote(freqs):
     i = np.argsort(powers)
     hr_max_power = hrs[i[-1]]
     mean_of_non_max = 1/2 * (np.sum(hrs)- hr_max_power)
-    if abs(hr_max_power - mean_of_non_max)/hr_max_power > 0.3:
+    if abs(hr_max_power - mean_of_non_max)/hr_max_power > 0.3 and hr_max_power == max(hrs):
         # return mean_heart_rate
         return hrs[i[-2]]
     else:
@@ -346,9 +361,9 @@ def signal_processing_experiments(files, ppg_meta_file, sp_output):
      "rPPG HR ICA", "rPPG HR MV", 
      "PPG HR BC", "PPG HR FFT",
      "ECG HR BC", "ECG HR FFT",
-     "ICA 1 HR", "ICA 1 Power", "ICA 1 BC", "Noise 1",
-     "ICA 2 HR", "ICA 2 Power", "ICA 2 BC", "Noise 2",
-     "ICA 3 HR", "ICA 3 Power", "ICA 3 BC", "Noise 3"
+     "ICA 1 HR", "ICA 1 Power", "ICA 1 BC", "Noise 1", "SelfD Noise 1",
+     "ICA 2 HR", "ICA 2 Power", "ICA 2 BC", "Noise 2", "SelfD Noise 2",
+     "ICA 3 HR", "ICA 3 Power", "ICA 3 BC", "Noise 3", "SelfD Noise 3"
      ]
     ppg_meta = pd.read_csv(ppg_meta_file)
     with open(sp_output, 'a') as fd:
@@ -366,7 +381,7 @@ def signal_processing_experiments(files, ppg_meta_file, sp_output):
         signal = np.loadtxt(check_path(rppg_file))
         # for ws in np.arange(600, 1200, 100):
         #     for off in np.arange(30, 120, 30):
-        ws, off = 1200, 120
+        ws, off = 600, 60
         print("===================================")
         progress = 100*index/len(ppg_meta)
         print(f"Experiment progress: {progress}%")
@@ -378,7 +393,7 @@ def signal_processing_experiments(files, ppg_meta_file, sp_output):
             true_fr = ppg_row["Framerate"]
             new_signal = sample_framerate(signal, framerate, true_fr)
             new_ws, new_off = int(ws*framerate/true_fr), int(off*framerate/true_fr)
-            rppg_ica, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft, noises = evaluate(new_signal, ppg_row["PPG file"], ppg_row["ECG file"], new_ws, new_off, framerate, true_fr)
+            rppg_ica, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft, noises, sd_noises = evaluate(new_signal, ppg_row["PPG file"], ppg_row["ECG file"], new_ws, new_off, framerate, true_fr)
             n_rows, _ = rppg_ica.shape
             # print(rppg_ica)
             for i in range(n_rows):
@@ -387,9 +402,9 @@ def signal_processing_experiments(files, ppg_meta_file, sp_output):
                     hr_with_max_power(rppg_ica[i, :]), majority_vote(rppg_ica[i,:]), 
                     ppg_hr[i], ppg_hr_fft[i],
                     ecg_hr[i], ecg_hr_fft[i],
-                    rppg_ica[i,0], rppg_ica[i,1], rppg_ica[i,2], noises[i, 0], 
-                    rppg_ica[i,3], rppg_ica[i,4], rppg_ica[i,5], noises[i, 1],
-                    rppg_ica[i,6], rppg_ica[i,7], rppg_ica[i,8], noises[i, 2]
+                    rppg_ica[i,0], rppg_ica[i,1], rppg_ica[i,2], noises[i, 0], sd_noises[i, 0],
+                    rppg_ica[i,3], rppg_ica[i,4], rppg_ica[i,5], noises[i, 1], sd_noises[i, 1],
+                    rppg_ica[i,6], rppg_ica[i,7], rppg_ica[i,8], noises[i, 2], sd_noises[i, 2]
                     ]
                 with open(sp_output, 'a') as fd:
                     writer = csv.writer(fd)
@@ -399,7 +414,7 @@ def signal_processing_experiments(files, ppg_meta_file, sp_output):
 if __name__ == "__main__":
     files = test_data()
     ppg_meta_output = f"{PATH}output/hr_evaluation/ppg_meta_12_03_20.csv"
-    sp_output = f"{PATH}output/hr_evaluation/sp_output_12_03_20.csv"
+    sp_output = f"{PATH}output/hr_evaluation/sp_output_15_03_20(6).csv"
     # write_ppg_out(files, ppg_meta_output)
     signal_processing_experiments(files, ppg_meta_output, sp_output)
     pass

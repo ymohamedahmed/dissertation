@@ -172,17 +172,28 @@ showed a perfromance boost.
     \begin{tabular}{c|cc|cc|cc}
     \textbf{} & \multicolumn{2}{c|}{\textbf{Stationary}} & \multicolumn{2}{c|}{\textbf{Star jumps}} & \multicolumn{2}{c}{\textbf{Jogging}} \\
     \textbf{Threshold} & \textbf{Recall} & \textbf{FPR} & \textbf{Recall} & \textbf{FPR} & \textbf{Recall} & \textbf{FPR} \\ \hline
-    \textbf{0.100} & 0.931237 & 0.000766 & 0.948175 & 0.002220 & 0.949240 & 0.000384 \\
-    \textbf{0.125} & 0.925882 & 0.000764 & 0.943530 & 0.002673 & 0.928708 & 0.000507 \\
-    \textbf{0.150} & 0.921940 & 0.000682 & 0.938508 & 0.003175 & 0.909149 & 0.000868 \\
-    \textbf{0.175} & 0.920470 & 0.000696 & 0.936067 & 0.002992 & 0.894600 & 0.000742 \\
-    \textbf{0.200} & 0.919102 & 0.000826 & 0.936017 & 0.003432 & 0.871856 & 0.002099 \\
-    \textbf{0.250} & 0.921081 & 0.000775 & 0.937609 & 0.004346 & 0.846058 & 0.001295 \\
-    \textbf{0.300} & 0.916228 & 0.000728 & 0.934811 & 0.005084 & 0.824485 & 0.001196 \\
-    \textbf{0.350} & 0.911905 & 0.000648 & 0.932703 & 0.005788 & 0.816987 & 0.001551 \\
-    \textbf{0.400} & 0.918874 & 0.000866 & 0.936631 & 0.007110 & 0.798890 & 0.001676 \\
-    \textbf{0.450} & 0.918034 & 0.000810 & 0.932281 & 0.007136 & 0.800861 & 0.001595 \\
-    \textbf{0.500} & 0.916427 & 0.001041 & 0.927878 & 0.008250 & 0.783104 & 0.003307
+    % \textbf{0.100} & 0.931237 & 0.000766 & 0.948175 & 0.002220 & 0.949240 & 0.000384 \\
+    % \textbf{0.125} & 0.925882 & 0.000764 & 0.943530 & 0.002673 & 0.928708 & 0.000507 \\
+    % \textbf{0.150} & 0.921940 & 0.000682 & 0.938508 & 0.003175 & 0.909149 & 0.000868 \\
+    % \textbf{0.175} & 0.920470 & 0.000696 & 0.936067 & 0.002992 & 0.894600 & 0.000742 \\
+    % \textbf{0.200} & 0.919102 & 0.000826 & 0.936017 & 0.003432 & 0.871856 & 0.002099 \\
+    % \textbf{0.250} & 0.921081 & 0.000775 & 0.937609 & 0.004346 & 0.846058 & 0.001295 \\
+    % \textbf{0.300} & 0.916228 & 0.000728 & 0.934811 & 0.005084 & 0.824485 & 0.001196 \\
+    % \textbf{0.350} & 0.911905 & 0.000648 & 0.932703 & 0.005788 & 0.816987 & 0.001551 \\
+    % \textbf{0.400} & 0.918874 & 0.000866 & 0.936631 & 0.007110 & 0.798890 & 0.001676 \\
+    % \textbf{0.450} & 0.918034 & 0.000810 & 0.932281 & 0.007136 & 0.800861 & 0.001595 \\
+    % \textbf{0.500} & 0.916427 & 0.001041 & 0.927878 & 0.008250 & 0.783104 & 0.003307
+
+    0.10 &           0.938756 &        0.000411 &           0.934786 &        0.000702 &        0.948687 &     0.000572 \\
+    0.15 &           0.911294 &        0.000506 &           0.902089 &        0.001008 &        0.907298 &     0.000794 \\
+    0.20 &           0.873086 &        0.000639 &           0.878286 &        0.001326 &        0.877068 &     0.000897 \\
+    0.25 &           0.838909 &        0.000611 &           0.860806 &        0.001369 &        0.859240 &     0.000982 \\
+    0.30 &           0.829122 &        0.000611 &           0.852494 &        0.001472 &        0.850538 &     0.001010 \\
+    0.35 &           0.825344 &        0.000714 &           0.846642 &        0.001687 &        0.848516 &     0.001064 \\
+    0.40 &           0.824945 &        0.000673 &           0.842027 &        0.001867 &        0.844379 &     0.001185 \\
+    0.45 &           0.819709 &        0.000720 &           0.844673 &        0.002008 &        0.836196 &     0.001140 \\
+    0.50 &           0.825645 &        0.000786 &           0.838628 &        0.002211 &        0.837360 &     0.001196 \\
+
     \end{tabular}}
     \caption{\textit{A table showing the recall and false positive rate (FPR) of the face tracker across the test suite and at with different threshold values}}
 \end{table}
@@ -207,7 +218,7 @@ As is expected, as the threshold increases the number of redetections, decreases
 
 % \paragraph{Thresholds}
 % show how threshold affects time and precision
-\paragraph{Threshold}
+% \paragraph{Threshold}
 % how well does cumulative change track decrease in FPR
 
 
@@ -255,6 +266,16 @@ is important since, although the videos in the test suite have a fixed frame rat
 use higher frame rate cameras whilst still maintaining real-time behaviour. 
 
 \subsection{Accelerating region selection}
+\begin{figure}[H]
+    \centering
+    \input{evaluation/precomputed.pgf}
+   \caption{\textit{A graph showing the effective framerate of the entire pipeline, with and without precomputing the class conditional distributions used by the skin detector}} 
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \input{bayesian.pgf}
+   \caption{\textit{A graph showing the mean time to process a single frame when using k-means on each frame vs. the probabilistic approach described}} 
+\end{figure}
 % \paragraph{Correctness}
 
 % \section{Region selection}
@@ -384,19 +405,26 @@ to give an intuitive understanding about the accuracy of the sensor in question.
 % \subsection{Comparative fidelity}
 
 \subsection{Impact of noise}
+% brand this as investigating sources of error
+
+
 % define the noise metric
 % establish relationship with noise and error
 % show impact of each of these characteristics on noise
-\subsection{Gender and skin tone}
+\subsection{Impact of gender and skin tone}
 
 \subsection{Impact of movement}
 
 \subsection{Impact of distance}
+% big effect is if change in distance modifies illumination
 
 \subsection{Impact of framerate}
 % scope for skipping frames if HR isn't very high
 % say that if we assume maximum HR of 240 BPM then 4 FPS should be the minimum requirement
 % but not the case in practice
+
+\subsection{Predicting unreliability}
+% Show how you can predict unreliable scenarios which a watch can do
 
 \subsection{Overview}
 
