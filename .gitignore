@@ -1,0 +1,11 @@
+*.pyc
+*.DS_Store
+*.aux
+*.vscode/
+*.fls
+*.out
+*.bbl
+*.fdb_latexmk
+code/.ipynb_checkpoints/*
+report/_minted-diss/*
+*.blg

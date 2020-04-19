@@ -2,14 +2,14 @@ This project seeks to increase access to heart rate sensing technology.
 Since sensors, in general, behave in an online way, that is, they return measurements as and when they become available, the project should be expected to behave in the same way.
 It should not rely on lengthy computations which a standard sensor would not be able to perform. 
 Furthermore, the fidelity of its outputs should be in line with similar alternative sensors.
-As a result, the evaluation proceeds by exemplifying the success of the project with respect to both of these criteria.
+As a result, the evaluation considers both of these criteria.
 
 \section{Data collection}
 In order to be able to evaluate the project, a dataset consisting of videos with an associated ground truth heart rate is required.
 For this, I used the \textit{MAHNOB} dataset \cite{Mahnob}, initially collected by Imperial College London for research into affective computing, it is widely used in remote photoplethmysography literature for performance benchmarking \cite{novel}\cite{mahnob-example}\cite{mahnob-example-2}.
 MAHNOB, however, only consists of videos where the participants are stationary and at a fixed, close distance to the camera (see Appendix for examples), this alone, would not be adeqeuate for testing many aspects of the project.
 As a result, I augmented the dataset with my own experiments that contained varying amounts of movement and were recorded at different distances to the camera. 
-The final dataset also, as a result, contains a range of genders and skin tones as to ensure robustness.
+The final dataset also, as a result, contains a range of genders and skin tones to ensure robustness.
 Through this, the limitations of the project can be documented more effectively.
 % This acts as a means of testing the boundaries and feasibility of remote heart rate sensing.
 
@@ -25,13 +25,13 @@ Through this, the limitations of the project can be documented more effectively.
 \subsection{Methodology}
 % data is used to evaluate: effect of distance, movement, stationery, smartwatch
 The data collected has been used for two distinct reasons: the justification of implementation decisions and the profiling of the overall success of the project.
-Since this project regards the measurement of health data, it is critical to understand in what scenarios its outputs cannot be considered reliable.
-With this in mind, experiments were designed to discover any fundamental limitations of this kind of technology. The data was collected with the following overarching questions in mind:
+Since this project involves the measurement of health data, it is critical to understand in what scenarios its outputs are unreliable.
+With this in mind, experiments were designed to discover any fundamental limitations. The data was collected with the following overarching questions in mind:
 \begin{itemize}
     \item Can the results of remote heart rate sensing be trusted?
     \item To what extent does the user's distance from the camera affect the fidelity of the outputs?
     \item Does the user have to be stationary with respect to the camera for the results to be accurate?
-    \item How does the project compare to a PPG sensor on a wearable device?
+    \item How does the project compare to a PPG sensor on a consumer watch?
 \end{itemize}
 
 % The data collected will be used to evaluate several different aspects of the program.
@@ -53,9 +53,9 @@ At each of these distances, three different activities were recorded, each for o
 A ground truth was taken in the form of a chest-based ECG sensor and a smartwatch was used for comparison with the video-based heart rate.
 The data taken from the smartwatch was the raw PPG sensor values, that is, not the estimated heart rate. This is so that the same heart rate isolation algorithms can be applied to both the 
 remote PPG signal and the wrist based PPG signal making for a fair comparison.
-Video recordings were conducted on a Pixel 3A mobile device at a framerate of 30 frames per second.
+Video recordings were conducted on a Pixel 3A mobile device at a framerate of 30 frames per second, a resolution of 1920 by 1080 and under ambient lighting conditions.
 
-The activities used are as follows with the latter two having been selected as to test both raised heart rates and significant amounts of movement, thereby providing a test case not present in the MAHNOB database.
+The activities used are as follows with the latter two having been selected to test both raised heart rates and significant movement, thereby providing a test case not present in the MAHNOB database.
 These exercises were, thereby, selected to be representative of the kind of scenarios in which rPPG might be used.
 \begin{itemize}
    \item Stationary for sixty seconds
@@ -84,7 +84,7 @@ is used to test, given two quantities, the hypothesis that they have equal expec
 \section{Analysis of performance}
 \label{section:face_tracking}
 The main technique introduced for improving runtime performance is \textit{face tracking}. It is not clear, initially, the extent of the performance improvement and what error, if any, it might have 
-on heart rate measurements. In this section, it is shown to give a performance boost across all tested videos with a minimum speedup of 3x and a maximum of 8x, with no, statistically significant, detrimental effect on measurement accuracy.
+on heart rate measurements. In this section, it is shown to give a performance boost across all tested videos with a minimum speedup of 3x and a maximum of 8x, with no statistically significant effect on measurement accuracy.
 
 \subsection{Face tracking}
 Face tracking was proposed in Section \ref{section:face_tracking_impl} as an alternative to detecting the face in each frame independently.
@@ -97,7 +97,7 @@ To evaluate these properties several metrics are defined and are measured across
     \item Does face tracking provide a performance boost over face detection?
     \item Does face tracking have the same fidelity as face detection?
     \item Does face tracking maintain its accuracy under increasing motion?
-    \item What value should the \texttt{threshold} take?\footnote{As defined in the pseudocode in Section \ref{section:face_tracking_impl} the \texttt{threshold} value defines when the face tracker redetects the face, specificially, it defines the percentage change in the size of the face tracked before redetection. }
+    \item What value should the redetection threshold take?\footnote{As defined in the pseudocode in Section \ref{section:face_tracking_impl} the \texttt{threshold} value defines when the face tracker redetects the face, specificially, it defines the percentage change in the size of the face tracked before redetection. }
 \end{itemize}
 % Three main questions: 
 % -is it a performance gain?  (for all videos)
@@ -144,7 +144,7 @@ could be achieved by returning the entire frame as the bounding box of the face.
 %     \item $\neg$ is a NOT operator on each element in the matrix
 % \\\\
 % \end{itemize}
-Since face tracking is being proposed as an optimisation, the time to process each frame is also recorded as a means of measuring the relative performance of each algorithm.
+Since face tracking is being proposed as an optimisation, the time to process each frame, with both implementations being executed on the same hardware, is also recorded as a means of measuring the relative performance of each algorithm.
 \par
 Finally, the entire test suite is run using both face detection and tracking to ensure there are no statistically significant increases or decreases in the error of the heart rate measurements.
 % Furthermore, the signal to nois
@@ -232,9 +232,8 @@ Ranging from an average of 8x in the stationary case, to 3x in exercise videos.
 \end{figure}
 \noindent
 Using a null hypothesis that both face tracking and face detection have an identical expected error, an independent two sample t-test, p-values over each type of video tested are reported.
-Given a significance threshold of 0.1, the null hypothesis is rejected for both stationary and videos with jogging, but in favour of the face tracker.
-It is not rejected for the case of star jumps. Since there is no statistically significant evidence to suggest otherwise,
- I deem that it would be unreasonable to suggest that face tracking, as opposed to face detection, introduces any unexpected error in the outputs of the program.
+Given a significance threshold of 0.05, the null hypothesis is rejected for only the stationary videos in favour of the face tracker.
+It is not rejected for the other two cases, hence, there is no statistically significant evidence to suggest face tracking introduces unexpected error in the outputs of the program.
 % \begin{figure}[H]
 %     \centering
 %     \input{evaluation/tracker_err.pgf}
@@ -246,8 +245,7 @@ It is not rejected for the case of star jumps. Since there is no statistically s
     \textbf{Type of video} & \textbf{MAE (bpm)} & \textbf{std.} & \textbf{MAE (bpm)} & \textbf{std.} & \textbf{t-statistic} & \textbf{p} \\ \hline
     Stationary & 9.007 & 9.309 & 7.959 & 9.391 & 2.172 & 0.030 \\
     Jogging & 65.551 & 15.146 & 64.128 & 16.655 & 1.732 & 0.084 \\
-    \rowcolor[HTML]{EFEFEF} 
-    Star jumps & 20.035 & 15.314 & 19.752 & 14.989 & 0.366 & 0.714 \\ \hline
+    Star jumps & 20.035 & 15.314 & 19.752 & 14.989 & 0.366 & 0.714 \\ 
     \end{tabular}
     \caption{\textit{A table reporting the mean absolute error (MAE) in estimating the heart rate when using the OpenCV face detector on each frame vs the proposed face tracker, with independent two-sample t-tests shown. }}
     \end{table}
@@ -266,6 +264,7 @@ is important since, although the videos in the test suite have a fixed frame rat
 use higher frame rate cameras whilst still maintaining real-time behaviour. 
 
 \subsection{Accelerating region selection}
+\label{eval:region_selection}
 \begin{figure}[H]
     \centering
     \input{evaluation/precomputed.pgf}
@@ -404,27 +403,106 @@ to give an intuitive understanding about the accuracy of the sensor in question.
 % \subsection{The effect of movement}
 % \subsection{Comparative fidelity}
 
-\subsection{Impact of noise}
+% \subsection{Impact of noise}
+\subsection{Sources of error}
 % brand this as investigating sources of error
 
 
 % define the noise metric
 % establish relationship with noise and error
 % show impact of each of these characteristics on noise
-\subsection{Impact of gender and skin tone}
 
-\subsection{Impact of movement}
+% From strong correlation we can view sources of error as environmental conditions that increase the noise of the signal
 
-\subsection{Impact of distance}
+% For each plot effect on noise and effect on MAE
+% Histogram of each cateogry
+
+
+\subsubsection{Impact of gender and skin tone}
+% NEED TO SAY THIS IS ONLY FOR MAHNOB
+\begin{figure}[H]
+    \centering
+    \subfloat[]{\scalebox{0.7}{\input{evaluation/gender_freq.pgf}}}
+    \qquad
+    \subfloat[]{\scalebox{0.7}{\input{evaluation/gender_error.pgf}}}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[]{\scalebox{0.7}{\input{evaluation/skin_tone.pgf}}}
+    \qquad
+    \subfloat[]{\scalebox{0.7}{\input{evaluation/skin_error.pgf}}}
+\end{figure}
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \begin{table}[]
+%     \begin{tabular}{lc|ccccc}
+%      &  & \multicolumn{5}{c}{\textbf{Skin tone}} \\
+%     \multicolumn{2}{c|}{\textbf{p-value}} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\ \hline
+%     \multirow{5}{*}{\textbf{\rotatebox[origin=c]{90}{Skin tone}}} & \textbf{1} &  & 0.2339 & \textbf{9.785e-03} & \textbf{2.371e-03} & \textbf{2.416e-04} \\
+%      & \textbf{2} &  &  & 0.0286 & \textbf{8.028e-03} & \textbf{1.210e-09} \\
+%      & \textbf{3} &  &  &  & 0.218 & \textbf{7.163e-14} \\
+%      & \textbf{4} &  &  &  &  & \textbf{1.168e-11} \\
+%      & \textbf{5} &  &  &  &  & 
+%     \end{tabular}
+%     \end{table}
+    % Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \begin{table}[]
+%     \begin{tabular}{lc|ccccc}
+%      &  & \multicolumn{5}{c}{\textbf{Skin tone}} \\
+%     \multicolumn{2}{c|}{\textbf{p-value}} & \multicolumn{1}{c|}{\textbf{1}} & \multicolumn{1}{c|}{\textbf{2}} & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{1}{c|}{\textbf{4}} & \textbf{5} \\ \hline
+%     \multirow{5}{*}{\textbf{\rotatebox[origin=c]{90}{Skin tone}}} & \textbf{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.2339} & \multicolumn{1}{c|}{\textbf{9.785e-03}} & \multicolumn{1}{c|}{\textbf{2.371e-03}} & \textbf{2.416e-04} \\
+%      & \textbf{2} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.0286} & \multicolumn{1}{c|}{\textbf{8.028e-03}} & \textbf{1.210e-09} \\
+%      & \textbf{3} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.218} & \textbf{7.163e-14} \\
+%      & \textbf{4} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \textbf{1.168e-11} \\
+%      & \textbf{5} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & 
+%     \end{tabular}
+% \end{table}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+\begin{figure}[H]
+    \centering
+    \subfloat[]{\scalebox{0.7}{\input{evaluation/skin_tone_error_table.tex}}}
+    \qquad
+    \subfloat[]{\scalebox{0.7}{\input{evaluation/skin_tone_p_table.tex}}}
+\end{figure}
+
+\subsubsection{Impact of movement}
+
+\subsubsection{Impact of distance}
 % big effect is if change in distance modifies illumination
+% under the experiments conducted the illuminant was behind the camera so don't expect much impact as a result of distance
 
-\subsection{Impact of framerate}
+
+% \subsubsection{Impact of framerate}
 % scope for skipping frames if HR isn't very high
 % say that if we assume maximum HR of 240 BPM then 4 FPS should be the minimum requirement
 % but not the case in practice
+% Nyquist's theorem states that we should be able to (theoretically) sample at 8FPS
 
 \subsection{Predicting unreliability}
-% Show how you can predict unreliable scenarios which a watch can do
+% Show how you can predict unreliable scenarios which a watch doesn't tend to do
+% Useful 
+% in scenarios without the presence of a ground truth allows users to be informed of potential error
+% Show aggressive curve which can overreport errors as a means of safety
+
+\subsubsection{Quantifiying noise}
+\begin{figure}[H]
+    \centering
+    % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
+    % \includegraphics[width=0.5\textwidth]{example-image-a}
+    \subfloat[]{\scalebox{0.5}{\input{evaluation/NoiseStationary.pgf}}}%
+    \subfloat[]{\scalebox{0.5}{\input{evaluation/NoiseStar.pgf} }}%
+    \quad
+    \subfloat[]{\scalebox{0.5}{\input{evaluation/NoiseJogging.pgf} }}%
+   \caption{\textit{An example of the defined noise metric} }
+\end{figure}
 
 \subsection{Overview}
 
@@ -464,28 +542,38 @@ of movement.
 % \usepackage[table,xcdraw]{xcolor}
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
 \scalebox{0.65}{
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
     \begin{tabular}{cc|c|c|c|c|cccc}
-    \textbf{} & \textbf{} & \multicolumn{2}{c|}{\textbf{Smartwatch}} & \multicolumn{2}{c|}{\textbf{Proposed}} &  &  &  &  \\
-    \multicolumn{1}{c|}{\textbf{Exercise}} & \textbf{Distance (m)} & \textbf{MAE (bpm)} & \textbf{RMSE (bpm)} & \textbf{MAE (bpm)} & \textbf{RMSE (bpm)} & \multicolumn{1}{c|}{\textbf{$t_{MAE}$}} & \multicolumn{1}{c|}{\textbf{$p_{MAE}$}} & \multicolumn{1}{c|}{\textbf{$t_{RMSE}$}} & \textbf{$p_{RMSE}$} \\ \hline
-    \rowcolor[HTML]{CEF2CE} 
-    \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}\textbf{Stationary}} & 1.0 & 24.3271 & 31.101 & 8.1443 & 13.1871 & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-5.8566} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}4.7376e-07} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-3.8488} & 0.0003967 \\
-    \rowcolor[HTML]{CEF2CE} 
-    \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}\textbf{Stationary}} & 1.5 & 12.1434 & 13.3007 & 7.981 & 9.3286 & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-4.2034} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}5.0180e-05} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-3.5903} & 0.0005042 \\
-    \multicolumn{1}{c|}{\textbf{Stationary}} & 2.0 & 25.0661 & 40.1543 & 15.734 & 34.8932 & \multicolumn{1}{c|}{-0.9185} & \multicolumn{1}{c|}{0.3683} & \multicolumn{1}{c|}{-0.3244} & 0.7488 \\
-    \rowcolor[HTML]{FFDBD9} 
-    \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}\textbf{Jogging}} & 1.0 & 46.5215 & 47.796 & 42.7873 & 49.0403 & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}6.2848} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}9.1124e-09} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}7.7032} & 2.0095e-11 \\
-    \rowcolor[HTML]{FFDBD9} 
-    \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}\textbf{Jogging}} & 1.5 & 35.5262 & 37.394 & 55.4532 & 60.6769 & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}10.9089} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}4.3155e-19} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}10.6435} & 1.8475e-17 \\
-    \rowcolor[HTML]{FFDBD9} 
-    \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}\textbf{Jogging}} & 2.0 & 32.9423 & 36.6214 & 35.5231 & 45.2086 & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}3.8566} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}0.0007285} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFDBD9}4.6909} & 0.0001218 \\
-    \rowcolor[HTML]{CEF2CE} 
-    \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}\textbf{Star jumps}} & 1.0 & 43.3262 & 46.2494 & 26.7984 & 29.2383 & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-6.6244} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}1.2608e-09} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-7.4695} & 3.4237e-11 \\
-    \rowcolor[HTML]{CEF2CE} 
-    \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}\textbf{Star jumps}} & 1.5 & 51.2919 & 52.2412 & 19.1177 & 25.1191 & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-14.5253} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}6.3123e-27} & \multicolumn{1}{c|}{\cellcolor[HTML]{CEF2CE}-12.6585} & 4.3824e-24 \\
-    \multicolumn{1}{c|}{\textbf{Star jumps}} & 2.0 & 28.9574 & 31.9423 & 28.0886 & 33.4622 & \multicolumn{1}{c|}{-1.3990} & \multicolumn{1}{c|}{0.1735} & \multicolumn{1}{c|}{-0.7828} & 0.4415
+    \rowcolor[HTML]{FFFFFF} 
+    \textbf{} & \textbf{} & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}\textbf{Smartwatch}} & \multicolumn{2}{c|}{\cellcolor[HTML]{FFFFFF}\textbf{Proposed}} &  &  &  &  \\
+    \rowcolor[HTML]{FFFFFF} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}\textbf{Exercise}} & \textbf{Distance} & \textbf{MAE} & \textbf{RMSE} & \textbf{MAE} & \textbf{RMSE} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}\textbf{$t_{MAE}$}} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}\textbf{$p_{MAE}$}} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}\textbf{$t_{RMSE}$}} & \textbf{$p_{RMSE}$} \\ \hline
+    \rowcolor[HTML]{EFEFEF} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{Stationary}} & \textbf{1.0} & \textbf{24.3271} & \textbf{31.101} & \textbf{8.1443} & \textbf{13.1871} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{-5.8566}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{4.7376e-07}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{-3.8488}} & \textbf{0.0003967} \\
+    \rowcolor[HTML]{EFEFEF} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{Stationary}} & \textbf{1.5} & \textbf{12.1434} & \textbf{13.3007} & \textbf{7.981} & \textbf{9.3286} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{-4.2034}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{5.0180e-05}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{-3.5903}} & \textbf{0.0005042} \\
+    \rowcolor[HTML]{FFFFFF} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}Stationary} & 2.0 & 25.0661 & 40.1543 & 15.734 & 34.8932 & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}-0.9185} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}0.3683} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}-0.3244} & 0.7488 \\
+    \rowcolor[HTML]{EFEFEF} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{Jogging}} & \textit{1.0} & \textit{46.5215} & \textit{47.796} & \textit{42.7873} & \textit{49.0403} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{6.2848}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{9.1124e-09}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{7.7032}} & \textit{2.0095e-11} \\
+    \rowcolor[HTML]{EFEFEF} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{Jogging}} & \textit{1.5} & \textit{35.5262} & \textit{37.394} & \textit{55.4532} & \textit{60.6769} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{10.9089}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{4.3155e-19}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{10.6435}} & \textit{1.8475e-17} \\
+    \rowcolor[HTML]{EFEFEF} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{Jogging}} & \textit{2.0} & \textit{32.9423} & \textit{36.6214} & \textit{35.5231} & \textit{45.2086} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{3.8566}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{0.0007285}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textit{4.6909}} & \textit{0.0001218} \\
+    \rowcolor[HTML]{EFEFEF} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{Star jumps}} & \textbf{1.0} & \textbf{43.3262} & \textbf{46.2494} & \textbf{26.7984} & \textbf{29.2383} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{-6.6244}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{1.2608e-09}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{-7.4695}} & \textbf{3.4237e-11} \\
+    \rowcolor[HTML]{EFEFEF} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{Star jumps}} & \textbf{1.5} & \textbf{51.2919} & \textbf{52.2412} & \textbf{19.1177} & \textbf{25.1191} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{-14.5253}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{6.3123e-27}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{-12.6585}} & \textbf{4.3824e-24} \\
+    \rowcolor[HTML]{FFFFFF} 
+    \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}Star jumps} & 2.0 & 28.9574 & 31.9423 & 28.0886 & 33.4622 & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}-1.3990} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}0.1735} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}-0.7828} & 0.4415
     \end{tabular}}
     \label{table:welch-mae}
-    \caption{\textit{A table showing the mean absolute error and root mean squared error for both the Fossil smartwatch and the proposed system, with associated hypothesis testing. Highlighted rows show significant results in terms of both the MAE and RMSE, red indicating in favour of the smartwatch and green in favour of the proposed system.}}
+    \caption{\textit{A table showing the mean absolute error and root mean squared error for both the Fossil smartwatch and the proposed system, with stastically significant results in shaded rows. Italics indicates in favour of the smartwatch and bold in favour of the proposed system.}}
     \end{table}
 
 \paragraph{Results}

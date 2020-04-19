@@ -38,7 +38,7 @@ A face detector is expected to take a single frame and return a bounding rectang
 
 \subsection{Face tracking}
 \label{section:face_tracking_impl}
-Smartphone cameras can readily stream at high framerates, so it is unlikely that a face moves very much between a pair of consecutive frames. At sixty frames per second, frames are recorded only 0.017s apart. The position of the face in the previous frame, gives a strong indication of its subsequent position. Thus, there is opportunity for optimisation beyond simply applying a face detector to each frame individually. This is important since a speedup in this part of the pipeline provides opportunity for more expensive computation in subsequent stages which might improve accuracy. However, it is critical that any optimisations are resistant to motion. Using information from previous frames forms the distinction between face \textbf{\textit{detection}} and \textbf{\textit{tracking}}.
+Smartphone cameras can readily stream at high framerates, so it is unlikely that a face moves very much between a pair of consecutive frames. At thirty frames per second, frames are recorded only 0.033s apart. The position of the face in the previous frame, gives a strong indication of its subsequent position. Thus, there is opportunity for optimisation beyond simply applying a face detector to each frame individually. This is important since a speedup in this part of the pipeline provides opportunity for more expensive computation in subsequent stages which might improve accuracy. However, it is critical that any optimisations are resistant to motion. Using information from previous frames forms the distinction between face \textbf{\textit{detection}} and \textbf{\textit{tracking}}.
 
 \subsubsection{Point tracking}
 The key principle behind face tracking is to use information from previous frames to reduce the cost of subsequent face detections.
@@ -54,6 +54,7 @@ The former wastes computation time for stationary videos where the redetections 
 \begin{figure}[H]
 \begin{minted}{python}
    points = []
+   redetect = True
    last_detection = None
    def face_tracker(frame):
         if redetect or points is empty:
@@ -328,10 +329,10 @@ Which, from Bayes' theorem, can be re-written as:
 % \end{equation*}
 % \Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i) > t
 \paragraph{Prior distribution}
-Usually, one might attempt to learn these distributions from some relevant dataset. That is the prior distribution $\Pr(C_\mathrm{skin}|x_i)$ and the distribution $\Pr(s|C_\mathrm{skin}, x_i)$.
+Usually, one might attempt to learn the distributions $\Pr(C_\mathrm{skin}|x_i)$ and $\Pr(s|C_\mathrm{skin}, x_i)$ from  a relevant dataset.
 The prior $\Pr(C_\mathrm{skin}|x_i)$ was computed as the empirical distribution from 
 the dataset discussed in Section \ref{section:colour-filter}. This dataset consists of randomly sampled pixels that are classified as skin or not, it does not include entire classified faces.
-Furthermore, to the best of my knowledge at the time of implementation, there are no such adequately sized datasets. Hence, attempting to learn the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ was not deemed to be feasible.
+Furthermore, to the best of my knowledge at the time of implementation, there are no publicly available, adequately sized datasets. Hence, attempting to learn the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ was not deemed to be feasible.
 Once the distribution $\Pr(C_\mathrm{skin}|x_i,s)$ has been computed for a single frame, it is used as the prior for subsequent frames. This is for the purpose of providing greater resistance to 
 sudden changes in the image.
 This is the key benefit of taking a Bayesian approach. It allows a principled means of incorporationg prior knowledge about the problem space.
@@ -340,12 +341,12 @@ This is the key benefit of taking a Bayesian approach. It allows a principled me
 As a result, a reasonable approach is to define the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ based on the assumption that a skin pixel is likely close in colour to the overall skin tone. We want a function which returns a large probability if the Euclidean distance between the pixel and the skin tone is small.
 There are, however, an infinite number of functions which could encode this. The only requirements is that the probability of being a skin pixel is decreasing as a function of the distance between the colour of the pixel and the skin tone of the face. 
 \\\\
-A reasonable assumption might be that if the pixel being considered, $x_i$, is a skin pixel, then the Euclidean distance between the skin tone, $s$ and the skin pixel, $d(s,x_i)$, varies as a Normal distribution with mean zero.
+A reasonable assumption might be that if the pixel being considered, $x_i$, is a skin pixel, then the Euclidean distance between the skin tone, $s$ and the skin pixel, $d(s,x_i)$, varies as a Normal distribution with mean zero and standard deviation $\sigma$.
 \begin{equation*}
    d(s, x_i) \sim N(0, \sigma) 
 \end{equation*}
 However, since colours are only represented in a finite interval, for example, between zero and one (or 0 and 255), this is not strictly correct. 
-The above model has a non-zero probability associated with impossible skin-tones, since there are minimum and maximum possible distances.
+The above model has a non-zero probability associated with impossible colour values, since there are minimum and maximum possible distances.
 As a result, I use a \textit{truncated} Normal distribution\footnote{A truncated distribution modifies the domain of a distribution by defining an updated probability density function which is zero outside a particular range $[a,b]$. This is achieved in such a way that the properties of a valid probability distribution are maintained.} instead.
 \\\\
 The probability density function of a truncated normal distribution between the values $a$ and $b$ and with mean, $\mu$, and variance, $\sigma$, is defined as: 
@@ -356,13 +357,13 @@ The probability density function of a truncated normal distribution between the 
 In this case, the values of $a$ and $b$ represent the minimum and maximum distances respectively from the given skin tone $s$. 
 Hence, $a=0$, since the pixel being considered may have the same colour as the skin tone, in which case, $d(x_i, s) = d(s, s) = 0$.
 The value of $b$ here is the distance between the skin tone and the furthest possible point in the colour space.
-In this approach, a three dimensional colour space is used and, hence, the value of $b$ is the distance between $s$ and the furthest corner of the colourspace cube.
+In this approach, a three dimensional colour space is used and, hence, the value of $b$ is the Euclidean distance between $s$ and the furthest corner of the colourspace cube.
 \\\\
 Given this, the probability is defined in proportion to the probability density function of the truncated distribution for each possible skin tone.
 \begin{equation*}
     \Pr(s|C_\mathrm{skin}, x_i) = \frac{f(d(s,x_i))}{\sum_{s' \in C}f(d(s',x_i))}
 \end{equation*}
-\paragraph{Defining the threshold}
+\paragraph{Avoiding the need for thresholding}
 The best choice of the threshold value is not obvious, but in this context, classification is not the goal.
 The aim of the algorithm is to minimise the effect of non-skin pixels on the mean, so instead I proceed by taking a weighted 
 mean colour based on the probability of each pixel being a skin pixel. 
@@ -370,21 +371,21 @@ mean colour based on the probability of each pixel being a skin pixel.
 \paragraph{Accelerating class conditional computation}
 Computing the class-conditional distribution for each pixel in the bounding box of the face is a costly computation. 
 The distribution defined is continuous in nature and so maintaining floating point accuracy means the distribution cannot be precomputed (with finite memory).
-By instead, representing each component of the skin tone as an integer and by rounding the Euclidean distance to the nearest integer, the distributions are precomputed 
+Instead, by, representing each component of the skin tone as an integer and rounding the Euclidean distance to the nearest integer, the distributions are precomputed 
 for every possible skin tone. At runtime, the class conditional probability is achieved by lookup. Since the skin detection algorithm is applied to every frame in the video, 
-using precomputed distributions achieves a 2x speedup in the overall pipeline (see Appendix.).
+using precomputed distributions achieves a 2x speedup in the overall pipeline (see Section \ref{eval:region_selection}).
 
 \begin{figure}[H]
     \centering
     % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
     % \includegraphics[width=0.5\textwidth]{example-image-a}
-    \subfloat[Original image]{{\includegraphics[width=7cm]{implementation/c.jpg} }}%
+    \subfloat[Original image]{{\includegraphics[width=4.9cm]{implementation/c.jpg} }}%
     \qquad
-    \subfloat[Proposed]{{\includegraphics[width=7.2cm]{implementation/hmap-763-763.png} }}%
+    \subfloat[Proposed]{{\includegraphics[width=5.2cm]{implementation/hmap-763-763.png} }}%
 
-    \subfloat[Original image]{{\includegraphics[width=7cm]{implementation/c-2.jpg} }}%
+    \subfloat[Original image]{{\includegraphics[width=4.9cm]{implementation/c-2.jpg} }}%
     \qquad
-    \subfloat[Proposed]{{\includegraphics[width=7.2cm]{implementation/hmap-678-678.png} }}%
+    \subfloat[Proposed]{{\includegraphics[width=5.2cm]{implementation/hmap-678-678.png} }}%
     % Give an example image with prior etc.
     % \includegraphics[width=0.5\textwidth]{example-image-b}
     % \input{implementation/test.pgf}
@@ -436,7 +437,10 @@ for videos with more than a single frame (see Appendix.).
 % IN VIDEOS WITH MOVEMENT WE EXPECT HEART RATE TO BE A SERIES OF PEAKS TOGETHER RATHER THAN A SINGLE PEAK
 % THAT MIGHT BE DUE TO LIGHTING ETC
 % IMPACT OF LIGHTING CONDITIONS
-Given a time series of mean colours in the region of the frame considered, inferring the heart rate might, naively, be taken as the prevalent frequency. That is, the largest peak in the Fourier transform. However, it is important to consider that the colours observed are not only the result of the underlying biological phenomenon of interest. Thereby this naive assumption is prone to returning, instead, the frequency of some other factor that impacts colour of the face. For example, respiration or movement of the face will have an impact, as well as any repetitive changes in lighting such as flickering. Isolating, the heart rate signal from the observed colour of the face, is a key part of the project.
+Given a time series of mean colours in the region of the frame considered, inferring the heart rate might, naively, be taken as the prevalent frequency. That is, the largest peak in the Fourier transform. 
+However, it is important to consider that the colours observed are not only the result of the underlying biological phenomenon of interest. Thereby this naive assumption is prone to returning, instead,
+ the frequency of some other factor that impacts colour of the face. For example, respiration or movement of the face will have an impact, as well as any repetitive changes in lighting such as flickering. 
+ Isolating the heart rate signal from the observed colour of the face, is a key part of the project.
 \\\\
 To simplify this approach the problem is broken down into two subtasks:
 \begin{itemize}
@@ -462,7 +466,9 @@ The above formulation is not enough to isolate the signal $p(t)$. Thus assumptio
 % We can reframe this as finding some basis for our vector space $I(t) = \sum_{i}^{n}I(t)\cdot(v_i)v_i$
 
 \subsubsection{Independent component analysis (ICA)}
-A possible assumption might be that each of the $x_i(t)$ are statistically independent. That is, informally, one cannot gain any information about one of these signals given an other. This assumption encodes the notion that the pulse, should be entirely independent from the other phenomena impacting the observed signal.
+A possible assumption might be that each of the $x_i(t)$ are statistically independent. 
+That is, informally, one cannot gain any information about one of these signals given another. 
+This assumption encodes the notion that the pulse should be entirely independent from the other phenomena impacting the observed signal.
 \\\\
 For example, suppose that the some of the $x_i(t)$ are the result of some physical phenomenon such as lighting conditions. In this case, it is intuitive to expect there to be no mutual information between the pulse and the other constituent signals. The ICA algorithm attempts to identify these signals based on this assumption, by using non-Gaussianity as a proxy for statistical independence.
 \\\\
@@ -524,7 +530,10 @@ In order to avoid this, a Butterworth filter is applied which removes isolated p
 %     \includegraphics[width=0.5\textwidth]{example-image-a}
 %    \caption{An example of the split peak issue with a Butterworth filter applied} 
 % \end{figure}
-
+\begin{figure}[H]
+    \centering
+    \input{implementation/butterworth.pgf}
+\end{figure}
 \subsubsection{Majority voting heuristic}
 In scenarios where there are large amounts of movement in the video, the most prevalent frequency may not correspond to the heart rate. This is problematic, if the movement occurs at a frequency 
 which could be otherwise interpreted as a heart rate, that is between 0.6Hz (36 beats per minute) and 4Hz (240 beats per minute). As a result, selecting the highest peak in this case could be 
@@ -534,6 +543,12 @@ Given the three independent signals returned by ICA, we identify the largest pea
 in scenarios with lots of movement, where a single large peak at a very different frequency is common. 
 If this is the case, then we discard the frequency of maximum power and return the frequency with greatest power of the two remaining signals.
 This helps to guard against a common pitfall of PPG-based systems where the frequency of movement is returned instead of the heart rate\cite{souza2019heart}.
+
+\subsection{Summary}
+% Here I have presented large aspects of original work which have combined to implement a system capable of rPPG
+% Each of the relevant aspects are documented in the code that can be found below.
+I have presented a large body of work, of which much is original, that combines to implement a system capable of non-contact heart rate estimation.
+All the described work, is presented in the Python implementation and can be found in the supplied source code.
 
 
 \section{Repository overview}

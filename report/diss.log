@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2020.3.30)  16 APR 2020 19:30
+This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2020.3.30)  19 APR 2020 09:00
  system commands enabled.
 **diss
 (./diss.tex
@@ -48,7 +48,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.074 seconds
+luaotfload | main : initialization completed in 0.064 seconds
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2018/09/03 v1.4i Standard LaTeX document class
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/size12.clo
@@ -939,6 +939,13 @@ File: ppluatex.def 2017/10/31 v0.5l Pdfpages driver for LuaTeX (AM)
 \c@AM@survey=\count322
 \AM@templatesizebox=\box81
 )
+(/usr/local/texlive/2019/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2019/01/01 v2.4 Span multiple rows of a table
+\multirow@colwidth=\skip61
+\multirow@cntb=\count323
+\multirow@dima=\skip62
+\bigstrutjot=\dimen271
+)
 (/usr/local/texlive/2019/texmf-dist/tex/latex/minted/minted.sty
 Package: minted 2017/07/19 v2.5 Yet another Pygments shim for LaTeX
 
@@ -949,11 +956,11 @@ Package: fvextra 2019/02/04 v1.4 fvextra - extensions and patches for fancyvrb
 Package: fancyvrb 2019/01/15
 
 Style option: `fancyvrb' v3.2a <2019/01/15> (tvz)
-\FV@CodeLineNo=\count323
+\FV@CodeLineNo=\count324
 \FV@InFile=\read5
 \FV@TabBox=\box82
-\c@FancyVerbLine=\count324
-\FV@StepNumber=\count325
+\c@FancyVerbLine=\count325
+\FV@StepNumber=\count326
 \FV@OutFile=\write5
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/upquote/upquote.sty
@@ -1043,44 +1050,44 @@ Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 ))
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lineno/lineno.sty
 Package: lineno 2005/11/02 line numbers on paragraphs v4.41
-\linenopenalty=\count326
+\linenopenalty=\count327
 \output=\toks50
-\linenoprevgraf=\count327
-\linenumbersep=\dimen271
-\linenumberwidth=\dimen272
-\c@linenumber=\count328
-\c@pagewiselinenumber=\count329
-\c@LN@truepage=\count330
-\c@internallinenumber=\count331
-\c@internallinenumbers=\count332
-\quotelinenumbersep=\dimen273
-\bframerule=\dimen274
-\bframesep=\dimen275
+\linenoprevgraf=\count328
+\linenumbersep=\dimen272
+\linenumberwidth=\dimen273
+\c@linenumber=\count329
+\c@pagewiselinenumber=\count330
+\c@LN@truepage=\count331
+\c@internallinenumber=\count332
+\c@internallinenumbers=\count333
+\quotelinenumbersep=\dimen274
+\bframerule=\dimen275
+\bframesep=\dimen276
 \bframebox=\box83
 LaTeX Info: Redefining \\ on input line 3056.
 )
-\c@FV@TrueTabGroupLevel=\count333
-\c@FV@TrueTabCounter=\count334
+\c@FV@TrueTabGroupLevel=\count334
+\c@FV@TrueTabCounter=\count335
 \FV@TabBox@Group=\box84
-\FV@TmpLength=\skip61
-\c@FV@HighlightLinesStart=\count335
-\c@FV@HighlightLinesStop=\count336
-\FV@LoopCount=\count337
+\FV@TmpLength=\skip63
+\c@FV@HighlightLinesStart=\count336
+\c@FV@HighlightLinesStop=\count337
+\FV@LoopCount=\count338
 \FV@NCharsBox=\box85
-\FV@BreakIndent=\dimen276
-\FV@BreakIndentNChars=\count338
-\FV@BreakSymbolSepLeft=\dimen277
-\FV@BreakSymbolSepLeftNChars=\count339
-\FV@BreakSymbolSepRight=\dimen278
-\FV@BreakSymbolSepRightNChars=\count340
-\FV@BreakSymbolIndentLeft=\dimen279
-\FV@BreakSymbolIndentLeftNChars=\count341
-\FV@BreakSymbolIndentRight=\dimen280
-\FV@BreakSymbolIndentRightNChars=\count342
-\c@FancyVerbLineBreakLast=\count343
+\FV@BreakIndent=\dimen277
+\FV@BreakIndentNChars=\count339
+\FV@BreakSymbolSepLeft=\dimen278
+\FV@BreakSymbolSepLeftNChars=\count340
+\FV@BreakSymbolSepRight=\dimen279
+\FV@BreakSymbolSepRightNChars=\count341
+\FV@BreakSymbolIndentLeft=\dimen280
+\FV@BreakSymbolIndentLeftNChars=\count342
+\FV@BreakSymbolIndentRight=\dimen281
+\FV@BreakSymbolIndentRightNChars=\count343
+\c@FancyVerbLineBreakLast=\count344
 \FV@LineBox=\box86
 \FV@LineIndentBox=\box87
-\FV@LineWidth=\dimen281
+\FV@LineWidth=\dimen282
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/tools/shellesc.sty
 Package: shellesc 2016/06/07 v0.02a unified shell escape interface for LaTeX
@@ -1095,22 +1102,22 @@ Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 (./diss.w18))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/xstring/xstring.sty
 (/usr/local/texlive/2019/texmf-dist/tex/generic/xstring/xstring.tex
-\integerpart=\count344
-\decimalpart=\count345
+\integerpart=\count345
+\decimalpart=\count346
 )
 Package: xstring 2019/02/06 v1.83 String manipulations (CT)
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip62
-\fb@frw=\dimen282
-\fb@frh=\dimen283
-\FrameRule=\dimen284
-\FrameSep=\dimen285
+\OuterFrameSep=\skip64
+\fb@frw=\dimen283
+\fb@frh=\dimen284
+\FrameRule=\dimen285
+\FrameSep=\dimen286
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count346
+\c@float@type=\count347
 \float@exts=\toks51
 \float@box=\box88
 \@float@everytoks=\toks52
@@ -1119,14 +1126,14 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \minted@appexistsfile=\read6
 \minted@bgbox=\box90
 \minted@code=\write6
-\c@minted@FancyVerbLineTemp=\count347
-\c@minted@pygmentizecounter=\count348
+\c@minted@FancyVerbLineTemp=\count348
+\c@minted@pygmentizecounter=\count349
 \@float@every@listing=\toks53
-\c@listing=\count349
+\c@listing=\count350
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2018/12/01 v2.17b AMS math features
-\@mathmargin=\skip63
+\@mathmargin=\skip65
 
 For additional information on amsmath, use the `?' option.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -1135,49 +1142,49 @@ Package: amstext 2000/06/29 v2.01 AMS text
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks54
-\ex@=\dimen286
+\ex@=\dimen287
 ))
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen287
+\pmbraise@=\dimen288
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count350
+\inf@bad=\count351
 LaTeX Info: Redefining \frac on input line 223.
-\uproot@=\count351
-\leftroot@=\count352
+\uproot@=\count352
+\leftroot@=\count353
 LaTeX Info: Redefining \overline on input line 385.
-\classnum@=\count353
-\DOTSCASE@=\count354
+\classnum@=\count354
+\DOTSCASE@=\count355
 LaTeX Info: Redefining \ldots on input line 482.
 LaTeX Info: Redefining \dots on input line 485.
 LaTeX Info: Redefining \cdots on input line 606.
 \Mathstrutbox@=\box91
 \strutbox@=\box92
-\big@size=\dimen288
+\big@size=\dimen289
 LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
-\macc@depth=\count355
-\c@MaxMatrixCols=\count356
+\macc@depth=\count356
+\c@MaxMatrixCols=\count357
 \dotsspace@=\muskip17
-\c@parentequation=\count357
-\dspbrk@lvl=\count358
+\c@parentequation=\count358
+\dspbrk@lvl=\count359
 \tag@help=\toks55
-\row@=\count359
-\column@=\count360
-\maxfields@=\count361
+\row@=\count360
+\column@=\count361
+\maxfields@=\count362
 \andhelp@=\toks56
-\eqnshift@=\dimen289
-\alignsep@=\dimen290
-\tagshift@=\dimen291
-\tagwidth@=\dimen292
-\totwidth@=\dimen293
-\lineht@=\dimen294
+\eqnshift@=\dimen290
+\alignsep@=\dimen291
+\tagshift@=\dimen292
+\tagwidth@=\dimen293
+\totwidth@=\dimen294
+\lineht@=\dimen295
 \@envbody=\toks57
-\multlinegap=\skip64
-\multlinetaggap=\skip65
+\multlinegap=\skip66
+\multlinetaggap=\skip67
 \mathdisplay@stack=\toks58
 LaTeX Info: Redefining \[ on input line 2844.
 LaTeX Info: Redefining \] on input line 2845.
@@ -1192,7 +1199,7 @@ File: tikzlibraryarrows.code.tex 2019/04/04 v3.1.2 (3.1.2)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.
 code.tex
 File: pgflibraryarrows.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\arrowsize=\dimen295
+\arrowsize=\dimen296
 ))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibraryshadows.code.tex
@@ -1206,13 +1213,13 @@ File: tikzlibraryfadings.code.tex 2019/04/04 v3.1.2 (3.1.2)
 .code.tex
 File: pgflibraryfadings.code.tex 2019/04/04 v3.1.2 (3.1.2)
 )))
-\c@preinst=\count362
-\c@instnum=\count363
-\c@threadnum=\count364
-\c@seqlevel=\count365
-\c@callevel=\count366
-\c@callselflevel=\count367
-\c@blocklevel=\count368
+\c@preinst=\count363
+\c@instnum=\count364
+\c@threadnum=\count365
+\c@seqlevel=\count366
+\c@callevel=\count367
+\c@callselflevel=\count368
+\c@blocklevel=\count369
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks59
@@ -1231,9 +1238,9 @@ Package pgfplots info on input line 124: Initializing with LUA version Lua 5.3
 \t@pgfplots@toka=\toks61
 \t@pgfplots@tokb=\toks62
 \t@pgfplots@tokc=\toks63
-\pgfplots@tmpa=\dimen296
-\c@pgfplots@coordindex=\count369
-\c@pgfplots@scanlineindex=\count370
+\pgfplots@tmpa=\dimen297
+\c@pgfplots@coordindex=\count370
+\c@pgfplots@scanlineindex=\count371
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric
 .code.tex))
@@ -1247,7 +1254,7 @@ Package pgfplots: loading complementary arithmetics for your pgf version...
 soldpgfsupp_pgflibraryfpu.code.tex)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplot
 soldpgfsupp_pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count371
+\c@pgfmathroundto@lastzeros=\count372
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/libraries/luamath/pgflibrar
 yluamath.code.tex)
@@ -1265,13 +1272,13 @@ liststructure.code.tex)
 liststructureext.code.tex)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
 array.code.tex
-\c@pgfplotsarray@tmp=\count372
+\c@pgfplotsarray@tmp=\count373
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
 matrix.code.tex)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable
 shared.code.tex
-\c@pgfplotstable@counta=\count373
+\c@pgfplotstable@counta=\count374
 \t@pgfplotstable@a=\toks64
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
@@ -1284,7 +1291,7 @@ ta.code.tex))
 .code.tex)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplot
 s.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count374
+\c@pgfplotslibrarysurf@no=\count375
 
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots
 .surfshading.pgfsys-luatex.def)))
@@ -1316,14 +1323,14 @@ x)
 s/tikzlibrarydecorations.code.tex
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/modules/pgfmoduledecoration
 s.code.tex
-\pgfdecoratedcompleteddistance=\dimen297
-\pgfdecoratedremainingdistance=\dimen298
-\pgfdecoratedinputsegmentcompleteddistance=\dimen299
-\pgfdecoratedinputsegmentremainingdistance=\dimen300
-\pgf@decorate@distancetomove=\dimen301
-\pgf@decorate@repeatstate=\count375
-\pgfdecorationsegmentamplitude=\dimen302
-\pgfdecorationsegmentlength=\dimen303
+\pgfdecoratedcompleteddistance=\dimen298
+\pgfdecoratedremainingdistance=\dimen299
+\pgfdecoratedinputsegmentcompleteddistance=\dimen300
+\pgfdecoratedinputsegmentremainingdistance=\dimen301
+\pgf@decorate@distancetomove=\dimen302
+\pgf@decorate@repeatstate=\count376
+\pgfdecorationsegmentamplitude=\dimen303
+\pgfdecorationsegmentlength=\dimen304
 )
 \tikz@lib@dec@box=\box93
 )
@@ -1335,13 +1342,13 @@ brarydecorations.pathmorphing.code.tex))
 s/tikzlibrarydecorations.pathreplacing.code.tex
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/libraries/decorations/pgfli
 brarydecorations.pathreplacing.code.tex))
-\pgfplots@numplots=\count376
-\pgfplots@xmin@reg=\dimen304
-\pgfplots@xmax@reg=\dimen305
-\pgfplots@ymin@reg=\dimen306
-\pgfplots@ymax@reg=\dimen307
-\pgfplots@zmin@reg=\dimen308
-\pgfplots@zmax@reg=\dimen309
+\pgfplots@numplots=\count377
+\pgfplots@xmin@reg=\dimen305
+\pgfplots@xmax@reg=\dimen306
+\pgfplots@ymin@reg=\dimen307
+\pgfplots@ymax@reg=\dimen308
+\pgfplots@zmin@reg=\dimen309
+\pgfplots@zmax@reg=\dimen310
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibraryplotmarks.code.tex
@@ -1353,9 +1360,9 @@ File: pgflibraryplotmarks.code.tex 2019/04/04 v3.1.2 (3.1.2)
 )))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplo
 ts.groupplots.code.tex
-\pgfplots@group@current@plot=\count377
-\pgfplots@group@current@row=\count378
-\pgfplots@group@current@column=\count379
+\pgfplots@group@current@plot=\count378
+\pgfplots@group@current@row=\count379
+\pgfplots@group@current@column=\count380
 )
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplo
 ts.dateplot.code.tex
@@ -1363,7 +1370,7 @@ ts.dateplot.code.tex
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfcalendar.code.
 tex
 File: pgfcalendar.code.tex 2019/04/04 v3.1.2 (3.1.2)
-\pgfcalendarcurrentjulian=\count380
+\pgfcalendarcurrentjulian=\count381
 )))
 (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarypatterns.code.tex
@@ -1380,39 +1387,39 @@ File: tikzlibrarypositioning.code.tex 2019/04/04 v3.1.2 (3.1.2)
 (/usr/local/texlive/2019/texmf-dist/tex/generic/epsf/epsf.tex
 This is `epsf.tex' v2.7.4 <14 February 2011>
 \epsffilein=\read7
-\epsfframemargin=\dimen310
-\epsfframethickness=\dimen311
-\epsfrsize=\dimen312
-\epsftmp=\dimen313
-\epsftsize=\dimen314
-\epsfxsize=\dimen315
-\epsfysize=\dimen316
-\pspoints=\dimen317
+\epsfframemargin=\dimen311
+\epsfframethickness=\dimen312
+\epsfrsize=\dimen313
+\epsftmp=\dimen314
+\epsftsize=\dimen315
+\epsfxsize=\dimen316
+\epsfysize=\dimen317
+\pspoints=\dimen318
 ) (./diss.aux)
 \openout1 = diss.aux
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 63.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 63.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 64.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 64.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    ... okay on input line 64.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: float package is loaded.
@@ -1421,16 +1428,16 @@ Package caption Info: End \AtBeginDocument code.
 
 (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count381
-\scratchdimen=\dimen318
+\scratchcounter=\count382
+\scratchdimen=\dimen319
 \scratchbox=\box94
-\nofMPsegments=\count382
-\nofMParguments=\count383
+\nofMPsegments=\count383
+\nofMParguments=\count384
 \everyMPshowfont=\toks65
-\MPscratchCnt=\count384
-\MPscratchDim=\dimen319
-\MPnumerator=\count385
-\makeMPintoPDFobject=\count386
+\MPscratchCnt=\count385
+\MPscratchDim=\dimen320
+\MPnumerator=\count386
+\makeMPintoPDFobject=\count387
 \everyMPtoPDFconversion=\toks66
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -1450,7 +1457,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 
 ))
 \AtBeginShipoutBox=\box95
-Package hyperref Info: Link coloring ON on input line 63.
+Package hyperref Info: Link coloring ON on input line 64.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -1458,11 +1465,11 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count387
+\c@section@level=\count388
 )
-LaTeX Info: Redefining \ref on input line 63.
-LaTeX Info: Redefining \pageref on input line 63.
-LaTeX Info: Redefining \nameref on input line 63.
+LaTeX Info: Redefining \ref on input line 64.
+LaTeX Info: Redefining \pageref on input line 64.
+LaTeX Info: Redefining \nameref on input line 64.
 
 (./diss.out) (./diss.out)
 \@outlinefile=\write7
@@ -1530,20 +1537,9 @@ Package pgfplots notification 'compat/show suggested version=true': document has
 \openout8 = diss.toc
  [4]
 Chapter 1.
-(./introduction/introduction.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 15--166
+(./introduction/introduction.tex
+Underfull \hbox (badness 10000) in paragraph at lines 15--29
 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--166
-
- []
-
-
-Underfull \hbox (badness 1142) in paragraph at lines 15--166
-\TU/lmr/m/n/12 In fact, I will later ar-gue that smart-phones, with their in-cr
-eased com-pu-ta-tional power,
  []
 
 
@@ -1551,7 +1547,9 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 [1
 
 
-]
+])
+warning  (pdf backend): ignoring duplicate destination with the name 'page.2'
+[2]
 Chapter 2.
 (./preparation/preparation.tex
 Underfull \hbox (badness 10000) in paragraph at lines 7--12
@@ -1568,9 +1566,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--26
 
  []
 
-
-warning  (pdf backend): ignoring duplicate destination with the name 'page.2'
-[2
+[3
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 27--31
@@ -1582,7 +1578,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 36--55
 
  []
 
-[3]
+[4]
 Underfull \hbox (badness 10000) in paragraph at lines 62--80
 
  []
@@ -1602,57 +1598,57 @@ Underfull \hbox (badness 10000) in paragraph at lines 62--80
 
  []
 
-(./preparation/wear_ppg.tex) [4]
-Underfull \hbox (badness 10000) in paragraph at lines 91--111
+(./preparation/wear_ppg.pgf) [5]
+Underfull \hbox (badness 10000) in paragraph at lines 92--112
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--111
+Underfull \hbox (badness 10000) in paragraph at lines 92--112
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--111
+Underfull \hbox (badness 10000) in paragraph at lines 92--112
 
  []
 
-[5] [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 218--228
-
- []
-
-[8]
-Underfull \hbox (badness 10000) in paragraph at lines 257--265
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 271--283
+[6] [7] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 219--229
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 298--311
-
- []
-
-[10])
-Underfull \hbox (badness 10000) in paragraph at lines 426--170
+Underfull \hbox (badness 10000) in paragraph at lines 258--266
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 426--170
+Underfull \hbox (badness 10000) in paragraph at lines 272--284
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 426--170
+Underfull \hbox (badness 10000) in paragraph at lines 299--312
 
  []
 
-[11] [12]
+[10] [11])
+Underfull \hbox (badness 10000) in paragraph at lines 427--172
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 427--172
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 427--172
+
+ []
+
+[12] [13]
 Chapter 3.
 (./implementation/implementation.tex
 Underfull \hbox (badness 10000) in paragraph at lines 17--22
@@ -1664,14 +1660,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--22
 \pgf@layerboxsaved@umlsd@background=\box97
 \pgf@layerbox@umlsd@threadlayer=\box98
 \pgf@layerboxsaved@umlsd@threadlayer=\box99
-) [13
+) [14
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 29--35
 
  []
 
-[14]
+[15]
 Underfull \hbox (badness 10000) in paragraph at lines 44--49
 
  []
@@ -1679,319 +1675,330 @@ Underfull \hbox (badness 10000) in paragraph at lines 44--49
 
 \openout5 = diss.pyg
 (./_minted-diss/default-pyg-prefix.pygstyle) (./_minted-diss/default.pygstyle)
-(./_minted-diss/DEA48CC803803D9871CAFF4E8F6A48B04A3378E67C6A61B16FFA0FBF2255E8F
+(./_minted-diss/DA5CF98AC289A5093F9D17CD9219CE6D4A3378E67C6A61B16FFA0FBF2255E8F
 1.pygtex
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 3.
-) [15]
-Underfull \hbox (badness 10000) in paragraph at lines 83--86
-
- []
-
-[16]
-Underfull \hbox (badness 10000) in paragraph at lines 98--101
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 110--117
+) [16]
+Underfull \hbox (badness 10000) in paragraph at lines 84--87
 
  []
 
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 128--132
+Underfull \hbox (badness 10000) in paragraph at lines 99--102
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--132
+Underfull \hbox (badness 10000) in paragraph at lines 111--118
+
+ []
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 129--133
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 128--132
+Underfull \hbox (badness 10000) in paragraph at lines 129--133
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 129--133
 
  []
 
 (./implementation/skin-dataset-2.tex) (./implementation/skin-dataset-1.tex)
-<implementation/c.jpg, id=501, 765.86125pt x 765.86125pt>
+<implementation/c.jpg, id=498, 765.86125pt x 765.86125pt>
 File: implementation/c.jpg Graphic file (type jpg)
 <use implementation/c.jpg>
-Package luatex.def Info: implementation/c.jpg  used on input line 150.
+Package luatex.def Info: implementation/c.jpg  used on input line 151.
 (luatex.def)             Requested size: 142.26378pt x 142.25473pt.
-<implementation/interval.jpg, id=504, 765.86125pt x 765.86125pt>
+<implementation/interval.jpg, id=501, 765.86125pt x 765.86125pt>
 File: implementation/interval.jpg Graphic file (type jpg)
 <use implementation/interval.jpg>
-Package luatex.def Info: implementation/interval.jpg  used on input line 152.
+Package luatex.def Info: implementation/interval.jpg  used on input line 153.
 (luatex.def)             Requested size: 142.26378pt x 142.25473pt.
 
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 174--184
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 175--185
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--184
+Underfull \hbox (badness 10000) in paragraph at lines 175--185
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--184
+Underfull \hbox (badness 10000) in paragraph at lines 175--185
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--184
+Underfull \hbox (badness 10000) in paragraph at lines 175--185
 
  []
 
-[19<./implementation/c.jpg><./implementation/interval.jpg>]
+[20<./implementation/c.jpg><./implementation/interval.jpg>]
 File: implementation/c.jpg Graphic file (type jpg)
 <use implementation/c.jpg>
-Package luatex.def Info: implementation/c.jpg  used on input line 188.
+Package luatex.def Info: implementation/c.jpg  used on input line 189.
 (luatex.def)             Requested size: 142.26378pt x 142.25473pt.
-<implementation/r2.jpg, id=525, 765.86125pt x 765.86125pt>
+<implementation/r2.jpg, id=522, 765.86125pt x 765.86125pt>
 File: implementation/r2.jpg Graphic file (type jpg)
 <use implementation/r2.jpg>
-Package luatex.def Info: implementation/r2.jpg  used on input line 190.
+Package luatex.def Info: implementation/r2.jpg  used on input line 191.
 (luatex.def)             Requested size: 142.26378pt x 142.25473pt.
 File: implementation/c.jpg Graphic file (type jpg)
 <use implementation/c.jpg>
-Package luatex.def Info: implementation/c.jpg  used on input line 229.
+Package luatex.def Info: implementation/c.jpg  used on input line 230.
 (luatex.def)             Requested size: 85.35826pt x 85.35516pt.
 File: implementation/r2.jpg Graphic file (type jpg)
 <use implementation/r2.jpg>
-Package luatex.def Info: implementation/r2.jpg  used on input line 231.
+Package luatex.def Info: implementation/r2.jpg  used on input line 232.
 (luatex.def)             Requested size: 85.35826pt x 85.35516pt.
 
-Underfull \hbox (badness 4621) in paragraph at lines 231--231
+Underfull \hbox (badness 4621) in paragraph at lines 232--232
 []\TU/lmr/m/n/10 (b) |Clus-ter-ing w/
  []
 
-<implementation/r3.jpg, id=529, 765.86125pt x 765.86125pt>
+<implementation/r3.jpg, id=526, 765.86125pt x 765.86125pt>
 File: implementation/r3.jpg Graphic file (type jpg)
 <use implementation/r3.jpg>
-Package luatex.def Info: implementation/r3.jpg  used on input line 233.
+Package luatex.def Info: implementation/r3.jpg  used on input line 234.
 (luatex.def)             Requested size: 85.35826pt x 85.35516pt.
 
-Underfull \hbox (badness 6047) in paragraph at lines 233--233
+Underfull \hbox (badness 6047) in paragraph at lines 234--234
 []\TU/lmr/m/n/10 (c) |Clus-ter-ing w/
  []
 
-<implementation/r4.jpg, id=530, 765.86125pt x 765.86125pt>
+<implementation/r4.jpg, id=527, 765.86125pt x 765.86125pt>
 File: implementation/r4.jpg Graphic file (type jpg)
 <use implementation/r4.jpg>
-Package luatex.def Info: implementation/r4.jpg  used on input line 235.
+Package luatex.def Info: implementation/r4.jpg  used on input line 236.
 (luatex.def)             Requested size: 85.35826pt x 85.35516pt.
 
-Underfull \hbox (badness 4621) in paragraph at lines 235--235
+Underfull \hbox (badness 4621) in paragraph at lines 236--236
 []\TU/lmr/m/n/10 (d) |Clus-ter-ing w/
  []
 
-<implementation/c-2.jpg, id=531, 680.5425pt x 680.5425pt>
+<implementation/c-2.jpg, id=528, 680.5425pt x 680.5425pt>
 File: implementation/c-2.jpg Graphic file (type jpg)
 <use implementation/c-2.jpg>
-Package luatex.def Info: implementation/c-2.jpg  used on input line 237.
+Package luatex.def Info: implementation/c-2.jpg  used on input line 238.
 (luatex.def)             Requested size: 85.35826pt x 85.35835pt.
-<implementation/r2-2.jpg, id=534, 680.5425pt x 680.5425pt>
+<implementation/r2-2.jpg, id=531, 680.5425pt x 680.5425pt>
 File: implementation/r2-2.jpg Graphic file (type jpg)
 <use implementation/r2-2.jpg>
-Package luatex.def Info: implementation/r2-2.jpg  used on input line 239.
+Package luatex.def Info: implementation/r2-2.jpg  used on input line 240.
 (luatex.def)             Requested size: 85.35826pt x 85.35835pt.
 
-Underfull \hbox (badness 7704) in paragraph at lines 239--239
+Underfull \hbox (badness 7704) in paragraph at lines 240--240
 []\TU/lmr/m/n/10 (f) |Clus-ter-ing w/
  []
 
-<implementation/r3-2.jpg, id=535, 680.5425pt x 680.5425pt>
+<implementation/r3-2.jpg, id=532, 680.5425pt x 680.5425pt>
 File: implementation/r3-2.jpg Graphic file (type jpg)
 <use implementation/r3-2.jpg>
-Package luatex.def Info: implementation/r3-2.jpg  used on input line 241.
+Package luatex.def Info: implementation/r3-2.jpg  used on input line 242.
 (luatex.def)             Requested size: 85.35826pt x 85.35835pt.
 
-Underfull \hbox (badness 5302) in paragraph at lines 241--241
+Underfull \hbox (badness 5302) in paragraph at lines 242--242
 []\TU/lmr/m/n/10 (g) |Clus-ter-ing w/
  []
 
-<implementation/r4-2.jpg, id=536, 680.5425pt x 680.5425pt>
+<implementation/r4-2.jpg, id=533, 680.5425pt x 680.5425pt>
 File: implementation/r4-2.jpg Graphic file (type jpg)
 <use implementation/r4-2.jpg>
-Package luatex.def Info: implementation/r4-2.jpg  used on input line 243.
+Package luatex.def Info: implementation/r4-2.jpg  used on input line 244.
 (luatex.def)             Requested size: 85.35826pt x 85.35835pt.
 
-Underfull \hbox (badness 4621) in paragraph at lines 243--243
+Underfull \hbox (badness 4621) in paragraph at lines 244--244
 []\TU/lmr/m/n/10 (h) |Clus-ter-ing w/
  []
 
-[20<./implementation/r2.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 251--258
+[21<./implementation/r2.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 252--259
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 263--268
+Underfull \hbox (badness 10000) in paragraph at lines 264--269
 
  []
 
-[21<./implementation/r3.jpg><./implementation/r4.jpg><./implementation/c-2.jpg><
+[22<./implementation/r3.jpg><./implementation/r4.jpg><./implementation/c-2.jpg><
 ./implementation/r2-2.jpg><./implementation/r3-2.jpg><./implementation/r4-2.jpg>
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 275--287
+Underfull \hbox (badness 10000) in paragraph at lines 276--288
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--287
+Underfull \hbox (badness 10000) in paragraph at lines 276--288
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--287
+Underfull \hbox (badness 10000) in paragraph at lines 276--288
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 288--295
-
- []
-
-[22]
-Underfull \hbox (badness 10000) in paragraph at lines 331--339
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 331--339
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 340--344
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 346--352
+Underfull \hbox (badness 10000) in paragraph at lines 289--296
 
  []
 
 [23]
-Underfull \hbox (badness 10000) in paragraph at lines 354--362
+Underfull \hbox (badness 10000) in paragraph at lines 332--340
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--340
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 341--345
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 347--353
+
+ []
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 355--363
 
  []
 
 File: implementation/c.jpg Graphic file (type jpg)
 <use implementation/c.jpg>
-Package luatex.def Info: implementation/c.jpg  used on input line 381.
-(luatex.def)             Requested size: 199.16928pt x 199.16597pt.
-<implementation/hmap-763-763.png, id=579, 639.38875pt x 644.4075pt>
+Package luatex.def Info: implementation/c.jpg  used on input line 382.
+(luatex.def)             Requested size: 139.41832pt x 139.41501pt.
+<implementation/hmap-763-763.png, id=577, 639.38875pt x 644.4075pt>
 File: implementation/hmap-763-763.png Graphic file (type png)
 <use implementation/hmap-763-763.png>
-Package luatex.def Info: implementation/hmap-763-763.png  used on input line 383
+Package luatex.def Info: implementation/hmap-763-763.png  used on input line 384
 .
-(luatex.def)             Requested size: 204.85974pt x 206.47026pt.
+(luatex.def)             Requested size: 147.95424pt x 149.11522pt.
 File: implementation/c-2.jpg Graphic file (type jpg)
 <use implementation/c-2.jpg>
-Package luatex.def Info: implementation/c-2.jpg  used on input line 385.
-(luatex.def)             Requested size: 199.16928pt x 199.16951pt.
-<implementation/hmap-678-678.png, id=580, 640.3925pt x 644.4075pt>
+Package luatex.def Info: implementation/c-2.jpg  used on input line 386.
+(luatex.def)             Requested size: 139.41832pt x 139.41866pt.
+<implementation/hmap-678-678.png, id=578, 640.3925pt x 644.4075pt>
 File: implementation/hmap-678-678.png Graphic file (type png)
 <use implementation/hmap-678-678.png>
-Package luatex.def Info: implementation/hmap-678-678.png  used on input line 387
+Package luatex.def Info: implementation/hmap-678-678.png  used on input line 388
 .
-(luatex.def)             Requested size: 204.85974pt x 206.13594pt.
-[24]
-Underfull \hbox (badness 10000) in paragraph at lines 439--442
+(luatex.def)             Requested size: 147.95424pt x 148.87924pt.
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 440--446
 
  []
 
-[25<./implementation/hmap-763-763.png><./implementation/hmap-678-678.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 454--463
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 465--478
+[26<./implementation/hmap-763-763.png><./implementation/hmap-678-678.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 458--467
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 465--478
+Underfull \hbox (badness 10000) in paragraph at lines 469--484
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 465--478
+Underfull \hbox (badness 10000) in paragraph at lines 469--484
 
  []
 
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 529--537
+
+Underfull \hbox (badness 10000) in paragraph at lines 469--484
 
  []
 
-[27] (./implementation/repo.tex))
-Overfull \hbox (18.6537pt too wide) in paragraph at lines 36--174
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 535--543
+
+ []
+
+[28] (./implementation/repo.tex))
+Overfull \hbox (18.6537pt too wide) in paragraph at lines 36--176
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 36--174
+Underfull \hbox (badness 10000) in paragraph at lines 36--176
 
  []
 
-[28]
+[29]
 Chapter 4.
-(./evaluation/evaluation.tex [29
+(./evaluation/evaluation.tex [30
 
-] [30] [31]
+] [31] [32]
 
 LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 169.
 
-(./evaluation/redect.pgf) [32] (./evaluation/tracking_time.pgf) [33]
-(./evaluation/precomputed.pgf) (./bayesian.pgf) [34] [35]
-(./evaluation/mahnob.pgf) (./evaluation/fidelity.pgf)
+(./evaluation/redect.pgf) [33] (./evaluation/tracking_time.pgf) [34]
+(./evaluation/precomputed.pgf) (./bayesian.pgf) [35]
+(./evaluation/gender_freq.pgf) (./evaluation/gender_error.pgf) [36]
+(./evaluation/skin_tone.pgf) (./evaluation/skin_error.pgf)
+(./evaluation/skin_tone_error_table.tex) (./evaluation/skin_tone_p_table.tex)
+(./evaluation/NoiseStationary.pgf) (./evaluation/NoiseStar.pgf)
+(./evaluation/NoiseJogging.pgf) [37] (./evaluation/mahnob.pgf) [38]
+(./evaluation/fidelity.pgf)
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 458.
+               Default added (so using `tbp') on input line 539.
 
-[36] [37]) [38]
+[39]) [40]
 Chapter 5.
-(./conclusion/conclusion.tex [39
+(./conclusion/conclusion.tex [41
 
-]) (./diss.bbl [40] [41
+]) (./diss.bbl [42] [43
 
-] [42]) [43] [44
+] [44]) [45] [46
 
 ]
-[45
+[47
 
 
 ]
 Appendix A.
-<evaluation/1.jpg, id=781, 4047.12pt x 3035.34pt>
+<evaluation/1.jpg, id=800, 4047.12pt x 3035.34pt>
 File: evaluation/1.jpg Graphic file (type jpg)
 <use evaluation/1.jpg>
-Package luatex.def Info: evaluation/1.jpg  used on input line 198.
+Package luatex.def Info: evaluation/1.jpg  used on input line 200.
 (luatex.def)             Requested size: 250.24216pt x 187.6704pt.
-<evaluation/1-5.jpg, id=782, 4047.12pt x 3035.34pt>
+<evaluation/1-5.jpg, id=801, 4047.12pt x 3035.34pt>
 File: evaluation/1-5.jpg Graphic file (type jpg)
 <use evaluation/1-5.jpg>
-Package luatex.def Info: evaluation/1-5.jpg  used on input line 203.
+Package luatex.def Info: evaluation/1-5.jpg  used on input line 205.
 (luatex.def)             Requested size: 250.24216pt x 187.6704pt.
-<evaluation/2.jpg, id=783, 4047.12pt x 3035.34pt>
+<evaluation/2.jpg, id=802, 4047.12pt x 3035.34pt>
 File: evaluation/2.jpg Graphic file (type jpg)
 <use evaluation/2.jpg>
-Package luatex.def Info: evaluation/2.jpg  used on input line 208.
+Package luatex.def Info: evaluation/2.jpg  used on input line 210.
 (luatex.def)             Requested size: 250.24216pt x 187.6704pt.
-[46
-
-<./evaluation/1.jpg><./evaluation/1-5.jpg>] [47<./evaluation/2.jpg>]
 [48
 
-]
+<./evaluation/1.jpg><./evaluation/1-5.jpg>] [49<./evaluation/2.jpg>]
 Appendix B.
+<mahnob.png, id=814, 782.925pt x 582.175pt>
+File: mahnob.png Graphic file (type png)
+<use mahnob.png>
+Package luatex.def Info: mahnob.png  used on input line 217.
+(luatex.def)             Requested size: 250.24216pt x 186.07773pt.
+[50
+
+<./mahnob.png>]
+Appendix C.
 (./propbody.tex
 Underfull \hbox (badness 10000) in paragraph at lines 36--42
 
@@ -2017,72 +2024,67 @@ Underfull \hbox (badness 10000) in paragraph at lines 36--42
 
  []
 
-[49
+[51
 
-] [50] [51] [52] [53]) [54]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 221.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 221.
+
+] [52] [53] [54] [55]) [56]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 230.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 230.
  (./diss.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 221.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 221.
-
-
-Package rerunfilecheck Warning: File `diss.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `diss.out':
-(rerunfilecheck)             Before: 316370B72F67872598E2328730C37FF8;3601
-(rerunfilecheck)             After:  85C32A43DE9A477A2815AD2D058BE0A2;3611.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 221.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 230.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 230.
+Package rerunfilecheck Info: File `diss.out' has not changed.
+(rerunfilecheck)             Checksum: 2FE97AF15A33120C2977DE418BAB4566;3425.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 230.
 )
 
 Here is how much of LuaTeX's memory you used:
- 55751 strings out of 494291
+ 55886 strings out of 494291
  2277802,12246980 words of node,token memory allocated
  1183 words of node memory still in use:
    15 hlist, 2 vlist, 10 rule, 13 glue, 4 kern, 1 glyph, 82 attribute, 62 glue_s
 pec, 82 attribute_list, 2 write, 16 pdf_literal, 16 pdf_colorstack nodes
-   avail lists: 1:15,2:484658,3:322332,4:527,5:781,6:68,7:6114,8:68,9:1298,10:32
-,11:308
- 57994 multiletter control sequences out of 65536+600000
+   avail lists: 1:14,2:484660,3:322332,4:728,5:1009,6:68,7:5246,8:68,9:1339,10:3
+2,11:365
+ 58018 multiletter control sequences out of 65536+600000
  82 fonts using 10675703 bytes
  143i,21n,178p,1615b,3170s stack positions out of 5000i,500n,10000p,897222b,100000s
 
 warning  (pdf backend): unreferenced destination with name 'Hfootnote.5'
 
 warning  (pdf backend): unreferenced destination with name 'Hfootnote.3'
-</usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmsans10-regular.ot
+</usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmsans12-regular.ot
 f></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmmonolt10-bold.o
 tf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmmono12-regular
 .otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmroman10-bold
 italic.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmroman1
-0-bold.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmromans
-lant12-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/
-lmroman8-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/l
-m/lmroman12-italic.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public
-/lm/lmmono10-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/publ
-ic/lm/lmroman7-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/pu
-blic/lm/lmroman10-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype
-/public/lm/lmroman12-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opent
-ype/public/lm/lmroman17-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/op
-entype/public/lm/lmroman12-bold.otf></usr/local/texlive/2019/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmi8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/c
-msy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.
-pfb>
-Output written on diss.pdf (60 pages, 10746165 bytes).
+0-bold.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmsans10
+-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmroma
+n8-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmro
+manslant12-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public
+/lm/lmroman12-italic.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/publ
+ic/lm/lmmono10-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/pu
+blic/lm/lmroman7-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/
+public/lm/lmroman10-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/openty
+pe/public/lm/lmroman12-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/ope
+ntype/public/lm/lmroman17-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/
+opentype/public/lm/lmroman12-bold.otf></usr/local/texlive/2019/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+8.pfb>
+Output written on diss.pdf (62 pages, 11141789 bytes).
 
-PDF statistics: 997 PDF objects out of 1000 (max. 8388607)
- 838 compressed objects within 9 object streams
- 272 named destinations out of 1000 (max. 131072)
- 608 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 1028 PDF objects out of 1200 (max. 8388607)
+ 862 compressed objects within 9 object streams
+ 291 named destinations out of 1000 (max. 131072)
+ 592 words of extra memory for PDF output out of 10000 (max. 100000000)
 

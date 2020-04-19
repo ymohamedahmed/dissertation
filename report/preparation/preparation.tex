@@ -25,9 +25,9 @@ Through this mechanism, the electrodes can record each beat of the heart and the
    \caption{An example ECG signal} 
 \end{figure}
 \noindent
-Crucially for this project, the ECG is considered as the highest fidelity means of measuring heart rate. This is because the electrodes can perceive very minor changes in voltage and, thereby, very rarely produce false beats or miss beats of the heart. It is for this reason, that throughout this project it is considered suitable enough to behave as a ground truth for any experiments conducted.
+Crucially for this project, the ECG is considered the "Gold standard" means of measuring heart rate. This is because the electrodes can perceive very minor changes in voltage and, thereby, very rarely produce false beats or miss beats of the heart. It is for this reason, that throughout this project it is considered suitable enough to behave as a ground truth for any experiments conducted.
 \\\\
-It is worth noting that ECG sensors tend to be relatively expensive, and as a result, have fueled the uptake of lower fidelity alternatives.
+It is worth noting that ECG sensors tend to be relatively expensive and relatively invasive, and as a result, have fueled the uptake of lower fidelity alternatives.
 
 \subsection{Photoplethysmography}
 % Much more common, talk about pulse oximeter
@@ -80,7 +80,8 @@ Although, this comes with the large benefit of providing easier access to heart 
 
 \begin{figure}[H]
     \centering
-    \input{preparation/wear_ppg.tex}
+    \scalebox{0.6}{
+    \input{preparation/wear_ppg.pgf}}
     % \includegraphics[width=\textwidth]{example-image-b}
    \caption{An example PPG signal as taken from a wearable watch, with inferred heart beats on a filtered signal} 
 \end{figure}

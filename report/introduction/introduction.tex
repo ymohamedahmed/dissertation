@@ -1,8 +1,8 @@
 \paragraph{Overview}
 % Heart rate can be measured from a camera alone.
-Optical heart rate monitors, increasingly standard in modern wearable devices, measure the amount of light emitted by the surface of the 
-skin as a proxy for understanding the blood flow beneath.
-The most common light sensing device of all is the camera and so, naturally, the question arises of whether a camera can be used to measure heart rate?
+Optical heart rate monitors, increasingly standard in modern wearable devices, measure the absoprtion of light
+skin as a proxy for the blood flow beneath.
+The most common light sensing device of all is the camera and so, naturally, the question arises as to whether a camera can be used to measure heart rate?
 Research has shown that such a system can be implemented using a standard camera pointed at the face of the user \cite{poh2010non}\cite{vanderKooij2019}\cite{Verkruysse2008}. I refer to this as \textit{non-contact heart rate estimation} and this project is concerned with the implementation of a system capable of this.  
 % system and the further investigation of its sensing capabilities.
 % Given this signal, a heart rate can be extracted by analysing the predominant frequencies in this signal. In principle, 
@@ -20,13 +20,23 @@ is a key pattern in the field and is of great relevance to the project.
 \\\\
 % talk about how common cameras are and many people already own one, so repurposing an existing sensor is better than the development of a new one
 This trend allows increasing number of users to gain access to their own health data albeit at the cost of decreased fidelity.
-Expanding the scope of sensing, and computation in general, is a key principle of ubiquitous computing and since, cameras are, I argue, more common than heart rate monitors, the potential impact of this project in the context of ubiquitous computing is large. 
-\\\\
+Expanding the scope of sensing, and computation in general, is a key principle of ubiquitous computing and since, cameras are, I argue, more common than heart rate monitors, the potential impact of this project in this context is large. 
 % and, thereby, the development of heart rate sensing capabilities for 
 % smartphones represents a step of further progress within this wider trend. 
 In fact, I will later argue that smartphones, with their increased computational power, 
 could be of greater fidelity than wearables for heart rate sensing, in which case, this represents a much more significant 
 leap forward than might initally be anticipated.
+
+\paragraph{Related work}
+There is a large body of related research,
+individual, seminal, papers are summarised in Section \ref{ref:literature_review}, however, in general, much of the research proceeds similarly. 
+In order to extract the heart rate signal, the face must be tracked between frames, a subset of the face pixels are monitored, with their mean colour in each frame being recorded.
+Given this signal, the heart rate is discovered by careful analysis of the frequencies present. 
+It is the aim of this project to implement each of these three stages, with original work being designed and implemented throughout. 
+
+
+
+
 % \paragraph{Literature}
 %  This project, as a result, evaluates the value of 
 % \section{Related work}
