@@ -1002,12 +1002,12 @@
 \begin{pgfscope}%
 \pgfpathrectangle{\pgfqpoint{0.617014in}{0.580556in}}{\pgfqpoint{5.232986in}{3.019444in}}%
 \pgfusepath{clip}%
-\pgfsetrectcap%
+\pgfsetbuttcap%
 \pgfsetroundjoin%
 \pgfsetlinewidth{1.505625pt}%
 \definecolor{currentstroke}{rgb}{1.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
+\pgfsetdash{{5.550000pt}{2.400000pt}}{0.000000pt}%
 \pgfpathmoveto{\pgfqpoint{0.854877in}{0.959805in}}%
 \pgfpathlineto{\pgfqpoint{5.612137in}{3.462753in}}%
 \pgfpathlineto{\pgfqpoint{5.612137in}{3.462753in}}%
@@ -1061,7 +1061,7 @@
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=3.233507in,y=3.683333in,,base]{\color{textcolor}\sffamily\fontsize{12.000000}{14.400000}\selectfont Noise vs MAE w/ \(\displaystyle \rho\)=0.86}%
+\pgftext[x=3.233507in,y=3.683333in,,base]{\color{textcolor}\sffamily\fontsize{12.000000}{14.400000}\selectfont Noise vs MAE w/ \(\displaystyle \rho\)=0.858}%
 \end{pgfscope}%
 \end{pgfpicture}%
 \makeatother%

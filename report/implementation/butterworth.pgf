@@ -407,8 +407,9 @@
 \pgfsetrectcap%
 \pgfsetroundjoin%
 \pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.839293,0.184544,0.152864}%
+\definecolor{currentstroke}{rgb}{0.956863,0.427451,0.262745}%
 \pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.400000}%
 \pgfsetdash{}{0pt}%
 \pgfpathmoveto{\pgfqpoint{0.736111in}{0.638932in}}%
 \pgfpathlineto{\pgfqpoint{0.750000in}{0.638932in}}%
@@ -617,8 +618,9 @@
 \pgfsetrectcap%
 \pgfsetroundjoin%
 \pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.400000,0.741176,0.388235}%
+\definecolor{currentstroke}{rgb}{0.099962,0.592388,0.311803}%
 \pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.900000}%
 \pgfsetdash{}{0pt}%
 \pgfpathmoveto{\pgfqpoint{0.736111in}{0.638932in}}%
 \pgfpathlineto{\pgfqpoint{0.773250in}{0.639012in}}%
@@ -820,8 +822,9 @@
 \pgfsetrectcap%
 \pgfsetroundjoin%
 \pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.839293,0.184544,0.152864}%
+\definecolor{currentstroke}{rgb}{0.956863,0.427451,0.262745}%
 \pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.400000}%
 \pgfsetdash{}{0pt}%
 \pgfpathmoveto{\pgfqpoint{3.674902in}{3.338088in}}%
 \pgfpathlineto{\pgfqpoint{3.952680in}{3.338088in}}%
@@ -837,8 +840,9 @@
 \pgfsetrectcap%
 \pgfsetroundjoin%
 \pgfsetlinewidth{1.505625pt}%
-\definecolor{currentstroke}{rgb}{0.400000,0.741176,0.388235}%
+\definecolor{currentstroke}{rgb}{0.099962,0.592388,0.311803}%
 \pgfsetstrokecolor{currentstroke}%
+\pgfsetstrokeopacity{0.900000}%
 \pgfsetdash{}{0pt}%
 \pgfpathmoveto{\pgfqpoint{3.674902in}{3.134231in}}%
 \pgfpathlineto{\pgfqpoint{3.952680in}{3.134231in}}%

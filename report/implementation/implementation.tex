@@ -530,10 +530,12 @@ In order to avoid this, a Butterworth filter is applied which removes isolated p
 %     \includegraphics[width=0.5\textwidth]{example-image-a}
 %    \caption{An example of the split peak issue with a Butterworth filter applied} 
 % \end{figure}
-\begin{figure}[H]
+\begin{wrapfigure}{r}{0.6\textwidth}
     \centering
-    \input{implementation/butterworth.pgf}
-\end{figure}
+    \scalebox{0.6}{
+    \input{implementation/butterworth.pgf}}
+    \caption{\textit{An example of the split-peak issue}}
+\end{wrapfigure}
 \subsubsection{Majority voting heuristic}
 In scenarios where there are large amounts of movement in the video, the most prevalent frequency may not correspond to the heart rate. This is problematic, if the movement occurs at a frequency 
 which could be otherwise interpreted as a heart rate, that is between 0.6Hz (36 beats per minute) and 4Hz (240 beats per minute). As a result, selecting the highest peak in this case could be 

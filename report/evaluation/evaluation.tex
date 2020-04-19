@@ -474,10 +474,21 @@ to give an intuitive understanding about the accuracy of the sensor in question.
 \end{figure}
 
 \subsubsection{Impact of movement}
+\begin{figure}[H]
+    \centering
+    \subfloat[]{\scalebox{0.6}{\input{evaluation/movement_freq.pgf}}}
+    \subfloat[]{\scalebox{0.6}{\input{evaluation/movement_error.pgf}}}
+\end{figure}
 
 \subsubsection{Impact of distance}
 % big effect is if change in distance modifies illumination
 % under the experiments conducted the illuminant was behind the camera so don't expect much impact as a result of distance
+\begin{figure}[H]
+    \centering
+    \subfloat[]{\scalebox{0.6}{\input{evaluation/dist_freq.pgf}}}
+    \subfloat[]{\scalebox{0.6}{\input{evaluation/dist_error.pgf}}}
+\end{figure}
+
 
 
 % \subsubsection{Impact of framerate}
@@ -502,6 +513,12 @@ to give an intuitive understanding about the accuracy of the sensor in question.
     \quad
     \subfloat[]{\scalebox{0.5}{\input{evaluation/NoiseJogging.pgf} }}%
    \caption{\textit{An example of the defined noise metric} }
+\end{figure}
+
+\begin{figure}[H]
+    \subfloat[]{\scalebox{0.6}{\input{evaluation/Noise-with-exer.pgf}}}
+    \qquad
+    \subfloat[]{\scalebox{0.6}{\input{evaluation/std_error.pgf}}}
 \end{figure}
 
 \subsection{Overview}
