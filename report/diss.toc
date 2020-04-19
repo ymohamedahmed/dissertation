@@ -33,7 +33,7 @@
 \contentsline {chapter}{\numberline {3}Implementation}{13}{chapter.3}% 
 \contentsline {section}{\numberline {3.1}Overview}{13}{section.3.1}% 
 \contentsline {section}{\numberline {3.2}System design}{13}{section.3.2}% 
-\contentsline {section}{\numberline {3.3}Face detection}{15}{section.3.3}% 
+\contentsline {section}{\numberline {3.3}Face detection}{14}{section.3.3}% 
 \contentsline {subsection}{\numberline {3.3.1}Face tracking}{15}{subsection.3.3.1}% 
 \contentsline {subsubsection}{Point tracking}{15}{section*.24}% 
 \contentsline {paragraph}{Impact of the rate of redetections}{16}{section*.26}% 
@@ -56,44 +56,45 @@
 \contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{26}{subsection.3.5.1}% 
 \contentsline {subsubsection}{Independent component analysis (ICA)}{26}{section*.45}% 
 \contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{27}{subsection.3.5.2}% 
-\contentsline {subsubsection}{The split peak issue}{27}{section*.46}% 
-\contentsline {subsubsection}{Majority voting heuristic}{27}{section*.48}% 
+\contentsline {subsubsection}{The split peak issue}{27}{section*.47}% 
+\contentsline {subsubsection}{Majority voting heuristic}{28}{section*.49}% 
 \contentsline {subsection}{\numberline {3.5.3}Summary}{28}{subsection.3.5.3}% 
-\contentsline {section}{\numberline {3.6}Repository overview}{28}{section.3.6}% 
-\contentsline {chapter}{\numberline {4}Evaluation}{29}{chapter.4}% 
-\contentsline {section}{\numberline {4.1}Data collection}{29}{section.4.1}% 
-\contentsline {subsection}{\numberline {4.1.1}Methodology}{29}{subsection.4.1.1}% 
-\contentsline {paragraph}{Experimental setup}{30}{section*.49}% 
-\contentsline {paragraph}{Hypothesis testing}{30}{section*.50}% 
-\contentsline {section}{\numberline {4.2}Analysis of performance}{30}{section.4.2}% 
-\contentsline {subsection}{\numberline {4.2.1}Face tracking}{31}{subsection.4.2.1}% 
-\contentsline {paragraph}{Research questions}{31}{section*.51}% 
-\contentsline {paragraph}{Metrics}{31}{section*.52}% 
-\contentsline {paragraph}{Robustness}{32}{section*.53}% 
-\contentsline {paragraph}{Performance cost}{32}{section*.55}% 
-\contentsline {paragraph}{Results}{33}{section*.57}% 
-\contentsline {paragraph}{Summary}{34}{section*.60}% 
-\contentsline {subsection}{\numberline {4.2.2}Accelerating region selection}{34}{subsection.4.2.2}% 
-\contentsline {section}{\numberline {4.3}Analysis of sensing fidelity}{35}{section.4.3}% 
-\contentsline {paragraph}{Research questions}{35}{section*.63}% 
-\contentsline {paragraph}{Metrics}{35}{section*.64}% 
-\contentsline {subsection}{\numberline {4.3.1}Sources of error}{36}{subsection.4.3.1}% 
-\contentsline {subsubsection}{Impact of gender and skin tone}{36}{section*.65}% 
-\contentsline {subsubsection}{Impact of movement}{37}{section*.69}% 
-\contentsline {subsubsection}{Impact of distance}{37}{section*.71}% 
+\contentsline {section}{\numberline {3.6}Repository overview}{29}{section.3.6}% 
+\contentsline {chapter}{\numberline {4}Evaluation}{30}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Data collection}{30}{section.4.1}% 
+\contentsline {subsection}{\numberline {4.1.1}Methodology}{30}{subsection.4.1.1}% 
+\contentsline {paragraph}{Experimental setup}{31}{section*.50}% 
+\contentsline {paragraph}{Hypothesis testing}{31}{section*.51}% 
+\contentsline {section}{\numberline {4.2}Analysis of performance}{31}{section.4.2}% 
+\contentsline {subsection}{\numberline {4.2.1}Face tracking}{32}{subsection.4.2.1}% 
+\contentsline {paragraph}{Research questions}{32}{section*.52}% 
+\contentsline {paragraph}{Metrics}{32}{section*.53}% 
+\contentsline {paragraph}{Robustness}{33}{section*.54}% 
+\contentsline {paragraph}{Performance cost}{33}{section*.56}% 
+\contentsline {paragraph}{Results}{34}{section*.58}% 
+\contentsline {paragraph}{Summary}{35}{section*.61}% 
+\contentsline {subsection}{\numberline {4.2.2}Accelerating region selection}{35}{subsection.4.2.2}% 
+\contentsline {section}{\numberline {4.3}Analysis of sensing fidelity}{36}{section.4.3}% 
+\contentsline {paragraph}{Research questions}{36}{section*.64}% 
+\contentsline {paragraph}{Metrics}{36}{section*.65}% 
+\contentsline {subsection}{\numberline {4.3.1}Sources of error}{37}{subsection.4.3.1}% 
+\contentsline {subsubsection}{Impact of gender}{37}{section*.66}% 
+\contentsline {subsubsection}{Impact of skin tone}{37}{section*.68}% 
+\contentsline {subsubsection}{Impact of movement}{37}{section*.70}% 
+\contentsline {subsubsection}{Impact of distance}{38}{section*.72}% 
 \contentsline {subsection}{\numberline {4.3.2}Predicting unreliability}{38}{subsection.4.3.2}% 
-\contentsline {subsubsection}{Quantifiying noise}{38}{section*.73}% 
+\contentsline {subsubsection}{Quantifiying noise}{38}{section*.74}% 
 \contentsline {subsection}{\numberline {4.3.3}Overview}{39}{subsection.4.3.3}% 
-\contentsline {paragraph}{MAHNOB}{39}{section*.76}% 
-\contentsline {paragraph}{Experiment test suite}{39}{section*.78}% 
-\contentsline {paragraph}{Results}{39}{section*.81}% 
+\contentsline {paragraph}{MAHNOB}{39}{section*.77}% 
+\contentsline {paragraph}{Experiment test suite}{39}{section*.79}% 
+\contentsline {paragraph}{Results}{40}{section*.82}% 
 \contentsline {chapter}{\numberline {5}Conclusion}{42}{chapter.5}% 
 \contentsline {section}{\numberline {5.1}Significance of results}{42}{section.5.1}% 
 \contentsline {section}{\numberline {5.2}Successes and failures}{42}{section.5.2}% 
 \contentsline {section}{\numberline {5.3}Personal remarks}{43}{section.5.3}% 
 \contentsline {section}{\numberline {5.4}Future work}{43}{section.5.4}% 
 \contentsline {chapter}{Bibliography}{43}{section.5.4}% 
-\contentsline {chapter}{Appendices}{47}{section*.83}% 
+\contentsline {chapter}{Appendices}{47}{section*.84}% 
 \contentsline {chapter}{\numberline {A}Experiment example distances}{48}{Appendix.a.A}% 
 \contentsline {chapter}{\numberline {B}MAHNOB example}{50}{Appendix.a.B}% 
 \contentsline {chapter}{\numberline {C}Project Proposal}{51}{Appendix.a.C}% 

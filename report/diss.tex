@@ -71,6 +71,7 @@
 % Title
 
 
+%%TC:ignore
 \pagestyle{empty}
 
 \hfill{\LARGE \bf Yousuf Mohamed-Ahmed}
@@ -162,6 +163,7 @@ extent for a comparable purpose.
 \setcounter{page}{1}
 \pagenumbering{arabic}
 \pagestyle{headings}
+%%TC:endignore
 
 \chapter{Introduction}
 \input{introduction/introduction.tex}
@@ -186,6 +188,7 @@ extent for a comparable purpose.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % the bibliography
 
+%%TC:ignore
 \addcontentsline{toc}{chapter}{Bibliography}
 \bibliography{refs}
 \cleardoublepage
@@ -221,11 +224,9 @@ extent for a comparable purpose.
 
 
 \cleardoublepage
-
 \chapter{Project Proposal}
 \input{propbody}
-    
 \end{appendices}
 % \includepdf[pages=-,pagecommand={},width=\paperwidth]{proposal/main.pdf}
-
+%%TC:endignore
 \end{document}

@@ -23,7 +23,7 @@ Separating these tasks allows for this concurrency to be implemented safely.
 \begin{figure}[H]
     % \includegraphics[width=\textwidth]{example-image-a}
     \centering
-    \input{implementation/uml.tex}
+    \scalebox{0.7}{\input{implementation/uml.tex}}
    \caption{A UML sequence diagram showcasing the use of threading} 
 \end{figure}
 \noindent
@@ -52,6 +52,7 @@ There are two obvious approaches to combat this. The algorithm could redetect th
 \end{itemize}
 The former wastes computation time for stationary videos where the redetections might be unnecessary. Simultaneously, the time between redetections must be short enough to deal with videos with significant movement. This static approach, therefore, was not considered. For this reason, the latter was implemented. We track the face and if the size of the box surrounding it changes significantly, indicating that our confidence in the tracked points has reduced, then we recompute the true position of the face.
 \begin{figure}[H]
+\centering
 \begin{minted}{python}
    points = []
    redetect = True
@@ -477,6 +478,14 @@ Crucially, however, this approach returns the signals $x_1(t)$, $x_2(t)$ and $x_
 \\\\
 In this scenario, I proceed by attempting to identify the heart rate in each of these signals independently. This results in returning three different heart rate values, each of which has an associated power.
 This power value, which is the magnitude of the term in the Fourier transform associated with a given frequency, acts as a natural way of quantifying the importance of a particular frequency on the overall signal.
+\begin{figure}[H]
+    \centering
+    \subfloat[\textit{Raw video signal}]{\scalebox{0.6}{\input{implementation/ica_0.pgf}}}
+    \subfloat[\textit{ICA Component 1}]{\scalebox{0.6}{\input{implementation/ica_1.pgf}}}
+
+    \subfloat[\textit{ICA Component 2}]{\scalebox{0.6}{\input{implementation/ica_2.pgf}}}
+    \subfloat[\textit{ICA Component 3}]{\scalebox{0.6}{\input{implementation/ica_3.pgf}}}
+\end{figure}
 % In 
 % Hence, I assume that the correct heart rate corresponds to whichever has the largest power.
 %  This particular assumption is evaluated in Section \ref{section:ica_assumption}.
@@ -530,7 +539,7 @@ In order to avoid this, a Butterworth filter is applied which removes isolated p
 %     \includegraphics[width=0.5\textwidth]{example-image-a}
 %    \caption{An example of the split peak issue with a Butterworth filter applied} 
 % \end{figure}
-\begin{wrapfigure}{r}{0.6\textwidth}
+\begin{wrapfigure}{r}{0.5\textwidth}
     \centering
     \scalebox{0.6}{
     \input{implementation/butterworth.pgf}}
@@ -549,8 +558,10 @@ This helps to guard against a common pitfall of PPG-based systems where the freq
 \subsection{Summary}
 % Here I have presented large aspects of original work which have combined to implement a system capable of rPPG
 % Each of the relevant aspects are documented in the code that can be found below.
-I have presented a large body of work, of which much is original, that combines to implement a system capable of non-contact heart rate estimation.
-All the described work, is presented in the Python implementation and can be found in the supplied source code.
+% I have presented a large body of work, of which much is original, that combines to implement a system capable of non-contact heart rate estimation. 
+The work presented, largly, falls into two categories: improving the performance of the system and improving its fidelity. As two overarching goals
+of the project, it is in this vein it will be evaluated.
+All the described work is presented in the Python implementation and can be found in the supplied source code with documentation included.
 
 
 \section{Repository overview}

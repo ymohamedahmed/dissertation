@@ -267,13 +267,13 @@ use higher frame rate cameras whilst still maintaining real-time behaviour.
 \label{eval:region_selection}
 \begin{figure}[H]
     \centering
-    \input{evaluation/precomputed.pgf}
-   \caption{\textit{A graph showing the effective framerate of the entire pipeline, with and without precomputing the class conditional distributions used by the skin detector}} 
+    \scalebox{0.7}{\input{evaluation/precomputed.pgf}}
+   \caption{\textit{A graph showing the effective framerate of the entire pipeline, with and without precomputing the distributions used by the skin detector}} 
 \end{figure}
 \begin{figure}[H]
     \centering
-    \input{bayesian.pgf}
-   \caption{\textit{A graph showing the mean time to process a single frame when using k-means on each frame vs. the probabilistic approach described}} 
+    \scalebox{0.7}{\input{bayesian.pgf}}
+   \caption{\textit{A graph showing the mean time to process a single frame when using k-means on each frame vs. skin detector described}} 
 \end{figure}
 % \paragraph{Correctness}
 
@@ -418,20 +418,23 @@ to give an intuitive understanding about the accuracy of the sensor in question.
 % Histogram of each cateogry
 
 
-\subsubsection{Impact of gender and skin tone}
+\subsubsection{Impact of gender}
 % NEED TO SAY THIS IS ONLY FOR MAHNOB
-\begin{figure}[H]
-    \centering
-    \subfloat[]{\scalebox{0.7}{\input{evaluation/gender_freq.pgf}}}
-    \qquad
-    \subfloat[]{\scalebox{0.7}{\input{evaluation/gender_error.pgf}}}
-\end{figure}
 
 \begin{figure}[H]
     \centering
-    \subfloat[]{\scalebox{0.7}{\input{evaluation/skin_tone.pgf}}}
+    \subfloat[\textit{Frequency of measurements across genders}]{\scalebox{0.7}{\input{evaluation/gender_freq.pgf}}}
     \qquad
-    \subfloat[]{\scalebox{0.7}{\input{evaluation/skin_error.pgf}}}
+    \subfloat[\textit{Mean absolute error by gender}]{\scalebox{0.7}{\input{evaluation/gender_error.pgf}}}
+\end{figure}
+
+\subsubsection{Impact of skin tone}
+
+\begin{figure}[H]
+    \centering
+    \subfloat[\textit{Frequency of measurements per skin tone}]{\scalebox{0.7}{\input{evaluation/skin_tone.pgf}}}
+    \qquad
+    \subfloat[\textit{Mean absolute error by skin tone}]{\scalebox{0.7}{\input{evaluation/skin_error.pgf}}}
 \end{figure}
 % Please add the following required packages to your document preamble:
 % \usepackage{multirow}
@@ -466,18 +469,18 @@ to give an intuitive understanding about the accuracy of the sensor in question.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{multirow}
-\begin{figure}[H]
-    \centering
-    \subfloat[]{\scalebox{0.7}{\input{evaluation/skin_tone_error_table.tex}}}
-    \qquad
-    \subfloat[]{\scalebox{0.7}{\input{evaluation/skin_tone_p_table.tex}}}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \subfloat[]{\scalebox{0.7}{\input{evaluation/skin_tone_error_table.tex}}}
+%     \qquad
+%     \subfloat[]{\scalebox{0.7}{\input{evaluation/skin_tone_p_table.tex}}}
+% \end{figure}
 
 \subsubsection{Impact of movement}
 \begin{figure}[H]
     \centering
-    \subfloat[]{\scalebox{0.6}{\input{evaluation/movement_freq.pgf}}}
-    \subfloat[]{\scalebox{0.6}{\input{evaluation/movement_error.pgf}}}
+    \subfloat[\textit{Frequency of measurements across exercise classes}]{\scalebox{0.6}{\input{evaluation/movement_freq.pgf}}}
+    \subfloat[\textit{Mean absolute error per class}]{\scalebox{0.6}{\input{evaluation/movement_error.pgf}}}
 \end{figure}
 
 \subsubsection{Impact of distance}
