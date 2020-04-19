@@ -85,19 +85,19 @@
 \contentsline {subsubsection}{Impact of distance}{38}{section*.73}% 
 \contentsline {subsubsection}{Impact of movement}{38}{section*.75}% 
 \contentsline {subsubsection}{Impact of class of movement}{39}{section*.77}% 
-\contentsline {paragraph}{Quantifiying noise}{40}{figure.caption.79}% 
-\contentsline {subsection}{\numberline {4.3.2}Predicting unreliability}{40}{subsection.4.3.2}% 
+\contentsline {paragraph}{Quantifiying noise}{39}{section*.78}% 
+\contentsline {subsection}{\numberline {4.3.2}Predicting unreliability}{41}{subsection.4.3.2}% 
 \contentsline {subsection}{\numberline {4.3.3}Overview}{41}{subsection.4.3.3}% 
-\contentsline {paragraph}{MAHNOB}{41}{section*.81}% 
-\contentsline {paragraph}{Experiment test suite}{41}{section*.83}% 
-\contentsline {paragraph}{Results}{41}{section*.86}% 
+\contentsline {paragraph}{MAHNOB}{41}{section*.82}% 
+\contentsline {paragraph}{Experiment test suite}{41}{section*.84}% 
+\contentsline {paragraph}{Results}{42}{section*.87}% 
 \contentsline {chapter}{\numberline {5}Conclusion}{44}{chapter.5}% 
 \contentsline {section}{\numberline {5.1}Significance of results}{44}{section.5.1}% 
 \contentsline {section}{\numberline {5.2}Successes and failures}{44}{section.5.2}% 
 \contentsline {section}{\numberline {5.3}Personal remarks}{45}{section.5.3}% 
 \contentsline {section}{\numberline {5.4}Future work}{45}{section.5.4}% 
 \contentsline {chapter}{Bibliography}{45}{section.5.4}% 
-\contentsline {chapter}{Appendices}{49}{section*.88}% 
+\contentsline {chapter}{Appendices}{49}{section*.89}% 
 \contentsline {chapter}{\numberline {A}Experiment example distances}{50}{Appendix.a.A}% 
 \contentsline {chapter}{\numberline {B}MAHNOB example}{52}{Appendix.a.B}% 
 \contentsline {chapter}{\numberline {C}Project Proposal}{53}{Appendix.a.C}% 

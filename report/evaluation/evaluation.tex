@@ -475,15 +475,15 @@ Movement, or the lack of it, proves to have the greatest impact on accuracy. Sta
 the non-stationary videos is the subject of subsequent investigation.
 \begin{figure}[H]
     \centering
-    \subfloat[\textit{Frequency of measurements across exercise classes}]{\scalebox{0.6}{\input{evaluation/movement_freq.pgf}}}
-    \subfloat[\textit{Mean absolute error per class}]{\scalebox{0.6}{\input{evaluation/movement_error.pgf}}}
-    \subfloat[\textit{Mean ground truth heart rate per class}]{\scalebox{0.6}{\input{evaluation/movement_perc_error.pgf}}}
+    \subfloat[\textit{Frequency of measurements across exercise classes}]{\scalebox{0.55}{\input{evaluation/movement_freq.pgf}}}
+    \subfloat[\textit{Mean absolute error per class}]{\scalebox{0.55}{\input{evaluation/movement_error.pgf}}}
+    \subfloat[\textit{Mean ground truth heart rate per class}]{\scalebox{0.55}{\input{evaluation/movement_perc_error.pgf}}}
     \label{fig:move_err}
 \end{figure}
 
 \subsubsection{Impact of class of movement}
 It is, initially, unclear the exact nature of movement that causes an increase in error. Concretely, what is it that separates the case of star jumping and jogging? 
-One might hypothesise that the system produces larger errors as heart rate increases, but this can be safely ruled out since the mean heart rate in both classes are almost identical (see Figure \ref{fig:move_err}).
+One might hypothesise that the system produces larger errors as heart rate increases, but this can be safely ruled out since the mean heart rate in both classes is almost identical.
 Instead I propose the hypothesis that the \textit{frequency} of movement rather than the amount is the key factor determining increasing error. Specifically that error is caused when the frequency of movement
 falls in the range of possible heart rate frequencies.
 % If the frequency of the movement falls in the range 
@@ -491,6 +491,10 @@ falls in the range of possible heart rate frequencies.
 
 
 \paragraph{Quantifiying noise}
+To understand this I define the following noise metric.
+\begin{equation*}
+    \text{Noise} = \frac{\sum_{\omega} F(\omega)}{ \sum_{\omega \in [\text{HR}-\delta, \text{HR}+\delta ]}F(\omega)}  
+\end{equation*}
 \begin{figure}[H]
     \centering
     \subfloat[]{\scalebox{0.5}{\input{evaluation/NoiseStationary.pgf}}}%
@@ -500,6 +504,12 @@ falls in the range of possible heart rate frequencies.
    \caption{\textit{An example of the defined noise metric} }
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \subfloat[]{\scalebox{0.6}{\input{evaluation/Noise-with-exer.pgf}}}
+\end{figure}
+This correlation does not, in itself, prove that the cause of the increasing error is frequency of movement.
+It does, however, indicate that large values of the defined noise metric is a property of signals which exhibit larger errors.
 
 % \subsubsection{Impact of framerate}
 % scope for skipping frames if HR isn't very high
@@ -515,8 +525,7 @@ falls in the range of possible heart rate frequencies.
 
 
 \begin{figure}[H]
-    \subfloat[]{\scalebox{0.6}{\input{evaluation/Noise-with-exer.pgf}}}
-    \qquad
+    \centering
     \subfloat[]{\scalebox{0.6}{\input{evaluation/std_error.pgf}}}
 \end{figure}
 
