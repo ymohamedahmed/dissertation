@@ -1,10 +1,64 @@
-    \begin{tabular}{lc|ccccc}
+    % \begin{tabular}{lc|ccccc}
+    % \hline
+    %  &  & \multicolumn{5}{c}{\textbf{Skin tone}} \\
+    % \multicolumn{2}{c|}{\textbf{p-value}} & \multicolumn{1}{c|}{\textbf{1}} & \multicolumn{1}{c|}{\textbf{2}} & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{1}{c|}{\textbf{4}} & \textbf{5} \\ \hline
+    % \multirow{5}{*}{\textbf{\rotatebox[origin=c]{90}{Skin tone}}} & \textbf{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.2339} & \multicolumn{1}{c|}{\textbf{9.785e-03}} & \multicolumn{1}{c|}{\textbf{2.371e-03}} & \textbf{2.416e-04} \\
+    %  & \textbf{2} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.0286} & \multicolumn{1}{c|}{\textbf{8.028e-03}} & \textbf{1.210e-09} \\
+    %  & \textbf{3} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.218} & \textbf{7.163e-14} \\
+    %  & \textbf{4} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \textbf{1.168e-11} \\
+    %  & \textbf{5} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &  \\ \hline
+
+     % Please add the following required packages to your document preamble:
+    % \begin{tabular}{cc|c|c|c|c|c|c|}
+    %  &  & \multicolumn{6}{c|}{Skin tone} \\
+    %  & p-value & 1 & 2 & 3 & 4 & 5 & 6 \\ \hline
+    % \multirow{6}{*}{\rotatebox[origin=c]{90}{Skin tone}} & 1 &  & \textbf{3.555e-05} & \textbf{2.949e-08} & 0.5149 & \textbf{5.245e-05} & \textbf{4.655e-05} \\
+    %  & 2 &  &  & 0.0106 & \textbf{1.757e-07} & 0.5768 & \textbf{2.976e-31} \\
+    %  & 3 &  &  &  & \textbf{2.959e-14} & 0.2031 & \textbf{6.745e-42} \\
+    %  & 4 &  &  &  &  & \textbf{5.296e-06} & \textbf{4.221e-11} \\
+    %  & 5 &  &  &  &  &  & \textbf{1.542e-22} \\
+    %  & 6 &  &  &  &  &  & 
+    % \end{tabular}
+    % Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+    % \begin{tabular}{cc|cccccc}
+    % \hline
+    %  &  & \multicolumn{6}{c}{\textbf{Skin tone}} \\
+    %  & \textbf{p-value} & \multicolumn{1}{c|}{\textbf{1}} & \multicolumn{1}{c|}{\textbf{2}} & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{1}{c|}{\textbf{4}} & \multicolumn{1}{c|}{\textbf{5}} & \textbf{6} \\ \hline
+    % \multirow{6}{*}{\textbf{\rotatebox[origin=c]{90}{Skin tone}}} & \textbf{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{3.555e-05}} & \multicolumn{1}{c|}{\textbf{2.949e-08}} & \multicolumn{1}{c|}{0.5149} & \multicolumn{1}{c|}{\textbf{5.245e-05}} & \textbf{4.655e-05} \\ \cline{2-8} 
+    %  & \textbf{2} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.0106} & \multicolumn{1}{c|}{\textbf{1.757e-07}} & \multicolumn{1}{c|}{0.5768} & \textbf{2.976e-31} \\ \cline{2-8} 
+    %  & \textbf{3} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{2.959e-14}} & \multicolumn{1}{c|}{0.2031} & \textbf{6.745e-42} \\ \cline{2-8} 
+    %  & \textbf{4} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{5.296e-06}} & \textbf{4.221e-11} \\ \cline{2-8} 
+    %  & \textbf{5} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \textbf{1.542e-22} \\ \cline{2-8} 
+    %  & \textbf{6} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &  \\ \hline
+    % \end{tabular}
+    % Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+    % \begin{tabular}{cc|cccccc}
+    % \hline
+    %  &  & \multicolumn{6}{c}{\textbf{Skin tone}} \\
+    %  & \textbf{p-value} & \multicolumn{1}{c|}{\textbf{1}} & \multicolumn{1}{c|}{\textbf{2}} & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{1}{c|}{\textbf{4}} & \multicolumn{1}{c|}{\textbf{5}} & \textbf{6} \\ \hline
+    %  & \cellcolor[HTML]{EFEFEF}\textbf{1} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{3.555e-05}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{2.949e-08}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}0.5149} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{5.245e-05}} & \cellcolor[HTML]{EFEFEF}\textbf{4.655e-05} \\
+    %  & \textbf{2} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.0106} & \multicolumn{1}{c|}{\textbf{1.757e-07}} & \multicolumn{1}{c|}{0.5768} & \textbf{2.976e-31} \\
+    %  & \cellcolor[HTML]{EFEFEF}\textbf{3} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{2.959e-14}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}0.2031} & \cellcolor[HTML]{EFEFEF}\textbf{6.745e-42} \\
+    %  & \textbf{4} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{5.296e-06}} & \textbf{4.221e-11} \\
+    %  & \textbf{5} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \textbf{1.542e-22} \\
+    % \multirow{-6}{*}{\textbf{\rotatebox[origin=c]{90}{Skin tone}} }& \textbf{6} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &  \\ \hline
+    % \end{tabular}
+    % Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+    \begin{tabular}{cc|cccccc}
     \hline
-     &  & \multicolumn{5}{c}{\textbf{Skin tone}} \\
-    \multicolumn{2}{c|}{\textbf{p-value}} & \multicolumn{1}{c|}{\textbf{1}} & \multicolumn{1}{c|}{\textbf{2}} & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{1}{c|}{\textbf{4}} & \textbf{5} \\ \hline
-    \multirow{5}{*}{\textbf{\rotatebox[origin=c]{90}{Skin tone}}} & \textbf{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.2339} & \multicolumn{1}{c|}{\textbf{9.785e-03}} & \multicolumn{1}{c|}{\textbf{2.371e-03}} & \textbf{2.416e-04} \\
-     & \textbf{2} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.0286} & \multicolumn{1}{c|}{\textbf{8.028e-03}} & \textbf{1.210e-09} \\
-     & \textbf{3} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.218} & \textbf{7.163e-14} \\
-     & \textbf{4} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \textbf{1.168e-11} \\
-     & \textbf{5} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &  \\ \hline
+     &  & \multicolumn{6}{c}{\textbf{Skin tone}} \\
+     & \textbf{p-value} & \multicolumn{1}{c|}{\textbf{1}} & \multicolumn{1}{c|}{\textbf{2}} & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{1}{c|}{\textbf{4}} & \multicolumn{1}{c|}{\textbf{5}} & \textbf{6} \\ \hline
+     & \cellcolor[HTML]{EFEFEF}\textbf{1} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{3.555e-05}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{2.949e-08}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}0.5149} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{5.245e-05}} & \cellcolor[HTML]{EFEFEF}\textbf{4.655e-05} \\
+     & \textbf{2} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.0106} & \multicolumn{1}{c|}{\textbf{1.757e-07}} & \multicolumn{1}{c|}{0.5768} & \textbf{2.976e-31} \\
+     & \cellcolor[HTML]{EFEFEF}\textbf{3} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}\textbf{2.959e-14}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}0.2031} & \cellcolor[HTML]{EFEFEF}\textbf{6.745e-42} \\
+     & \textbf{4} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{\textbf{5.296e-06}} & \textbf{4.221e-11} \\
+     & \cellcolor[HTML]{EFEFEF}\textbf{5} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}} & \multicolumn{1}{c|}{\cellcolor[HTML]{EFEFEF}} & \cellcolor[HTML]{EFEFEF}\textbf{1.542e-22} \\
+    \multirow{-6}{*}{\textbf{\rotatebox[origin=c]{90}{Skin tone}}} & \textbf{6} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} &  \\ \hline
     \end{tabular}

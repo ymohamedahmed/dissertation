@@ -76,10 +76,10 @@
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetstrokeopacity{0.000000}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{0.905607in}{0.386111in}}%
-\pgfpathlineto{\pgfqpoint{1.358591in}{0.386111in}}%
-\pgfpathlineto{\pgfqpoint{1.358591in}{2.652753in}}%
-\pgfpathlineto{\pgfqpoint{0.905607in}{2.652753in}}%
+\pgfpathmoveto{\pgfqpoint{0.931345in}{0.386111in}}%
+\pgfpathlineto{\pgfqpoint{1.487279in}{0.386111in}}%
+\pgfpathlineto{\pgfqpoint{1.487279in}{2.652753in}}%
+\pgfpathlineto{\pgfqpoint{0.931345in}{2.652753in}}%
 \pgfpathclose%
 \pgfusepath{fill}%
 \end{pgfscope}%
@@ -95,10 +95,10 @@
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetstrokeopacity{0.000000}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{1.811574in}{0.386111in}}%
-\pgfpathlineto{\pgfqpoint{2.264558in}{0.386111in}}%
-\pgfpathlineto{\pgfqpoint{2.264558in}{2.696882in}}%
-\pgfpathlineto{\pgfqpoint{1.811574in}{2.696882in}}%
+\pgfpathmoveto{\pgfqpoint{2.043213in}{0.386111in}}%
+\pgfpathlineto{\pgfqpoint{2.599148in}{0.386111in}}%
+\pgfpathlineto{\pgfqpoint{2.599148in}{2.696882in}}%
+\pgfpathlineto{\pgfqpoint{2.043213in}{2.696882in}}%
 \pgfpathclose%
 \pgfusepath{fill}%
 \end{pgfscope}%
@@ -114,10 +114,10 @@
 \pgfsetstrokecolor{currentstroke}%
 \pgfsetstrokeopacity{0.000000}%
 \pgfsetdash{}{0pt}%
-\pgfpathmoveto{\pgfqpoint{2.717541in}{0.386111in}}%
-\pgfpathlineto{\pgfqpoint{3.170525in}{0.386111in}}%
-\pgfpathlineto{\pgfqpoint{3.170525in}{2.656765in}}%
-\pgfpathlineto{\pgfqpoint{2.717541in}{2.656765in}}%
+\pgfpathmoveto{\pgfqpoint{3.155082in}{0.386111in}}%
+\pgfpathlineto{\pgfqpoint{3.711016in}{0.386111in}}%
+\pgfpathlineto{\pgfqpoint{3.711016in}{2.656765in}}%
+\pgfpathlineto{\pgfqpoint{3.155082in}{2.656765in}}%
 \pgfpathclose%
 \pgfusepath{fill}%
 \end{pgfscope}%
@@ -136,7 +136,7 @@
 \pgfusepath{stroke,fill}%
 }%
 \begin{pgfscope}%
-\pgfsys@transformshift{1.132099in}{0.386111in}%
+\pgfsys@transformshift{1.209312in}{0.386111in}%
 \pgfsys@useobject{currentmarker}{}%
 \end{pgfscope}%
 \end{pgfscope}%
@@ -144,7 +144,7 @@
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=1.132099in,y=0.288889in,,top]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont Stationary}%
+\pgftext[x=1.209312in,y=0.288889in,,top]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont Stationary}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
@@ -161,7 +161,7 @@
 \pgfusepath{stroke,fill}%
 }%
 \begin{pgfscope}%
-\pgfsys@transformshift{2.038066in}{0.386111in}%
+\pgfsys@transformshift{2.321181in}{0.386111in}%
 \pgfsys@useobject{currentmarker}{}%
 \end{pgfscope}%
 \end{pgfscope}%
@@ -169,7 +169,7 @@
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=2.038066in,y=0.288889in,,top]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont Star jumps}%
+\pgftext[x=2.321181in,y=0.288889in,,top]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont Star jumps}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%
@@ -186,7 +186,7 @@
 \pgfusepath{stroke,fill}%
 }%
 \begin{pgfscope}%
-\pgfsys@transformshift{2.944033in}{0.386111in}%
+\pgfsys@transformshift{3.433049in}{0.386111in}%
 \pgfsys@useobject{currentmarker}{}%
 \end{pgfscope}%
 \end{pgfscope}%
@@ -194,26 +194,7 @@
 \definecolor{textcolor}{rgb}{0.000000,0.000000,0.000000}%
 \pgfsetstrokecolor{textcolor}%
 \pgfsetfillcolor{textcolor}%
-\pgftext[x=2.944033in,y=0.288889in,,top]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont Jogging}%
-\end{pgfscope}%
-\begin{pgfscope}%
-\pgfsetbuttcap%
-\pgfsetroundjoin%
-\definecolor{currentfill}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetfillcolor{currentfill}%
-\pgfsetlinewidth{0.803000pt}%
-\definecolor{currentstroke}{rgb}{0.000000,0.000000,0.000000}%
-\pgfsetstrokecolor{currentstroke}%
-\pgfsetdash{}{0pt}%
-\pgfsys@defobject{currentmarker}{\pgfqpoint{0.000000in}{-0.048611in}}{\pgfqpoint{0.000000in}{0.000000in}}{%
-\pgfpathmoveto{\pgfqpoint{0.000000in}{0.000000in}}%
-\pgfpathlineto{\pgfqpoint{0.000000in}{-0.048611in}}%
-\pgfusepath{stroke,fill}%
-}%
-\begin{pgfscope}%
-\pgfsys@transformshift{3.850000in}{0.386111in}%
-\pgfsys@useobject{currentmarker}{}%
-\end{pgfscope}%
+\pgftext[x=3.433049in,y=0.288889in,,top]{\color{textcolor}\sffamily\fontsize{10.000000}{12.000000}\selectfont Jogging}%
 \end{pgfscope}%
 \begin{pgfscope}%
 \pgfsetbuttcap%

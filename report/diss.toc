@@ -74,27 +74,30 @@
 \contentsline {paragraph}{Results}{34}{section*.58}% 
 \contentsline {paragraph}{Summary}{35}{section*.61}% 
 \contentsline {subsection}{\numberline {4.2.2}Accelerating region selection}{35}{subsection.4.2.2}% 
+\contentsline {subsubsection}{Reducing the amortized cost of region selection}{35}{section*.62}% 
+\contentsline {subsubsection}{Using precomputed distributions}{36}{section*.64}% 
 \contentsline {section}{\numberline {4.3}Analysis of sensing fidelity}{36}{section.4.3}% 
-\contentsline {paragraph}{Research questions}{36}{section*.64}% 
-\contentsline {paragraph}{Metrics}{36}{section*.65}% 
-\contentsline {subsection}{\numberline {4.3.1}Sources of error}{37}{subsection.4.3.1}% 
-\contentsline {subsubsection}{Impact of gender}{37}{section*.66}% 
-\contentsline {subsubsection}{Impact of skin tone}{37}{section*.68}% 
-\contentsline {subsubsection}{Impact of movement}{37}{section*.70}% 
-\contentsline {subsubsection}{Impact of distance}{38}{section*.72}% 
-\contentsline {subsection}{\numberline {4.3.2}Predicting unreliability}{38}{subsection.4.3.2}% 
-\contentsline {subsubsection}{Quantifiying noise}{38}{section*.74}% 
-\contentsline {subsection}{\numberline {4.3.3}Overview}{39}{subsection.4.3.3}% 
-\contentsline {paragraph}{MAHNOB}{39}{section*.77}% 
-\contentsline {paragraph}{Experiment test suite}{39}{section*.79}% 
-\contentsline {paragraph}{Results}{40}{section*.82}% 
-\contentsline {chapter}{\numberline {5}Conclusion}{42}{chapter.5}% 
-\contentsline {section}{\numberline {5.1}Significance of results}{42}{section.5.1}% 
-\contentsline {section}{\numberline {5.2}Successes and failures}{42}{section.5.2}% 
-\contentsline {section}{\numberline {5.3}Personal remarks}{43}{section.5.3}% 
-\contentsline {section}{\numberline {5.4}Future work}{43}{section.5.4}% 
-\contentsline {chapter}{Bibliography}{43}{section.5.4}% 
-\contentsline {chapter}{Appendices}{47}{section*.84}% 
-\contentsline {chapter}{\numberline {A}Experiment example distances}{48}{Appendix.a.A}% 
-\contentsline {chapter}{\numberline {B}MAHNOB example}{50}{Appendix.a.B}% 
-\contentsline {chapter}{\numberline {C}Project Proposal}{51}{Appendix.a.C}% 
+\contentsline {paragraph}{Research questions}{36}{section*.66}% 
+\contentsline {paragraph}{Metrics}{36}{section*.67}% 
+\contentsline {subsection}{\numberline {4.3.1}Sources of error}{36}{subsection.4.3.1}% 
+\contentsline {subsubsection}{Impact of gender}{37}{section*.68}% 
+\contentsline {subsubsection}{Impact of skin tone}{37}{section*.70}% 
+\contentsline {subsubsection}{Impact of distance}{38}{section*.73}% 
+\contentsline {subsubsection}{Impact of movement}{38}{section*.75}% 
+\contentsline {subsubsection}{Impact of class of movement}{39}{section*.77}% 
+\contentsline {paragraph}{Quantifiying noise}{40}{figure.caption.79}% 
+\contentsline {subsection}{\numberline {4.3.2}Predicting unreliability}{40}{subsection.4.3.2}% 
+\contentsline {subsection}{\numberline {4.3.3}Overview}{41}{subsection.4.3.3}% 
+\contentsline {paragraph}{MAHNOB}{41}{section*.81}% 
+\contentsline {paragraph}{Experiment test suite}{41}{section*.83}% 
+\contentsline {paragraph}{Results}{41}{section*.86}% 
+\contentsline {chapter}{\numberline {5}Conclusion}{44}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}Significance of results}{44}{section.5.1}% 
+\contentsline {section}{\numberline {5.2}Successes and failures}{44}{section.5.2}% 
+\contentsline {section}{\numberline {5.3}Personal remarks}{45}{section.5.3}% 
+\contentsline {section}{\numberline {5.4}Future work}{45}{section.5.4}% 
+\contentsline {chapter}{Bibliography}{45}{section.5.4}% 
+\contentsline {chapter}{Appendices}{49}{section*.88}% 
+\contentsline {chapter}{\numberline {A}Experiment example distances}{50}{Appendix.a.A}% 
+\contentsline {chapter}{\numberline {B}MAHNOB example}{52}{Appendix.a.B}% 
+\contentsline {chapter}{\numberline {C}Project Proposal}{53}{Appendix.a.C}% 

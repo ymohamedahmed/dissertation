@@ -265,15 +265,21 @@ use higher frame rate cameras whilst still maintaining real-time behaviour.
 
 \subsection{Accelerating region selection}
 \label{eval:region_selection}
-\begin{figure}[H]
-    \centering
-    \scalebox{0.7}{\input{evaluation/precomputed.pgf}}
-   \caption{\textit{A graph showing the effective framerate of the entire pipeline, with and without precomputing the distributions used by the skin detector}} 
-\end{figure}
+\subsubsection{Reducing the amortized cost of region selection}
+In Section \ref{ref:region_selection_impl} it was proposed that instead of computing the skin tone in each frame, it was more effective to compute it once and re-use this value 
+for skin detection in subsequent frames.
+
 \begin{figure}[H]
     \centering
     \scalebox{0.7}{\input{bayesian.pgf}}
    \caption{\textit{A graph showing the mean time to process a single frame when using k-means on each frame vs. skin detector described}} 
+\end{figure}
+
+\subsubsection{Using precomputed distributions}
+\begin{figure}[H]
+    \centering
+    \scalebox{0.7}{\input{evaluation/precomputed.pgf}}
+   \caption{\textit{A graph showing the effective framerate of the entire pipeline, with and without precomputing the distributions used by the skin detector}} 
 \end{figure}
 % \paragraph{Correctness}
 
@@ -406,7 +412,10 @@ to give an intuitive understanding about the accuracy of the sensor in question.
 % \subsection{Impact of noise}
 \subsection{Sources of error}
 % brand this as investigating sources of error
-
+There are four characteristics that are investigated as potential sources of error: the gender of the user, the skin tone, the amount of movement
+relative to the camera and the distance between the user and the camera.
+To quantify skin tone, the Fitzpatrick scale\cite{Fitzpatrick} is used, which broadly classifies skin tones into six numbered categories ranging from light to dark.
+For each of these, the number of measurements per category is presented with the mean absolute error. 
 
 % define the noise metric
 % establish relationship with noise and error
@@ -420,7 +429,7 @@ to give an intuitive understanding about the accuracy of the sensor in question.
 
 \subsubsection{Impact of gender}
 % NEED TO SAY THIS IS ONLY FOR MAHNOB
-
+At a significance level of $0.05$, there is no statistically significant difference in expected mean error for female and male users where in the experiments conducted $p=0.06642$.
 \begin{figure}[H]
     \centering
     \subfloat[\textit{Frequency of measurements across genders}]{\scalebox{0.7}{\input{evaluation/gender_freq.pgf}}}
@@ -429,69 +438,67 @@ to give an intuitive understanding about the accuracy of the sensor in question.
 \end{figure}
 
 \subsubsection{Impact of skin tone}
-
+There are several statistically significant differences between individual skin tone categories, as highlighted in Table \ref{table:skin_tone_p}, however this arrives with two important caveats.
+There is no systematic trend from lighter skin tones to darker tones or in the opposite direction and there are relatively few measurements for several of the categories of skin tones.
+Hence, it would not be appropriate to suggest a bias against any particular skin tones.
 \begin{figure}[H]
     \centering
     \subfloat[\textit{Frequency of measurements per skin tone}]{\scalebox{0.7}{\input{evaluation/skin_tone.pgf}}}
     \qquad
     \subfloat[\textit{Mean absolute error by skin tone}]{\scalebox{0.7}{\input{evaluation/skin_error.pgf}}}
 \end{figure}
-% Please add the following required packages to your document preamble:
-% \usepackage{multirow}
-% \usepackage[table,xcdraw]{xcolor}
-% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
-% Please add the following required packages to your document preamble:
-% \usepackage{multirow}
-% \begin{table}[]
-%     \begin{tabular}{lc|ccccc}
-%      &  & \multicolumn{5}{c}{\textbf{Skin tone}} \\
-%     \multicolumn{2}{c|}{\textbf{p-value}} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\ \hline
-%     \multirow{5}{*}{\textbf{\rotatebox[origin=c]{90}{Skin tone}}} & \textbf{1} &  & 0.2339 & \textbf{9.785e-03} & \textbf{2.371e-03} & \textbf{2.416e-04} \\
-%      & \textbf{2} &  &  & 0.0286 & \textbf{8.028e-03} & \textbf{1.210e-09} \\
-%      & \textbf{3} &  &  &  & 0.218 & \textbf{7.163e-14} \\
-%      & \textbf{4} &  &  &  &  & \textbf{1.168e-11} \\
-%      & \textbf{5} &  &  &  &  & 
-%     \end{tabular}
-%     \end{table}
-    % Please add the following required packages to your document preamble:
-% \usepackage{multirow}
-% \begin{table}[]
-%     \begin{tabular}{lc|ccccc}
-%      &  & \multicolumn{5}{c}{\textbf{Skin tone}} \\
-%     \multicolumn{2}{c|}{\textbf{p-value}} & \multicolumn{1}{c|}{\textbf{1}} & \multicolumn{1}{c|}{\textbf{2}} & \multicolumn{1}{c|}{\textbf{3}} & \multicolumn{1}{c|}{\textbf{4}} & \textbf{5} \\ \hline
-%     \multirow{5}{*}{\textbf{\rotatebox[origin=c]{90}{Skin tone}}} & \textbf{1} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.2339} & \multicolumn{1}{c|}{\textbf{9.785e-03}} & \multicolumn{1}{c|}{\textbf{2.371e-03}} & \textbf{2.416e-04} \\
-%      & \textbf{2} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.0286} & \multicolumn{1}{c|}{\textbf{8.028e-03}} & \textbf{1.210e-09} \\
-%      & \textbf{3} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{0.218} & \textbf{7.163e-14} \\
-%      & \textbf{4} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \textbf{1.168e-11} \\
-%      & \textbf{5} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} & 
-%     \end{tabular}
-% \end{table}
-
-% Please add the following required packages to your document preamble:
-% \usepackage{multirow}
-% \begin{figure}[H]
-%     \centering
-%     \subfloat[]{\scalebox{0.7}{\input{evaluation/skin_tone_error_table.tex}}}
-%     \qquad
-%     \subfloat[]{\scalebox{0.7}{\input{evaluation/skin_tone_p_table.tex}}}
-% \end{figure}
-
-\subsubsection{Impact of movement}
 \begin{figure}[H]
     \centering
-    \subfloat[\textit{Frequency of measurements across exercise classes}]{\scalebox{0.6}{\input{evaluation/movement_freq.pgf}}}
-    \subfloat[\textit{Mean absolute error per class}]{\scalebox{0.6}{\input{evaluation/movement_error.pgf}}}
+    % \subfloat[Mean a]{\scalebox{0.7}{\input{evaluation/skin_tone_error_table.tex}}}
+    % \qquad
+    \scalebox{0.7}{\input{evaluation/skin_tone_p_table.tex}}
+    \caption{\textit{Pairwise significance testing between MAEs for different skin tones}}
+    \label{table:skin_tone_p}
 \end{figure}
 
 \subsubsection{Impact of distance}
 % big effect is if change in distance modifies illumination
 % under the experiments conducted the illuminant was behind the camera so don't expect much impact as a result of distance
+Under the experiments conducted, increasing distance shows no statistically significant detrimental impact on accuracy.
+Crucially, this is likely to be as a result of the nature of the experiments, rather than a trend expected to continue indefinitely.
+In the experiments the illuminant was behind the camera at all distances and, hence, increasing the distance had limited impact on the observed colour signal.
+If, for example, the illuminant was between the user and the camera then the scene might become too bright to gain a clear signal, in which case we might expect error to increase.
+To understand this fully, further data must be collected.
 \begin{figure}[H]
     \centering
-    \subfloat[]{\scalebox{0.6}{\input{evaluation/dist_freq.pgf}}}
-    \subfloat[]{\scalebox{0.6}{\input{evaluation/dist_error.pgf}}}
+    \subfloat[\textit{Frequency of measurements across distances}]{\scalebox{0.6}{\input{evaluation/dist_freq.pgf}}}
+    \subfloat[\textit{Mean absolute error per distance}]{\scalebox{0.6}{\input{evaluation/dist_error.pgf}}}
 \end{figure}
 
+\subsubsection{Impact of movement}
+Movement, or the lack of it, proves to have the greatest impact on accuracy. Stationary videos show much smaller errors, the cause of this and the discrepancy between
+the non-stationary videos is the subject of subsequent investigation.
+\begin{figure}[H]
+    \centering
+    \subfloat[\textit{Frequency of measurements across exercise classes}]{\scalebox{0.6}{\input{evaluation/movement_freq.pgf}}}
+    \subfloat[\textit{Mean absolute error per class}]{\scalebox{0.6}{\input{evaluation/movement_error.pgf}}}
+    \subfloat[\textit{Mean ground truth heart rate per class}]{\scalebox{0.6}{\input{evaluation/movement_perc_error.pgf}}}
+    \label{fig:move_err}
+\end{figure}
+
+\subsubsection{Impact of class of movement}
+It is, initially, unclear the exact nature of movement that causes an increase in error. Concretely, what is it that separates the case of star jumping and jogging? 
+One might hypothesise that the system produces larger errors as heart rate increases, but this can be safely ruled out since the mean heart rate in both classes are almost identical (see Figure \ref{fig:move_err}).
+Instead I propose the hypothesis that the \textit{frequency} of movement rather than the amount is the key factor determining increasing error. Specifically that error is caused when the frequency of movement
+falls in the range of possible heart rate frequencies.
+% If the frequency of the movement falls in the range 
+% of heart rate frequencies, it correlates with a higher error.
+
+
+\paragraph{Quantifiying noise}
+\begin{figure}[H]
+    \centering
+    \subfloat[]{\scalebox{0.5}{\input{evaluation/NoiseStationary.pgf}}}%
+    \subfloat[]{\scalebox{0.5}{\input{evaluation/NoiseStar.pgf} }}%
+    \quad
+    \subfloat[]{\scalebox{0.5}{\input{evaluation/NoiseJogging.pgf} }}%
+   \caption{\textit{An example of the defined noise metric} }
+\end{figure}
 
 
 % \subsubsection{Impact of framerate}
@@ -506,17 +513,6 @@ to give an intuitive understanding about the accuracy of the sensor in question.
 % in scenarios without the presence of a ground truth allows users to be informed of potential error
 % Show aggressive curve which can overreport errors as a means of safety
 
-\subsubsection{Quantifiying noise}
-\begin{figure}[H]
-    \centering
-    % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
-    % \includegraphics[width=0.5\textwidth]{example-image-a}
-    \subfloat[]{\scalebox{0.5}{\input{evaluation/NoiseStationary.pgf}}}%
-    \subfloat[]{\scalebox{0.5}{\input{evaluation/NoiseStar.pgf} }}%
-    \quad
-    \subfloat[]{\scalebox{0.5}{\input{evaluation/NoiseJogging.pgf} }}%
-   \caption{\textit{An example of the defined noise metric} }
-\end{figure}
 
 \begin{figure}[H]
     \subfloat[]{\scalebox{0.6}{\input{evaluation/Noise-with-exer.pgf}}}

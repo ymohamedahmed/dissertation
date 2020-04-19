@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2020.3.30)  19 APR 2020 15:18
+This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2020.3.30)  19 APR 2020 19:44
  system commands enabled.
 **diss
 (./diss.tex
@@ -48,7 +48,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.058 seconds
+luaotfload | main : initialization completed in 0.052 seconds
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2018/09/03 v1.4i Standard LaTeX document class
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/size12.clo
@@ -1643,17 +1643,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 301--314
  []
 
 [10] [11])
-Underfull \hbox (badness 10000) in paragraph at lines 429--173
+Underfull \hbox (badness 10000) in paragraph at lines 429--175
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 429--173
+Underfull \hbox (badness 10000) in paragraph at lines 429--175
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 429--173
+Underfull \hbox (badness 10000) in paragraph at lines 429--175
 
  []
 
@@ -1982,12 +1982,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 549--557
  []
 
 (./implementation/repo.tex))
-Overfull \hbox (18.6537pt too wide) in paragraph at lines 36--177
+Overfull \hbox (18.6537pt too wide) in paragraph at lines 36--179
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 36--177
+Underfull \hbox (badness 10000) in paragraph at lines 36--179
 
  []
 
@@ -2001,60 +2001,73 @@ LaTeX Warning: No positions in optional float specifier.
                Default added (so using `tbp') on input line 169.
 
 (./evaluation/redect.pgf) [33] (./evaluation/tracking_time.pgf) [34]
-(./evaluation/precomputed.pgf) (./bayesian.pgf) [35]
-(./evaluation/gender_freq.pgf) (./evaluation/gender_error.pgf) [36]
+(./bayesian.pgf) (./evaluation/precomputed.pgf) [35] [36]
+(./evaluation/gender_freq.pgf) (./evaluation/gender_error.pgf)
 (./evaluation/skin_tone.pgf) (./evaluation/skin_error.pgf)
-(./evaluation/movement_freq.pgf) (./evaluation/movement_error.pgf)
-(./evaluation/dist_freq.pgf) (./evaluation/dist_error.pgf) [37]
+(./evaluation/skin_tone_p_table.tex) [37] (./evaluation/dist_freq.pgf)
+(./evaluation/dist_error.pgf) (./evaluation/movement_freq.pgf)
+(./evaluation/movement_error.pgf) (./evaluation/movement_perc_error.pgf)
+Overfull \hbox (19.86493pt too wide) in paragraph at lines 478--482
+ [][][][][][][] 
+ []
+
+[38]
+
+Package caption Warning: \label without proper reference on input line 481.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:move_err' on page 39 undefined on input line 486.
+
 (./evaluation/NoiseStationary.pgf) (./evaluation/NoiseStar.pgf)
-(./evaluation/NoiseJogging.pgf) (./evaluation/Noise-with-exer.pgf)
+(./evaluation/NoiseJogging.pgf) [39] (./evaluation/Noise-with-exer.pgf)
 (./evaluation/std_error.pgf)
-Overfull \hbox (43.86494pt too wide) in paragraph at lines 522--525
+Overfull \hbox (43.86494pt too wide) in paragraph at lines 518--521
 [][] [][][][] 
  []
 
-[38] (./evaluation/mahnob.pgf) [39] (./evaluation/fidelity.pgf)
+[40] (./evaluation/mahnob.pgf) (./evaluation/fidelity.pgf)
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 559.
+               Default added (so using `tbp') on input line 555.
 
-[40]) [41]
+[41] [42]) [43]
 Chapter 5.
-(./conclusion/conclusion.tex [42
+(./conclusion/conclusion.tex [44
 
-]) (./diss.bbl [43] [44
+]) (./diss.bbl [45] [46
 
-] [45]) [46] [47
+] [47]) [48] [49
 
 
 
 ]
 Appendix A.
-<evaluation/1.jpg, id=817, 4047.12pt x 3035.34pt>
+<evaluation/1.jpg, id=837, 4047.12pt x 3035.34pt>
 File: evaluation/1.jpg Graphic file (type jpg)
 <use evaluation/1.jpg>
-Package luatex.def Info: evaluation/1.jpg  used on input line 202.
+Package luatex.def Info: evaluation/1.jpg  used on input line 204.
 (luatex.def)             Requested size: 250.24216pt x 187.6704pt.
-<evaluation/1-5.jpg, id=818, 4047.12pt x 3035.34pt>
+<evaluation/1-5.jpg, id=838, 4047.12pt x 3035.34pt>
 File: evaluation/1-5.jpg Graphic file (type jpg)
 <use evaluation/1-5.jpg>
-Package luatex.def Info: evaluation/1-5.jpg  used on input line 207.
+Package luatex.def Info: evaluation/1-5.jpg  used on input line 209.
 (luatex.def)             Requested size: 250.24216pt x 187.6704pt.
-<evaluation/2.jpg, id=819, 4047.12pt x 3035.34pt>
+<evaluation/2.jpg, id=839, 4047.12pt x 3035.34pt>
 File: evaluation/2.jpg Graphic file (type jpg)
 <use evaluation/2.jpg>
-Package luatex.def Info: evaluation/2.jpg  used on input line 212.
+Package luatex.def Info: evaluation/2.jpg  used on input line 214.
 (luatex.def)             Requested size: 250.24216pt x 187.6704pt.
-[48
+[50
 
-<./evaluation/1.jpg><./evaluation/1-5.jpg>] [49<./evaluation/2.jpg>]
+<./evaluation/1.jpg><./evaluation/1-5.jpg>] [51<./evaluation/2.jpg>]
 Appendix B.
-<mahnob.png, id=831, 782.925pt x 582.175pt>
+<mahnob.png, id=851, 782.925pt x 582.175pt>
 File: mahnob.png Graphic file (type png)
 <use mahnob.png>
-Package luatex.def Info: mahnob.png  used on input line 219.
+Package luatex.def Info: mahnob.png  used on input line 221.
 (luatex.def)             Requested size: 250.24216pt x 186.07773pt.
-[50
+[52
 
 <./mahnob.png>]
 Appendix C.
@@ -2083,29 +2096,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 36--42
 
  []
 
-[51
+[53
 
 
-] [52] [53] [54] [55]) [56]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 230.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 230.
+] [54] [55] [56] [57]) [58]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 232.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 232.
  (./diss.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 230.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 230.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 232.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 232.
 Package rerunfilecheck Info: File `diss.out' has not changed.
-(rerunfilecheck)             Checksum: 572DBD1EB4072E31610DA31982620C06;3425.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 230.
+(rerunfilecheck)             Checksum: F455F1308BA8A408430029EB6F7CB743;3425.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 232.
 )
 
 Here is how much of LuaTeX's memory you used:
- 56050 strings out of 494291
+ 56079 strings out of 494291
  2277757,12246980 words of node,token memory allocated
  1183 words of node memory still in use:
    15 hlist, 2 vlist, 10 rule, 13 glue, 4 kern, 1 glyph, 82 attribute, 62 glue_s
 pec, 82 attribute_list, 2 write, 16 pdf_literal, 16 pdf_colorstack nodes
-   avail lists: 1:18,2:484661,3:322332,4:672,5:975,6:68,7:4962,8:68,9:1211,10:11
-7,11:326
- 58069 multiletter control sequences out of 65536+600000
+   avail lists: 1:18,2:484660,3:322332,4:736,5:1052,6:69,7:6182,8:68,9:1360,10:1
+17,11:332
+ 58072 multiletter control sequences out of 65536+600000
  83 fonts using 10807399 bytes
  143i,21n,178p,1615b,3170s stack positions out of 5000i,500n,10000p,897222b,100000s
 
@@ -2141,10 +2158,10 @@ nts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmsy6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 sy8.pfb>
-Output written on diss.pdf (62 pages, 11180870 bytes).
+Output written on diss.pdf (64 pages, 11188853 bytes).
 
-PDF statistics: 1051 PDF objects out of 1200 (max. 8388607)
- 882 compressed objects within 9 object streams
- 306 named destinations out of 1000 (max. 131072)
+PDF statistics: 1071 PDF objects out of 1200 (max. 8388607)
+ 900 compressed objects within 9 object streams
+ 314 named destinations out of 1000 (max. 131072)
  592 words of extra memory for PDF output out of 10000 (max. 100000000)
 
