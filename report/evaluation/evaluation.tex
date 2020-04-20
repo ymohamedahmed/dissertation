@@ -261,24 +261,20 @@ Critically, this comes without any evidence of a detrimental effect on fidelity.
 is important since, although the videos in the test suite have a fixed frame rate, which would be exceeded by face detection, it allows future work to 
 use higher frame rate cameras whilst still maintaining real-time behaviour. 
 
-% \subsection{Accelerating region selection}
-% \label{eval:region_selection}
+\subsection{Accelerating region selection}
+\label{eval:region_selection}
+In Section \ref{ref:region_selection_impl} it was proposed that instead of computing the values of the distributions at runtime, precomputing them offline and using a lookup table
+would be much less costly. This change alone, causes an approximately 2x speedup in the effective framerate of the entire system.
+\begin{figure}[H]
+    \centering
+    \scalebox{0.5}{\input{evaluation/precomputed.pgf}}
+   \caption{\textit{A graph showing the effective framerate of the entire pipeline, with and without precomputing the distributions used by the skin detector}} 
+\end{figure}
 % \subsubsection{Reducing the amortized cost of region selection}
-% In Section \ref{ref:region_selection_impl} it was proposed that instead of computing the skin tone in each frame, it was more effective to compute it once and re-use this value 
 % for skin detection in subsequent frames.
 
-% \begin{figure}[H]
-%     \centering
-%     \scalebox{0.5}{\input{bayesian.pgf}}
-%    \caption{\textit{A graph showing the mean time to process a single frame when using k-means on each frame vs. skin detector described}} 
-% \end{figure}
 
 % \subsubsection{Using precomputed distributions}
-% \begin{figure}[H]
-%     \centering
-%     \scalebox{0.5}{\input{evaluation/precomputed.pgf}}
-%    \caption{\textit{A graph showing the effective framerate of the entire pipeline, with and without precomputing the distributions used by the skin detector}} 
-% \end{figure}
 % \paragraph{Correctness}
 
 % \section{Region selection}
@@ -566,7 +562,7 @@ To such end, it is not a perfectly fair comparison, however, is included as an i
 
 \begin{figure}
     \centering
-    \scalebox{0.6}{\input{evaluation/mahnob.pgf}}
+    \scalebox{0.5}{\input{evaluation/mahnob.pgf}}
    \caption{\textit{A graph comparing the mean absolute error achieved on the MAHNOB database of the proposed implementation with comparisons to state of the art techniques.}}
 \end{figure}
 % \paragraph{Experiment test suite}
@@ -612,19 +608,20 @@ To such end, it is not a perfectly fair comparison, however, is included as an i
     \rowcolor[HTML]{FFFFFF} 
     \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}Star jumps} & 2.0 & 28.9574 & 31.9423 & 28.0886 & 33.4622 & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}-1.3990} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}0.1735} & \multicolumn{1}{c|}{\cellcolor[HTML]{FFFFFF}-0.7828} & 0.4415
     \end{tabular}}
-    \label{table:welch-mae}
     \caption{\textit{A table showing the mean absolute error and root mean squared error for both the Fossil smartwatch and the proposed system, with stastically significant results in shaded rows. Italics indicates in favour of the smartwatch and bold in favour of the proposed system.}}
+    \label{table:welch-mae}
     \end{figure}
 
 \paragraph{Results}
 % no problem with distance really at the amount tested, likely to be due to high resolutions of modern cameras
-The results indicate, clearly, the effect of movement on PPG-based heart rate sensing. Both the smartwatch and the proposed system observe much larger errors in the non-stationary cases, although this has 
-been widely reported before \cite{souza2019heart}, it is, nonetheless, concerning given that these systems are often used in such scenarios. In the jogging use case, both systems showed mean absolute errors around 40BPM,
+The effect of movement on PPG-based heart rate sensing is evident. Both the smartwatch and the proposed system observe much larger errors in the non-stationary cases, although this has 
+been widely reported before \cite{souza2019heart}, it is, nonetheless, concerning given that this is a common use case. In such scenarios, both systems showed mean absolute errors around 40BPM,
 which is, not particularly useful as a measurement, given that the range of possible heart rates is around 200BPM.
 \par
 % Given the variability between experiments, there appears to be no significant issue with increasing the distance between the user and the camera.
-However, a key success of the project is the comparative performance with the smartwatch over the test suite. Over the nine classes of exercises and distances tested, seven results were statistically significant at a
-threshold of 0.01, all of which are over an order of magnitude beneath the threshold. 
+However, a key success of the project is the comparative performance with the smartwatch over the test suite. 
+Over the nine classes of exercises and distances tested, seven results were statistically significant at a
+threshold of 0.01, all of which are over an order of magnitude beneath the threshold (see Table \ref{table:welch-mae}). 
 In this scenario, there are two null hypotheses, that the absolute and squared errors, respectively, have the same expected value for the smartwatch and proposed system. 
 In the seven cases highlighted in Table 4.3, both null hypotheses were rejected, with four in favour of the proposed system and three in favour of the smartwatch.
 It would be inappropriate to draw overarching conclusions about the relative fidelity of smartwatch heart rate sensing and the proposed system, however, over the test suite used, it is fair to conclude 

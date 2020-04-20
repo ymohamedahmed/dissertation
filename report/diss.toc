@@ -63,7 +63,7 @@
 \contentsline {chapter}{\numberline {4}Evaluation}{28}{chapter.4}% 
 \contentsline {section}{\numberline {4.1}Data collection}{28}{section.4.1}% 
 \contentsline {subsection}{\numberline {4.1.1}Methodology}{28}{subsection.4.1.1}% 
-\contentsline {paragraph}{Experimental setup}{29}{section*.51}% 
+\contentsline {paragraph}{Experimental setup}{28}{section*.51}% 
 \contentsline {paragraph}{Hypothesis testing}{29}{section*.52}% 
 \contentsline {section}{\numberline {4.2}Analysis of performance}{29}{section.4.2}% 
 \contentsline {subsection}{\numberline {4.2.1}Face tracking}{29}{subsection.4.2.1}% 
@@ -73,27 +73,29 @@
 \contentsline {paragraph}{Performance cost}{31}{section*.57}% 
 \contentsline {paragraph}{Results}{32}{section*.59}% 
 \contentsline {paragraph}{Summary}{32}{section*.61}% 
+\contentsline {subsection}{\numberline {4.2.2}Accelerating region selection}{32}{subsection.4.2.2}% 
 \contentsline {section}{\numberline {4.3}Analysis of sensing fidelity}{33}{section.4.3}% 
-\contentsline {paragraph}{Research questions}{33}{section*.62}% 
-\contentsline {paragraph}{Metrics}{33}{section*.63}% 
+\contentsline {paragraph}{Research questions}{33}{section*.63}% 
+\contentsline {paragraph}{Metrics}{33}{section*.64}% 
 \contentsline {subsection}{\numberline {4.3.1}Sources of error}{33}{subsection.4.3.1}% 
-\contentsline {subsubsection}{Impact of gender}{33}{section*.64}% 
-\contentsline {subsubsection}{Impact of skin tone}{34}{section*.66}% 
-\contentsline {subsubsection}{Impact of distance}{34}{section*.68}% 
-\contentsline {subsubsection}{Impact of movement}{34}{section*.70}% 
-\contentsline {subsubsection}{Impact of class of movement}{35}{section*.71}% 
-\contentsline {paragraph}{Quantifiying noise}{35}{section*.73}% 
+\contentsline {subsubsection}{Impact of gender}{33}{section*.65}% 
+\contentsline {subsubsection}{Impact of skin tone}{34}{section*.67}% 
+\contentsline {subsubsection}{Impact of distance}{34}{section*.69}% 
+\contentsline {subsubsection}{Impact of movement}{34}{section*.71}% 
+\contentsline {subsubsection}{Impact of class of movement}{35}{section*.72}% 
+\contentsline {paragraph}{Quantifiying noise}{35}{section*.74}% 
 \contentsline {subsection}{\numberline {4.3.2}Predicting unreliability}{36}{subsection.4.3.2}% 
 \contentsline {subsection}{\numberline {4.3.3}Overview}{37}{subsection.4.3.3}% 
-\contentsline {paragraph}{MAHNOB}{37}{section*.77}% 
-\contentsline {paragraph}{Results}{38}{section*.81}% 
+\contentsline {paragraph}{MAHNOB}{37}{section*.78}% 
+\contentsline {paragraph}{Results}{38}{section*.82}% 
 \contentsline {chapter}{\numberline {5}Conclusion}{39}{chapter.5}% 
 \contentsline {section}{\numberline {5.1}Significance of results}{39}{section.5.1}% 
 \contentsline {section}{\numberline {5.2}Successes and failures}{39}{section.5.2}% 
 \contentsline {section}{\numberline {5.3}Personal remarks}{39}{section.5.3}% 
 \contentsline {section}{\numberline {5.4}Future work}{40}{section.5.4}% 
 \contentsline {chapter}{Bibliography}{40}{section.5.4}% 
-\contentsline {chapter}{Appendices}{45}{section*.83}% 
-\contentsline {chapter}{\numberline {A}Experiment example distances}{46}{Appendix.a.A}% 
-\contentsline {chapter}{\numberline {B}MAHNOB example}{48}{Appendix.a.B}% 
-\contentsline {chapter}{\numberline {C}Project Proposal}{49}{Appendix.a.C}% 
+\contentsline {chapter}{Appendices}{45}{section*.84}% 
+\contentsline {chapter}{\numberline {A}Accelerating region selection}{46}{Appendix.a.A}% 
+\contentsline {chapter}{\numberline {B}Experiment example distances}{47}{Appendix.a.B}% 
+\contentsline {chapter}{\numberline {C}MAHNOB example}{49}{Appendix.a.C}% 
+\contentsline {chapter}{\numberline {D}Project Proposal}{51}{Appendix.a.D}% 

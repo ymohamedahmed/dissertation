@@ -51,8 +51,8 @@
 \makeatother
 % Set new lengths
 \newlength{\chapheadtopskip}\setlength{\chapheadtopskip}{0pt}
-\newlength{\chapheadsep}\setlength{\chapheadsep}{10pt}
-\newlength{\chapheadbelowskip}\setlength{\chapheadbelowskip}{5pt}
+\newlength{\chapheadsep}\setlength{\chapheadsep}{0pt}
+\newlength{\chapheadbelowskip}\setlength{\chapheadbelowskip}{0pt}
 \usepgfplotslibrary{groupplots,dateplot}
 \usetikzlibrary{patterns,shapes.arrows}
 \pgfplotsset{compat=newest}
@@ -121,7 +121,7 @@ Candidate Number:  & \\
 Project Title:      & \bf Non-contact heart rate estimation from video \\
 % College:            & \bf Gonville \& Caius College                     \\
 Examination:        & \bf Computer Science Tripos - Part II, July 2020    \\
-Word Count:         & \bf 11705\footnotemark[1] \\
+Word Count:         & \bf 11746\footnotemark[1] \\
 Line Count: & \bf 2399 \\
 Project Originator: & Dr R.~Harle                    \\
 Supervisor:         & Dr R.~Harle                    \\ 
@@ -212,6 +212,12 @@ extent for a comparable purpose.
 % the appendices
 
 \begin{appendices}
+\chapter{Accelerating region selection}
+\begin{figure}[H]
+    \centering
+    \scalebox{0.5}{\input{bayesian.pgf}}
+   \caption{\textit{A graph showing the mean time to process a single frame when using k-means on each frame vs. skin detector described}} 
+\end{figure}
 \chapter{Experiment example distances}
 \label{appendix:experiments}
 \begin{figure}[H]
