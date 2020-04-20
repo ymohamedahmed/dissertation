@@ -51,6 +51,7 @@ There are two obvious approaches to combat this. The algorithm could redetect th
     \item when the tracked face changes in size significantly. 
 \end{itemize}
 The former wastes computation time for stationary videos where the redetections might be unnecessary. Simultaneously, the time between redetections must be short enough to deal with videos with significant movement. This static approach, therefore, was not considered. For this reason, the latter was implemented. We track the face and if the size of the box surrounding it changes significantly, indicating that our confidence in the tracked points has reduced, then we recompute the true position of the face.
+%%TC:ignore 
 \begin{figure}[H]
 \centering
 \begin{minted}{python}
@@ -69,6 +70,7 @@ The former wastes computation time for stationary videos where the redetections 
         last_detection = face
         return face
 \end{minted}
+%%TC:endignore 
 \caption{A simplified pseudocode representation of an optical-flow based face tracker}
 \end{figure} 
 \paragraph{Impact of the rate of redetections}
@@ -152,14 +154,6 @@ For example, there are some hair colours which could be a skin tone on another i
     \subfloat[Original image\protect\footnotemark  ]{{\includegraphics[width=5cm]{implementation/c.jpg} }}%
     \qquad
     \subfloat[Mask indicating skin pixels]{{\includegraphics[width=5cm]{implementation/interval.jpg} }}%
-    % \begin{subfigure}{.5\textwidth}
-    %     \centering
-    %     \includegraphics[width=0.3\textwidth]{implementation/c.jpg}
-    % \end{subfigure}%
-    % \begin{subfigure}{.5\textwidth}
-    %     \centering
-    %     \includegraphics[width=0.3\textwidth]{implementation/interval.jpg}
-    % \end{subfigure}%
    \caption{\textit{An example of the hair failure case}}
 \end{figure}
 % \footnotemark[1]

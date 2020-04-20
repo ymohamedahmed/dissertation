@@ -6,98 +6,95 @@
 \contentsline {section}{\numberline {2.1}Heart rate sensing}{3}{section.2.1}% 
 \contentsline {subsection}{\numberline {2.1.1}Electrocardiography}{3}{subsection.2.1.1}% 
 \contentsline {subsection}{\numberline {2.1.2}Photoplethysmography}{4}{subsection.2.1.2}% 
-\contentsline {subsubsection}{Wearable PPG sensors}{5}{section*.11}% 
-\contentsline {section}{\numberline {2.2}Remote photoplethysmography (rPPG)}{6}{section.2.2}% 
+\contentsline {subsubsection}{Wearable PPG sensors}{4}{section*.11}% 
+\contentsline {section}{\numberline {2.2}Remote photoplethysmography (rPPG)}{5}{section.2.2}% 
 \contentsline {subsection}{\numberline {2.2.1}Literature review}{6}{subsection.2.2.1}% 
 \contentsline {paragraph}{Verkyuysse et al.}{6}{section*.13}% 
 \contentsline {paragraph}{Poh et al.}{7}{section*.14}% 
 \contentsline {subsection}{\numberline {2.2.2}Extensions to current literature}{7}{subsection.2.2.2}% 
 \contentsline {section}{\numberline {2.3}Relevant computer vision techniques}{7}{section.2.3}% 
-\contentsline {subsection}{\numberline {2.3.1}Face detection}{7}{subsection.2.3.1}% 
-\contentsline {paragraph}{Viola-Jones algorithm}{8}{section*.15}% 
-\contentsline {paragraph}{Neural network approaches}{8}{section*.16}% 
-\contentsline {subsection}{\numberline {2.3.2}Optical flow}{8}{subsection.2.3.2}% 
-\contentsline {paragraph}{Lucas-Kanade}{9}{section*.17}% 
-\contentsline {paragraph}{Shi-Tomasi corner detection}{10}{section*.18}% 
-\contentsline {section}{\numberline {2.4}Relevant signal processing techniques}{10}{section.2.4}% 
-\contentsline {subsection}{\numberline {2.4.1}Blind source separation}{10}{subsection.2.4.1}% 
-\contentsline {section}{\numberline {2.5}Requirements analysis}{10}{section.2.5}% 
-\contentsline {section}{\numberline {2.6}Languages and tooling}{11}{section.2.6}% 
-\contentsline {subsection}{\numberline {2.6.1}Languages}{11}{subsection.2.6.1}% 
-\contentsline {paragraph}{Python}{11}{section*.20}% 
-\contentsline {paragraph}{Kotlin}{11}{section*.21}% 
-\contentsline {subsection}{\numberline {2.6.2}Libraries}{11}{subsection.2.6.2}% 
-\contentsline {paragraph}{OpenCV}{11}{section*.22}% 
-\contentsline {section}{\numberline {2.7}Professional practice}{12}{section.2.7}% 
-\contentsline {section}{\numberline {2.8}Starting Point}{12}{section.2.8}% 
-\contentsline {chapter}{\numberline {3}Implementation}{13}{chapter.3}% 
-\contentsline {section}{\numberline {3.1}Overview}{13}{section.3.1}% 
-\contentsline {section}{\numberline {3.2}System design}{13}{section.3.2}% 
-\contentsline {section}{\numberline {3.3}Face detection}{14}{section.3.3}% 
-\contentsline {subsection}{\numberline {3.3.1}Face tracking}{15}{subsection.3.3.1}% 
-\contentsline {subsubsection}{Point tracking}{15}{section*.24}% 
-\contentsline {paragraph}{Impact of the rate of redetections}{16}{section*.26}% 
-\contentsline {paragraph}{Details}{17}{section*.27}% 
-\contentsline {section}{\numberline {3.4}Region selection}{17}{section.3.4}% 
-\contentsline {subsection}{\numberline {3.4.1}Skin detection}{18}{subsection.3.4.1}% 
-\contentsline {subsubsection}{Colour-based filtering}{18}{section*.28}% 
-\contentsline {paragraph}{Issues}{18}{section*.31}% 
-\contentsline {subsubsection}{K-Means}{19}{section*.33}% 
-\contentsline {paragraph}{Issues}{20}{section*.35}% 
-\contentsline {subsection}{\numberline {3.4.2}Improving the previous approaches}{21}{subsection.3.4.2}% 
-\contentsline {subsubsection}{Identifying the skin tone}{21}{section*.37}% 
-\contentsline {subsubsection}{Identifying skin pixels using the skin tone}{22}{section*.38}% 
-\contentsline {paragraph}{A Bayesian approach}{22}{section*.39}% 
-\contentsline {paragraph}{Prior distribution}{23}{section*.40}% 
-\contentsline {paragraph}{Class conditional distribution}{23}{section*.41}% 
-\contentsline {paragraph}{Avoiding the need for thresholding}{24}{section*.42}% 
-\contentsline {paragraph}{Accelerating class conditional computation}{24}{section*.43}% 
-\contentsline {section}{\numberline {3.5}Heart rate isolation}{25}{section.3.5}% 
-\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{26}{subsection.3.5.1}% 
-\contentsline {subsubsection}{Independent component analysis (ICA)}{26}{section*.45}% 
-\contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{27}{subsection.3.5.2}% 
-\contentsline {subsubsection}{The split peak issue}{27}{section*.47}% 
-\contentsline {subsubsection}{Majority voting heuristic}{28}{section*.49}% 
-\contentsline {subsection}{\numberline {3.5.3}Summary}{28}{subsection.3.5.3}% 
-\contentsline {section}{\numberline {3.6}Repository overview}{29}{section.3.6}% 
-\contentsline {chapter}{\numberline {4}Evaluation}{30}{chapter.4}% 
-\contentsline {section}{\numberline {4.1}Data collection}{30}{section.4.1}% 
-\contentsline {subsection}{\numberline {4.1.1}Methodology}{30}{subsection.4.1.1}% 
-\contentsline {paragraph}{Experimental setup}{31}{section*.50}% 
-\contentsline {paragraph}{Hypothesis testing}{31}{section*.51}% 
-\contentsline {section}{\numberline {4.2}Analysis of performance}{31}{section.4.2}% 
-\contentsline {subsection}{\numberline {4.2.1}Face tracking}{32}{subsection.4.2.1}% 
-\contentsline {paragraph}{Research questions}{32}{section*.52}% 
-\contentsline {paragraph}{Metrics}{32}{section*.53}% 
-\contentsline {paragraph}{Robustness}{33}{section*.54}% 
-\contentsline {paragraph}{Performance cost}{33}{section*.56}% 
-\contentsline {paragraph}{Results}{34}{section*.58}% 
-\contentsline {paragraph}{Summary}{35}{section*.61}% 
-\contentsline {subsection}{\numberline {4.2.2}Accelerating region selection}{35}{subsection.4.2.2}% 
-\contentsline {subsubsection}{Reducing the amortized cost of region selection}{35}{section*.62}% 
-\contentsline {subsubsection}{Using precomputed distributions}{36}{section*.64}% 
-\contentsline {section}{\numberline {4.3}Analysis of sensing fidelity}{36}{section.4.3}% 
-\contentsline {paragraph}{Research questions}{36}{section*.66}% 
-\contentsline {paragraph}{Metrics}{36}{section*.67}% 
-\contentsline {subsection}{\numberline {4.3.1}Sources of error}{36}{subsection.4.3.1}% 
-\contentsline {subsubsection}{Impact of gender}{37}{section*.68}% 
-\contentsline {subsubsection}{Impact of skin tone}{37}{section*.70}% 
-\contentsline {subsubsection}{Impact of distance}{38}{section*.73}% 
-\contentsline {subsubsection}{Impact of movement}{38}{section*.75}% 
-\contentsline {subsubsection}{Impact of class of movement}{39}{section*.77}% 
-\contentsline {paragraph}{Quantifiying noise}{39}{section*.78}% 
-\contentsline {subsection}{\numberline {4.3.2}Predicting unreliability}{41}{subsection.4.3.2}% 
+\contentsline {subsection}{\numberline {2.3.1}Optical flow}{7}{subsection.2.3.1}% 
+\contentsline {paragraph}{Lucas-Kanade}{8}{section*.15}% 
+\contentsline {paragraph}{Shi-Tomasi corner detection}{9}{section*.16}% 
+\contentsline {section}{\numberline {2.4}Relevant signal processing techniques}{9}{section.2.4}% 
+\contentsline {subsection}{\numberline {2.4.1}Blind source separation}{9}{subsection.2.4.1}% 
+\contentsline {section}{\numberline {2.5}Requirements analysis}{9}{section.2.5}% 
+\contentsline {section}{\numberline {2.6}Languages and tooling}{10}{section.2.6}% 
+\contentsline {subsection}{\numberline {2.6.1}Languages}{10}{subsection.2.6.1}% 
+\contentsline {paragraph}{Python}{10}{section*.18}% 
+\contentsline {paragraph}{Kotlin}{10}{section*.19}% 
+\contentsline {subsection}{\numberline {2.6.2}Libraries}{10}{subsection.2.6.2}% 
+\contentsline {paragraph}{OpenCV}{10}{section*.20}% 
+\contentsline {section}{\numberline {2.7}Professional practice}{11}{section.2.7}% 
+\contentsline {section}{\numberline {2.8}Starting Point}{11}{section.2.8}% 
+\contentsline {chapter}{\numberline {3}Implementation}{12}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Overview}{12}{section.3.1}% 
+\contentsline {section}{\numberline {3.2}System design}{12}{section.3.2}% 
+\contentsline {section}{\numberline {3.3}Face detection}{13}{section.3.3}% 
+\contentsline {subsection}{\numberline {3.3.1}Face tracking}{14}{subsection.3.3.1}% 
+\contentsline {subsubsection}{Point tracking}{14}{section*.22}% 
+\contentsline {paragraph}{Impact of the rate of redetections}{15}{section*.24}% 
+\contentsline {paragraph}{Details}{16}{section*.25}% 
+\contentsline {section}{\numberline {3.4}Region selection}{16}{section.3.4}% 
+\contentsline {subsection}{\numberline {3.4.1}Skin detection}{17}{subsection.3.4.1}% 
+\contentsline {subsubsection}{Colour-based filtering}{17}{section*.26}% 
+\contentsline {paragraph}{Issues}{17}{section*.29}% 
+\contentsline {subsubsection}{K-Means}{18}{section*.31}% 
+\contentsline {paragraph}{Issues}{19}{section*.33}% 
+\contentsline {subsection}{\numberline {3.4.2}Improving the previous approaches}{20}{subsection.3.4.2}% 
+\contentsline {subsubsection}{Identifying the skin tone}{20}{section*.35}% 
+\contentsline {subsubsection}{Identifying skin pixels using the skin tone}{21}{section*.36}% 
+\contentsline {paragraph}{A Bayesian approach}{21}{section*.37}% 
+\contentsline {paragraph}{Prior distribution}{22}{section*.38}% 
+\contentsline {paragraph}{Class conditional distribution}{22}{section*.39}% 
+\contentsline {paragraph}{Avoiding the need for thresholding}{23}{section*.40}% 
+\contentsline {paragraph}{Accelerating class conditional computation}{23}{section*.41}% 
+\contentsline {section}{\numberline {3.5}Heart rate isolation}{24}{section.3.5}% 
+\contentsline {subsection}{\numberline {3.5.1}Blind-source separation}{25}{subsection.3.5.1}% 
+\contentsline {subsubsection}{Independent component analysis (ICA)}{25}{section*.43}% 
+\contentsline {subsection}{\numberline {3.5.2}Identifying the heart rate}{26}{subsection.3.5.2}% 
+\contentsline {subsubsection}{The split peak issue}{26}{section*.45}% 
+\contentsline {subsubsection}{Majority voting heuristic}{27}{section*.47}% 
+\contentsline {subsection}{\numberline {3.5.3}Summary}{27}{subsection.3.5.3}% 
+\contentsline {section}{\numberline {3.6}Repository overview}{28}{section.3.6}% 
+\contentsline {chapter}{\numberline {4}Evaluation}{29}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Data collection}{29}{section.4.1}% 
+\contentsline {subsection}{\numberline {4.1.1}Methodology}{29}{subsection.4.1.1}% 
+\contentsline {paragraph}{Experimental setup}{30}{section*.48}% 
+\contentsline {paragraph}{Hypothesis testing}{30}{section*.49}% 
+\contentsline {section}{\numberline {4.2}Analysis of performance}{30}{section.4.2}% 
+\contentsline {subsection}{\numberline {4.2.1}Face tracking}{30}{subsection.4.2.1}% 
+\contentsline {paragraph}{Research questions}{31}{section*.50}% 
+\contentsline {paragraph}{Metrics}{31}{section*.51}% 
+\contentsline {paragraph}{Robustness}{32}{section*.52}% 
+\contentsline {paragraph}{Performance cost}{32}{section*.54}% 
+\contentsline {paragraph}{Results}{33}{section*.56}% 
+\contentsline {paragraph}{Summary}{34}{section*.59}% 
+\contentsline {subsection}{\numberline {4.2.2}Accelerating region selection}{34}{subsection.4.2.2}% 
+\contentsline {subsubsection}{Reducing the amortized cost of region selection}{34}{section*.60}% 
+\contentsline {subsubsection}{Using precomputed distributions}{35}{section*.62}% 
+\contentsline {section}{\numberline {4.3}Analysis of sensing fidelity}{35}{section.4.3}% 
+\contentsline {paragraph}{Research questions}{35}{section*.64}% 
+\contentsline {paragraph}{Metrics}{35}{section*.65}% 
+\contentsline {subsection}{\numberline {4.3.1}Sources of error}{35}{subsection.4.3.1}% 
+\contentsline {subsubsection}{Impact of gender}{36}{section*.66}% 
+\contentsline {subsubsection}{Impact of skin tone}{36}{section*.68}% 
+\contentsline {subsubsection}{Impact of distance}{37}{section*.71}% 
+\contentsline {subsubsection}{Impact of movement}{37}{section*.73}% 
+\contentsline {subsubsection}{Impact of class of movement}{38}{section*.75}% 
+\contentsline {paragraph}{Quantifiying noise}{38}{section*.77}% 
+\contentsline {subsection}{\numberline {4.3.2}Predicting unreliability}{40}{subsection.4.3.2}% 
 \contentsline {subsection}{\numberline {4.3.3}Overview}{41}{subsection.4.3.3}% 
-\contentsline {paragraph}{MAHNOB}{41}{section*.82}% 
-\contentsline {paragraph}{Experiment test suite}{41}{section*.84}% 
-\contentsline {paragraph}{Results}{42}{section*.87}% 
+\contentsline {paragraph}{MAHNOB}{41}{section*.81}% 
+\contentsline {paragraph}{Experiment test suite}{41}{section*.83}% 
+\contentsline {paragraph}{Results}{42}{section*.86}% 
 \contentsline {chapter}{\numberline {5}Conclusion}{44}{chapter.5}% 
 \contentsline {section}{\numberline {5.1}Significance of results}{44}{section.5.1}% 
 \contentsline {section}{\numberline {5.2}Successes and failures}{44}{section.5.2}% 
 \contentsline {section}{\numberline {5.3}Personal remarks}{45}{section.5.3}% 
 \contentsline {section}{\numberline {5.4}Future work}{45}{section.5.4}% 
 \contentsline {chapter}{Bibliography}{45}{section.5.4}% 
-\contentsline {chapter}{Appendices}{49}{section*.89}% 
+\contentsline {chapter}{Appendices}{49}{section*.88}% 
 \contentsline {chapter}{\numberline {A}Experiment example distances}{50}{Appendix.a.A}% 
 \contentsline {chapter}{\numberline {B}MAHNOB example}{52}{Appendix.a.B}% 
 \contentsline {chapter}{\numberline {C}Project Proposal}{53}{Appendix.a.C}% 

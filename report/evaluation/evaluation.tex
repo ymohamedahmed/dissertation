@@ -484,32 +484,53 @@ the non-stationary videos is the subject of subsequent investigation.
 \subsubsection{Impact of class of movement}
 It is, initially, unclear the exact nature of movement that causes an increase in error. Concretely, what is it that separates the case of star jumping and jogging? 
 One might hypothesise that the system produces larger errors as heart rate increases, but this can be safely ruled out since the mean heart rate in both classes is almost identical.
+\begin{wrapfigure}{l}{0.44\textwidth}
+   \centering 
+   \scalebox{0.5}{
+   \input{evaluation/movement_euclidean.pgf}}
+   \caption{\textit{Mean Euclidean distance moved by tracked points between frames}}
+   \label{fig:movement_euclid}
+\end{wrapfigure}
+\\\\
 Instead I propose the hypothesis that the \textit{frequency} of movement rather than the amount is the key factor determining increasing error. Specifically that error is caused when the frequency of movement
 falls in the range of possible heart rate frequencies.
+It is clear that the amount of movement is not the determining factor since, on average, tracked points in the videos of star jumping moved \textit{more} than in the jogging case, but showed smaller errors (Figure \ref{fig:movement_euclid}).
+In order to provide evidence for the proposed hypothesis, I define a metric to quantify the amount of noise unrelated to the true heart rate, present in the range of possible heart rate frequencies.
+Given this, I showcase a strong correlation with large errors in the output of the program.
+
 % If the frequency of the movement falls in the range 
 % of heart rate frequencies, it correlates with a higher error.
 
 
 \paragraph{Quantifiying noise}
-To understand this I define the following noise metric.
+The metric defined is the ratio of the sum of all the components in the Fourier transform, $F(\omega)$ and the components corresponding to the true heart rate, $R$, with a range $\delta$ being included to discount
+for errors in the ground truth. A perfect signal, that is, a signal where the only components present in $F(\omega)$ correspond to the heart rate, will have a noise value of $1$.
 \begin{equation*}
-    \text{Noise} = \frac{\sum_{\omega} F(\omega)}{ \sum_{\omega \in [\text{HR}-\delta, \text{HR}+\delta ]}F(\omega)}  
+    \text{Noise} = \frac{\sum_{\omega} F(\omega)}{ \sum_{\omega \in [\text{R}-\delta, \text{R}+\delta ]}F(\omega)}  
 \end{equation*}
+This is equivalent to the ratio of the sum of the components in the highlighed regions in Figure \ref{fig:noise_metric}.
 \begin{figure}[H]
     \centering
-    \subfloat[]{\scalebox{0.5}{\input{evaluation/NoiseStationary.pgf}}}%
-    \subfloat[]{\scalebox{0.5}{\input{evaluation/NoiseStar.pgf} }}%
+    \subfloat{\scalebox{0.5}{\input{evaluation/NoiseStationary.pgf}}}%
+    \subfloat{\scalebox{0.5}{\input{evaluation/NoiseStar.pgf} }}%
     \quad
-    \subfloat[]{\scalebox{0.5}{\input{evaluation/NoiseJogging.pgf} }}%
+    \subfloat{\scalebox{0.5}{\input{evaluation/NoiseJogging.pgf} }}%
    \caption{\textit{An example of the defined noise metric} }
+   \label{fig:noise_metric}
 \end{figure}
-
+\noindent
+The defined noise metric shows a strong correlation with absolute error, root mean squared error and percentage error, with all three error metrics showing a Pearson correlation coefficient of over 0.8.
 \begin{figure}[H]
     \centering
-    \subfloat[]{\scalebox{0.6}{\input{evaluation/Noise-with-exer.pgf}}}
+    \subfloat{\scalebox{0.5}{\input{evaluation/Noise-with-exer.pgf}}}
+    \subfloat{\scalebox{0.5}{\input{evaluation/Noise-with-exer-perc.pgf}}}
+
+    \subfloat{\scalebox{0.5}{\input{evaluation/Noise-with-exer-squared.pgf}}}
+    \caption{\textit{Scatter plots showing the defined noise metric vs various error metrics with correlation coefficients}}
 \end{figure}
-This correlation does not, in itself, prove that the cause of the increasing error is frequency of movement.
-It does, however, indicate that large values of the defined noise metric is a property of signals which exhibit larger errors.
+\noindent
+This correlation does not, in itself, prove that the cause of the increasing error is frequency of movement but, rather,
+it indicates that large values of the defined noise metric is a common property of signals which exhibit larger errors.
 
 % \subsubsection{Impact of framerate}
 % scope for skipping frames if HR isn't very high
@@ -522,11 +543,16 @@ It does, however, indicate that large values of the defined noise metric is a pr
 % Useful 
 % in scenarios without the presence of a ground truth allows users to be informed of potential error
 % Show aggressive curve which can overreport errors as a means of safety
-
-
+The above metric is useful for understanding the source of errors in the output of the system, however, it relies on access to a ground truth heart rate, which, in general, we would not have access to.
+By considering each component outputted by ICA independently and returning a heart rate for each signal, I show that the standard deviation of these outputs also shows a relatively strong correlation ($\rho=0.707$) with error producing scenarios.
+Although it is a less strong correlation, it does not rely on access to a ground truth and so could be used to report potential error scenarios to users.
 \begin{figure}[H]
     \centering
-    \subfloat[]{\scalebox{0.6}{\input{evaluation/std_error.pgf}}}
+    \subfloat{\scalebox{0.6}{\input{evaluation/std_error.pgf}}}
+    \subfloat{\scalebox{0.6}{\input{evaluation/std_perc.pgf}}}
+
+    \subfloat{\scalebox{0.6}{\input{evaluation/std_rmse.pgf}}}
+    \caption{\textit{A scatter plot showing the standard deviation of HR predictions by ICA components vs. MAE, percentage error and RMSE}}
 \end{figure}
 
 \subsection{Overview}
