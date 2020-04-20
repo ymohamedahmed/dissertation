@@ -474,11 +474,10 @@ In this scenario, I proceed by attempting to identify the heart rate in each of 
 This power value, which is the magnitude of the term in the Fourier transform associated with a given frequency, acts as a natural way of quantifying the importance of a particular frequency on the overall signal.
 \begin{figure}[H]
     \centering
-    \subfloat[\textit{Raw video signal}]{\scalebox{0.6}{\input{implementation/ica_0.pgf}}}
-    \subfloat[\textit{ICA Component 1}]{\scalebox{0.6}{\input{implementation/ica_1.pgf}}}
-
-    \subfloat[\textit{ICA Component 2}]{\scalebox{0.6}{\input{implementation/ica_2.pgf}}}
-    \subfloat[\textit{ICA Component 3}]{\scalebox{0.6}{\input{implementation/ica_3.pgf}}}
+    \subfloat[\textit{Raw video signal}]{\scalebox{0.43}{\input{implementation/ica_0.pgf}}}
+    \subfloat[\textit{ICA Component 1}]{\scalebox{0.43}{\input{implementation/ica_1.pgf}}}
+    \subfloat[\textit{ICA Component 2}]{\scalebox{0.43}{\input{implementation/ica_2.pgf}}}
+    \subfloat[\textit{ICA Component 3}]{\scalebox{0.43}{\input{implementation/ica_3.pgf}}}
 \end{figure}
 % In 
 % Hence, I assume that the correct heart rate corresponds to whichever has the largest power.
@@ -524,6 +523,12 @@ However, it is not always the case that the most prevalent frequency is the true
 %Main way to bypass this is to reward several close peaks together
 %Hence the use of a butterworth filter
 %Give EXAMPLE graphs
+\begin{wrapfigure}{r}{0.5\textwidth}
+    \centering
+    \scalebox{0.6}{
+    \input{implementation/butterworth.pgf}}
+    \caption{\textit{An example of the split-peak issue}}
+\end{wrapfigure}
 In practice, however, the true heart rate is not present in the resulting Fourier transform as a clear single peak. Instead, often, it will correspond to several peaks that are close by each with smaller powers. A larger peak unrelated to the heart rate
 might be present in the resulting transform which is unrelated to the heart rate. This phenomenon was reported by van der Kooij et al. \cite{vanderKooij2019} and is denoted here as the \textit{split peak issue}.
 In order to avoid this, a Butterworth filter is applied which removes isolated peaks and increases the power of peaks close together as is recommended by van der Kooij et al. \cite{vanderKooij2019}.
@@ -533,12 +538,6 @@ In order to avoid this, a Butterworth filter is applied which removes isolated p
 %     \includegraphics[width=0.5\textwidth]{example-image-a}
 %    \caption{An example of the split peak issue with a Butterworth filter applied} 
 % \end{figure}
-\begin{wrapfigure}{r}{0.5\textwidth}
-    \centering
-    \scalebox{0.6}{
-    \input{implementation/butterworth.pgf}}
-    \caption{\textit{An example of the split-peak issue}}
-\end{wrapfigure}
 \subsubsection{Majority voting heuristic}
 In scenarios where there are large amounts of movement in the video, the most prevalent frequency may not correspond to the heart rate. This is problematic, if the movement occurs at a frequency 
 which could be otherwise interpreted as a heart rate, that is between 0.6Hz (36 beats per minute) and 4Hz (240 beats per minute). As a result, selecting the highest peak in this case could be 

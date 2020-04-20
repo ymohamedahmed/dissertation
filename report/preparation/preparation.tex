@@ -18,10 +18,10 @@ An electrocardiogram (ECG) is a recording of the electrical activity of the hear
 This is critical since at the beat of a heart there is a very specific electrical pattern that occurs. When the cardiac muscles contract, to cause a heart beat, the muscle cells undergo
 \textit{depolarization}. This is a change in the overall electric charge of the cell and is measurable by the electodes. \\\\
 Through this mechanism, the electrodes can record each beat of the heart and the average number of beats in a given window, is known as the heart rate.
-\begin{figure}[H]
+\begin{figure}
     % \includegraphics[width=\textwidth]{example-image-a}
     \centering
-    \input{preparation/ecg.tex}
+    \scalebox{0.8}{\input{preparation/ecg.tex}}
    \caption{An example ECG signal} 
 \end{figure}
 \noindent
@@ -176,40 +176,40 @@ Remote heart rate sensing operates directly on a camera stream. To such end, und
 aspect of the system, in the same way that an ECG sensor relies on interpreting electrical signals. 
 The field of automatically inferring knowledge from image data is generally known as Computer Vision and there are several relevant techniques to this project.
 
-% \subsection{Face detection}
-% In Section \ref{ref:literature_review} it was stated that it is 
-% easiest to estimate the heart rate by considering pixels in the face of the user. 
-% This means that, given a frame from the camera, the region(s) containing a face must be ascertained. For this, many algorithms have been developed, not all of which perform equally well.
-% For the purposes of this project, there are two main criteria by which the strength of a face detection algorithm can be evaluated.
-% \begin{itemize}
-%     \item Tightness of bounding box: typically face detection algorithms return a bounding box within which the face is believed to be. The size of this box is of great importance since any additional background pixels contain no pulse information and will add unnecessary noise
-%     \item False positive rate: any false detections will impact accuracy by potentially considering incorrect regions of the frame
-%     \item Performance: the wider objective of this project is to increase the availability of heart rate sensing technology, to such end, particular costly algorithms which cannot run effectively on standard computing devices, are of no real use
-% \end{itemize}
+\subsection{Face detection}
+In Section \ref{ref:literature_review} it was stated that it is 
+easiest to estimate the heart rate by considering pixels in the face of the user. 
+This means that, given a frame from the camera, the region(s) containing a face must be ascertained. For this, many algorithms have been developed, not all of which perform equally well.
+For the purposes of this project, there are two main criteria by which the strength of a face detection algorithm can be evaluated.
+\begin{itemize}
+    \item Tightness of bounding box: typically face detection algorithms return a bounding box within which the face is believed to be. The size of this box is of great importance since any additional background pixels contain no pulse information and will add unnecessary noise
+    \item False positive rate: any false detections will impact accuracy by potentially considering incorrect regions of the frame
+    \item Performance: the wider objective of this project is to increase the availability of heart rate sensing technology, to such end, particular costly algorithms which cannot run effectively on standard computing devices, are of no real use
+\end{itemize}
 
-% % Talk about viola-jones and why it sucks
-% % Talk about movement towards neural net based solutions 
-% % Evaluate each of three criteria
+% Talk about viola-jones and why it sucks
+% Talk about movement towards neural net based solutions 
+% Evaluate each of three criteria
 
-% \paragraph{Viola-Jones algorithm} 
-% % Talk about how it was seminal for real time face detection but has poor accuracy and lots of false positives
-% % Also tends to give large box sizes
-% % less tight boxes + high FPR + strong performance
-% The Viola-Jones face detection algorithm\cite{Viola2004}, the first of its kind to achieve real-time performance with exceptional accuracy, is implemented as a cascade of 
-% individually weak classifiers. Each classifier returns a binary outcome as to whether or not a face might be contained in the region considered.
-% A face is `detected' when a region passes all of the classifiers. The principle underpinning the speed of the algorithm is that most regions will fail in one of the first few classifiers
-% and so it is rare to apply the entire sequence.
+\paragraph{Viola-Jones algorithm} 
+% Talk about how it was seminal for real time face detection but has poor accuracy and lots of false positives
+% Also tends to give large box sizes
+% less tight boxes + high FPR + strong performance
+The Viola-Jones face detection algorithm\cite{Viola2004}, the first of its kind to achieve real-time performance with exceptional accuracy, is implemented as a cascade of 
+individually weak classifiers. Each classifier returns a binary outcome as to whether or not a face might be contained in the region considered.
+A face is `detected' when a region passes all of the classifiers. The principle underpinning the speed of the algorithm is that most regions will fail in one of the first few classifiers
+and so it is rare to apply the entire sequence.
 
-% %  their own classify faces poorly, but when combined achieve 
+%  their own classify faces poorly, but when combined achieve 
 
 
-% \paragraph{Neural network approaches}
-% % VJ largely replaced by DNNs
-% % Fewer false positives and have tighter bounding box with similar performance
-% Neural networks for face detection have been trained since approximately the year 1998 \cite{655647}, although, at the time, the performance of the Viola-Jones algorithm was considered superior, 
-% advances in computing hardware have nullified this \cite{v-j-vs-ann}. In fact, I conducted early-stage experiments which suggested that neural networks, specifically the model provided by the OpenCV library 
-% % (see Section \ref{section:libraries}) 
-% returned smaller face detection regions with similar computational costs. For this reason, the Viola-Jones algorithm, although popular, was deemed unsuitable for this project.
+\paragraph{Neural network approaches}
+% VJ largely replaced by DNNs
+% Fewer false positives and have tighter bounding box with similar performance
+Neural networks for face detection have been trained since approximately the year 1998 \cite{655647}, although, at the time, the performance of the Viola-Jones algorithm was considered superior, 
+advances in computing hardware have nullified this \cite{v-j-vs-ann}. In fact, I conducted early-stage experiments which suggested that neural networks, specifically the model provided by the OpenCV library 
+% (see Section \ref{section:libraries}) 
+returned smaller face detection regions with similar computational costs. For this reason, the Viola-Jones algorithm, although popular, was deemed unsuitable for this project.
 % % \begin{figure}[H]
 % %     \centering
 % %     \includegraphics[width=0.5\textwidth]{example-image-c}
@@ -439,6 +439,5 @@ Understanding existing literature regarding remote photoplethysmography was equa
 a large number of journal papers to gain an understanding of the state of the art techniques being used.
 \\\\
 A variety of Part II courses proved to be relevant this year, including but not limited to: Mobile and Sensor Systems, Computer Vision, Information Theory and Digital Signal Processing. Many of these courses occurred after a large body of the work was completed, however, were, nonetheless, useful.
-\\\\
 I had no previous experience programming in Kotlin and only relatively little in Python, however, both have a plethora of online resources which I used 
 during the development process.
