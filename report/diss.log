@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2020.3.30)  29 APR 2020 19:56
+This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2020.3.30)  30 APR 2020 10:52
  system commands enabled.
 **diss
 (./diss.tex
@@ -48,7 +48,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.050 seconds
+luaotfload | main : initialization completed in 0.055 seconds
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2018/09/03 v1.4i Standard LaTeX document class
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/size12.clo
@@ -1537,11 +1537,11 @@ Package pgfplots notification 'compat/show suggested version=true': document has
 [1
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2
+[1
 
-] [1
+] [2
 
-] [2] (./diss.toc [3
+] (./diss.toc [3
 
 
 ])
@@ -1562,9 +1562,7 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 
 ]
 Chapter 2.
-(./preparation/preparation.tex (./preparation/ecg.tex)
-warning  (pdf backend): ignoring duplicate destination with the name 'page.2'
-[2
+(./preparation/preparation.tex (./preparation/ecg.tex) [2
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 38--61
@@ -1690,12 +1688,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 132--135
 
 [15] (./implementation/skin-dataset-2.tex) (./implementation/skin-dataset-1.tex
 )
-<implementation/c.jpg, id=498, 765.86125pt x 765.86125pt>
+<implementation/c.jpg, id=494, 765.86125pt x 765.86125pt>
 File: implementation/c.jpg Graphic file (type jpg)
 <use implementation/c.jpg>
 Package luatex.def Info: implementation/c.jpg  used on input line 154.
 (luatex.def)             Requested size: 142.26378pt x 142.25473pt.
-<implementation/interval.jpg, id=501, 765.86125pt x 765.86125pt>
+<implementation/interval.jpg, id=497, 765.86125pt x 765.86125pt>
 File: implementation/interval.jpg Graphic file (type jpg)
 <use implementation/interval.jpg>
 Package luatex.def Info: implementation/interval.jpg  used on input line 156.
@@ -1714,7 +1712,7 @@ File: implementation/c.jpg Graphic file (type jpg)
 <use implementation/c.jpg>
 Package luatex.def Info: implementation/c.jpg  used on input line 182.
 (luatex.def)             Requested size: 142.26378pt x 142.25473pt.
-<implementation/r2.jpg, id=511, 765.86125pt x 765.86125pt>
+<implementation/r2.jpg, id=508, 765.86125pt x 765.86125pt>
 File: implementation/r2.jpg Graphic file (type jpg)
 <use implementation/r2.jpg>
 Package luatex.def Info: implementation/r2.jpg  used on input line 184.
@@ -1733,7 +1731,7 @@ Underfull \hbox (badness 4621) in paragraph at lines 226--226
 []\TU/lmr/m/n/10 (b) |Clus-ter-ing w/
  []
 
-<implementation/r3.jpg, id=527, 765.86125pt x 765.86125pt>
+<implementation/r3.jpg, id=524, 765.86125pt x 765.86125pt>
 File: implementation/r3.jpg Graphic file (type jpg)
 <use implementation/r3.jpg>
 Package luatex.def Info: implementation/r3.jpg  used on input line 228.
@@ -1743,7 +1741,7 @@ Underfull \hbox (badness 6047) in paragraph at lines 228--228
 []\TU/lmr/m/n/10 (c) |Clus-ter-ing w/
  []
 
-<implementation/r4.jpg, id=528, 765.86125pt x 765.86125pt>
+<implementation/r4.jpg, id=525, 765.86125pt x 765.86125pt>
 File: implementation/r4.jpg Graphic file (type jpg)
 <use implementation/r4.jpg>
 Package luatex.def Info: implementation/r4.jpg  used on input line 230.
@@ -1753,12 +1751,12 @@ Underfull \hbox (badness 4621) in paragraph at lines 230--230
 []\TU/lmr/m/n/10 (d) |Clus-ter-ing w/
  []
 
-<implementation/c-2.jpg, id=529, 680.5425pt x 680.5425pt>
+<implementation/c-2.jpg, id=526, 680.5425pt x 680.5425pt>
 File: implementation/c-2.jpg Graphic file (type jpg)
 <use implementation/c-2.jpg>
 Package luatex.def Info: implementation/c-2.jpg  used on input line 232.
 (luatex.def)             Requested size: 85.35826pt x 85.35835pt.
-<implementation/r2-2.jpg, id=532, 680.5425pt x 680.5425pt>
+<implementation/r2-2.jpg, id=529, 680.5425pt x 680.5425pt>
 File: implementation/r2-2.jpg Graphic file (type jpg)
 <use implementation/r2-2.jpg>
 Package luatex.def Info: implementation/r2-2.jpg  used on input line 234.
@@ -1768,7 +1766,7 @@ Underfull \hbox (badness 7704) in paragraph at lines 234--234
 []\TU/lmr/m/n/10 (f) |Clus-ter-ing w/
  []
 
-<implementation/r3-2.jpg, id=533, 680.5425pt x 680.5425pt>
+<implementation/r3-2.jpg, id=530, 680.5425pt x 680.5425pt>
 File: implementation/r3-2.jpg Graphic file (type jpg)
 <use implementation/r3-2.jpg>
 Package luatex.def Info: implementation/r3-2.jpg  used on input line 236.
@@ -1778,7 +1776,7 @@ Underfull \hbox (badness 5302) in paragraph at lines 236--236
 []\TU/lmr/m/n/10 (g) |Clus-ter-ing w/
  []
 
-<implementation/r4-2.jpg, id=534, 680.5425pt x 680.5425pt>
+<implementation/r4-2.jpg, id=531, 680.5425pt x 680.5425pt>
 File: implementation/r4-2.jpg Graphic file (type jpg)
 <use implementation/r4-2.jpg>
 Package luatex.def Info: implementation/r4-2.jpg  used on input line 238.
@@ -1845,7 +1843,7 @@ File: implementation/c.jpg Graphic file (type jpg)
 <use implementation/c.jpg>
 Package luatex.def Info: implementation/c.jpg  used on input line 378.
 (luatex.def)             Requested size: 139.41832pt x 139.41501pt.
-<implementation/hmap-763-763.png, id=580, 639.38875pt x 644.4075pt>
+<implementation/hmap-763-763.png, id=577, 639.38875pt x 644.4075pt>
 File: implementation/hmap-763-763.png Graphic file (type png)
 <use implementation/hmap-763-763.png>
 Package luatex.def Info: implementation/hmap-763-763.png  used on input line 380
@@ -1855,7 +1853,7 @@ File: implementation/c-2.jpg Graphic file (type jpg)
 <use implementation/c-2.jpg>
 Package luatex.def Info: implementation/c-2.jpg  used on input line 382.
 (luatex.def)             Requested size: 139.41832pt x 139.41866pt.
-<implementation/hmap-678-678.png, id=581, 640.3925pt x 644.4075pt>
+<implementation/hmap-678-678.png, id=578, 640.3925pt x 644.4075pt>
 File: implementation/hmap-678-678.png Graphic file (type png)
 <use implementation/hmap-678-678.png>
 Package luatex.def Info: implementation/hmap-678-678.png  used on input line 384
@@ -1994,17 +1992,17 @@ Appendix A.
 
 ]
 Appendix B.
-<evaluation/1.jpg, id=849, 4047.12pt x 3035.34pt>
+<evaluation/1.jpg, id=846, 4047.12pt x 3035.34pt>
 File: evaluation/1.jpg Graphic file (type jpg)
 <use evaluation/1.jpg>
 Package luatex.def Info: evaluation/1.jpg  used on input line 225.
 (luatex.def)             Requested size: 250.24216pt x 187.6704pt.
-<evaluation/1-5.jpg, id=850, 4047.12pt x 3035.34pt>
+<evaluation/1-5.jpg, id=847, 4047.12pt x 3035.34pt>
 File: evaluation/1-5.jpg Graphic file (type jpg)
 <use evaluation/1-5.jpg>
 Package luatex.def Info: evaluation/1-5.jpg  used on input line 230.
 (luatex.def)             Requested size: 250.24216pt x 187.6704pt.
-<evaluation/2.jpg, id=851, 4047.12pt x 3035.34pt>
+<evaluation/2.jpg, id=848, 4047.12pt x 3035.34pt>
 File: evaluation/2.jpg Graphic file (type jpg)
 <use evaluation/2.jpg>
 Package luatex.def Info: evaluation/2.jpg  used on input line 235.
@@ -2013,7 +2011,7 @@ Package luatex.def Info: evaluation/2.jpg  used on input line 235.
 
 <./evaluation/1.jpg><./evaluation/1-5.jpg>] [48<./evaluation/2.jpg>]
 Appendix C.
-<mahnob.png, id=863, 782.925pt x 582.175pt>
+<mahnob.png, id=860, 782.925pt x 582.175pt>
 File: mahnob.png Graphic file (type png)
 <use mahnob.png>
 Package luatex.def Info: mahnob.png  used on input line 242.
@@ -2064,11 +2062,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 253.
 
 Here is how much of LuaTeX's memory you used:
  56120 strings out of 494291
- 2277790,12246980 words of node,token memory allocated
+ 2277788,12246980 words of node,token memory allocated
  1228 words of node memory still in use:
    15 hlist, 2 vlist, 10 rule, 15 glue, 4 kern, 1 glyph, 86 attribute, 65 glue_s
 pec, 86 attribute_list, 2 write, 16 pdf_literal, 16 pdf_colorstack nodes
-   avail lists: 1:20,2:484605,3:322310,4:865,5:1083,6:77,7:6921,8:68,9:1658,10:9
+   avail lists: 1:20,2:484604,3:322310,4:865,5:1083,6:77,7:6921,8:68,9:1658,10:9
 9,11:336
  58082 multiletter control sequences out of 65536+600000
  83 fonts using 10807399 bytes
@@ -2087,10 +2085,10 @@ n10-bold.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmsans
 10-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmro
 manslant12-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public
 /lm/lmroman8-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/publ
-ic/lm/lmroman12-italic.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/pu
-blic/lm/lmmono10-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/
-public/lm/lmroman7-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentyp
-e/public/lm/lmroman10-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/open
+ic/lm/lmmono10-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/pu
+blic/lm/lmroman7-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/
+public/lm/lmroman10-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/openty
+pe/public/lm/lmroman12-italic.otf></usr/local/texlive/2019/texmf-dist/fonts/open
 type/public/lm/lmroman12-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/o
 pentype/public/lm/lmroman17-regular.otf></usr/local/texlive/2019/texmf-dist/font
 s/opentype/public/lm/lmroman12-bold.otf></usr/local/texlive/2019/texmf-dist/font
@@ -2106,10 +2104,10 @@ nts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmsy6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 sy8.pfb>
-Output written on diss.pdf (62 pages, 11204600 bytes).
+Output written on diss.pdf (61 pages, 11203925 bytes).
 
-PDF statistics: 1088 PDF objects out of 1200 (max. 8388607)
- 918 compressed objects within 10 object streams
+PDF statistics: 1085 PDF objects out of 1200 (max. 8388607)
+ 916 compressed objects within 10 object streams
  318 named destinations out of 1000 (max. 131072)
  600 words of extra memory for PDF output out of 10000 (max. 100000000)
 
