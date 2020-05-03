@@ -26,10 +26,6 @@ import com.yousuf.rppg.Interface.FaceDetectionOverlay
 import java.io.IOException
 import com.yousuf.rppg.RegionSelection.PrimitiveRoi
 
-//import android.R
-
-
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -99,20 +95,13 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-//        menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
     private fun startCameraSource() {
 
-        // check that the device has play services available.
         val code = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(
             applicationContext
         )
-        if (code != ConnectionResult.SUCCESS) {
-//            val dlg = GoogleApiAvailability.getInstance().getErrorDialog(this, code, RC_HANDLE_GMS)
-//            dlg.show()
-        }
 
         if (cameraSource != null) {
             try {
@@ -134,15 +123,6 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-/*
-        return when(item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-        */
         return super.onOptionsItemSelected(item)
     }
     private inner class GraphicFaceTrackerFactory : MultiProcessor.Factory<Face> {
@@ -151,10 +131,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Face tracker for each detected individual. This maintains a face graphic within the app's
-     * associated face overlay.
-     */
     private inner class GraphicFaceTracker(cameraOverlay: CameraOverlay) : Tracker<Face>() {
         private val mFaceGraphic: FaceDetectionOverlay
 
@@ -163,37 +139,21 @@ class MainActivity : AppCompatActivity() {
             mFaceGraphic = FaceDetectionOverlay(overlay!!)
         }
 
-        /**
-         * Start tracking the detected face instance within the face overlay.
-         */
         override fun onNewItem(faceId: Int, item: Face) {
             mFaceGraphic.setId(faceId)
         }
 
-        /**
-         * Update the position/characteristics of the face within the overlay.
-         */
         override fun onUpdate(p0: Detector.Detections<Face>?, detectionResults: Face?) {
             overlay?.add(mFaceGraphic)
             if (detectionResults != null) {
                 mFaceGraphic.updateFace(detectionResults)
             }
-//            val mBitmap = BitmapFactory.decodeResource(resources, )
         }
 
-        /**
-         * Hide the graphic when the corresponding face was not detected.  This can happen for
-         * intermediate frames temporarily (e.g., if the face was momentarily blocked from
-         * view).
-         */
         override fun onMissing(p0: Detector.Detections<Face>?) {
             overlay?.remove(mFaceGraphic)
         }
 
-        /**
-         * Called when the face is assumed to be gone for good. Remove the graphic annotation from
-         * the overlay.
-         */
         override fun onDone() {
             overlay?.remove(mFaceGraphic)
         }

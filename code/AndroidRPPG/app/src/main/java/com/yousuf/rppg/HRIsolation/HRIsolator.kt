@@ -1,23 +1,17 @@
 package com.yousuf.rppg.HRIsolation
 
-import android.graphics.Color
 import android.os.AsyncTask
 import android.os.Build
 import android.util.Log
-import android.view.Window
 import androidx.annotation.RequiresApi
-import jsat.DataSet
 import jsat.SimpleDataSet
-import jsat.classifiers.CategoricalData
 import jsat.classifiers.DataPoint
 import jsat.datatransform.FastICA
 import jsat.linear.DenseVector
-import jsat.linear.Vec
 import org.apache.commons.math3.transform.DftNormalization
 import org.apache.commons.math3.transform.FastFourierTransformer
 import org.apache.commons.math3.transform.TransformType
 import uk.me.berndporr.iirj.Butterworth
-import java.util.*
 
 class HRIsolator(){
    private var mDataSet = SimpleDataSet(null, 3)
@@ -35,12 +29,7 @@ class HRIsolator(){
        if(mNumberOfPoints == 0){
           start = System.currentTimeMillis()
        }
-/*
-      mRedValues.add(color.red())
-      mBlueValues.add(color.blue())
-      mGreenValues.add(color.green())
-*/
-//      var components = doubleArrayOf(color.red().toDouble(), color.green().toDouble(), color.blue().toDouble())
+
       var components = doubleArrayOf(red.toDouble(), green.toDouble(), blue.toDouble())
       mDataSet.add(DataPoint(DenseVector(components)))
       mNumberOfPoints ++
@@ -75,24 +64,19 @@ class HRIsolator(){
          dataset.applyTransform(ica)
           var icaComponents = dataset.numericColumns.map{it.arrayCopy()}
           Log.d(TAG, "Sample frequency: $SAMPLE_FREQ")
-/*
-         var icaComponents = dataset.dataPoints.map {
-            it.numericalValues[i]
-         }.toDoubleArray()
-*/
+
          // Compute FFT
          var fft = FastFourierTransformer(DftNormalization.STANDARD)
          var powerSpectra = icaComponents.map {  fft.transform(it, TransformType.FORWARD).map { complex -> complex.abs() }.toDoubleArray()}
 
-         // Bandpass filter for between 30BPM (0.5Hz) and 240BPM (4Hz)
 
+         // Bandpass filter for between 30BPM (0.5Hz) and 240BPM (4Hz)
          // The formula for each fft-bin is freq = (id*sampleFreq) / N
          // So id =(N*freq)/sampleFreq
          // We get a total of N bins for an N-bit input
          // Here N is 1024 (i.e. the window size)
          val lowerBin = (WINDOW_SIZE*MIN_HR/SAMPLE_FREQ).toInt()
          val upperBin = (WINDOW_SIZE*MAX_HR/SAMPLE_FREQ).toInt()
-//         Log.d(TAG, "Power spectra")
          Log.d(TAG, "Band pass, lower bound $lowerBin, upper bound: $upperBin")
 
          // Recall that the indices n/2 to n represent negative frequencies
@@ -101,7 +85,6 @@ class HRIsolator(){
 
          // Butterworth filter of the power spectrum
          var butterworth = Butterworth()
-//         butterworth.lowPass(3, SAMPLE_FREQ, 0.08)
          butterworth.lowPass(3, SAMPLE_FREQ, 0.8)
 
          powerSpectra = powerSpectra.map{it.map{p -> butterworth.filter(p)}.toDoubleArray()}
@@ -111,16 +94,12 @@ class HRIsolator(){
          // Select maximum peak
          var maxPower = powerSpectra.map{ it.max()!! }.max()
          Log.d(TAG, "Max power: $maxPower")
-//         var frequencyOfMaxPower = powerSpectra.map{it.filterIndexed{index, power -> }}
          var idMaxPowerSpectrum = powerSpectra.indexOfFirst { it.max() == maxPower}
          val heartRateBinId = powerSpectra[idMaxPowerSpectrum].indexOfFirst { it ==  maxPower}
          Log.d(TAG, "Heart rate bin $heartRateBinId")
-//          maxOfEachSpectra.mapIndexed{index, maximum -> }
          val heartRate = 60 * heartRateBinId*SAMPLE_FREQ/WINDOW_SIZE
          val end = System.currentTimeMillis()
          Log.d(TAG, "Time to find HR: ${end-start}")
-
-
          Log.d(TAG, "Number of data points: ${dataset.dataPoints.size}")
          return heartRate
       }

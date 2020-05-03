@@ -207,12 +207,12 @@ The above inequality relates the rate of redetections ($R/W$) and the costs of s
 In order to justify this, the value of the right hand side is evaluated experimentally on a variety of videos and is shown to exceed the value $R/W$ across all videos and thresholds tested, as shown below.
 \begin{figure}[H]
     \centering
-    \subfloat[\textit{The experimental redection rate, $R/W$ and theoretical upper bound}]{\scalebox{0.6}{\input{evaluation/redect.pgf}}}
+    \subfloat[\textit{The experimental redetection rate, $R/W$ and theoretical upper bound}]{\scalebox{0.6}{\input{evaluation/redect.pgf}}}
     \quad
     \subfloat[\textit{The mean time to a process a single frame for both face detection and face tracking.}]{\scalebox{0.5}{\input{evaluation/tracking_time.pgf}}}
 \end{figure}
 \noindent
-As is expected, as the threshold increases the number of redetections, decreases. However, crucially, across all the thresholds tested, the redection rate is beneath the upper bound specified.
+As is expected, as the threshold increases the number of redetections, decreases. However, crucially, across all the thresholds tested, the redetection rate is beneath the upper bound specified.
 
 % plot redetection rates and max value
 
@@ -266,7 +266,7 @@ use higher frame rate cameras whilst still maintaining real-time behaviour.
 \label{eval:region_selection}
 In Section \ref{ref:region_selection_impl} it was proposed that instead of computing the values of the distributions at runtime, precomputing them offline and using a lookup table
 would be much less costly. This change alone, causes an approximately 2x speedup in the effective framerate of the entire system.
-\begin{figure}[H]
+\begin{figure}
     \centering
     \scalebox{0.5}{\input{evaluation/precomputed.pgf}}
    \caption{\textit{A graph showing the effective framerate of the entire pipeline, with and without precomputing the distributions used by the skin detector}} 
@@ -434,6 +434,7 @@ At a significance level of $0.05$, there is no statistically significant differe
     \subfloat[\textit{Frequency of measurements per skin tone}]{\scalebox{0.6}{\input{evaluation/skin_tone.pgf}}}
     \quad
     \subfloat[\textit{Mean absolute error by skin tone}]{\scalebox{0.6}{\input{evaluation/skin_error.pgf}}}
+    \caption{\textit{A summary of the impact of gender and skin tone on sensing fidelity}}
 \end{figure}
 
 \subsubsection{Impact of skin tone}
@@ -443,14 +444,14 @@ As a result, I conclude it would not be appropriate to suggest a bias against an
 % \begin{figure}[H]
 %     \centering
 % \end{figure}
-\begin{figure}[H]
+\begin{table}[H]
     \centering
     % \subfloat[Mean a]{\scalebox{0.7}{\input{evaluation/skin_tone_error_table.tex}}}
     % \qquad
     \scalebox{0.7}{\input{evaluation/skin_tone_p_table.tex}}
     \caption{\textit{Pairwise significance testing between MAEs for different skin tones}}
     \label{table:skin_tone_p}
-\end{figure}
+\end{table}
 
 \subsubsection{Impact of distance}
 % big effect is if change in distance modifies illumination
@@ -556,8 +557,8 @@ Although it is a less strong correlation, it does not rely on access to a ground
 
 \paragraph{MAHNOB}
 The benefit of using the MAHNOB dataset for testing, is that it allows for a direct comparison with existing literature on rPPG.
-Techniques proposed by Poh et al. \cite{poh}, Li et al. \cite{li} and Osman et al. \cite{osman} have all been tested on the database, with 
-scores being reported in a comparative survey by Wang et al. \cite{comparative}.
+Techniques proposed by Poh et al.~\cite{poh}, Li et al.~\cite{li} and Osman et al.~\cite{osman} have all been tested on the database, with 
+scores being reported in a comparative survey by Wang et al.~\cite{comparative}.
 Although, the precise subset of the database is not specified and nor is the size of each window being considered before estimating a heart rate.
 To such end, it is not a perfectly fair comparison, however, is included as an indicator of state of the art performance, in comparison with my own implementation.
 
@@ -582,7 +583,7 @@ To such end, it is not a perfectly fair comparison, however, is included as an i
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
 % If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
-\begin{figure}[H]
+\begin{table}[H]
     \centering
 \scalebox{0.65}{
     \begin{tabular}{cc|c|c|c|c|cccc}
@@ -611,7 +612,7 @@ To such end, it is not a perfectly fair comparison, however, is included as an i
     \end{tabular}}
     \caption{\textit{A table showing the mean absolute error and root mean squared error for both the Fossil smartwatch and the proposed system, with stastically significant results in shaded rows. Italics indicates in favour of the smartwatch and bold in favour of the proposed system.}}
     \label{table:welch-mae}
-    \end{figure}
+    \end{table}
 
 \paragraph{Results}
 % no problem with distance really at the amount tested, likely to be due to high resolutions of modern cameras

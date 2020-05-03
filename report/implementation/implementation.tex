@@ -1,4 +1,4 @@
-\section{Overview}
+% \section{Overview}
 % In this chapter I will outline the implementation 
 % GIVE STRUCTURE OF PROGRAM AND EXPLAIN WHY MOST WORK IS DEDICATED TO REGION
 % SELECTION AND HEART RATE ISOLATION SPECIFICALLY
@@ -38,12 +38,12 @@ A face detector is expected to take a single frame and return a bounding rectang
 
 \subsection{Face tracking}
 \label{section:face_tracking_impl}
-Smartphone cameras can readily stream at high framerates, so it is unlikely that a face moves very much between a pair of consecutive frames. At thirty frames per second, frames are recorded only 0.033s apart. The position of the face in the previous frame, gives a strong indication of its subsequent position. Thus, there is opportunity for optimisation beyond simply applying a face detector to each frame individually. 
+Smartphone cameras can readily stream at high frame rates, so it is unlikely that a face moves very much between a pair of consecutive frames. At thirty frames per second, frames are recorded only 0.033s apart. The position of the face in the previous frame, gives a strong indication of its subsequent position. Thus, there is opportunity for optimisation beyond simply applying a face detector to each frame individually. 
 A speedup in this part of the pipeline provides opportunity for more expensive computation in subsequent stages which might improve accuracy. However, it is critical that any optimisations are resistant to motion. Using information from previous frames forms the distinction between face \textbf{\textit{detection}} and \textbf{\textit{tracking}}.
 
 \subsubsection{Point tracking}
 The key principle behind face tracking is to use information from previous frames to reduce the cost of subsequent face detections.
-To that end, I use the Lucas-Kanade algorithm \cite{LucasKanade} to tracks points on the face rather than repeatedly calling the face detector. Naturally, over time, these points will diverge from their true positions. This is because images contain large numbers of pixels with similar illumination that cannot be distinguished perfectly. When this occurs, the position of the face should be redetected. 
+To that end, I use the Lucas-Kanade algorithm \cite{LucasKanade}, as described in the Preparation chapter, to track points on the face rather than repeatedly calling the face detector. Naturally, over time, these points will diverge from their true positions. This is because images contain large numbers of pixels with similar illumination that cannot be distinguished perfectly. When this occurs, the position of the face should be redetected. 
 \\ \\
 Knowing when the points have diverged is non-trivial, since the true location of the face is unknown, without calling the face detector directly. It is crucial for any implementation to act safely enough that the face is not lost track of, whilst simultaneously minimising the number of times the face detection algorithm is used.
 There are two obvious approaches to combat this. The algorithm could redetect the face: 
@@ -93,7 +93,7 @@ The point tracking approach instead has a cost of $Wg(p,n) + R(f(n) + s(p,f))$. 
     R &< \frac{W[f(n) - g(p,n)]}{f(n) + s(p,f)}\\
     \frac{R}{W} &< \frac{f(n)-g(p,n)}{f(n)+s(p,f)}
 \end{align*}
-Notice that $R/W$ represents the percentage of frames for which a redetection occurs. There is only a performance saving when this percentage falls below the value on the right hand side. Furthermore, this value itself is based on the relative costs of face detection and of selecting and tracking points. Implicitly, the algorithm assumes that the cost of tracking and selecting points is less than that of face detection, otherwise, this endeavour would be useless. This assumption is validated and the limit is evaluated experimentally in section \ref{section:face_tracking}. From this it is shown that even for videos with lots of movement, the value $R/W$ falls below this limit and the inequality is satisfied. 
+Notice that $R/W$ represents the percentage of frames for which a redetection occurs. There is only a performance saving when this percentage falls below the value on the right hand side. Furthermore, this value itself is based on the relative costs of face detection and of selecting and tracking points. Implicitly, the algorithm assumes that the cost of tracking and selecting points is less than that of face detection, otherwise, this endeavour would be useless. This assumption is validated and the limit is evaluated experimentally in Section \ref{section:face_tracking}. From this it is shown that even for videos with lots of movement, the value $R/W$ falls below this limit and the inequality is satisfied. 
 % The algorithm above works by selecting some number of points on the face and tracking them between frames. If the points move such that the size of the bounding box increases above some threshold from the last face detection, then the face detector is called again. 
 % \paragraph{Assumptions}
 % This relies on the assumption that if the points lose track of the face, then the threshold is such that 
@@ -211,10 +211,10 @@ are skin pixels, the largest cluster is returned as the set of skin pixels.
 % Assumption of most pixels being skin fails
 The k-means algorithm, although it improves on the results of the rudimentary approach has a plethora of pitfalls.
 \begin{itemize}
-    \item \textbf{Performance}: recall from Section \ref{section:system_design} that, since the region selection operates on every frame, it must run in real-time. However, in benchmarking the k-means reference implementation in the scikit-learn \cite{sklearn} library takes an order of magnitude longer than the minimum requirement for this constraint. \footnote{Suppose the camera streams at 30 frames per second, then each frame must be processed within 33ms, the reference implementation operates in the order of 100ms per frame. }
-    \item Location: since it encodes no notion of location with respect to other pixels, a lone pixel in the corner that has a similar colour to the skin tone is considered the same as a pixel surrounded by skin pixels
-    \item Number of clusters: there's no rigorous means for deciding the number of clusters to expect in the data and the selection of this value is critical. Too many clusters can cause unexpected behaviour, but too few can result in undesired pixels being considered. 
-    \item Illumination resistance: the algorithm is not resistant to differences in illumination. For example, since there is no notion of location encoded, specular reflection on the forehead may not be considered as skin.
+    \item \textbf{Performance}: recall from Section \ref{section:system_design} that, since the region selection operates on every frame, it must run in real-time. However, in benchmarking the k-means reference implementation in the scikit-learn \cite{sklearn} library takes an order of magnitude longer than the minimum requirement for this constraint.\footnote{Suppose the camera streams at 30 frames per second, then each frame must be processed within 33ms, the reference implementation operates in the order of 100ms per frame. }.
+    \item \textbf{Location}: since it encodes no notion of location with respect to other pixels, a lone pixel in the corner that has a similar colour to the skin tone is considered the same as a pixel surrounded by skin pixels.
+    \item \textbf{Number of clusters}: there's no rigorous means for deciding the number of clusters to expect in the data and the selection of this value is critical. Too many clusters can cause unexpected behaviour, but too few can result in undesired pixels being considered. 
+    \item \textbf{Illumination resistance}: the algorithm is not resistant to differences in illumination. For example, since there is no notion of location encoded, specular reflection on the forehead may not be considered as skin.
 \end{itemize}
 
 \begin{figure}[H]
@@ -335,7 +335,7 @@ and is a benefit of the Bayesian approach. It allows a principled means of incor
 
 \paragraph{Class conditional distribution}
 A reasonable approach is to define the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ based on the assumption that a skin pixel is likely close in colour to the overall skin tone. We want a function which returns a large probability if the Euclidean distance between the pixel and the skin tone is small.
-There are, however, an infinite number of functions which could encode this. The only requirements is that the probability of being a skin pixel is decreasing as a function of the distance between the colour of the pixel and the skin tone of the face. 
+There are, however, an infinite number of functions which could encode this. The only requirement is that the probability of being a skin pixel is decreasing as a function of the distance between the colour of the pixel and the skin tone of the face. 
 \\\\
 A reasonable assumption might be that if the pixel being considered, $x_i$, is a skin pixel, then the Euclidean distance between the skin tone, $s$ and the skin pixel, $d(s,x_i)$, varies as a Normal distribution with mean zero and standard deviation $\sigma$.
 \begin{equation*}
@@ -443,7 +443,7 @@ To simplify this approach the problem is broken down into two subtasks:
     \item Identifying the pulse signal: given the noisy time series of observed colours for each frame, identify the signal corresponding to the pulse of the user
     \item Identifying the heart rate: given the pulse signal, identify the heart rate
 \end{itemize}
-Although, as will be explained, there is some overlap between the two to aide with correctly identifying the pulse.
+Although, as will be explained, there is some overlap between the two to aid with correctly identifying the pulse.
 
 \subsection{Blind-source separation}
 \label{implementation:pca_ica}
@@ -530,8 +530,8 @@ Crucially, it is not always the case that the most prevalent frequency is the tr
     \caption{\textit{An example of the split-peak issue}}
 \end{wrapfigure}
 In practice the true heart rate is not present in the resulting Fourier transform as a clear single peak. Instead, often, it will correspond to several peaks that are close by each with smaller powers. A larger peak unrelated to the heart rate
-might be present in the resulting transform which is unrelated to the heart rate. This phenomenon was reported by van der Kooij et al. \cite{vanderKooij2019} and is denoted here as the \textit{split peak issue}.
-In order to avoid this, a Butterworth filter is applied which removes isolated peaks and increases the power of peaks close together as is recommended by van der Kooij et al. \cite{vanderKooij2019}.
+might be present in the resulting transform which is unrelated to the heart rate. This phenomenon was reported by van der Kooij et al.~\cite{vanderKooij2019} and is denoted here as the \textit{split peak issue}.
+In order to avoid this, a Butterworth filter is applied which removes isolated peaks and increases the power of peaks close together as is recommended by van der Kooij et al.~\cite{vanderKooij2019}.
 % \begin{figure}[H]
 %     % Add an image showing how in noisy Fourier transforms the HR is not just highest peak with result from Butterworth filter
 %     \centering

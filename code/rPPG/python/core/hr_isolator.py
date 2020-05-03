@@ -7,16 +7,25 @@ import numpy as np
 import scipy.signal
 import heartpy as hp
 
+def hr_from_array(freqs):
+    print("FREQS")
+    print(freqs)
+    powers = [freqs[0][1], freqs[1][1], freqs[2][1]]
+    hrs = [freqs[0][0], freqs[1][0], freqs[2][0]]
+    i = np.argsort(powers)
+    hr_max_power = hrs[i[-1]]
+    mean_of_non_max = 1/2 * (np.sum(hrs)- hr_max_power)
+    if abs(hr_max_power - mean_of_non_max)/hr_max_power > 0.3 and hr_max_power == max(hrs):
+        return hrs[i[-2]]
+    else:
+        return hr_max_power
+
 class Processor():
     
     def _prevalent_freq(self, data, framerate):
         """
         Return the most prevalent frequency using power spectrum
         """
-        # data = hp.filter_signal(data, [0.7, 3.5], sample_rate=framerate, 
-        #                 order=3, filtertype='bandpass')
-        # sos = scipy.signal.butter(3, 0.2, output='sos')
-        # data = scipy.signal.sosfilt(sos, data)
         if not(np.std(data) == 0):
             data = (data-np.mean(data))/np.std(data)
         transform = np.fft.rfft(data)
@@ -29,19 +38,7 @@ class Processor():
         transform = scipy.signal.sosfilt(sos, transform)
         powers = np.argsort(-1*transform)
         hr, power = self._respiration_rejection([freqs[powers[0]], freqs[powers[1]]],[transform[powers[0]], transform[powers[1]]])
-        # id = np.argmax(filtered)
-        # heart_rate = freqs[id]
-
-        hr_bc = None
-        # try:
-        #     _, m = hp.process(data, sample_rate = framerate )    
-        #     hr_bc = m["bpm"]
-        # except Exception as e:
-        #     print(e)
-        #     print("Error beat counting rPPG")
-        #     hr_bc = None
-        return hr, power, hr_bc
-        # return heart_rate, np.max(filtered), hr_bc
+        return hr, power
 
     def _respiration_rejection(self, peaks, powers):
         """

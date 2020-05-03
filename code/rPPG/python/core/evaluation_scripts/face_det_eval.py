@@ -8,7 +8,6 @@ from configuration import PATH
 
 def matrix_from_face(face, width, height):
     x,y,w,h = face
-    # print(f"Frame width: {width}, frame height: {height}, face width: {w}, face height: {h}, x pos: {x}, y pos: {y}")
     matrix = np.ones(shape=(h,w), dtype=np.bool)
     matrix = np.pad(matrix, ((y,height-(y+h)),(x,width-(x+w))), 'constant', constant_values=0)
     matrix = np.repeat(matrix[:, :, np.newaxis], 3, axis=2)
@@ -18,7 +17,6 @@ def evaluation_pipeline(detector, tracker, video_path):
     # Profiling
     total_start = Timing.time()
     results = []
-    
     cap = cv.VideoCapture(video_path)
     heart_rates = []
     width = int(cap.get(cv.CAP_PROP_FRAME_WIDTH))
@@ -58,13 +56,11 @@ def evaluation_pipeline(detector, tracker, video_path):
         fp = np.sum(np.bitwise_and(T,np.invert(D)))
         tn = np.sum(np.bitwise_and(np.invert(T),np.invert(D)))
         tp = np.sum(np.bitwise_and(T,D))
-#         print(f"FN: {fn}, FP: {fp}, TN: {tn}, TP:{tp}")
-        # Format (video name, frame number, time_to_track, time_to_detect, FN, FP, TN, TP, time_to_select_points, time_to_track_points)
         selecting = profiling_tr["time_to_select_points"] if "time_to_select_points" in profiling_tr else None
         tracking = (profiling_tr["time_to_track_points"], profiling_tr["point_distance_mean"], profiling_tr["point_distance_std"], profiling_tr["orig_point_distance_mean"], profiling_tr["orig_point_distance_std"], profiling_tr["cumulative_change"]) if "time_to_track_points" in profiling_tr else (None, None, None, None, None, None)
         results.append([video_path, tracker.recompute_threshold, frame_number, time_tr, time_det, fn, fp, tn, tp, selecting, tracking[0], tracking[1], tracking[2], tracking[3], tracking[4], tracking[5]])
     return results
-#     return (values, heart_rates, frame_number, total_time, time_tracking, time_roi, time_display, time_ica, time_read)
+
 def tracker_vs_detector(video, threshold):
     video_path = f"{video}"
     video_name = video.split(".")[0]
@@ -72,41 +68,16 @@ def tracker_vs_detector(video, threshold):
     start = Timing.time()
     overall_results = pd.DataFrame(data=results, columns=cls)
     print(f"Time to dataframe: {Timing.time()-start}")
-#     overall_results = overall_results.append(results)
-#     overall_results.to_csv(f"{PATH}output/tracking_vs_detecting_{video_name}.csv")
     return overall_results
 
-# folders = ["21", "22", "23", "24", "25", "26", "27", "28", "29"]
-# videos = []
-# movement_vids = ["mov-1.mp4", "mov-2.mp4", "mov-3.mp4"]
-# stationary_vids = []
-# movement_vids = [f"test-face-detection-videos/{v}" for v in movement_vids]
-# for folder in folders:
-#     avi, _ = get_avi_bdf(PATH, folder)
-#     stationary_vids.append(f"mahnob/{folder}/{avi}")
-# videos = movement_vids + stationary_vids
-# np.random.shuffle(videos)
 videos = []
 for d in [1, 1.5, 2]:
     for e in ["stat", "star", "jog"]:
         for r in [1,2,3]:
             videos.append(f"{PATH}experiments/yousuf-re-run/{d}_{e}_{r}.mp4")
-# videos = [f"{PATH}expriments/yousuf-re-run/"
 print(videos)
 cls = ["Video", "Threshold", "Frame number", "Time of face tracker", "Time of face detector", "FN", "FP", "TN", "TP", "Time to select points", "Time to track points", "Point distance mean", "Point distance std.", "Point distance original mean.", "Point distance original std.", "Cumulative change"]
-"""
-results = pd.DataFrame(columns=cls)
-results = results.append(tracker_vs_detector("test-face-detection-videos/mov-3.mp4", 0.4))
-results.to_csv(f"{PATH}output/mov_3_tweaked_scaling.csv")
 
-"""
-# thresholds = [0.18, 0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.32, 0.34, 0.36, 0.38, 0.4]
-# thresholds = [0.45, 0.5, 0.55, 0.6]
-# thresholds = [0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.1, 1.2]
-# thresholds = [0.18, 0.2, 0.22, 0.24, 0.26, 0.28, 0.3, 0.325, 0.35, 0.375, 0.4]
-# results = tracker_vs_detector("test-face-detection-videos/mov-1.mp4",0.15)
-# results.to_csv(f"{PATH}/mov-1-error-correction.csv")
-# thresholds = [0.1, 0.125, 0.15, 0.175, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5]
 thresholds = [0.1, 0.15, 0.2, 0.25, 0.3, 0.4, 0.5, 0.35, 0.45]
 results = pd.DataFrame(columns=cls)
 for t_index, t in enumerate(thresholds): 

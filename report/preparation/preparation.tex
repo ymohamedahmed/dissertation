@@ -7,7 +7,7 @@ and described in relation to this project.
 % Traditional heart rate sensors, although not 
 % Before attempting to develop a system which can estimate the heart rate of a user without physical contact, it is useful to understand how traditional heart rate sensors work.
 % Although it is clear that a non-contact system is constrained by different requirements, it is common when developing low fidelity sensors to begin by attempting to mimic high fidelity alternatives. \\\\
-This project can be viewed as the development of a virtual sensor\footnote{A sensor which does not derive its results from a direct physical realisation of that sensor} that derives its data from an existing sensor --- the camera. 
+This project can be viewed as the development of a virtual sensor\footnote{A sensor that does not derive its results from a direct physical realisation of that sensor} that derives its data from an existing sensor --- the camera. 
 It is, nonetheless, useful to understand the functioning of existing heart rate monitors.
 Electrocardiography and photoplethysmography are the two of the most common techniques for measuring heart rate and each proceed by measuring different phenomena.
 
@@ -16,7 +16,7 @@ Electrocardiography and photoplethysmography are the two of the most common tech
 % Talk about how it works
 % The fact it's a gold standard
 % But expensive 
-An electrocardiogram (ECG) is a recording of the electrical activity of the heart. Electrodes that make contact with the skin measure how the voltage varies with time.
+An electrocardiogram (ECG) is a recording of the electrical activity of the heart (see Figure \ref{fig:ecg_signal}). Electrodes that make contact with the skin measure how the voltage varies with time.
 At the beat of a heart there is a very specific electrical pattern that occurs and can be recognised. Specfically, when the cardiac muscles contract, the muscle cells undergo
 \textit{depolarization} which causes a change in the electric charge of the cell and is measurable by the electrodes.
 The average number of beats in a given window, is known as the heart rate.
@@ -25,6 +25,7 @@ The average number of beats in a given window, is known as the heart rate.
     \centering
     \scalebox{0.8}{\input{preparation/ecg.tex}}
    \caption{An example ECG signal} 
+   \label{fig:ecg_signal}
 \end{figure}
 \noindent
 Crucially for this project, the ECG is considered the ``gold standard'' means of measuring heart rate. The electrodes can perceive very minor changes in voltage and, thereby, very rarely produce false beats or miss beats of the heart. 
@@ -67,9 +68,9 @@ In this form, PPG sensing is of high fidelity and is common in medical scenarios
 % Energy constraints so low sampling rate
 % Movement of wrist
 % All of these mean there is a large decrease in fidelity between pulse oximeter and wrist based PPG
-Smartwatches are one of the most common classes of wearable devices and are readily equipped with wrist-based PPG sensors.
+Smartwatches are one of the most common classes of wearable device and are readily equipped with wrist-based PPG sensors.
 The above description of pulse oximetry requires many adaptations to be suitable for use on a wearable. 
-These modifications make mobile sensing possibe but at a great cost in fidelity.
+These modifications make mobile sensing possible but at a great cost in fidelity.
 \\\\
 Since the PPG sensor is placed on the wrist it doesn't measure the amount of light absorbed but the amount \textit{reflected}. This is because the wrist, as opposed to the finger, contains much more cartilage
 so it is not feasible to measure the amount of light passing all the way through the tissue.
@@ -81,7 +82,7 @@ The LEDs present on the underside of the watch will not make perfect contact wit
 Furthermore, sensors on smart devices are often subject to severe energy constraints in an attempt to increase the battery life of the device.
 As a result, wearable sensors use lower sampling rates than that of a medical-grade sensor.
 \\\\
-Together these factors, and numerous others, result in a much noisier and, as a result, less accurate, PPG signal. 
+Together these factors, and numerous others, result in a much noisier and, as a result, less accurate, PPG signal (see Figure \ref{fig:wearable_ppg}).
 % The most obvious change between a standard pulse oximeter and a wrist-based PPG sensor is that since the sensor is place on the wrist and light cannot 
 % Firstly, the PPG sensor in a smartwatch is placed on the wrist rather than on the finger, as is common in a hospital setting. As a result, there is an increasing amount of body matter that disrupts the light signal emitted by the LED. 
 
@@ -93,6 +94,7 @@ Together these factors, and numerous others, result in a much noisier and, as a 
     \subfloat{\scalebox{0.7}{\input{preparation/wear_2.pgf}}}
     % \includegraphics[width=\textwidth]{example-image-b}
    \caption{\textit{An example PPG signal as taken from a wearable watch, with inferred heart beats on a filtered signal} }
+   \label{fig:wearable_ppg}
 \end{figure}
 \section{Remote photoplethysmography (rPPG)}
 \label{ref:rPPG_prep}
@@ -100,7 +102,7 @@ Together these factors, and numerous others, result in a much noisier and, as a 
 % Show the mapping between how we use the camera and how PPG sensors work
 This project, instead, is concerned with the development of a virtual PPG sensor which can infer the heart rate of a user from a camera only.
 That is, without an LED or a dedicated light sensor in contact with the skin. 
-This is generally denoted in the literature as \textit{remote photoplethysmography} (rPPG) and is an active area of research.
+This is generally denoted in the literature as \textit{remote photoplethysmography} (rPPG) and is an active area of research \cite{Verkruysse2008}\cite{poh}\cite{vanderKooij2019}.
 \\\\
 The most obvious approach to designing such a system, is to attempt to map the data returned by a camera onto one of the two methods of heart rate sensing described. In other words, to attempt 
 to mimic an already existing, well-developed sensor.
@@ -115,9 +117,9 @@ at various points in the scene. The impressive results of early research into rP
 % subject to lighting conditions.
 % Given some light source in the background, this is equivalent to the amount of light reflected by each point in 
 Clearly an rPPG system is different to both the pulse oximeter and a wrist-based PPG sensor, although it attempts to measure the same phenomenon.
-These differences form the basis of its tradeoffs as a sensor. For example, since a camera is likely to be at a greater distance than both of the other PPG sensors described, it is even more
+These differences form the basis of its trade-offs as a sensor. For example, since a camera is likely to be at a greater distance than both of the other PPG sensors described, it is even more
 subject to noise caused by lighting conditions. However, cameras contain much larger numbers of light sensors and so can consider more points. 
-This tradeoff between the number and reliability of measurements is difficult to evaluate without experiment and is the subject of investigation.
+This trade-off between the number and reliability of measurements is difficult to evaluate without experiment and is the subject of investigation.
 
 \subsection{Literature review}
 \label{ref:literature_review}
@@ -135,18 +137,18 @@ For example, the description in Section \ref{ref:rPPG_prep} leaves several quest
 % The existing literature on remote heart rate estimation provides 
 \paragraph{Verkyuysse et al.}
 % first paper to show it was possible
-In 2008, Verkyuysse et al. \cite{Verkruysse2008} were the first to show that remote heart rate sensing is possible. This was shown using a standard camera and no additional source of 
+In 2008, Verkyuysse et al.~\cite{Verkruysse2008} were the first to show that remote heart rate sensing is possible. This was shown using a standard camera and no additional source of 
 illumination. Crucially, they reported that the face, as opposed to other regions of the body, provides the strongest PPG signal and verified this experimentally. 
 Intuitively, this is because
 it is believed that the tissue on the surface of the face is particularly thin and so it is easier to extract a signal from \cite{vanderKooij2019}. 
-Although the selection of the region of the face to consider, referred to as the \textit{region of interest} (ROI) in the literature, was done manually for each frame. This is not desirable and, 
-as a result, the automation of this is the subject of discussion in this project. Finally, Verkyuysse et al. \cite{Verkruysse2008} described the use of Fourier techniques for isolating the 
+However the selection of the region of the face to consider, referred to as the \textit{region of interest} (ROI) in the literature, was done manually for each frame. This is not desirable and, 
+as a result, the automation of this is the subject of discussion in this project. Finally, Verkyuysse et al.~\cite{Verkruysse2008} described the use of Fourier techniques for isolating the 
 heart beat in the colour signal returned by the camera.
 
 \paragraph{Poh et al.}
 % introduced idea of BSS
 % idea that signal is a mixture of separate signals 
-Poh et al. \cite{poh2010non} introduced the idea of applying more rigourous signal processing techniques to the recorded signal, in an attempt to further reduce noise and isolate the heart rate.
+Poh et al.~\cite{poh2010non} introduced the idea of applying more rigourous signal processing techniques to the recorded signal, in an attempt to further reduce noise and isolate the heart rate.
 Specifically, they introduced the use of \textit{blind source separation} techniques to attempt to isolate the pulse from the observed colour changes. The problem of blind source separation is 
 outlined in Section \ref{ref:bss_prep} and was an important discovery in reducing the effect of noise.
 
@@ -231,13 +233,13 @@ and the scene. This can loosely be thought of as a notion of `tracking' points i
 Fleet and Weiss \cite{Fleet2006} provide a formal description of the optical flow problem which has been outlined and summarised below.
 Suppose we have a function $I(x,y,t)$ which describes the intensity at each point $(x,y)$ in an image taken at time $t$. 
 The task is to find for each point of interest, $(x_i, y_i)$,
-a pair $(\Delta x_i, \Delta y_i)$ such that for an subsequently taken at time $t + \Delta t$
+a pair $(\Delta x_i, \Delta y_i)$ such that for an subsequently taken at time $t + \Delta t$.
 \begin{equation}
  I(x_i,y_i,t) = I(x_i + \Delta x_i, y_i + \Delta y_i, t+\Delta t)
  \label{eq:1}
 \end{equation}
 In other words, we wish to find where each point has moved to between frames.
-By taking the Taylor series expansion of equation \ref{eq:1}.
+This can be achieved by taking the Taylor series expansion of equation \ref{eq:1}.
 \begin{equation}
 I(x_i + \Delta x_i, y_i + \Delta y_i, t+\Delta t) = I(x_i,y_i,t) + \frac{\partial I}{\partial x_i}\Delta x_i + \frac{\partial I}{\partial y_i} \Delta y_i + \frac{\partial I}{\partial t} \Delta t + ... 
 \label{eq:2}
@@ -357,7 +359,7 @@ Analagously, the stream of colours being received from the camera contains a mix
 \textbf{Extensions:}
 \begin{itemize}
    \item Evaluate performance in comparison to a smartwatch
-   \item Achieve real-time performance, that is, the frequency of frame processing is less than or equal to the frame rate of the camera
+   \item Achieve real-time performance, that is, the frequency of frame processing is less than or equal to the frame rate of the camera, thereby maximising the effective sampling frequency of the system.
    \item Investigate performance under more realistic scenarios:
         \begin{itemize}
             \item with the camera further away from the user
@@ -410,7 +412,7 @@ With support for more functional syntax and with complete interoperability with 
 \subsection{Libraries}
 \label{section:libraries}
 \paragraph{OpenCV} 
-Originally developed by the Intel Corporation, OpenCV \cite{OpenCV} is an open-source library for computer vision applications and has built in support for face detection, as is required by the project.
+Originally developed by the Intel Corporation, OpenCV \cite{OpenCV} is an open-source library for computer vision applications and has built in support for face detection, as is required by the project. It is licensed under the 
 % \paragraph{Mobile Vision}
 
 % \paragraph{Numpy}

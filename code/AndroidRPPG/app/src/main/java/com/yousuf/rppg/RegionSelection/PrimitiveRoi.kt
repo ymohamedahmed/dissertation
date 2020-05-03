@@ -11,10 +11,6 @@ import org.ejml.simple.SimpleMatrix
 class PrimitiveRoi : RegionSelector {
     @SuppressLint("NewApi")
     override fun detect(face: Face, bitmap: Bitmap): Color {
-//        face.position
-//        frame.bitmap[]
-//        return 1*SimpleMatrix(bitmap.height, bitmap.width).scale()
-//        return SimpleMatrix(bitmap.height, bitmap.width)
         val size = (bitmap.width * bitmap.height).toFloat()
         var r = 0f
         var g = 0f

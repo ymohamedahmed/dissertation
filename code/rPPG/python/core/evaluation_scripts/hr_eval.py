@@ -76,20 +76,6 @@ def mean_heart_rate(signal, sampling_freq):
     hr = 60*len(rpeaks)/time
     return hr
 
-    # try:
-    #     # signal = hp.filter_signal(signal, [0.7, 3.5], sample_rate=sampling_freq, 
-    #     #                 order=3, filtertype='bandpass') 
-    #     _, m = hp.process(signal, sampling_freq)
-    #     return m["bpm"]
-    # except Exception as e:
-    #     try:
-    #         _, m = hp.process(hp.scale_data(signal), sampling_freq)
-    #         return m["bpm"]
-    #     except Exception as e:
-    #         print(e)
-    #         print("Error extracting heart rate from ECG")
-    #         return None
-
 def track_ppg(video_path, config:Configuration):
     cap = cv.VideoCapture(video_path)
     values = np.array([])
@@ -148,10 +134,6 @@ def test_data():
             for repeat in range(1,4):
                 file = f"{base_path}{dist}_{exer}_{repeat}"
                 files.append([f"{PATH}{file}.mp4", f"{PATH}{file}.csv", f"{PATH}{file}.edf"])
-    # mahnob_path = f"{PATH}mahnob/Sessions/"
-    # for fold in listdir(mahnob_path): 
-    #     vid, bdf = get_avi_bdf(mahnob_path + fold)
-    #     files.append([f"{mahnob_path}{fold}/{vid}", None, f"{mahnob_path}{fold}/{bdf}"])
     return files
                 
 def hr_with_max_power(freqs):
@@ -170,21 +152,13 @@ def noise(data, framerate, true_hr):
     delta = 4
     band_pass = np.where((freqs < 40) | (freqs > 240) )[0]
     transform[band_pass] = 0
-    # hr_range = np.where((freqs > 40) & (freqs < 240) & (freqs > (true_hr + delta)) & (freqs < ((true_hr - delta))))[0]
     lower = (freqs > (true_hr + delta))
     upper = (freqs < (true_hr - delta))
     hr_range = np.where(lower | upper)[0]
     transform = np.abs(transform)**2
     noise_value = np.sum(transform[hr_range])
-    # print(f"Noise value {noise_value}")
-    # print(f"{np.sum(transform[~hr_range])}")
     numerator = np.sum(transform)-np.sum(transform[hr_range])
     return numerator/np.sum(transform)
-    # return np.sum(transform)/numerator
-    # return noise_value/np.sum(transform)
-    # return noise_value/np.sum(transform[~hr_range])
-    # return np.sum(transform[~hr_range])/noise_value
-    # return noise_value
 
 def map_config(config: list, window_size, offset):
     """
@@ -241,7 +215,6 @@ def enough_ppg_samples(ppg_signal):
 
     n_bins = 10
     hist, bins = np.histogram(ppg_signal["Time"], bins=n_bins)
-    # print(hist)
     threshold = 0.7*n_rows/n_bins
     if DEBUG: 
         print(f"Rows: {n_rows}")
@@ -250,16 +223,11 @@ def enough_ppg_samples(ppg_signal):
         print(hist > threshold)
         plt.plot(ppg_signal["Time"], ppg_signal["PPG"])
         plt.show()
-    # lower, upper = np.mean(hist)-np.std(hist), np.mean(hist)+np.std(hist)
-    # return all((hist>lower)&(hist<upper))
     return all(hist > threshold)
 
 def sample_framerate(ppg, fr, true_fr):
     xs = np.arange(0, len(ppg), true_fr/fr)
     ups = np.zeros(shape=(len(xs), 3))
-    # print("Shape")
-    # print(ups.shape)
-    # print(f"Truefr:{true_fr}, fr: {fr}, ppg: {len(ppg)}")
     for i in range(3):
         ups[:,i] = np.interp(xs, np.arange(0, len(ppg)), ppg[:,i])
     return ups
@@ -283,7 +251,6 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate, tr
     ppg_hr = []
     ppg_hr_fft = []
 
-    # print(f"THING: {np.arange(0, len(rppg_signal)-window_size+1, offset)}")
     for i, base in enumerate(np.arange(0, len(rppg_signal)-window_size+1, offset)):
         sig = rppg_signal[base:base+window_size]
         rppg_hr_ica = np.append(rppg_hr_ica, ICAProcessor().get_hr(sig, framerate))
@@ -301,14 +268,10 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate, tr
                 plt.show()
 
         noises = np.append(noises, np.array([noise(sig[:,dim], framerate, ecg_hr[-1]) for dim in range(3)]))
-        # selfd_noises = np.append(selfd_noises, np.array([noise(sig[:,dim], framerate, majority_vote(rppg_hr_ica[i*9:])) for dim in range(3)]))
         selfd_noises = np.append(selfd_noises, np.array([noise(sig[:,dim], framerate, hr_with_max_power(rppg_hr_ica[i*9:])) for dim in range(3)]))
-        # p_low, p_high = int(i*ppg_o), int((i*ppg_o)+ppg_ws)
         
-        # if ppg_file_exists:
         if False:
             filtered = ppg[(ppg["Time"] < p_high)&(ppg["Time"]>p_low)]
-            # if (len(filtered) > window_size):
             if(len(filtered) > window_size):
                 hr_fft = Processor()._prevalent_freq(filtered["PPG"], ppg_sf)[0]
                 ppg_hr_fft.append(hr_fft)
@@ -320,7 +283,6 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate, tr
                     plt.plot(signal)
                     plt.show()
                 try:
-                    # _, m = hp.process(hp.scale_data(signal), ppg_sf)
                     _, m = hp.process(signal, ppg_sf)
                     ppg_hr.append(m["bpm"])
                 except Exception as e:
@@ -334,7 +296,6 @@ def evaluate(rppg_signal, ppg_file, ecg_file, window_size, offset, framerate, tr
                         plt.show()
             else: 
                 ppg_hr.append(None)
-                # ppg_hr_fft.append(None)
         else: 
             ppg_hr.append(None)
             ppg_hr_fft.append(None)
@@ -351,7 +312,6 @@ def majority_vote(freqs):
     hr_max_power = hrs[i[-1]]
     mean_of_non_max = 1/2 * (np.sum(hrs)- hr_max_power)
     if abs(hr_max_power - mean_of_non_max)/hr_max_power > 0.3 and hr_max_power == max(hrs):
-        # return mean_heart_rate
         return hrs[i[-2]]
     else:
         return hr_max_power
@@ -370,18 +330,10 @@ def signal_processing_experiments(files, ppg_meta_file, sp_output):
     with open(sp_output, 'a') as fd:
         writer = csv.writer(fd)
         writer.writerow(columns)
-    #Correct for swapped time mean and framerate
-
-    # temp = ppg_meta["Framerate"]
-    # ppg_meta["Framerate"] = ppg_meta["Time mean"]
-    # ppg_meta["Time mean"] = temp
 
     for index, ppg_row in ppg_meta.iterrows():
-        # if (ppg_row["Video file"].endswith(".avi")):
         rppg_file = ppg_row["rPPG file"]
         signal = np.loadtxt(check_path(rppg_file))
-        # for ws in np.arange(600, 1200, 100):
-        #     for off in np.arange(30, 120, 30):
         ws, off = 600, 60
         print("===================================")
         progress = 100*index/len(ppg_meta)
@@ -389,7 +341,6 @@ def signal_processing_experiments(files, ppg_meta_file, sp_output):
         vid_name = ppg_row["Video file"]
         print(f"Considering: {vid_name}, Window size: {ws}, Offset: {off}")
         if("KLTBoxingWithThresholding" in rppg_file and "BayesianSkinDetector-weighted" in rppg_file):
-            # rppg_ica, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft, noises = evaluate(signal, ppg_row["PPG file"], ppg_row["ECG file"], ws, off, ppg_row["Framerate"])
             for framerate in [5, 10, 15, 20, 25, 30]:
                 print(f"Considering framerate: {framerate}")
                 true_fr = ppg_row["Framerate"]
@@ -397,7 +348,6 @@ def signal_processing_experiments(files, ppg_meta_file, sp_output):
                 new_ws, new_off = int(ws*framerate/true_fr), int(off*framerate/true_fr)
                 rppg_ica, ppg_hr, ppg_hr_fft, ecg_hr, ecg_hr_fft, noises, sd_noises = evaluate(new_signal, ppg_row["PPG file"], ppg_row["ECG file"], new_ws, new_off, framerate, true_fr)
                 n_rows, _ = rppg_ica.shape
-                # print(rppg_ica)
                 for i in range(n_rows):
                     row = [
                         ppg_row["Video file"], ppg_row["Tracker"], ppg_row["Region selector"], ws, off, i, framerate, 
@@ -417,7 +367,7 @@ if __name__ == "__main__":
     files = test_data()
     ppg_meta_output = f"{PATH}output/hr_evaluation/ppg_meta_12_03_20.csv"
     sp_output = f"{PATH}output/hr_evaluation/sp_output_19_03_20.csv"
-    # write_ppg_out(files, ppg_meta_output)
+    write_ppg_out(files, ppg_meta_output)
     signal_processing_experiments(files, ppg_meta_output, sp_output)
     pass
 

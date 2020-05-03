@@ -3,9 +3,9 @@ import numpy as np
 import cv2 as cv
 from visualisation import Visualiser
 from configuration import Configuration, PATH
+from hr_isolator import hr_from_array
 
-def tracking_pipeline(video_path, config:Configuration, display = False):
-    # Profiling
+def tracking_pipeline(video_path, config:Configuration, display = False, webcam=False):
     total_start = Timing.time()
     time_read = 0
     time_tracking = 0
@@ -13,7 +13,7 @@ def tracking_pipeline(video_path, config:Configuration, display = False):
     time_display = 0
     time_ica = 0
     
-    cap = cv.VideoCapture(PATH + video_path)
+    cap = cv.VideoCapture(PATH + video_path if not(webcam) else 0)
     values = np.array([])
     heart_rates = []
     width = int(cap.get(cv.CAP_PROP_FRAME_WIDTH))
@@ -22,12 +22,12 @@ def tracking_pipeline(video_path, config:Configuration, display = False):
     frame_rate = int(cap.get(cv.CAP_PROP_FPS))
     visualiser = None
     if display:
-        visualiser = Visualiser(PATH, config.tracker, video_path, config.region_selector, config.signal_processor, cap)
+        visualiser = Visualiser(PATH, config.tracker, video_path, config.region_selector, config.signal_processor, cap, webcam=webcam)
     while(cap.isOpened()):
         start = Timing.time()
         ret, frame = cap.read()
         time_read += (Timing.time()-start)
-        
+
         if ret == False:
             cap.release()
             cv.destroyAllWindows()
@@ -39,7 +39,6 @@ def tracking_pipeline(video_path, config:Configuration, display = False):
             start = Timing.time()
             faces, frame, cropped, profiling = config.tracker.track(frame)
             time_tracking += (Timing.time() - start)
-            
             
             if(len(faces) > 0):
                 face_found = True
@@ -67,28 +66,16 @@ def tracking_pipeline(video_path, config:Configuration, display = False):
             print(frame.shape)
         time_roi += (Timing.time()-start)
         
-    # area_of_interest = np.pad(area_of_interest, ((y,height-(y+h)),(x,width-(x+w))), 'constant', constant_values=1)
-    # area_of_interest = np.repeat(area_of_interest[:, :, np.newaxis], 3, axis=2)
-    # frame = np.ma.masked_array(frame, mask=area_of_interest)
-    # value = config.aggregate_function(frame)
         if display:
             start = Timing.time()
-            visualiser.display(frame, faces, area_of_interest)
+            hr = None
+            if len(heart_rates) > 0:
+                # hr = hr_from_array(list(sum(heart_rates[-1], ())))
+                hr = hr_from_array(heart_rates[-1])
+            visualiser.display(frame, faces, area_of_interest, hr)
             time_display += (Timing.time()-start)
         
         start = Timing.time()
-        # if this is the first time we've reached the required number of values
-        # if frame_number % config.window_size == 0 and frame_number//config.window_size == 1:
-        #     print("SHAPE")
-        #     print(values.shape)
-        #     print(values[:config.window_size, :].shape)
-        #     print(values[:config.window_size, :])
-        #     values = values.reshape(len(values)//3, 3)
-        #     heart_rates.append(config.signal_processor.get_hr(values[:config.window_size, :], frame_rate))
-        # elif (frame_number-config.window_size)%config.offset == 0 and frame_number>config.window_size:
-        #     n = int((frame_number-config.window_size)/config.offset)
-        #     print(f"N: {n}, Frame number: {frame_number}")
-        #     heart_rates.append(config.signal_processor.get_hr(values[n*config.offset : (n*config.offset)+config.window_size, :] , frame_rate))
         if (frame_number-config.window_size)%config.offset == 0 and frame_number>=config.window_size:
             n = int((frame_number-config.window_size)/config.offset)
             values = values.reshape(len(values)//3, 3)
@@ -100,7 +87,6 @@ def tracking_pipeline(video_path, config:Configuration, display = False):
                 nans = np.isnan(values[:,i])
                 nan_indices = xp[nans]
                 values[nan_indices,i] = np.interp(nan_indices, xp[~nans], values[~nans,i]) 
-            heart_rates.append(config.signal_processor.get_hr(values[:config.window_size, :], frame_rate))
             print(f"N: {n}, Frame number: {frame_number}")
             heart_rates.append(config.signal_processor.get_hr(values[n*config.offset : (n*config.offset)+config.window_size, :] , frame_rate))
         time_ica += (Timing.time()-start)

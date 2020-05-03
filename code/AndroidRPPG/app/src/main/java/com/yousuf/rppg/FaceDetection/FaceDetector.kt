@@ -114,8 +114,6 @@ class FaceDetector(context: Context, roi : RegionSelector, detector: FaceDetecto
                     var end = System.currentTimeMillis()
                     Log.d(TAG, "Time to find mean: ${end-start}")
 
-//                    var meanColor = mRoi.detect(face, output)
-//                    mHRIsolator.put(meanColor)
                     mHRIsolator.put(meanR, meanG, meanB)
                     if(DEBUG) {
                         try {
@@ -123,13 +121,6 @@ class FaceDetector(context: Context, roi : RegionSelector, detector: FaceDetecto
                             var fileName = "rotated_bitmap.png"
                             var file = File(mContext.filesDir, fileName)
                             var out = FileOutputStream(file, false)
-/*
-                            output.compress(
-                                Bitmap.CompressFormat.PNG,
-                                100,
-                                out
-                            )
-*/
                             Log.d(TAG, "WRITTEN BITMAP to ${mContext.filesDir}")
                         } catch (e: IOException) {
                             Log.e(TAG, "Error writing bitmap")
@@ -140,13 +131,9 @@ class FaceDetector(context: Context, roi : RegionSelector, detector: FaceDetecto
 
                 }
 
-
-
-
             }
 
         }
-
 
         return detections
     }
