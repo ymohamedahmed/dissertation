@@ -9,7 +9,7 @@ and described in relation to this project.
 % Although it is clear that a non-contact system is constrained by different requirements, it is common when developing low fidelity sensors to begin by attempting to mimic high fidelity alternatives. \\\\
 This project can be viewed as the development of a virtual sensor\footnote{A sensor that does not derive its results from a direct physical realisation of that sensor} that derives its data from an existing sensor --- the camera. 
 It is, nonetheless, useful to understand the functioning of existing heart rate monitors.
-Electrocardiography and photoplethysmography are the two of the most common techniques for measuring heart rate and each proceed by measuring different phenomena.
+Electrocardiography and photoplethysmography are the two of the most common techniques and proceed by measuring different phenomena.
 
 % It is for this reason, that the planning of the project proceeds by, first, understanding the workings of the two main alternative sensors and then reasoning about how one might derive these results from a camera instead.
 \subsection{Electrocardiography}
@@ -29,7 +29,7 @@ The average number of beats in a given window, is known as the heart rate.
 \end{figure}
 \noindent
 Crucially for this project, the ECG is considered the ``gold standard'' means of measuring heart rate. The electrodes can perceive very minor changes in voltage and, thereby, very rarely produce false beats or miss beats of the heart. 
-Hence, throughout this project it is considered suitable enough to behave as a ground truth for any experiments conducted.
+Hence, throughout this project it is considered suitable as a ground truth for any experiments conducted.
 ECG sensors, however, tend to be relatively expensive and invasive, and as a result, have fueled the uptake of lower fidelity alternatives.
 
 \subsection{Photoplethysmography}
@@ -38,7 +38,7 @@ ECG sensors, however, tend to be relatively expensive and invasive, and as a res
 
 Photoplethysmograpgy (PPG), a common alternative to an ECG, uses an optical sensor to detect changes in the volume of blood passing beneath the skin.
 When a heart beat occurs, blood flows outwards from the heart towards the extremities causing an increasing volume of blood in the vessels beneath.
-Detecting this change is, hence, an alternative to measuring electrical signals.
+Detecting this change is an alternative to measuring the electrical signals of the heart.
 \\\\
 This can be physically realised by a \textit{pulse oximeter}, which consists of a light that illuminates the skin and a sensor that measures the amount of light absorbed. 
 Typically placed on the end of a finger, the LED emits light on one side and a sensor on the other measures the amount of light passing through the finger.
@@ -56,7 +56,7 @@ Greater volumes of blood cause more absorption and so reduce the amount of light
 % \end{figure}
 % \noindent
 % Given this, heart beats can be recognised as peaks in the signal. 
-In this form, PPG sensing is of high fidelity and is common in medical scenarios. However, pulse oximeters require a stationary finger and so are not practical for sporting activities. 
+In this form, PPG sensing is of high fidelity and is common in medical scenarios. However, pulse oximeters require a stationary finger and so are not practical for sporting activities.
 % As a result, PPG sensors have been developed that can be incorporated into wearable devices. 
 % In this sense, this form of PPG sensing is not of greater practicality than an ECG, so PPG sensors have been developed that can be incorporated into wearable devices. 
 
@@ -106,10 +106,10 @@ This is generally denoted in the literature as \textit{remote photoplethysmograp
 \\\\
 The most obvious approach to designing such a system, is to attempt to map the data returned by a camera onto one of the two methods of heart rate sensing described. In other words, to attempt 
 to mimic an already existing, well-developed sensor.
-Since a camera cannot, as far as I am aware, measure electrical signals at a distance, mimicing an ECG is not a feasible approach. PPG sensors, on the other hand, are based on measuring light intensity, which is precisely the same data captured by a camera.
+Since a camera cannot, as far as I am aware, measure electrical signals at a distance, mimicing an ECG is not feasible. PPG sensors, on the other hand, are based on measuring light intensity, which is precisely the same data captured by a camera.
 \\\\
 A camera works by recording the amount of light that reaches each light sensor in an array. Assuming that we have a camera of high enough resolution, one can measure the intensity of light 
-at various points in the scene. The impressive results of early research into rPPG systems is that this can be achieved by a regular webcam or smartphone camera.
+at various points in the scene. The impressive results of early research into rPPG systems is that this can be achieved by a regular webcam or smartphone camera \cite{Verkruysse2008}.
 \\\\
 % talk about difficulties of distance + what pixels to consider
 % benefit of we can consider more points which might improve resistance to noise
@@ -165,16 +165,16 @@ Remote heart rate sensing should be viewed as a means of widening access to heal
 As a result, I believe that
 performance and robustness are of equal importance. That is, the computations involved must be achievable in a reasonable amount of time on a standard computing device.
 Furthermore, heart rate estimations must be robust to changing conditions or, at the very least, their failure scenarios should be well documented. 
-Under this analysis, several extensions to the current literature were formulated and researched throughout the project:
+Under this analysis, several extensions to the current literature were formulated and researched throughout the project.
 \begin{itemize}
-    \item attempt to achieve reasonable performance on standard computing devices
-    \item investigate the effect of motion and distance on accuracy
+    \item Investigate comparative performance with a wearable device.
+    \item Achieve reasonable performance on standard computing devices.
+    \item Investigate the effect of motion and distance on accuracy.
 \end{itemize}
 
 
 \section{Relevant computer vision techniques}
-Remote heart rate sensing operates directly on a camera stream and understanding the composition of frames is a critical; in the same way that an ECG sensor relies on interpreting electrical signals. 
-The field of automatically inferring knowledge from image data is generally known as computer vision and there are several relevant techniques to this project.
+Remote heart rate sensing operates directly on a camera stream and understanding the composition of frames is a critical. The field of automatically inferring knowledge from image data is generally known as computer vision and there are several relevant techniques to this project.
 
 \subsection{Face detection}
 In Section \ref{ref:literature_review} it was stated that it is 
@@ -182,9 +182,9 @@ easiest to estimate the heart rate by considering pixels in the face of the user
 This means that, given a frame from the camera, the region(s) containing a face must be ascertained. For this, many algorithms have been developed, not all of which perform equally well.
 For the purposes of this project, there are three main criteria by which the strength of a face detection algorithm can be evaluated.
 \begin{itemize}
-    \item Tightness of bounding box: typically face detection algorithms return a bounding box within which the face is believed to be. The size of this box is of great importance since any additional background pixels contain no pulse information and will add unnecessary noise
-    \item False positive rate: any false detections will impact accuracy by potentially considering incorrect regions of the frame
-    \item Performance: the wider objective of this project is to increase the availability of heart rate sensing technology and so costly algorithms which cannot run effectively on standard computing devices, are of no real use
+    \item Tightness of bounding box: typically face detection algorithms return a bounding box within which the face is believed to be. The size of this box is of great importance since any additional background pixels contain no pulse information and will add unnecessary noise.
+    \item False positive rate: any false detections will impact accuracy by potentially considering incorrect regions of the frame.
+    \item Performance: the wider objective of this project is to increase the availability of heart rate sensing technology and so costly algorithms which cannot run effectively on standard computing devices, are of no real use.
 \end{itemize}
 
 % Talk about viola-jones and why it sucks
@@ -233,7 +233,7 @@ and the scene. This can loosely be thought of as a notion of `tracking' points i
 Fleet and Weiss \cite{Fleet2006} provide a formal description of the optical flow problem which has been outlined and summarised below.
 Suppose we have a function $I(x,y,t)$ which describes the intensity at each point $(x,y)$ in an image taken at time $t$. 
 The task is to find for each point of interest, $(x_i, y_i)$,
-a pair $(\Delta x_i, \Delta y_i)$ such that for an subsequently taken at time $t + \Delta t$.
+a pair $(\Delta x_i, \Delta y_i)$ such that for an image subsequently taken at time $t + \Delta t$.
 \begin{equation}
  I(x_i,y_i,t) = I(x_i + \Delta x_i, y_i + \Delta y_i, t+\Delta t)
  \label{eq:1}
@@ -244,7 +244,7 @@ This can be achieved by taking the Taylor series expansion of equation \ref{eq:1
 I(x_i + \Delta x_i, y_i + \Delta y_i, t+\Delta t) = I(x_i,y_i,t) + \frac{\partial I}{\partial x_i}\Delta x_i + \frac{\partial I}{\partial y_i} \Delta y_i + \frac{\partial I}{\partial t} \Delta t + ... 
 \label{eq:2}
 \end{equation}
-This sets up the key equation of optical flow which a valid solution must satisfy. 
+This sets up the key equation of optical flow which must be satisified by a valid solution.
 \begin{equation}
     \frac{\partial I}{\partial x_i}\Delta x_i + \frac{\partial I}{\partial y_i} \Delta y_i + \frac{\partial I}{\partial t} \Delta t  = 0
     \label{eq:3}
@@ -282,9 +282,8 @@ Given the Lucas-Kanade method of optical flow, it would be plausible to track al
 The selection of this subset is non-obvious. It is clear, however, that not all points in an image are equally easy to track. For example, a pixel surrounded by a large region of uniform colour cannot be easily followed but points
 found at boundaries are likely to be easier to track. 
 \\\\
-Shi and Tomasi \cite{ShiTomasi} proposed a method for the selection of points with the purpose of ease of tracking which they termed \textit{GoodFeaturesToTrack}. 
-The approach taken is to find points which are surrounded by regions of differing illumination, such points are known as `corners'. Corners tend to be easier to track
-and so are a good method for selecting points.
+Shi and Tomasi \cite{ShiTomasi} proposed a method for the selection of points with the purpose of ease of tracking --- \textit{GoodFeaturesToTrack}. 
+The approach taken is to find points that are surrounded by regions of differing illumination, such points are known as `corners' and are typically easier to track.
 % \begin{figure}[H]
 %     \includegraphics[width=0.5\textwidth]{example-image-c}
 %    \caption{An example output of the Shi-Tomasi corner detector applied to a face image} 
@@ -314,7 +313,7 @@ from each ear containing a mixture of conversations and is tasked with producing
 Although this appears
 to be trivial for humans it is much more difficult to achieve computationally.
 \\\\
-Analagously, the stream of colours being received from the camera contains a mixture of signals, one of which corresponds to the heart rate. Hence, identifying this signal can be viewed as a similar task and is explored in Section \ref{implementation:pca_ica}.
+Analagously, the stream of colours being received from the camera contains a mixture of signals, one of which corresponds to the heart rate signal. Identifying this signal can be viewed as a similar task and its application to this domain is explored in Section \ref{implementation:pca_ica}.
 % which are different mixtures of the conversations within earshot. It is then tasked with identifying a single audio signal representing the conversation
 % of interest.
 
@@ -378,6 +377,7 @@ These tasks are summarised in the table according to both their difficulty and i
     Tracking multiple users & {\color[HTML]{CB0000} High} & {\color[HTML]{009901} Low} & {\color[HTML]{009901} Extension} \\ \hline
     Real-time performance & {\color[HTML]{CB0000} High} & {\color[HTML]{F56B00} Medium} & {\color[HTML]{009901} Extension} \\ \hline
     Evaluating in comparison to smartwatch & {\color[HTML]{F56B00} Medium} & {\color[HTML]{F56B00} Medium} & {\color[HTML]{009901} Extension} \\ \hline
+    Investigate performance under realistic scenarios& {\color[HTML]{009901} Easy} & {\color[HTML]{CB0000} High} & {\color[HTML]{009901} Extension} \\ \hline
     \end{tabular}
     \caption{A summary of the requirements of the project}
 \end{table}
@@ -412,7 +412,7 @@ With support for more functional syntax and with complete interoperability with 
 \subsection{Libraries}
 \label{section:libraries}
 \paragraph{OpenCV} 
-Originally developed by the Intel Corporation, OpenCV \cite{OpenCV} is an open-source library for computer vision applications and has built in support for face detection, as is required by the project. It is licensed under the 
+Originally developed by the Intel Corporation, OpenCV \cite{OpenCV} is an open-source library for computer vision applications and has built in support for face detection, as is required by the project. It is available under the 3-Clause BSD License \cite{bsd} which allows for redistribution both in the form of source code and binaries. 
 % \paragraph{Mobile Vision}
 
 % \paragraph{Numpy}
@@ -432,7 +432,7 @@ initial timeline outlined in the proposal. Furthermore, this aligned well with r
 % Courses this year which were relevant: Mobile and sensor systems, Computer Vision, Information Theory
 % did not take DSP course but read the DSP notes
 % had no previous experience of kotlin and some limited experience of python
-As an interdisciplinary project, a wide array of background knowledge was required, some of which has not featured in Tripos.
+As an interdisciplinary project, a wide array of background knowledge was required, some of which has not featured in the Tripos.
 For example, I had to understand the basics of how modern heart rate sensors work, for which I used internet resources as well explanations by my supervisor.
 \\\\
 Understanding existing literature regarding remote photoplethysmography was equally important and so during the early stages of the project, I reviewed

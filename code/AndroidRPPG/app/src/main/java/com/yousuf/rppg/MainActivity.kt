@@ -18,7 +18,6 @@ import com.google.android.gms.vision.Tracker
 import com.google.android.gms.vision.face.Face
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.gms.common.GoogleApiAvailability
-import com.google.android.gms.common.ConnectionResult
 import android.util.Log
 import com.yousuf.rppg.Interface.CameraOverlay
 import com.yousuf.rppg.Interface.CameraPreview

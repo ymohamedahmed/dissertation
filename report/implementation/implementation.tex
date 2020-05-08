@@ -6,30 +6,35 @@
 % BACKGROUND ON HOW DESIGN IS TO MIMIC A PPG SENSOR
 Abstractly, the program consists of three distinct tasks, each of which rely on the result from the previous. Together, forming a kind of pipeline:
 \begin{itemize}
-    \item \textbf{Face detection}: identify a face in each supplied camera frame
-    \item \textbf{Region selection}: given a bounding box around a face, select some set of pixels to consider which are amenable to heart rate detection
-    \item \textbf{Heart rate isolation}: given a time series of the mean colour of each frame infer the heart rate
+    \item \textbf{Face detection}: identify a face in each supplied camera frame.
+    \item \textbf{Region selection}: given a bounding box around a face, select some set of pixels to consider which are amenable to heart rate detection.
+    \item \textbf{Heart rate isolation}: given a time series of the mean colour of each frame infer the heart rate.
 \end{itemize}
-Face detection is largely a solved problem and thereby the project mostly concentrates on the latter two, which are the topic of ongoing research.
+Face detection is largely a solved problem and thereby the project mostly concentrates
+on the implementation of the latter two tasks which are the topic of ongoing research.
 
-\section{System design}
-\label{section:system_design}
-Each of these tasks occur at different rates and, thereby, have different performance constraints which must be upheld. Face detection and region selection operate on every frame received from the camera and so must run in real-time, or risk dropping streamed frames.
-\\ \\
-Heart rate isolation, however, is only executed after an adequate number of data points are received and is recomputed after a fixed time. Since none of the prior stages rely on the estimated heart rate, its execution time requirements are less stringent. This is exploited to perform relatively expensive analyses without slowing earlier stages. Crucially, this relies on the assumption that it can be run concurrently.
-% The system was designed with a focus on decomposition. 
-Separating these tasks allows for this concurrency to be implemented safely.
+% \section{System design}
+% \label{section:system_design}
+% These three tasks occur at different rates and, thereby, have different performance constraints which must be upheld. Face detection and region selection operate on every frame received from the camera and so must run in real-time, or risk dropping streamed frames.
+% \\ \\
+% Heart rate isolation, however, is only executed after an adequate number of data points are received (denoted as the `window size') and is recomputed after a fixed time. Since none of the prior stages rely on the estimated heart rate, its execution time requirements are less stringent. This is exploited to perform relatively expensive analyses without slowing earlier stages. Crucially, this relies on the assumption that it can be run concurrently.
+% % The system was designed with a focus on decomposition. 
+% Separating these tasks allows for this concurrency to be implemented safely.
 
-\begin{figure}[H]
-    % \includegraphics[width=\textwidth]{example-image-a}
-    \centering
-    \scalebox{0.7}{\input{implementation/uml.tex}}
-   \caption{A UML sequence diagram showcasing the use of threading} 
-\end{figure}
-\noindent
-The camera streams frames to the \textbf{FaceDetector}. The \textbf{RegionSelector} then takes the mean pixel colour of the region considered and adds this value to the dataset. Once enough values have been collected, as defined by the window size, the \textbf{HRIsolator} spawns a new thread, the \textbf{IsolationTask}, which attempts to infer the heart rate from the window of values. 
-\\ \\
-Although the region selection could also be executed in a separate thread, the associated setup costs are likely to have an adverse impact on real-time performance. However, one might wish to use more expensive region selection algorithms which cannot run in real-time. In these scenarios, the program could copy the frame and execute the selection in a separate thread from the main face detection loop. This is fundamentally a tradeoff between memory usage and execution time. Furthermore, since there are only a finite number of threads which can be spawned, quickly the limit might be reached without providing much additional computation time to the \textbf{RegionSelector}. As a result, the \textbf{FaceDetector} and \textbf{RegionSelector} operate sequentially in the same thread.
+% \begin{figure}[H]
+%     % \includegraphics[width=\textwidth]{example-image-a}
+%     \centering
+%     \scalebox{0.7}{\input{implementation/uml.tex}}
+%    \caption{A UML sequence diagram showcasing the use of threading} 
+% \end{figure}
+% \noindent
+% The camera streams frames to the \textbf{FaceDetector}. The \textbf{RegionSelector} then takes the mean pixel colour of the region considered and adds this value to the dataset. Once enough values have been collected, as defined by the window size, the \textbf{HRIsolator} spawns a new thread, the \textbf{IsolationTask}, which attempts to infer the heart rate from the window of values. 
+% \\ \\
+% % The region selection could also be executed in a separate thread, however the associated setup costs are likely to have an adverse impact on real-time performance. 
+% One might wish to use more expensive region selection algorithms which cannot run in real-time. In these scenarios, the program could copy the frame and execute the selection in a separate thread from the main face detection loop. However, it is not clear as to whether the cost of synchronisation between threads would nullify any speedup and so this approach was not pursued.
+
+% In fact, synchronisation costs between threads may nullify any 
+% Furthermore, since there are only a finite number of threads which can be spawned, quickly the limit might be reached without providing much additional computation time to the \textbf{RegionSelector}. As a result, the \textbf{FaceDetector} and \textbf{RegionSelector} operate sequentially in the same thread.
 % \subsection{Asynchronous execution}
 % TALK ABOUT CONCURRENCY RUNNING HR ISOLATION ASYNCHRONOUSLY
 \section{Face detection}
@@ -51,7 +56,7 @@ There are two obvious approaches to combat this. The algorithm could redetect th
     \item periodically 
     \item when the tracked face changes in size significantly. 
 \end{itemize}
-The former wastes computation time for stationary videos where the redetections might be unnecessary. Simultaneously, the time between redetections must be short enough to deal with videos with significant movement. This static approach, therefore, was not considered. For this reason, the latter was implemented. The face is tracked and if the size of the box surrounding it changes significantly, the true position of the face is recomputed.
+The former wastes computation time for stationary videos where the redetections might be unnecessary. Simultaneously, the time between redetections must be short enough to deal with videos with significant movement. This static approach, therefore, was not considered and the latter was implemented. The face is tracked and if the size of the box surrounding it changes significantly, the true position of the face is recomputed. The definition of a `significant' change is arrived at by experimentation (see Section \ref{section:face_tracking}).
 %%TC:ignore 
 \begin{figure}[H]
 \centering
@@ -87,13 +92,16 @@ It is important to reason about precisely when face tracking provides a performa
 \end{itemize}
 The cost of the repeated face detector is $Wf(n)$. Since, for each frame in the sequence, it detects the face independently and incurs a cost of $f(n)$.  
 \\ \\
-The point tracking approach instead has a cost of $Wg(p,n) + R(f(n) + s(p,f))$. For each redetection it calls the face detector and selects a new set of points. It also tracks the set of points for every frame, hence the term $Wg(p,n)$. In the worst case, $R=W$, so there is no saving in terms of computational complexity. Instead let us investigate for what values of $R$ there is a cost saving.
-\begin{align*}
-    Wf(n) &> Wg(p,n) + R[f(n) + s(p,f)] \\
-    R &< \frac{W[f(n) - g(p,n)]}{f(n) + s(p,f)}\\
-    \frac{R}{W} &< \frac{f(n)-g(p,n)}{f(n)+s(p,f)}
-\end{align*}
-Notice that $R/W$ represents the percentage of frames for which a redetection occurs. There is only a performance saving when this percentage falls below the value on the right hand side. Furthermore, this value itself is based on the relative costs of face detection and of selecting and tracking points. Implicitly, the algorithm assumes that the cost of tracking and selecting points is less than that of face detection, otherwise, this endeavour would be useless. This assumption is validated and the limit is evaluated experimentally in Section \ref{section:face_tracking}. From this it is shown that even for videos with lots of movement, the value $R/W$ falls below this limit and the inequality is satisfied. 
+The point tracking approach instead has a cost of $Wg(p,n) + R(f(n) + s(p,f))$. For each redetection it calls the face detector and selects a new set of points. It also tracks the set of points for every frame, hence the term $Wg(p,n)$. Let us investigate for what values of $R$ there is a cost saving.
+\begin{equation}
+    Wf(n) > Wg(p,n) + R[f(n) + s(p,f)] 
+    \label{eq:saving}
+\end{equation}
+This can be rewritten in terms of the rate of redetection $R/W$ by rearrangement of equation \ref{eq:saving}.
+\begin{equation}
+    \frac{R}{W} < \frac{f(n) - g(p,n)}{f(n) + s(p,f)}
+\end{equation}
+ There is only a performance saving when this rate falls below the value on the right hand side which itself depends on the relative costs of face detection, selecting and tracking of points. Implicitly, the algorithm assumes that the cost of tracking and selecting points is less than that of face detection, otherwise, there would be no time saving. This assumption is validated and the limit is evaluated experimentally in Section \ref{section:face_tracking}. It is shown that even for videos with lots of movement, the value $R/W$ falls below this limit and the inequality is satisfied. 
 % The algorithm above works by selecting some number of points on the face and tracking them between frames. If the points move such that the size of the bounding box increases above some threshold from the last face detection, then the face detector is called again. 
 % \paragraph{Assumptions}
 % This relies on the assumption that if the points lose track of the face, then the threshold is such that 
@@ -102,8 +110,8 @@ Notice that $R/W$ represents the percentage of frames for which a redetection oc
 % \paragraph{Details}
 % For face tracking to work properly, the points selected must span the entire face of the user. This is relatively easily enforced by mandating a minimum distance between each of the points selected and by selecting enough points. 
 % \\ \\
-As an approach, it is conservative enough that the true position of the face is not lost, whilst still providing a 3x to 8x performance boost (see Section \ref{section:face_tracking}) depending on the amount of movement in the video. Crucially, in Section \ref{section:face_tracking}, I show that there is no statistically significant effect on the accuracy of heart rate predictions.
-
+\\\\
+In Section \ref{section:face_tracking}, I show that face tracking introduces no statistically significant effect on the accuracy of heart rate predictions whilst providing a 3x performance speedup regardless of the amount of movement in the video.
 % \subsubsection{Camshift}
 % \subsection{Face alignment}
 %As opposed to 
@@ -114,15 +122,14 @@ As an approach, it is conservative enough that the true position of the face is 
 \label{ref:region_selection_impl}
 The bounding box returned by face detection will contain pixels from the background of 
 the image since faces are not, in general, perfectly rectangular. 
-These background pixels will not contain any information as to the underlying heart rate of the user.
-As a result, considering the entire bounding box will add unecessary noise to the resulting signal which consists of the mean colour from each region considered in the sequence of frames.
-One approach might be to only consider skin pixels, however, robust, pose-invariant skin detection is non-trivial.
+These background pixels do not contain any information as to the underlying heart rate of the user and so considering the entire bounding box adds unecessary noise to the resulting signal.
+The precise set of pixels we wish to discover are those belonging to the skin of the user's face, however, robust, pose-invariant skin detection is non-trivial.
 % Nonetheless, I proceed by attempting to maximise the number of relevant pixels considered by the implementation.
 
 % Furthermore, it is unclear whether all skin pixels are equally useful. For example, it might be that cheeks contain greater predictive power than the nose. Several approaches are presented regarding this problem with associated algorithms that are evaluated in section \ref{section:region_selection}.
 % \subsection{Facial landmarks}
 \subsection{Skin detection}
-Suppose that we wish only to consider skin pixels. An obvious approach might be to apply an edge detection algorithm to isolate the boundary between the face and the background. However, edge detection algorithms, like the Canny edge detector \cite{canny}, tend to produce large numbers of irrelevant edges and so were not implemented.
+ An obvious approach to skin detection might be to apply an edge detection algorithm to isolate the boundary between the face and the background. However, edge detection algorithms, like the Canny edge detector \cite{canny}, tend to produce large numbers of irrelevant edges and so were not considered.
 % \subsubsection{Clustering approaches}
 
 %\subsection{}
@@ -131,23 +138,25 @@ Suppose that we wish only to consider skin pixels. An obvious approach might be 
 \label{section:colour-filter}
 Considering that skin tones tend to fall within a certain range of colours, one might encode this information in a primitive skin detector. For example, it is known that green is not a valid skin tone but brown might be. If a large enough number of skin tones are investigated then a range within which a skin pixel might lie could be defined. 
 \\ \\
-A dataset of $\sim$250000 skin and non-skin pixels was collected by Bhatt et al \cite{skinDataset} and was sampled across a variety of skin tones, genders and ages. One could define the range of skin tones present in this dataset as a rudimentary skin detector. Clearly this will fail in many scenarios but serves as a useful baseline for comparison with more advanced techniques.
+A dataset of $\sim$250000 skin and non-skin pixels was collected by Bhatt et al.~\cite{skinDataset} and was sampled across a variety of skin tones, genders and ages. This is plotted in Figure \ref{fig:skin_ycbcr}, with the range of skin pixels plotted in Figure \ref{fig:skin_ycbcr_zoomed}. One could define the range of skin tones present in this dataset as a rudimentary skin detector. Clearly this will fail in many scenarios but serves as a useful baseline for comparison with more advanced techniques.
 
 \begin{figure}
     % \includegraphics[width=\textwidth]{example-image-b}
     \centering
     \scalebox{0.8}{ \input{implementation/skin-dataset-2.tex}}
    \caption{\textit{A randomly sampled subset of the skin dataset represented in the Cb-Cr axes of YCbCr space} }
+   \label{fig:skin_ycbcr}
 \end{figure}
 \begin{figure}
     % \includegraphics[width=\textwidth]{example-image-b}
     \centering
     \scalebox{0.8}{\input{implementation/skin-dataset-1.tex}}
    \caption{\textit{The range of skin tones present in the dataset with the skin and non-skin pixels plotted} }
+   \label{fig:skin_ycbcr_zoomed}
 \end{figure}
 \paragraph{Issues}
 This approach takes no consideration of the particular face in question. Since it is not contexualised, it can fail in several circumstances.
-For example, there are some hair colours which could be a skin tone on another individual but are clearly not on the particular example in question.
+For example, there are some hair colours which could be a skin tone on another individual but are clearly not on the particular user in question (see Figure \ref{fig:hair_failure}).
 Instead, an algorithm should attempt to identify skin on the particular face in question.
 \begin{figure}[H]
     \centering
@@ -155,6 +164,7 @@ Instead, an algorithm should attempt to identify skin on the particular face in 
     \qquad
     \subfloat[Mask indicating skin pixels]{{\includegraphics[width=5cm]{implementation/interval.jpg} }}%
    \caption{\textit{An example of the hair failure case}}
+   \label{fig:hair_failure}
 \end{figure}
 % \footnotemark[1]
 \footnotetext[1]{ An image of mathematician Katherine Johnson taken from the public domain.}
@@ -173,8 +183,8 @@ We might suppose that the image consists of clusters of pixels, some of which be
 The colour space YCbCr is an approximation of perceptual uniformity and hence the image is converted from RGB before the application of clustering. 
 % As a result, the colour space YCbCr happens to have this property and thus before any clustering is applied, the face image must be converted between these spaces. 
 Under the assumption that our image consists of two clusters of pixels, skin and non-skin, we could simply apply 
-the k-means algorithm\footnote{A popular algorithm for discovering clusters in data} \cite{kmeans}  identify these clusters of pixels. Under the further assumption that the majority of pixels 
-are skin pixels, the largest cluster is returned as the set of skin pixels.
+the k-means algorithm\footnote{A popular algorithm for discovering clusters in data} \cite{kmeans} to identify these clusters. Under the further assumption that the majority of pixels 
+are skin pixels, the largest cluster is returned as the set of skin pixels (see Figure \ref{fig:kmeans}).
 
 \begin{figure}[H]
     % Have an image from face to -> pixels in colour space on a graph with classification ->  to what classification looks like
@@ -184,6 +194,7 @@ are skin pixels, the largest cluster is returned as the set of skin pixels.
     \subfloat[Mask indicating regions considered to be skin.]{{\includegraphics[width=5cm]{implementation/r2.jpg} }}%
     % \includegraphics[width=0.5\textwidth]{example-image-a}
    \caption{\textit{An example of the application of the k-means algorithm to skin detection}}
+   \label{fig:kmeans}
 \end{figure}
 %\subsubsection{Hierarchical clustering}
 %\subsubsection{Markov clustering}
@@ -211,9 +222,9 @@ are skin pixels, the largest cluster is returned as the set of skin pixels.
 % Assumption of most pixels being skin fails
 The k-means algorithm, although it improves on the results of the rudimentary approach has a plethora of pitfalls.
 \begin{itemize}
-    \item \textbf{Performance}: recall from Section \ref{section:system_design} that, since the region selection operates on every frame, it must run in real-time. However, in benchmarking the k-means reference implementation in the scikit-learn \cite{sklearn} library takes an order of magnitude longer than the minimum requirement for this constraint.\footnote{Suppose the camera streams at 30 frames per second, then each frame must be processed within 33ms, the reference implementation operates in the order of 100ms per frame. }.
+    \item \textbf{Performance}: the region selection algorithm operates on every frame of data and so must run in real-time. However, in benchmarking the k-means reference implementation in the scikit-learn \cite{sklearn} library takes an order of magnitude longer than the minimum requirement for this constraint\footnote{Suppose the camera streams at 30 frames per second, then each frame must be processed within 33ms, the reference implementation operates in the order of 100ms per frame. }.
     \item \textbf{Location}: since it encodes no notion of location with respect to other pixels, a lone pixel in the corner that has a similar colour to the skin tone is considered the same as a pixel surrounded by skin pixels.
-    \item \textbf{Number of clusters}: there's no rigorous means for deciding the number of clusters to expect in the data and the selection of this value is critical. Too many clusters can cause unexpected behaviour, but too few can result in undesired pixels being considered. 
+    \item \textbf{Number of clusters}: there's no rigorous means for deciding the number of clusters to expect in the data and the selection of this value is critical (see Figure \ref{fig:kmeans_clusters}). Too many clusters can cause unexpected behaviour, but too few can result in undesired pixels being considered. 
     \item \textbf{Illumination resistance}: the algorithm is not resistant to differences in illumination. For example, since there is no notion of location encoded, specular reflection on the forehead may not be considered as skin.
 \end{itemize}
 
@@ -237,22 +248,23 @@ The k-means algorithm, although it improves on the results of the rudimentary ap
     \qquad
     \subfloat[Clustering w/ k=4]{{\includegraphics[width=3cm]{implementation/r4-2.jpg} }}%
    \caption{\textit{An example of the effect of differing the number of clusters} }
+   \label{fig:kmeans_clusters}
 \end{figure}
 \footnotetext[3]{An image of astronaut Neil Armstrong from the public domain. }
 % \subparagraph{Complexity}
 % Not practical to be run for real-time applications, as is one of the requirements outlined in the first section
 
 \subsection{Improving the previous approaches}
-Recall that the purpose of the region selection algorithm is to return the mean colour of the pixels considered. The mean value from each frame is taken as a time series which is used to infer the heart rate. So rather than attempting to classify each pixel as either skin or not, I use a combination of the previous techniques to take a weighted mean which emphasises pixels which are believed to be skin pixels, in such a way as to minimise the issues encountered with the previous techniques.
+Recall that the purpose of the region selection algorithm is to return the mean colour of the pixels considered. The mean colour from each frame is taken as a time series which is used to infer the heart rate. So rather than attempting to classify each pixel as either skin or not, I use a combination of the previous techniques to take a weighted mean which emphasises pixels which are believed to be skin pixels, in such a way as to minimise the issues encountered with the previous techniques.
 \\ \\
 Instead of applying k-means to each frame, which is not feasible with the constraint of real-time performance, we apply it once at the start of the video.
 One of the resulting clusters will correspond to the skin tone of the face in question.
-Having identified the skin tone, this colour can be used as part of a probability model which we define to try and encode the likelihood of a particular pixel being part of the skin. 
-In this way, we amortize the cost of skin detection over the entire video rather than per frame.
+Having identified the skin tone, this colour can be used as part of a probability model which is defined to encode the likelihood of a particular pixel being part of the skin. 
+In this way, the cost of skin detection is amortized over the entire video rather than per frame.
 This reduces the problem to: 
 \begin{itemize}
-   \item Use k-means to identify the skin tone
-   \item Use the skin tone to identify skin in the face for a large number of consecutive frames 
+   \item Apply k-means to identify the skin tone.
+   \item Use the skin tone to identify skin in the face for a number of consecutive frames.
 \end{itemize}
 \subsubsection{Identifying the skin tone}
 There are two expected properties of the cluster corresponding to the skin. It is likely to contain the largest number of pixels, since we'd expect most of the face to be composed of skin. It is also likely to fall within the range of expected human skin tones.
@@ -277,14 +289,14 @@ Implicitly, the clustering approach relies on the assumption that any change in 
 It assumes that in subsequent frames, the true skin pixels remain closer (in terms of Euclidean distance) to the skin tone than the non-skin pixels.
 %That is, the pixels which were within the skin cluster when k-means was applied, are still closer to the skin tone than non-skin pixels in subsequent frames. 
 This is a fairly strong assumption and is affected by phenomena such as shadows and specular reflection, which do not affect all pixels equally.
-However, it is useful enough to make the problem more tractable than it was previously, without undermining the fidelity of the algorithm. %if the skin tone is detected frequently enough. 
+However, it is useful enough to make the problem more tractable than it was previously, without undermining its accuracy. %if the skin tone is detected frequently enough. 
 %The validity of this assumption is made clear by the evaluation of the algorithm presented in Section \ref{section:skin_tone_detection}.
 % Therefore, we proceed by classifying pixels based on their Euclidean distance from the skin tone.
-\\ \\
+% \\ \\
 \paragraph{A Bayesian approach}
 Recall that the first approach described classifies skin based on knowledge about the range of possible human skin tones. 
 In this sense, it acts as a prior distribution; when classifying an individual pixel, it considers nothing of the face being presented.
-The k-means implementation, on the other hand, considers the face presented but it has to knowledge of the prior. It instead assumes that the largest cluster must be the set of skin pixels.
+The k-means implementation, on the other hand, considers the face presented but it has no knowledge of the prior. It instead assumes that the largest cluster must be the set of skin pixels.
 \\ \\ 
 A natural way to combine these two approaches would be to consider the problem of skin classification from a Bayesian perspective. Given some pixel $x_i$ we want to discover the likelihood of it being a skin pixel, having been conditionalised on the skin tone of the person as well the colour of the pixel being classified. 
 We have access to the prior distribution from the first approach, which indicates the likelihood of a particular colour being skin.
@@ -298,10 +310,12 @@ Given this notation the probability we wish to discover is the likelihood of a p
 \begin{equation*}
    \Pr(C_{\mathrm{skin}}| x_i, s) 
 \end{equation*}
-From Bayes' theorem, this can be re-written to expose the prior distribution.
+This can be re-written using Bayes' theorem to expose the prior distribution.
 \begin{align*}
    \frac{\Pr(C_\mathrm{skin}, x_i, s)}{\Pr(x_i, s)} = \frac{\Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i)\Pr(x_i)}{\Pr(x_i,s)}
 \end{align*}
+Once the distribution $\Pr(C_\mathrm{skin}|x_i,s)$ has been computed for a single frame, it is used as the prior for subsequent frames to provide resistance to 
+sudden changes in the image.
 % We could proceed with classification as follows, for some threshold probability $t$ that defines the decision boundary: 
 % \begin{equation*}
 %     \text{isSkin}(x_i) = 
@@ -325,19 +339,15 @@ From Bayes' theorem, this can be re-written to expose the prior distribution.
 % \end{equation*}
 % \Pr(s|C_\mathrm{skin}, x_i)\Pr(C_\mathrm{skin}|x_i) > t
 \paragraph{Prior distribution}
-Usually, one might attempt to learn the distributions $\Pr(C_\mathrm{skin}|x_i)$ and $\Pr(s|C_\mathrm{skin}, x_i)$ from  a relevant dataset.
-The prior $\Pr(C_\mathrm{skin}|x_i)$ was computed as the empirical distribution from 
-the dataset discussed in Section \ref{section:colour-filter}. This dataset consists of randomly sampled pixels that are classified as skin or not, it does not include entire classified faces.
-Furthermore, to the best of my knowledge at the time of implementation, there are no publicly available, adequately sized datasets with this information. Hence, attempting to learn the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ (denoted as the \textit{class conditional distribution} here) was not deemed to be feasible.
-Once the distribution $\Pr(C_\mathrm{skin}|x_i,s)$ has been computed for a single frame, it is used as the prior for subsequent frames. This is for the purpose of providing greater resistance to 
-sudden changes in the image.
-and is a benefit of the Bayesian approach. It allows a principled means of incorporationg prior knowledge about the problem space.
+Usually, one might attempt to learn the distributions $\Pr(C_\mathrm{skin}|x_i)$ and $\Pr(s|C_\mathrm{skin}, x_i)$ from a relevant dataset.
+The prior $\Pr(C_\mathrm{skin}|x_i)$ is computed as the empirical distribution from 
+the dataset discussed in Section \ref{section:colour-filter} which consists of randomly sampled pixels that are classified as skin or not. Since it does not include entire classified faces and, to the best of my knowledge, there are no publicly available, adequately sized datasets with this information learning the distribution $\Pr(s|C_\mathrm{skin}, x_i)$\footnote{denoted as the \textit{class conditional distribution}} is infeasible. As a result, it must be defined by hand.
 
 \paragraph{Class conditional distribution}
-A reasonable approach is to define the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ based on the assumption that a skin pixel is likely close in colour to the overall skin tone. We want a function which returns a large probability if the Euclidean distance between the pixel and the skin tone is small.
+A reasonable approach is to define the distribution $\Pr(s|C_\mathrm{skin}, x_i)$ based on the assumption that a skin pixel is likely close in colour to the overall skin tone. A large probability should be returned if the Euclidean distance (in the colour space) between the pixel and the skin tone is small.
 There are, however, an infinite number of functions which could encode this. The only requirement is that the probability of being a skin pixel is decreasing as a function of the distance between the colour of the pixel and the skin tone of the face. 
 \\\\
-A reasonable assumption might be that if the pixel being considered, $x_i$, is a skin pixel, then the Euclidean distance between the skin tone, $s$ and the skin pixel, $d(s,x_i)$, varies as a Normal distribution with mean zero and standard deviation $\sigma$.
+A reasonable assumption might be that if the pixel being considered, $x_i$, is a skin pixel, then the Euclidean distance between the skin tone, $s$, and the skin pixel, $d(s,x_i)$, varies as a Normal distribution with mean zero and standard deviation $\sigma$.
 \begin{equation*}
    d(s, x_i) \sim N(0, \sigma) 
 \end{equation*}
@@ -345,15 +355,15 @@ However, since colours are only represented in a finite interval, for example, b
 The above model has a non-zero probability associated with impossible colour values, since there are minimum and maximum possible distances.
 As a result, I use a \textit{truncated} Normal distribution\footnote{A truncated distribution modifies the domain of a distribution by defining an updated probability density function which is zero outside a particular range $[a,b]$. This is achieved in such a way that the properties of a valid probability distribution are maintained.} instead.
 \\\\
-The probability density function of a truncated normal distribution between the values $a$ and $b$ and with mean, $\mu$, and variance, $\sigma$, is defined as: 
+The probability density function of a truncated normal distribution between the values $a$ and $b$ and with mean, $\mu$, and variance, $\sigma$: 
 \begin{equation*}
     f(x) = \frac{1}{\sigma}\frac{\phi(\frac{x-\mu}{\sigma})}{\Phi(\frac{b-\mu}{\sigma}) - \Phi(\frac{a-\mu}{\sigma})}
-\end{equation*}
+\end{equation*}\footnote{where $\phi$ and $\Phi$ are the probability density and cumulative distribution functions of a standard Normal distribution respectively.}
 \noindent
 In this case, the values of $a$ and $b$ represent the minimum and maximum distances respectively from the given skin tone $s$. 
 Hence, $a=0$, since the pixel being considered may have the same colour as the skin tone, in which case, $d(x_i, s) = d(s, s) = 0$.
 The value of $b$ here is the distance between the skin tone and the furthest possible point in the colour space.
-In this approach, a three dimensional colour space is used and, hence, the value of $b$ is the Euclidean distance between $s$ and the furthest corner of the colourspace cube.
+In this approach, a three dimensional colour space is used and, hence, the value of $b$ is the Euclidean distance between $s$ and the furthest corner of the colour-space cube.
 \\\\
 Given this, the probability is defined in proportion to the probability density function of the truncated distribution for each possible skin tone.
 \begin{equation*}
@@ -367,7 +377,7 @@ mean colour based on the probability of each pixel being a skin pixel.
 \paragraph{Accelerating class conditional computation}
 Computing the class-conditional distribution for each pixel in the bounding box of the face is a costly computation. 
 The distribution defined is continuous in nature and so maintaining floating point accuracy means the distribution cannot be precomputed (with finite memory).
-Instead, by, representing each component of the skin tone as an integer and rounding the Euclidean distance to the nearest integer, the distributions are precomputed 
+Instead, by representing each component of the skin tone as an integer and rounding the Euclidean distance to the nearest integer, the distributions are precomputed 
 for every possible skin tone. At runtime, the class conditional probability is achieved by lookup. Since the skin detection algorithm is applied to every frame in the video, 
 using precomputed distributions achieves a 2x speedup in the overall pipeline (see Section \ref{eval:region_selection}).
 
@@ -386,11 +396,12 @@ using precomputed distributions achieves a 2x speedup in the overall pipeline (s
     % \includegraphics[width=0.5\textwidth]{example-image-b}
     % \input{implementation/test.pgf}
    \caption{\textit{An example result from the described skin detection algorithm} }
+   \label{fig:bayesian_ex}
 \end{figure}
 \noindent
-The approach described achieves similar results to applying k-means per frame, but at an amortized cost 
+The approach described achieves similar results to applying k-means per frame (see Figure \ref{fig:bayesian_ex}), but at an amortized cost 
 inversely proportional to the number of frames in the video. In practice, this results in a order of magnitude speedup in the time to process a frame
-for videos with more than a single frame (see Appendix.). This means that skin detection is plausible whilst maintaining performance.
+for videos with more than a single frame (see Appendix). This means that skin detection is plausible whilst maintaining performance.
 
 
 %Discrete or not??
@@ -433,15 +444,13 @@ for videos with more than a single frame (see Appendix.). This means that skin d
 % IN VIDEOS WITH MOVEMENT WE EXPECT HEART RATE TO BE A SERIES OF PEAKS TOGETHER RATHER THAN A SINGLE PEAK
 % THAT MIGHT BE DUE TO LIGHTING ETC
 % IMPACT OF LIGHTING CONDITIONS
-Given a time series of the mean colour in each frame, inferring the heart rate might, naively, be taken as the prevalent frequency. That is, the largest peak in the Fourier transform. 
+Given a time series of the mean colour in each frame, inferring the heart rate might, naïvely, be taken as the prevalent frequency. That is, the largest peak in the Fourier transform. 
 However, it is important to consider that the colours observed are not only the result of the underlying biological phenomenon of interest. This naïve assumption is prone to returning, instead,
- the frequency of some other factor that impacts colour of the face. For example, respiration or movement of the face will have an impact, as well as any repetitive changes in lighting such as flickering. 
- Isolating the heart rate signal from the observed colour of the face, is a key part of the project.
-\\\\
-To simplify this approach the problem is broken down into two subtasks:
+ the frequency of some other factor that impacts colour of the face. For example, respiration or other movements of the face will have an impact, as well as any repetitive changes in lighting such as flickering. 
+To simplify isolating the correct heart rate signal, the problem is broken down into two subtasks:
 \begin{itemize}
-    \item Identifying the pulse signal: given the noisy time series of observed colours for each frame, identify the signal corresponding to the pulse of the user
-    \item Identifying the heart rate: given the pulse signal, identify the heart rate
+    \item Identifying the pulse signal: given the noisy time series of observed colours for each frame, identify the signal corresponding to the pulse of the user.
+    \item Identifying the heart rate: given the pulse signal, identify the heart rate.
 \end{itemize}
 Although, as will be explained, there is some overlap between the two to aid with correctly identifying the pulse.
 
@@ -516,7 +525,7 @@ Given a pulse signal, the heart rate corresponds to the average number of beats 
 A possible approach to identifying this is to simply count the number of peaks in the signal. 
 However, the Fourier transform provides a particularly rich representation from which to identify the heart rate and so is used instead. 
 For example, the Fourier transform enables easy analysis of the relative powers of different peaks present in the power spectrum, which would not be easily possible with the former approach.
-Crucially, it is not always the case that the most prevalent frequency is the true heart rate. There are two cases where this may not be true.
+Crucially, it is not always the case that the most prevalent frequency is the true heart rate. There are two common cases that have been identified where this is often not true.
 
 \subsubsection{The split peak issue}
 %Talk about how heart rate can split over several peaks
@@ -529,8 +538,7 @@ Crucially, it is not always the case that the most prevalent frequency is the tr
     \input{implementation/butterworth.pgf}}
     \caption{\textit{An example of the split-peak issue}}
 \end{wrapfigure}
-In practice the true heart rate is not present in the resulting Fourier transform as a clear single peak. Instead, often, it will correspond to several peaks that are close by each with smaller powers. A larger peak unrelated to the heart rate
-might be present in the resulting transform which is unrelated to the heart rate. This phenomenon was reported by van der Kooij et al.~\cite{vanderKooij2019} and is denoted here as the \textit{split peak issue}.
+In practice the true heart rate is not present in the resulting Fourier transform as a clear single peak. Instead, often, it will correspond to several peaks that are close by each with smaller powers. This phenomenon was reported by van der Kooij et al.~\cite{vanderKooij2019} and is denoted here as the \textit{split peak issue}.
 In order to avoid this, a Butterworth filter is applied which removes isolated peaks and increases the power of peaks close together as is recommended by van der Kooij et al.~\cite{vanderKooij2019}.
 % \begin{figure}[H]
 %     % Add an image showing how in noisy Fourier transforms the HR is not just highest peak with result from Butterworth filter

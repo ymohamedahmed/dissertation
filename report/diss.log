@@ -1,4 +1,4 @@
-This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2020.3.30)  2 MAY 2020 14:06
+This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2020.3.30)  8 MAY 2020 09:19
  system commands enabled.
 **diss
 (./diss.tex
@@ -48,7 +48,7 @@ Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
 '.
 Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
 .
-luaotfload | main : initialization completed in 0.049 seconds
+luaotfload | main : initialization completed in 0.054 seconds
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2018/09/03 v1.4i Standard LaTeX document class
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/size12.clo
@@ -1572,14 +1572,14 @@ warning  (pdf backend): ignoring duplicate destination with the name 'page.1'
 
 ]
 Chapter 2.
-(./preparation/preparation.tex (./preparation/ecg.tex) [2
-
-]
+(./preparation/preparation.tex (./preparation/ecg.tex)
 Underfull \hbox (badness 10000) in paragraph at lines 39--62
 
  []
 
+[2
 
+]
 Underfull \hbox (badness 10000) in paragraph at lines 71--88
 
  []
@@ -1631,17 +1631,17 @@ Underfull \hbox (badness 1194) in paragraph at lines 266--273
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 280--292
+Underfull \hbox (badness 10000) in paragraph at lines 280--291
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 307--320
+Underfull \hbox (badness 10000) in paragraph at lines 306--319
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 307--320
+Underfull \hbox (badness 10000) in paragraph at lines 306--319
 
  []
 
@@ -1658,372 +1658,343 @@ Underfull \hbox (badness 10000) in paragraph at lines 435--190
 [10]
 Chapter 3.
 (./implementation/implementation.tex
-Underfull \hbox (badness 10000) in paragraph at lines 17--22
+Underfull \hbox (badness 10000) in paragraph at lines 50--55
 
  []
 
-(./implementation/uml.tex
-\pgf@layerbox@umlsd@background=\box97
-\pgf@layerboxsaved@umlsd@background=\box98
-\pgf@layerbox@umlsd@threadlayer=\box99
-\pgf@layerboxsaved@umlsd@threadlayer=\box100
-) [11
+[11
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 29--35
-
- []
-
-[12]
-Underfull \hbox (badness 10000) in paragraph at lines 45--50
-
- []
-
-
 \openout5 = diss.pyg
-(./_minted-diss/default-pyg-prefix.pygstyle) (./_minted-diss/default.pygstyle)
+ (./_minted-diss/default-pyg-prefix.pygstyle)
+(./_minted-diss/default.pygstyle)
 (./_minted-diss/DA5CF98AC289A5093F9D17CD9219CE6D4A3378E67C6A61B16FFA0FBF2255E8F
 1.pygtex
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `TU/lmtt/b/n' tried instead on input line 3.
-) [13]
-Underfull \hbox (badness 10000) in paragraph at lines 88--91
+) [12]
+Underfull \hbox (badness 10000) in paragraph at lines 93--96
 
  []
 
-[14]
-Underfull \hbox (badness 10000) in paragraph at lines 132--135
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--118
 
  []
 
-[15] (./implementation/skin-dataset-2.tex) (./implementation/skin-dataset-1.tex
-)
-<implementation/c.jpg, id=489, 765.86125pt x 765.86125pt>
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 139--142
+
+ []
+
+(./implementation/skin-dataset-2.tex) (./implementation/skin-dataset-1.tex)
+<implementation/c.jpg, id=480, 765.86125pt x 765.86125pt>
 File: implementation/c.jpg Graphic file (type jpg)
 <use implementation/c.jpg>
-Package luatex.def Info: implementation/c.jpg  used on input line 154.
+Package luatex.def Info: implementation/c.jpg  used on input line 163.
 (luatex.def)             Requested size: 142.26378pt x 142.25473pt.
-<implementation/interval.jpg, id=492, 765.86125pt x 765.86125pt>
+<implementation/interval.jpg, id=483, 765.86125pt x 765.86125pt>
 File: implementation/interval.jpg Graphic file (type jpg)
 <use implementation/interval.jpg>
-Package luatex.def Info: implementation/interval.jpg  used on input line 156.
+Package luatex.def Info: implementation/interval.jpg  used on input line 165.
 (luatex.def)             Requested size: 142.26378pt x 142.25473pt.
- [16]
-Underfull \hbox (badness 10000) in paragraph at lines 169--178
+
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 179--188
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 169--178
+Underfull \hbox (badness 10000) in paragraph at lines 179--188
 
  []
 
+[15<./implementation/c.jpg><./implementation/interval.jpg>]
 File: implementation/c.jpg Graphic file (type jpg)
 <use implementation/c.jpg>
-Package luatex.def Info: implementation/c.jpg  used on input line 182.
+Package luatex.def Info: implementation/c.jpg  used on input line 192.
 (luatex.def)             Requested size: 142.26378pt x 142.25473pt.
-<implementation/r2.jpg, id=503, 765.86125pt x 765.86125pt>
+<implementation/r2.jpg, id=508, 765.86125pt x 765.86125pt>
 File: implementation/r2.jpg Graphic file (type jpg)
 <use implementation/r2.jpg>
-Package luatex.def Info: implementation/r2.jpg  used on input line 184.
+Package luatex.def Info: implementation/r2.jpg  used on input line 194.
 (luatex.def)             Requested size: 142.26378pt x 142.25473pt.
-[17<./implementation/c.jpg><./implementation/interval.jpg>]
 File: implementation/c.jpg Graphic file (type jpg)
 <use implementation/c.jpg>
-Package luatex.def Info: implementation/c.jpg  used on input line 224.
+Package luatex.def Info: implementation/c.jpg  used on input line 235.
 (luatex.def)             Requested size: 85.35826pt x 85.35516pt.
 File: implementation/r2.jpg Graphic file (type jpg)
 <use implementation/r2.jpg>
-Package luatex.def Info: implementation/r2.jpg  used on input line 226.
+Package luatex.def Info: implementation/r2.jpg  used on input line 237.
 (luatex.def)             Requested size: 85.35826pt x 85.35516pt.
 
-Underfull \hbox (badness 4621) in paragraph at lines 226--226
+Underfull \hbox (badness 4621) in paragraph at lines 237--237
 []\TU/lmr/m/n/10 (b) |Clus-ter-ing w/
  []
 
-<implementation/r3.jpg, id=519, 765.86125pt x 765.86125pt>
+<implementation/r3.jpg, id=512, 765.86125pt x 765.86125pt>
 File: implementation/r3.jpg Graphic file (type jpg)
 <use implementation/r3.jpg>
-Package luatex.def Info: implementation/r3.jpg  used on input line 228.
+Package luatex.def Info: implementation/r3.jpg  used on input line 239.
 (luatex.def)             Requested size: 85.35826pt x 85.35516pt.
 
-Underfull \hbox (badness 6047) in paragraph at lines 228--228
+Underfull \hbox (badness 6047) in paragraph at lines 239--239
 []\TU/lmr/m/n/10 (c) |Clus-ter-ing w/
  []
 
-<implementation/r4.jpg, id=520, 765.86125pt x 765.86125pt>
+<implementation/r4.jpg, id=513, 765.86125pt x 765.86125pt>
 File: implementation/r4.jpg Graphic file (type jpg)
 <use implementation/r4.jpg>
-Package luatex.def Info: implementation/r4.jpg  used on input line 230.
+Package luatex.def Info: implementation/r4.jpg  used on input line 241.
 (luatex.def)             Requested size: 85.35826pt x 85.35516pt.
 
-Underfull \hbox (badness 4621) in paragraph at lines 230--230
+Underfull \hbox (badness 4621) in paragraph at lines 241--241
 []\TU/lmr/m/n/10 (d) |Clus-ter-ing w/
  []
 
-<implementation/c-2.jpg, id=521, 680.5425pt x 680.5425pt>
+<implementation/c-2.jpg, id=514, 680.5425pt x 680.5425pt>
 File: implementation/c-2.jpg Graphic file (type jpg)
 <use implementation/c-2.jpg>
-Package luatex.def Info: implementation/c-2.jpg  used on input line 232.
+Package luatex.def Info: implementation/c-2.jpg  used on input line 243.
 (luatex.def)             Requested size: 85.35826pt x 85.35835pt.
-<implementation/r2-2.jpg, id=524, 680.5425pt x 680.5425pt>
+<implementation/r2-2.jpg, id=517, 680.5425pt x 680.5425pt>
 File: implementation/r2-2.jpg Graphic file (type jpg)
 <use implementation/r2-2.jpg>
-Package luatex.def Info: implementation/r2-2.jpg  used on input line 234.
+Package luatex.def Info: implementation/r2-2.jpg  used on input line 245.
 (luatex.def)             Requested size: 85.35826pt x 85.35835pt.
 
-Underfull \hbox (badness 7704) in paragraph at lines 234--234
+Underfull \hbox (badness 7704) in paragraph at lines 245--245
 []\TU/lmr/m/n/10 (f) |Clus-ter-ing w/
  []
 
-<implementation/r3-2.jpg, id=525, 680.5425pt x 680.5425pt>
+<implementation/r3-2.jpg, id=518, 680.5425pt x 680.5425pt>
 File: implementation/r3-2.jpg Graphic file (type jpg)
 <use implementation/r3-2.jpg>
-Package luatex.def Info: implementation/r3-2.jpg  used on input line 236.
+Package luatex.def Info: implementation/r3-2.jpg  used on input line 247.
 (luatex.def)             Requested size: 85.35826pt x 85.35835pt.
 
-Underfull \hbox (badness 5302) in paragraph at lines 236--236
+Underfull \hbox (badness 5302) in paragraph at lines 247--247
 []\TU/lmr/m/n/10 (g) |Clus-ter-ing w/
  []
 
-<implementation/r4-2.jpg, id=526, 680.5425pt x 680.5425pt>
+<implementation/r4-2.jpg, id=519, 680.5425pt x 680.5425pt>
 File: implementation/r4-2.jpg Graphic file (type jpg)
 <use implementation/r4-2.jpg>
-Package luatex.def Info: implementation/r4-2.jpg  used on input line 238.
+Package luatex.def Info: implementation/r4-2.jpg  used on input line 249.
 (luatex.def)             Requested size: 85.35826pt x 85.35835pt.
 
-Underfull \hbox (badness 4621) in paragraph at lines 238--238
+Underfull \hbox (badness 4621) in paragraph at lines 249--249
 []\TU/lmr/m/n/10 (h) |Clus-ter-ing w/
  []
 
-[18<./implementation/r2.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 246--253
+[16<./implementation/r2.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 258--265
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--263
+Underfull \hbox (badness 10000) in paragraph at lines 270--275
 
  []
 
-[19<./implementation/r3.jpg><./implementation/r4.jpg><./implementation/c-2.jpg><
+[17<./implementation/r3.jpg><./implementation/r4.jpg><./implementation/c-2.jpg><
 ./implementation/r2-2.jpg><./implementation/r3-2.jpg><./implementation/r4-2.jpg>
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 270--284
+Underfull \hbox (badness 10000) in paragraph at lines 282--296
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 270--284
+Underfull \hbox (badness 10000) in paragraph at lines 297--304
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 270--284
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 285--292
-
- []
-
-[20]
-Underfull \hbox (badness 2460) in paragraph at lines 337--341
+[18]
+Underfull \hbox (badness 2460) in paragraph at lines 347--351
 []\TU/lmr/bx/n/12 Class con-di-tional dis-tri-bu-tion[] \TU/lmr/m/n/12 A rea-so
 n-able ap-proach is to de-fine the dis-tri-bu-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 337--341
+Underfull \hbox (badness 10000) in paragraph at lines 347--351
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 343--349
+Underfull \hbox (badness 10000) in paragraph at lines 353--359
 
  []
 
-[21]
-Underfull \hbox (badness 10000) in paragraph at lines 351--359
+[19]
+Underfull \hbox (badness 10000) in paragraph at lines 361--369
 
  []
 
 File: implementation/c.jpg Graphic file (type jpg)
 <use implementation/c.jpg>
-Package luatex.def Info: implementation/c.jpg  used on input line 378.
+Package luatex.def Info: implementation/c.jpg  used on input line 388.
 (luatex.def)             Requested size: 139.41832pt x 139.41501pt.
-<implementation/hmap-763-763.png, id=572, 639.38875pt x 644.4075pt>
+<implementation/hmap-763-763.png, id=575, 639.38875pt x 644.4075pt>
 File: implementation/hmap-763-763.png Graphic file (type png)
 <use implementation/hmap-763-763.png>
-Package luatex.def Info: implementation/hmap-763-763.png  used on input line 380
+Package luatex.def Info: implementation/hmap-763-763.png  used on input line 390
 .
 (luatex.def)             Requested size: 147.95424pt x 149.11522pt.
 File: implementation/c-2.jpg Graphic file (type jpg)
 <use implementation/c-2.jpg>
-Package luatex.def Info: implementation/c-2.jpg  used on input line 382.
+Package luatex.def Info: implementation/c-2.jpg  used on input line 392.
 (luatex.def)             Requested size: 139.41832pt x 139.41866pt.
-<implementation/hmap-678-678.png, id=573, 640.3925pt x 644.4075pt>
+<implementation/hmap-678-678.png, id=576, 640.3925pt x 644.4075pt>
 File: implementation/hmap-678-678.png Graphic file (type png)
 <use implementation/hmap-678-678.png>
-Package luatex.def Info: implementation/hmap-678-678.png  used on input line 384
+Package luatex.def Info: implementation/hmap-678-678.png  used on input line 394
 .
 (luatex.def)             Requested size: 147.95424pt x 148.87924pt.
-[22]
-Underfull \hbox (badness 10000) in paragraph at lines 436--442
-
- []
-
-[23<./implementation/hmap-763-763.png><./implementation/hmap-678-678.png>]
+[20] [21<./implementation/hmap-763-763.png><./implementation/hmap-678-678.png>]
 (./implementation/ica_0.pgf) (./implementation/ica_1.pgf)
 (./implementation/ica_2.pgf) (./implementation/ica_3.pgf)
-Underfull \hbox (badness 10000) in paragraph at lines 465--482
+Underfull \hbox (badness 10000) in paragraph at lines 474--491
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 465--482
+Underfull \hbox (badness 10000) in paragraph at lines 474--491
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 465--482
+Underfull \hbox (badness 10000) in paragraph at lines 474--491
 
  []
 
-[24] (./implementation/butterworth.pgf)
-Overfull \hbox (12.27971pt too wide) in paragraph at lines 529--530
+[22] (./implementation/butterworth.pgf)
+Overfull \hbox (12.27971pt too wide) in paragraph at lines 538--539
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 542--550
+Underfull \hbox (badness 10000) in paragraph at lines 550--558
 
  []
 
-[25] (./implementation/repo.tex)) [26]
+[23] (./implementation/repo.tex)) [24]
 Chapter 4.
-(./evaluation/evaluation.tex [27
+(./evaluation/evaluation.tex [25
 
-] [28] [29]
+] [26]
+Underfull \hbox (badness 10000) in paragraph at lines 121--153
+
+ []
+
+[27]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 169.
+               Default added (so using `tbp') on input line 168.
 
-(./evaluation/redect.pgf) (./evaluation/tracking_time.pgf) [30]
-(./evaluation/precomputed.pgf) [31] (./evaluation/gender_freq.pgf)
-Underfull \hbox (badness 1448) in paragraph at lines 430--430
+(./evaluation/redect.pgf) (./evaluation/tracking_time.pgf) [28]
+Underfull \hbox (badness 10000) in paragraph at lines 229--251
+
+ []
+
+(./evaluation/precomputed.pgf) [29] [30] (./evaluation/gender_freq.pgf)
+Underfull \hbox (badness 1448) in paragraph at lines 432--432
 []\TU/lmr/m/n/10 (a) |\TU/lmr/m/it/10 Fre-quency of mea-
  []
 
 (./evaluation/gender_error.pgf) (./evaluation/skin_tone.pgf)
-Underfull \hbox (badness 1642) in paragraph at lines 434--434
+Underfull \hbox (badness 1642) in paragraph at lines 436--436
 []\TU/lmr/m/n/10 (c) |\TU/lmr/m/it/10 Fre-quency of mea-
  []
 
-(./evaluation/skin_error.pgf) [32] (./evaluation/skin_tone_p_table.tex)
+(./evaluation/skin_error.pgf) (./evaluation/skin_tone_p_table.tex)
 (./evaluation/dist_error.pgf) (./evaluation/movement_error.pgf)
-Underfull \hbox (badness 1540) in paragraph at lines 469--469
+Underfull \hbox (badness 1540) in paragraph at lines 471--471
 []\TU/lmr/m/n/10 (b) |\TU/lmr/m/it/10 Mean ab-so-lute er-ror per
  []
 
-(./evaluation/movement_perc_error.pgf) [33]
+(./evaluation/movement_perc_error.pgf) [31]
 (./evaluation/movement_euclidean.pgf)
-Underfull \hbox (badness 2096) in paragraph at lines 483--491
-\TU/lmr/m/n/12 It is, ini-tially, un-clear the ex-act na-ture of move-ment that
- causes an in-crease in er-
- []
-
-
-Underfull \hbox (badness 1292) in paragraph at lines 483--491
-\TU/lmr/m/n/12 can be safely ruled out since the mean heart rate in both classe
-s is al-most iden-ti-cal.
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 491--498
+Underfull \hbox (badness 10000) in paragraph at lines 495--502
 
  []
 
 
-Underfull \hbox (badness 1776) in paragraph at lines 491--498
+Underfull \hbox (badness 1776) in paragraph at lines 495--502
 \TU/lmr/m/n/12 In-stead I pro-pose the hy-poth-e-sis that the \TU/lmr/m/it/12 f
 re-
  []
 
-[34] (./evaluation/NoiseStationary.pgf) (./evaluation/NoiseStarjumps.pgf)
+[32] (./evaluation/NoiseStationary.pgf) (./evaluation/NoiseStarjumps.pgf)
 (./evaluation/NoiseJogging.pgf)
-Overfull \hbox (26.12085pt too wide) in paragraph at lines 512--515
+Overfull \hbox (26.12085pt too wide) in paragraph at lines 516--519
  [][][][][][] 
  []
 
 (./evaluation/Noise-with-exer.pgf) (./evaluation/Noise-with-exer-perc.pgf)
 (./evaluation/Noise-with-exer-squared.pgf)
-Overfull \hbox (6.85542pt too wide) in paragraph at lines 522--525
+Overfull \hbox (6.85542pt too wide) in paragraph at lines 526--529
  [][][][][][] 
  []
 
-[35] (./evaluation/std_error.pgf) (./evaluation/std_perc.pgf)
+[33] (./evaluation/std_error.pgf) (./evaluation/std_perc.pgf)
 (./evaluation/std_rmse.pgf)
-Overfull \hbox (6.85542pt too wide) in paragraph at lines 548--551
+Overfull \hbox (6.85542pt too wide) in paragraph at lines 552--555
  [][][][][][] 
  []
 
 (./evaluation/mahnob.pgf)
-Overfull \hbox (5.40346pt too wide) in paragraph at lines 567--568
+Overfull \hbox (5.40346pt too wide) in paragraph at lines 572--573
  [][] 
  []
 
 (./evaluation/fidelity.pgf)
-Overfull \hbox (5.40346pt too wide) in paragraph at lines 580--581
+Overfull \hbox (5.40346pt too wide) in paragraph at lines 585--586
  [][] 
  []
 
-[36] [37]) [38]
+[34] [35] [36]) [37]
 Chapter 5.
-(./conclusion/conclusion.tex [39
+(./conclusion/conclusion.tex [38
 
-]) (./diss.bbl [40] [41
+]) (./diss.bbl [39] [40
 
-] [42]) [43] [44
+] [41]) [42] [43
 
-]
-[45
 
 
 ]
 Appendix A.
-(./bayesian.pgf) [46
+(./bayesian.pgf) [44
 
 ]
 Appendix B.
-<evaluation/1.jpg, id=840, 4047.12pt x 3035.34pt>
+<evaluation/1.jpg, id=848, 4047.12pt x 3035.34pt>
 File: evaluation/1.jpg Graphic file (type jpg)
 <use evaluation/1.jpg>
 Package luatex.def Info: evaluation/1.jpg  used on input line 225.
 (luatex.def)             Requested size: 250.24216pt x 187.6704pt.
-<evaluation/1-5.jpg, id=841, 4047.12pt x 3035.34pt>
+<evaluation/1-5.jpg, id=849, 4047.12pt x 3035.34pt>
 File: evaluation/1-5.jpg Graphic file (type jpg)
 <use evaluation/1-5.jpg>
 Package luatex.def Info: evaluation/1-5.jpg  used on input line 230.
 (luatex.def)             Requested size: 250.24216pt x 187.6704pt.
-<evaluation/2.jpg, id=842, 4047.12pt x 3035.34pt>
+<evaluation/2.jpg, id=850, 4047.12pt x 3035.34pt>
 File: evaluation/2.jpg Graphic file (type jpg)
 <use evaluation/2.jpg>
 Package luatex.def Info: evaluation/2.jpg  used on input line 235.
 (luatex.def)             Requested size: 250.24216pt x 187.6704pt.
-[47
+[45
 
-<./evaluation/1.jpg><./evaluation/1-5.jpg>] [48<./evaluation/2.jpg>]
+<./evaluation/1.jpg><./evaluation/1-5.jpg>] [46<./evaluation/2.jpg>]
 Appendix C.
-<mahnob.png, id=854, 782.925pt x 582.175pt>
+<mahnob.png, id=863, 782.925pt x 582.175pt>
 File: mahnob.png Graphic file (type png)
 <use mahnob.png>
 Package luatex.def Info: mahnob.png  used on input line 242.
 (luatex.def)             Requested size: 250.24216pt x 186.07773pt.
-[49
+[47
 
-<./mahnob.png>] [50
+<./mahnob.png>] [48
 
 ]
 Appendix D.
@@ -2052,29 +2023,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 36--42
 
  []
 
-[51
+[49
 
-] [52] [53] [54] [55]) [56]
+] [50] [51] [52] [53]) [54]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 253.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 253.
  (./diss.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 253.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 253.
 Package rerunfilecheck Info: File `diss.out' has not changed.
-(rerunfilecheck)             Checksum: 5777388FB255973D893A6BDFEC96333A;3368.
+(rerunfilecheck)             Checksum: 1B15B8A3C7DD753B2D9F174C306A55E4;3308.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 253.
 )
 
 Here is how much of LuaTeX's memory you used:
- 56115 strings out of 494291
- 2277794,12246980 words of node,token memory allocated
- 1228 words of node memory still in use:
-   15 hlist, 2 vlist, 10 rule, 15 glue, 4 kern, 1 glyph, 86 attribute, 65 glue_s
-pec, 86 attribute_list, 2 write, 16 pdf_literal, 16 pdf_colorstack nodes
-   avail lists: 1:22,2:484604,3:322310,4:864,5:1085,6:77,7:6916,8:68,9:1658,10:9
-9,11:336
- 58082 multiletter control sequences out of 65536+600000
- 83 fonts using 10807399 bytes
+ 55690 strings out of 494291
+ 2277799,12246980 words of node,token memory allocated
+ 1266 words of node memory still in use:
+   15 hlist, 2 vlist, 10 rule, 17 glue, 4 kern, 1 glyph, 92 attribute, 65 glue_s
+pec, 92 attribute_list, 2 write, 16 pdf_literal, 16 pdf_colorstack nodes
+   avail lists: 1:23,2:484674,3:322337,4:980,5:1112,6:75,7:7823,8:68,9:1929,10:9
+9,11:385
+ 57666 multiletter control sequences out of 65536+600000
+ 82 fonts using 10675703 bytes
  144i,21n,181p,1615b,3170s stack positions out of 5000i,500n,10000p,897238b,100000s
 
 warning  (pdf backend): unreferenced destination with name 'Hfootnote.6'
@@ -2085,8 +2056,7 @@ f></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmroman10-italic.
 otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmmonolt10-bold
 .otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmmono12-regul
 ar.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmroman10-bo
-lditalic.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmroma
-n10-bold.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmsans
+lditalic.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmsans
 10-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public/lm/lmro
 manslant12-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/public
 /lm/lmroman8-regular.otf></usr/local/texlive/2019/texmf-dist/fonts/opentype/publ
@@ -2109,10 +2079,10 @@ nts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmsy6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 sy8.pfb>
-Output written on diss.pdf (61 pages, 11204051 bytes).
+Output written on diss.pdf (59 pages, 11198771 bytes).
 
-PDF statistics: 1079 PDF objects out of 1200 (max. 8388607)
- 910 compressed objects within 10 object streams
- 313 named destinations out of 1000 (max. 131072)
- 584 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 1081 PDF objects out of 1200 (max. 8388607)
+ 917 compressed objects within 10 object streams
+ 314 named destinations out of 1000 (max. 131072)
+ 576 words of extra memory for PDF output out of 10000 (max. 100000000)
 

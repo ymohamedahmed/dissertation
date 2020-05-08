@@ -3,7 +3,7 @@ Since sensors, in general, behave in an online way and return measurements as an
 This is referred to as `real-time' performance and is an extension goal of the project.
 In other words, this means that it should not rely on lengthy computations which a standard sensor would not be able to perform. 
 Furthermore, the fidelity of its outputs should be in line with similar alternative sensors.
-The two overarching goals form the basis of this evaluation.
+These two overarching goals form the basis of this evaluation.
 % As a result, the evaluation considers both of these criteria.
 
 \section{Data collection}
@@ -54,7 +54,7 @@ In these additional experiments, videos were recorded of myself at distances of 
 At each of these distances, three different activities were recorded, each for one minute with three repeats being conducted, for a total of 27 minutes worth of video and associated heart rate data.
 A ground truth was taken in the form of a chest-based ECG sensor and a smartwatch was used for comparison with the video-based heart rate.
 The data taken from the smartwatch was the raw PPG sensor values, that is, not the estimated heart rate. This is so that the same heart rate isolation algorithms can be applied to both the 
-remote PPG signal and the wrist based PPG signal making for a fair comparison.
+remote PPG signal and the wrist based PPG signal thus making for a fairer comparison.
 Video recordings were conducted on a Pixel 3A mobile device at a framerate of 30 frames per second, a resolution of 1920 by 1080 pixels and under ambient lighting conditions.
 
 The activities used are as follows with the latter two having been selected to test both raised heart rates and significant movement, thereby providing a test case not present in the MAHNOB database.
@@ -86,7 +86,7 @@ is used to test, given two sets of samples from random distributions, the hypoth
 \section{Analysis of performance}
 \label{section:face_tracking}
 The main technique introduced for improving runtime performance is \textit{face tracking}. It is not clear, initially, the extent of the performance improvement and what error, if any, it might have 
-on heart rate measurements. In this section, it is shown to give a performance boost across all tested videos with a minimum speedup of 3x and a maximum of 8x, with no statistically significant negative effect on measurement accuracy.
+on heart rate measurements. In this section, it is shown to give a performance boost across all tested videos with a minimum speedup of 3x and no statistically significant negative effect on measurement accuracy.
 
 \subsection{Face tracking}
 Face tracking was proposed in Section \ref{section:face_tracking_impl} as an alternative to detecting the face in each frame independently.
@@ -123,7 +123,6 @@ The face detector being used as a ground truth here, is in itself, imperfect. Th
 that will contain some pixels from the background of the image but contain the vast majority face pixels. In this sense, the face detector itself has almost perfect recall but imperfect precision.
 Since the face tracker was designed, as described in Section \ref{section:face_tracking_impl}, to mimic face detection with better performance, recall is the most important metric. However, perfect recall
 could be achieved by returning the entire frame as the bounding box of the face. As a result, the overall goal is to achieve perfect recall with a minimal false positive rate and so these are the metrics investigated.
-
 % \begin{figure}[H]
 %     \centering
 %     \includegraphics[width=0.5\textwidth]{example-image-a}
@@ -147,7 +146,7 @@ could be achieved by returning the entire frame as the bounding box of the face.
 % \\\\
 % \end{itemize}
 Since face tracking is being proposed as an optimisation, the time to process each frame, with both implementations being executed on the same hardware, is also recorded as a means of measuring the relative performance of each algorithm.
-\par
+\\\\
 Finally, the entire test suite is run using both face detection and tracking to ensure there are no statistically significant increases or decreases in the error of the heart rate measurements.
 % Furthermore, the signal to nois
 % Finally, the distance moved by each set of points being tracked between frames is recorded. This metric acts a means of encoding the amount of movement in the video.
@@ -204,12 +203,14 @@ Recall from Section \ref{section:face_tracking_impl} that the following inequali
     \frac{R}{W} < \frac{f(n)-g(p,n)}{f(n)+s(p,f)}
 \end{equation*}
 The above inequality relates the rate of redetections ($R/W$) and the costs of several required algorithms. It was shown in Section \ref{section:face_tracking_impl} that when this inequality holds, face tracking provides a performance benefit.
-In order to justify this, the value of the right hand side is evaluated experimentally on a variety of videos and is shown to exceed the value $R/W$ across all videos and thresholds tested, as shown below.
+In order to justify this, the value of the right hand side is evaluated experimentally on a variety of videos and is shown to exceed the value $R/W$ across all videos and thresholds tested (see Figure \ref{fig:face_tracking_perf}).
 \begin{figure}[H]
     \centering
     \subfloat[\textit{The experimental redetection rate, $R/W$ and theoretical upper bound}]{\scalebox{0.6}{\input{evaluation/redect.pgf}}}
     \quad
     \subfloat[\textit{The mean time to a process a single frame for both face detection and face tracking.}]{\scalebox{0.5}{\input{evaluation/tracking_time.pgf}}}
+    \caption{\textit{A summary of the performance of face tracking}}
+    \label{fig:face_tracking_perf}
 \end{figure}
 \noindent
 As is expected, as the threshold increases the number of redetections, decreases. However, crucially, across all the thresholds tested, the redetection rate is beneath the upper bound specified.
@@ -225,10 +226,9 @@ As is expected, as the threshold increases the number of redetections, decreases
 
 
 \paragraph{Results}
-Across all the videos tested and all the threshold values, face tracking is shown to give performance benefits over face detection.
-Ranging from an average of 8x in the stationary case, to 3x in exercise videos.
-
-Using a null hypothesis that both face tracking and face detection have an identical expected error, an independent two sample t-test is conducted. The p-values over each type of video tested are reported.
+Across all the videos tested and all the threshold values, face tracking is shown to give at least a 3x speedup.
+\\\\
+Using a null hypothesis that both face tracking and face detection have an identical expected error, an independent two sample t-test is conducted. The p-values over each type of video tested are reported in Table \ref{table:mae_facedet}.
 Given a significance threshold of 0.05, the null hypothesis is rejected for only the stationary videos in favour of the face tracker.
 It is not rejected for the other two cases, hence, there is no statistically significant evidence to suggest face tracking introduces unexpected error in the outputs of the program.
 % \begin{figure}[H]
@@ -247,6 +247,7 @@ It is not rejected for the other two cases, hence, there is no statistically sig
     Star jumps & 20.035 & 15.314 & 19.752 & 14.989 & 0.366 & 0.714 \\ 
     \end{tabular}}
     \caption{\textit{A table reporting the mean absolute error (MAE) in estimating the heart rate when using the OpenCV face detector on each frame vs the proposed face tracker, with independent two-sample t-tests shown. }}
+    \label{table:mae_facedet}
     \end{figure}
 
 % show graph of overall error
@@ -265,11 +266,12 @@ use higher frame rate cameras whilst still maintaining real-time behaviour.
 \subsection{Accelerating region selection}
 \label{eval:region_selection}
 In Section \ref{ref:region_selection_impl} it was proposed that instead of computing the values of the distributions at runtime, precomputing them offline and using a lookup table
-would be much less costly. This change alone, causes an approximately 2x speedup in the effective framerate of the entire system.
-\begin{figure}
+would be much less costly. This change alone, causes an approximately 2x speedup in the effective framerate of the entire system (see Figure \ref{fig:precomputed}).
+\begin{figure}[H]
     \centering
     \scalebox{0.5}{\input{evaluation/precomputed.pgf}}
    \caption{\textit{A graph showing the effective framerate of the entire pipeline, with and without precomputing the distributions used by the skin detector}} 
+   \label{fig:precomputed}
 \end{figure}
 % \subsubsection{Reducing the amortized cost of region selection}
 % for skin detection in subsequent frames.
@@ -440,7 +442,7 @@ At a significance level of $0.05$, there is no statistically significant differe
 \subsubsection{Impact of skin tone}
 There are several statistically significant differences between individual skin tone categories, as highlighted in Table \ref{table:skin_tone_p}, however this arrives with two important caveats.
 There is no systematic trend from lighter skin tones to darker tones or in the opposite direction and there are relatively few measurements for several of the categories of skin tones.
-As a result, I conclude it would not be appropriate to suggest a bias against any particular skin tones.
+As a result, I conclude it would not be appropriate to suggest a bias against any particular skin tones but should be subject to further investigation.
 % \begin{figure}[H]
 %     \centering
 % \end{figure}
@@ -456,7 +458,7 @@ As a result, I conclude it would not be appropriate to suggest a bias against an
 \subsubsection{Impact of distance}
 % big effect is if change in distance modifies illumination
 % under the experiments conducted the illuminant was behind the camera so don't expect much impact as a result of distance
-Under the experiments conducted, increasing distance shows no statistically significant detrimental impact on accuracy.
+Under the experiments conducted, increasing distance shows no statistically significant detrimental impact on accuracy (see Figure \ref{fig:dist_and_move}).
 Crucially, this is likely to be as a result of the nature of the experiments, rather than a trend expected to continue indefinitely.
 In the experiments the illuminant was behind the camera at all distances and, hence, increasing the distance had limited impact on the observed colour signal.
 If, for example, the illuminant was between the user and the camera then the scene might become too bright to gain a clear signal, in which case we might expect error to increase.
@@ -469,6 +471,8 @@ To understand this fully, further data must be collected.
     \subfloat[\textit{Mean absolute error per class}]{\scalebox{0.6}{\input{evaluation/movement_error.pgf}}}
     \quad
     \subfloat[\textit{Mean ground truth heart rate per class}]{\scalebox{0.6}{\input{evaluation/movement_perc_error.pgf}}}
+    \caption{\textit{A summary of the impact of distance and movement}}
+    \label{fig:dist_and_move}
 \end{figure}
 
 \subsubsection{Impact of movement}
@@ -481,7 +485,7 @@ Movement, or the lack of it, proves to have the greatest impact on accuracy. Sta
 
 \subsubsection{Impact of class of movement}
 It is, initially, unclear the exact nature of movement that causes an increase in error. Concretely, what is it that separates the case of star jumping and jogging? 
-One might hypothesise that the system produces larger errors as heart rate increases, but this can be safely ruled out since the mean heart rate in both classes is almost identical.
+One might hypothesise that the system produces larger errors as heart rate increases, but this can be safely ruled out since the mean heart rate in both classes is almost identical (see Figure \ref{fig:dist_and_move}).
 \begin{wrapfigure}{l}{0.44\textwidth}
    \centering 
    \scalebox{0.6}{
@@ -492,8 +496,8 @@ One might hypothesise that the system produces larger errors as heart rate incre
 \\\\
 Instead I propose the hypothesis that the \textit{frequency} of movement rather than the amount is the key factor determining increasing error. Specifically that error is caused when the frequency of movement
 falls in the range of possible heart rate frequencies.
-It is clear that the amount of movement is not the determining factor since, on average, tracked points in the videos of star jumping moved \textit{more} than in the jogging case, but showed smaller errors (Figure \ref{fig:movement_euclid}).
-In order to provide evidence for the proposed hypothesis, I define a metric to quantify the amount of noise unrelated to the true heart rate, present in the range of possible heart rate frequencies.
+It is clear that the amount of movement is not the determining factor since, on average, tracked points in the videos of star jumping moved \textit{more} than in the jogging case, but showed smaller errors (see Figure \ref{fig:movement_euclid}).
+In order to provide evidence for the proposed hypothesis, I define a metric to quantify the amount of noise unrelated to the true heart rate that is present in the range of possible heart rate frequencies.
 Given this, I showcase a strong correlation with large errors in the output of the program.
 
 % If the frequency of the movement falls in the range 
@@ -501,7 +505,7 @@ Given this, I showcase a strong correlation with large errors in the output of t
 
 
 \paragraph{Quantifiying noise}
-The metric defined is the ratio of the sum of all the components in the Fourier transform, $F(\omega)$, and the components corresponding to the true heart rate, $R$, with a range $\delta$ being included to discount
+The metric defined is the ratio of the sum of all the components in the Fourier transform, $F(\omega)$, and the components corresponding to the true heart rate, $R$, with a range ,$\delta$, being included to discount
 for errors in the ground truth. A perfect signal, that is, a signal where the only components present in $F(\omega)$ correspond to the heart rate, will have a noise value of $1$, with the noise metric increasing beyond this for imperfect signals.
 \begin{equation*}
     \text{Noise} = \frac{\sum_{\omega} F(\omega)}{ \sum_{\omega \in [\text{R}-\delta, \text{R}+\delta ]}F(\omega)}  
@@ -541,14 +545,15 @@ Proving causality is not, in general, possible and hence the evidence showcased 
 % in scenarios without the presence of a ground truth allows users to be informed of potential error
 % Show aggressive curve which can overreport errors as a means of safety
 The above metric is useful for understanding the source of errors in the output of the system, however, it relies on access to a ground truth heart rate, which, in general, we would not have access to.
-By considering each component outputted by ICA independently and returning a heart rate for each signal, I show that the standard deviation of these outputs also shows a relatively strong correlation ($\rho=0.707$) with error producing scenarios.
+By considering each component outputted by ICA independently and returning a heart rate for each signal, I show that the standard deviation of these outputs also shows a relatively strong correlation ($\rho=0.707$) with error producing scenarios (see Figure \ref{fig:std_plots}).
 Although it is a less strong correlation, it does not rely on access to a ground truth and so could be used to report potential error scenarios to users.
-\begin{figure}[H]
+\begin{figure}
     \centering
     \subfloat{\scalebox{0.6}{\input{evaluation/std_error.pgf}}}
     \subfloat{\scalebox{0.6}{\input{evaluation/std_perc.pgf}}}
     \subfloat{\scalebox{0.6}{\input{evaluation/std_rmse.pgf}}}
     \caption{\textit{A scatter plot showing the standard deviation of HR predictions by ICA components vs. MAE, percentage error and RMSE}}
+    \label{fig:std_plots}
 \end{figure}
 
 \subsection{Overview}
@@ -560,7 +565,7 @@ The benefit of using the MAHNOB dataset for testing, is that it allows for a dir
 Techniques proposed by Poh et al.~\cite{poh}, Li et al.~\cite{li} and Osman et al.~\cite{osman} have all been tested on the database, with 
 scores being reported in a comparative survey by Wang et al.~\cite{comparative}.
 Although, the precise subset of the database is not specified and nor is the size of each window being considered before estimating a heart rate.
-To such end, it is not a perfectly fair comparison, however, is included as an indicator of state of the art performance, in comparison with my own implementation.
+It is not a perfectly fair comparison, however, is included as an indicator of state of the art performance, in comparison with my own implementation.
 
 \begin{figure}
     \centering
@@ -626,7 +631,8 @@ Over the nine classes of exercises and distances tested, seven results were stat
 threshold of 0.01, all of which are over an order of magnitude beneath the threshold (see Table \ref{table:welch-mae}). 
 In this scenario, there are two null hypotheses, that the absolute and squared errors, respectively, have the same expected value for the smartwatch and proposed system. 
 In the seven cases highlighted in Table 4.3, both null hypotheses were rejected, with four in favour of the proposed system and three in favour of the smartwatch.
-It would be inappropriate to draw overarching conclusions about the relative fidelity of smartwatch heart rate sensing and the proposed system, however, over the test suite used, it is fair to conclude 
+It would be inappropriate to draw overarching conclusions about the relative fidelity of smartwatch heart rate sensing and the proposed system. 
+Over the test suite used, however, it is fair to conclude 
 that, the performance of rPPG is, certainly, comparable to that of a smartwatch. Given that smartwatches are already widely accepted as means of heart rate sensing, these results pave the way for the uptake of rPPG.
 
 % \paragraph{Summary}

@@ -1,9 +1,9 @@
 % \paragraph{Overview}
 % Heart rate can be measured from a camera alone.
-Optical heart-rate monitors, increasingly standard in modern wearable devices, measure the absorption of light
+Optical heart rate monitors, increasingly standard in modern wearable devices, measure the absorption of light
 by the skin as a proxy for the blood flow beneath.
 The most common light-sensing device of all is the camera and so, naturally, the question arises as to whether a camera can be used to measure heart rate.
-Research has shown that such a system can be implemented using a standard camera pointed at the face of the user \cite{poh2010non}\cite{vanderKooij2019}\cite{Verkruysse2008}. I refer to this as \textit{non-contact heart rate estimation} and this project is concerned with the implementation of a system capable of this.  
+Research has shown that such a system can be implemented using a standard camera pointed at the face of the user \cite{poh2010non}\cite{vanderKooij2019}\cite{Verkruysse2008}. I refer to this as \textit{non-contact heart rate estimation} and this project is concerned with the implementation of such a system.
 \\\\
 % system and the further investigation of its sensing capabilities.
 % Given this signal, a heart rate can be extracted by analysing the predominant frequencies in this signal. In principle, 
@@ -14,12 +14,12 @@ Research has shown that such a system can be implemented using a standard camera
 % In general, sensing technology has progressed, in recent times, from high fidelity and low availability to low fidelity and high availability.
 In general, sensing technology has progressed, in recent times, from high to low fidelity but with costs decreasing.
 Often, low cost sensors are developed that attempt to measure the same phenomenon as a high cost alternative, but with a compromise on accuracy.
-As a result, newly developed low cost sensors arrive in a wider array of devices and hence access to their capabilities increases.
-Heart rate sensing used to be the remit of expensive electrocardiogram devices in hospitals, but is now commonplace in relatively low cost wearable devices. Although the latter cannot be used to diagnose medical conditions, in general, they are adequate for the majority of users. This phenomenon
+As a result, newly developed low cost sensors arrive in a wider array of devices and access to their capabilities increases.
+Heart rate sensing was once the remit of expensive electrocardiogram devices in hospitals, but is now commonplace in low cost wearable devices. Although the latter cannot be used to diagnose medical conditions, in general, they are adequate for the majority of users. This phenomenon
 is a key pattern in the field and is of great relevance to the project.
 \\\\
 % talk about how common cameras are and many people already own one, so repurposing an existing sensor is better than the development of a new one
-This trend allows increasing numbers of users to gain access to their own health data, albeit at the cost of decreased fidelity.
+This trend allows increasing numbers of users to gain access to their own health data, albeit at a cost in fidelity.
 Expanding the scope of sensing, and computation in general, is a key principle of ubiquitous computing and, since cameras are far more common than heart rate monitors, the potential impact of this project in this context is large. 
 % and, thereby, the development of heart rate sensing capabilities for 
 % smartphones represents a step of further progress within this wider trend. 
@@ -28,9 +28,9 @@ could be of greater fidelity than wearables for heart rate sensing, in which cas
 leap forward than might initally be anticipated.
 \\\\
 % \paragraph{Related work}
-There is a large body of related research.
+This topic contains a large body of related research.
 Individual, seminal, papers are summarised in Section \ref{ref:literature_review}, however, in general, much of the research proceeds similarly. 
-In order to extract the heart rate signal, the face must be tracked between frames, a subset of the face pixels are monitored, with their mean colour in each frame being recorded.
+In order to extract the heart rate signal, the face of the user must be tracked between frames, a subset of the face pixels are monitored, with their mean colour in each frame being recorded.
 Given this signal, the heart rate is discovered by careful analysis of the frequencies present. 
 It is the aim of this project to implement each of these three stages, with original work being designed and implemented throughout. 
 

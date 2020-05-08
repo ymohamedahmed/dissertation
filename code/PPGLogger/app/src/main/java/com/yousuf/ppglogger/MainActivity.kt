@@ -98,11 +98,8 @@ class MainActivity : WearableActivity() {
         }
 
         override fun onSensorChanged(event: SensorEvent?) {
-//            Log.d(TAG, "Timestamp: ${event?.timestamp.toString()}")
             var row = arrayOf(event?.timestamp.toString(), event?.values!![0].toRawBits().toString())
             mData.add(row)
-//            mData.add(arrayOf())
-//            mData.add(event?.values!![0].toRawBits().toFloat())
         }
 
     }
