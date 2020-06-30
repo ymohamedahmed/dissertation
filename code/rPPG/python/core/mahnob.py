@@ -13,11 +13,9 @@ def heart_rates_bdf(file_name):
     sampling_freq = f.getSampleFrequency(ecg)
     sigbufs = np.zeros((n, f.getNSamples()[0]))
     ecg = f.readSignal(ecg)[1000:]
-    print(f"Sampling freq: {sampling_freq}")
     f._close()
     time_axis, filtered, rpeaks, template_time_axis, templates, heart_rate_time_axis, heart_rate = ECG.ecg(signal=ecg, sampling_rate=sampling_freq*1.0, show=False)
     avg_hr = 60*len(rpeaks)*sampling_freq/len(ecg)
-    print(f"Heart rate from rpeaks: {avg_hr}")
     return avg_hr
     
 def get_avi_bdf(root, folder_name):

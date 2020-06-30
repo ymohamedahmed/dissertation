@@ -70,7 +70,6 @@ def tracking_pipeline(video_path, config:Configuration, display = False, webcam=
             start = Timing.time()
             hr = None
             if len(heart_rates) > 0:
-                # hr = hr_from_array(list(sum(heart_rates[-1], ())))
                 hr = hr_from_array(heart_rates[-1])
             visualiser.display(frame, faces, area_of_interest, hr)
             time_display += (Timing.time()-start)

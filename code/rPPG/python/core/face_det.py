@@ -135,7 +135,7 @@ class NaiveKLTBoxing(FaceTracker):
         return faces, time_to_track_points, np.mean(d), np.std(d), np.mean(orig_d), np.std(orig_d)
 
     def _track(self, frame):
-        if self.frame_number == 0:
+        if self.frame_number == 0 or self.old_points is None or len(self.old_points) == 0:
             f, t = self._features_to_track(frame)
             return f, {}
         else:
@@ -168,7 +168,7 @@ class KLTBoxingWithThresholding(NaiveKLTBoxing):
     def _track(self, frame):
         faces = None
         profiling = {}
-        if self.frame_number == 0 or self.cumulative_change > self.recompute_threshold:
+        if self.frame_number == 0 or self.cumulative_change > self.recompute_threshold or self.old_points is None or len(self.old_points)==0:
             faces, time = self._redetect(frame)
             profiling["time_to_select_points"] = time
         else: 

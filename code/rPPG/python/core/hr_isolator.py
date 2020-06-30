@@ -8,8 +8,6 @@ import scipy.signal
 import heartpy as hp
 
 def hr_from_array(freqs):
-    print("FREQS")
-    print(freqs)
     powers = [freqs[0][1], freqs[1][1], freqs[2][1]]
     hrs = [freqs[0][0], freqs[1][0], freqs[2][0]]
     i = np.argsort(powers)
@@ -63,7 +61,6 @@ class ICAProcessor(Processor):
         signals = ica.fit_transform(values)
         freqs = [self._prevalent_freq(signals[:,i], framerate) for i in range(3)]
         return freqs
-        # return self._select_maximum_power_frequency([self._prevalent_freq(signals[:,i], framerate) for i in range(3)])
     
     def remove_nans_and_infs(self, values):
         length,_ = values.shape

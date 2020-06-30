@@ -19,7 +19,7 @@ def _cluster_skin_distance(ycrcb_colour):
     dy = max(abs(py - y) - height / 2, 0)
     return (dx * dx) + (dy * dy)
 
-def skin_tone(frame, alpha=10, beta=1, clusters=5):
+def skin_tone(frame, alpha=1, beta=1, clusters=2):
     h,w,_ = frame.shape
     arr = frame.reshape((h*w,2))
     kmeans = KMeans(n_clusters=clusters, n_jobs=-1, max_iter=1000).fit(arr)
@@ -155,7 +155,7 @@ class BayesianSkinDetector(RegionSelector):
         skin_post = np.minimum(skin_post*(1/np.mean(skin_post)), np.ones(skin_post.shape))
         threshold = np.percentile(skin_post, 0.2)
         start = time.time()
-        self._update_prior(image, skin_post)
+        # self._update_prior(image, skin_post)
         mask = skin_post > threshold
         return skin_post, mean(frame, skin_post if self.weighted else mask)
     
