@@ -4,6 +4,8 @@ import pandas as pd
 import heartpy as hp
 from os import listdir
 from os.path import isfile, join, isdir
+import sys
+sys.path += ["/Users/yousuf/Workspace/dissertation/code/rPPG/python/core/"]
 from region_selection import KMeans, IntervalSkinDetector, PrimitiveROI, BayesianSkinDetector
 from face_det import KLTBoxingWithThresholding, DNNDetector, RepeatedDetector
 from hr_isolator import ICAProcessor, PCAProcessor, Processor, PrimitiveProcessor
@@ -12,7 +14,7 @@ import math
 import pyedflib
 import numpy as np
 from pipeline import tracking_pipeline
-from configuration import Configuration, PATH, MAC_PATH, LINUX_PATH, MAC
+from configuration import Configuration, PATH
 from numpy import genfromtxt
 import pandas as pd
 import matplotlib
@@ -23,14 +25,8 @@ import time
 import csv
 
 DEBUG = False
-def check_path(file):
-    if MAC:
-        return file.replace(LINUX_PATH, MAC_PATH)
-    else: 
-        return file.replace(MAC_PATH, LINUX_PATH)
 
 def get_ecg_signal(file_path):
-    file_path = check_path(file_path)
     f = pyedflib.EdfReader(file_path)
     signal_labels = f.getSignalLabels()
     # ECG is labelled different for mahnob and for the ECG device
@@ -55,7 +51,7 @@ def start_ecg_point(signal):
     return np.argmax(cleaned)
 
 def get_ppg_signal(file_path):
-    return pd.read_csv(check_path(file_path))
+    return pd.read_csv(file_path)
 
 def upsample(data, low, high):
     # x = np.arange(low, high, 1/1000)
@@ -317,7 +313,6 @@ def majority_vote(freqs):
         return hr_max_power
 
 def signal_processing_experiments(files, ppg_meta_file, sp_output):
-    ppg_meta_file = check_path(ppg_meta_file)
     columns = ["Video", "Tracker", "Region selector", "Window size", "Offset size", "Heart Rate Number", "Framerate", 
      "rPPG HR ICA", "rPPG HR MV", 
      "PPG HR BC", "PPG HR FFT",
@@ -333,7 +328,7 @@ def signal_processing_experiments(files, ppg_meta_file, sp_output):
 
     for index, ppg_row in ppg_meta.iterrows():
         rppg_file = ppg_row["rPPG file"]
-        signal = np.loadtxt(check_path(rppg_file))
+        signal = np.loadtxt(rppg_file)
         ws, off = 600, 60
         print("===================================")
         progress = 100*index/len(ppg_meta)

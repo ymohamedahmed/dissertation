@@ -19,13 +19,14 @@ def _cluster_skin_distance(ycrcb_colour):
     dy = max(abs(py - y) - height / 2, 0)
     return (dx * dx) + (dy * dy)
 
-def skin_tone(frame, alpha=1, beta=1, clusters=2):
+def skin_tone(frame, alpha=3, beta=1, clusters=10):
     h,w,_ = frame.shape
     arr = frame.reshape((h*w,2))
-    kmeans = KMeans(n_clusters=clusters, n_jobs=-1, max_iter=1000).fit(arr)
+    kmeans = KMeans(n_clusters=clusters, n_jobs=-1, max_iter=1000, n_init=50).fit(arr)
     centers = kmeans.cluster_centers_
     counts = np.bincount(kmeans.labels_)
     scores = np.array([(alpha*counts[i]) - (beta*_cluster_skin_distance(centers[i])) for i in range(len(centers))])
+
     return centers[scores.argmax()]
 
 def mean(frame, distribution):
@@ -100,6 +101,7 @@ class BayesianSkinDetector(RegionSelector):
         self.mean=mean
         self._frame_number = 0
         self.skin_tone = None
+        self.trial_skin_tones = []
         self.distribution = None
         self.prior_lookup = self._load_prior()
         self.weighted = weighted
@@ -117,7 +119,6 @@ class BayesianSkinDetector(RegionSelector):
         return self.prior_lookup[image[:,:,0], image[:,:,1]]
 
     def _class_conditional_lookup(self, image, skin_tone):
-        start = time.time()
         distance_matrix = self._dist(image, skin_tone)
         return self.class_conditional[np.uint8(distance_matrix)]
 
@@ -130,18 +131,24 @@ class BayesianSkinDetector(RegionSelector):
     def detect(self, frame):
         try: 
             image = cv.cvtColor(frame, cv.COLOR_BGR2YCrCb)
-            image = cv.GaussianBlur(image,(5,5),cv.BORDER_DEFAULT) 
+            image = cv.GaussianBlur(image,(5,5) ,cv.BORDER_DEFAULT) 
         except Exception as e: 
             print("CONVERSION COLOUR")
             print(e)
             print(frame.shape)
 
         image = image[:, :, 1:3] 
-        if(self._frame_number == 0):
+        
+        if(self._frame_number < 1):
             start = time.time()
+            # self.trial_skin_tones.append(skin_tone(image))
+            # self.skin_tone = np.mean(np.array(self.trial_skin_tones), axis=0)
             self.skin_tone = skin_tone(image)
-            self.class_conditional = self._load_class_conditional(self.skin_tone)
+            print(f"Skin tone: {self.skin_tone}")
             print(f"Frame: {self._frame_number}, time to find skin tone: {time.time()-start}")
+            if self._frame_number == 0:
+                self.class_conditional = self._load_class_conditional(self.skin_tone)
+
         self._frame_number += 1
 
 
@@ -149,10 +156,11 @@ class BayesianSkinDetector(RegionSelector):
         skin_probs = self._class_conditional_lookup(image, self.skin_tone)
 
         start = time.time()
-        self.prior = self._prior(image)
+        prior = self._prior(image)
 
-        skin_post = skin_probs*self.prior
-        skin_post = np.minimum(skin_post*(1/np.mean(skin_post)), np.ones(skin_post.shape))
+        skin_post = skin_probs*prior
+        # skin_post = prior
+        skin_post = np.minimum(skin_post*(1.3/np.mean(skin_post)), np.ones(skin_post.shape))
         threshold = np.percentile(skin_post, 0.2)
         start = time.time()
         # self._update_prior(image, skin_post)
