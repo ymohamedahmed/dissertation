@@ -10,4 +10,5 @@ import cv2 as cv
 for v in ["1-cut.mp4", "2-cut.avi", "3-cut.avi", "4-cut.avi"]:
     video = f"skin_tone_videos/{v}"
     config = Configuration(KLTBoxingWithThresholding(DNNDetector()),  BayesianSkinDetector(), ICAProcessor(), 600, 60)
+    # config = Configuration(RepeatedDetector(DNNDetector()),  BayesianSkinDetector(), ICAProcessor(), 600, 60)
     pipeline.tracking_pipeline(video, config, display=True)

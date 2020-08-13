@@ -16,7 +16,7 @@ import time as Timing
 from configuration import PATH
 
 class FaceTracker(object):
-    def __init__(self, detector, scaled_width=300, scaled_height=300):
+    def __init__(self, detector, scaled_width=500, scaled_height=500):
         self.detector = detector
         self.frame_number = 0
         self.scaled_width = scaled_width

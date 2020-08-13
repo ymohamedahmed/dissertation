@@ -32,7 +32,8 @@ class Visualiser():
     mask_of_roi = np.pad(np.ones(shape=(h,w)), ((y,height-(y+h)),(x,width-(x+w))), 'constant', constant_values=0)
     h,w = area_of_interest.shape
     rectangle = 255*np.array(list(map(cmap, area_of_interest)))
-    rectangle = rectangle.reshape((h,w,4))
+    # rectangle = rectangle.reshape((h,w,4))
+    rectangle = cv.cvtColor(np.uint8(rectangle.reshape((h,w,4))), cv.COLOR_RGBA2BGR)
     mask_of_roi = np.repeat(mask_of_roi[:, :, np.newaxis], 3, axis=2)
 
     rectangle = rectangle[:,:,:3]
@@ -58,4 +59,5 @@ class Visualiser():
       if (cv.waitKey(1) & 0xFF) == ord('q'): # Hit `q` to exit
           sys.exit()
     else:
+      # blended = cv.cvtColor(np.uint8(blended), cv.COLOR_BGR2RGB)
       self.out.write(np.uint8(blended))

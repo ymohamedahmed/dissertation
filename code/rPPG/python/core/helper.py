@@ -8,7 +8,12 @@ from face_det import DNNDetector
 from configuration import PATH
 
 def get_test_images():
-    return [cv.imread(file, cv.IMREAD_UNCHANGED) for file in glob.glob(f"{PATH}test-roi-images/*.jpg")]
+
+    imgs = [cv.imread(file, cv.IMREAD_UNCHANGED) for file in glob.glob(f"{PATH}test-roi-images/*.jpg")]
+    for i, img in enumerate(imgs):
+        if img.shape[2] == 4:
+            imgs[i] = cv.cvtColor(imgs[i], cv.COLOR_BGRA2BGR)
+    return imgs
 
 def get_eval_images():
     return [cv.imread(file, cv.IMREAD_UNCHANGED) for file in glob.glob(f"{PATH}test-roi-images/*.jpeg")]
